@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="tr" class="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EN-KA KUMAŞ | Ana Sayfa </title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: { primary: '#E11D48', halk: '#4F46E5' }, // Eski sevilen kurumsal renk
+                    borderRadius: { 'custom': '50px' }
+                }
+            }
+        }
+    </script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;800&display=swap');
+        * { transition: background-color 0.5s ease, color 0.5s ease, border-color 0.5s ease, backdrop-filter 0.5s ease, transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1); }
+        body { font-family: 'Plus Jakarta Sans', sans-serif; overflow-x: hidden; }
+
+        /* Eski Tasarımın Temeli: Liquid Background */
+        .liquid-bg {
+            position: fixed; inset: 0; z-index: -1;
+            background: linear-gradient(-45deg, #f8fafc, #f1f5f9, #fee2e2, #e0f2fe);
+            background-size: 400% 400%;
+            animation: gradientMove 15s ease infinite;
+        }
+        .dark .liquid-bg { background: linear-gradient(-45deg, #0f172a, #1e293b, #450a0a, #020617); }
+        @keyframes gradientMove { 0% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } 100% { background-position: 0% 50%; } }
+
+        .glass {
+            background: rgba(255, 255, 255, 0.4);
+            backdrop-filter: blur(25px) saturate(160%);
+            -webkit-backdrop-filter: blur(25px) saturate(160%);
+            border: 1px solid rgba(255, 255, 255, 0.4);
+        }
+        .dark .glass { background: rgba(15, 23, 42, 0.75); border: 1px solid rgba(255, 255, 255, 0.1); }
+
+        #splash {
+            position: fixed; inset: 0; background: #E11D48; z-index: 9999;
+            display: flex; justify-content: center; align-items: center; color: white;
+            transition: transform 1s cubic-bezier(0.85, 0, 0.15, 1), opacity 0.5s ease;
+        }
+        .splash-hidden { transform: translateY(-100%); pointer-events: none; opacity: 0; }
+        .scrollbar-hide::-webkit-scrollbar { display: none; }
+        
+        .word { display: inline-block; opacity: 0; transform: translateY(5px); animation: fadeInUp 0.3s forwards; }
+        @keyframes fadeInUp { to { opacity: 1; transform: translateY(0); } }
+        
+        .urgency-blink { animation: urgencyPulse 1s infinite alternate; }
+        @keyframes urgencyPulse { from { color: #E11D48; transform: scale(1); } to { color: #EA580C; transform: scale(1.05); } }
+        
+        .busy-text { color: #E11D48; font-weight: 900; letter-spacing: 0.1em; animation: busyPulse 2s infinite; }
+        @keyframes busyPulse { 0% { opacity: 0.3; } 50% { opacity: 1; } 100% { opacity: 0.3; } }
+    </style>
+</head>
+<body class="text-slate-900 dark:text-slate-100 antialiased">
+
+    <div class="liquid-bg"></div>
+
+    <div id="splash">
+        <div class="text-center">
+            <h1 class="text-5xl font-black tracking-tighter">EN-KA KUMAŞ</h1>
+            <div class="mt-4 flex justify-center gap-2">
+                <div class="w-2 h-2 bg-white rounded-full animate-bounce"></div>
+                <div class="w-2 h-2 bg-white rounded-full animate-bounce" style="animation-delay: 0.1s"></div>
+            </div>
+        </div>
+    </div>
+
+    <div id="halk-gunu-banner" class="hidden bg-primary text-white text-center py-2.5 font-bold text-[10px] uppercase tracking-[0.4em] fixed top-0 w-full z-[80] shadow-xl">
+        Bugün Halk Günü - EN-KA KUMAŞ AYRICALIKLARINI KEŞFEDİN 
+    </div>
+
+    <nav class="fixed w-full z-50 px-6 py-6">
+        <div class="max-w-7xl mx-auto flex justify-between items-center glass rounded-full px-10 py-5 shadow-2xl border-white/30">
+            <div class="text-2xl font-black tracking-tighter text-primary">EN-KA <span class="text-slate-800 dark:text-white uppercase">Kumaş</span></div>
+            <div class="flex items-center gap-6">
+                <span id="live-clock" class="hidden md:block text-[11px] font-black opacity-60 tracking-[0.2em]">00:00:00</span>
+                <button onclick="toggleDarkMode()" class="w-12 h-12 flex items-center justify-center rounded-full glass hover:bg-primary hover:text-white shadow-lg transition-all">
+                    <i class="fas fa-moon dark:hidden"></i>
+                    <i class="fas fa-sun hidden dark:block"></i>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <main class="pt-44 pb-32 px-6 max-w-7xl mx-auto relative z-10">
+        <div class="glass rounded-custom p-12 md:p-20 shadow-2xl mb-16 relative overflow-hidden border-white/20">
+            <h2 id="greeting" class="text-5xl md:text-8xl font-black mb-4 tracking-tighter">...</h2>
+            <div id="busy-alert" class="hidden busy-text text-[12px] mb-8 uppercase tracking-widest">Mağazamız şu an çok yoğun</div>
+            <div id="status-badge" class="inline-flex items-center gap-4 px-8 py-3.5 rounded-full text-[11px] font-black uppercase tracking-[0.2em] glass border-white/50"></div>
+        </div>
+        
+        <div class="grid grid-cols-2 lg:grid-cols-4 gap-8" id="fabric-grid"></div>
+    </main>
+
+    <div class="fixed bottom-10 left-10 z-[100]">
+        <div id="contact-panel" class="transition-all duration-500 w-72 glass rounded-[40px] shadow-2xl p-6 mb-5 opacity-0 pointer-events-none translate-y-10 scale-90 border-white/30">
+            <div class="space-y-2">
+                <a href="https://wa.me/905368938558" target="_blank" class="flex items-center justify-between p-4 hover:bg-green-500 hover:text-white rounded-[25px] transition group">
+                    <span class="text-[10px] font-black uppercase tracking-widest">WhatsApp</span>
+                    <i class="fab fa-whatsapp text-xl text-green-500 group-hover:text-white"></i>
+                </a>
+                <a href="https://instagram.com/enka_kumascilik_a.s" target="_blank" class="flex items-center justify-between p-4 hover:bg-pink-500 hover:text-white rounded-[25px] transition group">
+                    <span class="text-[10px] font-black uppercase tracking-widest">Instagram</span>
+                    <i class="fab fa-instagram text-xl text-pink-500 group-hover:text-white"></i>
+                </a>
+                <a href="https://maps.app.goo.gl/QDJ8ei1FDQk6J7mv8" target="_blank" class="flex items-center justify-between p-4 hover:bg-blue-500 hover:text-white rounded-[25px] transition group">
+                    <span class="text-[10px] font-black uppercase tracking-widest">Haritalar</span>
+                    <i class="fas fa-map-location-dot text-xl text-blue-500 group-hover:text-white"></i>
+                </a>
+                <a href="tel:+905368938558" class="flex items-center justify-between p-4 hover:bg-primary hover:text-white rounded-[25px] transition group">
+                    <span class="text-[10px] font-black uppercase tracking-widest">Telefon</span>
+                    <i class="fas fa-phone text-xl text-primary group-hover:text-white"></i>
+                </a>
+            </div>
+        </div>
+        <button onclick="toggleContact()" class="glass pl-6 pr-8 py-5 rounded-full shadow-2xl flex items-center gap-4 text-primary hover:scale-105 active:scale-95 transition-all">
+            <div class="w-10 h-10 bg-primary text-white rounded-full flex items-center justify-center"><i class="fas fa-headset" id="contact-icon"></i></div>
+            <span class="text-[11px] font-black uppercase tracking-[0.2em]">Bize Ulaşın</span>
+        </button>
+    </div>
+
+    <div class="fixed bottom-10 right-10 z-[100]">
+        <button onclick="toggleBot()" class="w-16 h-16 bg-primary text-white rounded-full shadow-2xl flex items-center justify-center text-2xl hover:scale-110 active:scale-95 transition-all">
+            <i class="fas fa-robot"></i>
+        </button>
+
+        <div id="bot-window" class="hidden absolute bottom-24 right-0 w-[350px] md:w-[420px] glass rounded-[50px] shadow-2xl overflow-hidden flex flex-col border border-white/40">
+            <div class="bg-primary p-7 text-white flex justify-between items-center" id="bot-header">
+                <div class="flex items-center gap-4">
+                    <div class="w-12 h-12 bg-white/20 rounded-2xl flex items-center justify-center text-xl relative">
+                        <i class="fas fa-microchip"></i>
+                        <div class="absolute -top-1 -right-1 w-3.5 h-3.5 bg-green-400 rounded-full border-2 border-primary animate-pulse"></div>
+                    </div>
+                    <div>
+                        <div class="font-black text-[10px] uppercase tracking-[0.3em]">EN-KA ASİSTAN</div>
+                        <div class="text-[8px] opacity-90 font-bold uppercase tracking-widest">ÇEVRİMİÇİ</div>
+                    </div>
+                </div>
+                <button onclick="toggleBot()"><i class="fas fa-times opacity-50"></i></button>
+            </div>
+            
+            <div id="chat-box" class="h-96 overflow-y-auto p-8 space-y-6 text-[13px] font-bold scrollbar-hide bg-white/5">
+                <div class="bg-white/50 dark:bg-slate-800/50 p-6 rounded-[35px] rounded-tl-none border border-white/10 shadow-sm leading-relaxed">
+                    Merhaba! Kumaş stoklarımız, halk günü ve ulaşım hakkında size yardımcı olabilirim.
+                </div>
+            </div>
+
+            <div id="bot-typing" class="hidden px-8 py-2">
+                <div class="flex gap-1.5"><div class="w-1.5 h-1.5 bg-primary/40 rounded-full animate-bounce"></div><div class="w-1.5 h-1.5 bg-primary/40 rounded-full animate-bounce" style="animation-delay: 0.1s"></div></div>
+            </div>
+
+            <div class="p-6 bg-white/20 backdrop-blur-xl border-t border-white/10">
+                <div class="relative flex items-center">
+                    <input type="text" id="bot-input" placeholder="Bir soru sorun..." class="w-full p-6 pr-16 bg-white/60 dark:bg-slate-900/60 rounded-full focus:outline-none focus:ring-2 ring-primary/30 transition-all font-bold text-sm">
+                    <button onclick="askBot()" class="absolute right-2 w-12 h-12 bg-primary text-white rounded-full flex items-center justify-center shadow-lg hover:scale-105"><i class="fas fa-paper-plane text-sm"></i></button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer class="py-24 px-6 text-center relative z-10">
+        <div class="max-w-7xl mx-auto glass rounded-[50px] p-16 shadow-2xl border-white/10">
+            <div class="opacity-60">
+                <p class="text-[10px] font-extrabold uppercase tracking-widest">© 2026 EN-KA KUMAŞÇILIK A.Ş.</p>
+                <a href="https://aftortechnologies.github.io/AFTOR/" target="_blank" class="text-[10px] font-black text-primary mt-4 inline-block hover:tracking-widest transition-all">DESIGNED BY AFTOR TECHNOLOGIES</a>
+            </div>
+        </div>
+    </footer>
+
+    <div id="fabric-modal" class="fixed inset-0 z-[1000] hidden items-center justify-center p-6 bg-slate-900/60 backdrop-blur-2xl">
+        <div class="glass w-full max-w-xl rounded-[50px] p-12 shadow-2xl border-white/20 animate-in zoom-in duration-300">
+            <div class="text-center">
+                <div id="m-icon-box" class="w-24 h-24 bg-primary text-white rounded-[35px] flex items-center justify-center text-4xl mx-auto mb-8 shadow-2xl shadow-primary/30"><i id="m-icon" class="fas"></i></div>
+                <h2 id="m-title" class="text-4xl font-black mb-6 tracking-tighter uppercase"></h2>
+                <p id="m-desc" class="text-slate-500 dark:text-slate-400 leading-relaxed text-lg mb-10 font-bold"></p>
+                <button onclick="closeModal()" class="w-full bg-slate-900 dark:bg-white dark:text-slate-900 text-white py-5 rounded-[25px] font-black tracking-widest hover:bg-primary hover:text-white transition-all">GERİ DÖN</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Splash
+        function hideSplash() { 
+            const splash = document.getElementById('splash');
+            splash.classList.add('splash-hidden'); 
+            setTimeout(() => splash.style.display = 'none', 1000);
+        }
+        window.addEventListener('load', hideSplash);
+
+        // Core Engine
+        let isManual = false;
+        function engine() {
+            const now = new Date();
+            const h = now.getHours(); const m = now.getMinutes(); const d = now.getDay();
+            const totalMins = h * 60 + m;
+
+            document.getElementById('live-clock').innerText = `${h.toString().padStart(2,'0')}:${m.toString().padStart(2,'0')}:${now.getSeconds().toString().padStart(2,'0')}`;
+
+            if (!isManual) {
+                if (h >= 17 || h < 6) document.documentElement.classList.add('dark');
+                else document.documentElement.classList.remove('dark');
+            }
+
+            const greet = document.getElementById('greeting');
+            const busy = document.getElementById('busy-alert');
+            
+            if (h < 12) greet.innerText = "Günaydın"; 
+            else if (h < 18) {
+                greet.innerText = "İyi Günler";
+                // 15:00 - 17:00 Yoğunluk
+                if(h >= 15 && h < 17) busy.classList.remove('hidden');
+                else busy.classList.add('hidden');
+            } 
+            else greet.innerText = "İyi Akşamlar";
+            
+            const status = document.getElementById('status-badge');
+            let open = (d === 0) ? 720 : 480; let close = (d === 0) ? 1080 : 1140;
+
+            if (totalMins >= open && totalMins < close) {
+                if (close - totalMins <= 30) status.innerHTML = `<span class="urgency-blink font-black">MAĞAZAMIZ BİRAZDAN KAPANACAK</span>`;
+                else status.innerHTML = `<i class="fas fa-check-circle text-green-500"></i> Şu an Hizmete Açığız`;
+            } else {
+                if (totalMins < open && open - totalMins <= 30) status.innerHTML = `<span class="text-blue-500 animate-pulse font-black">MAĞAZAMIZ BİRAZDAN AÇILACAK</span>`;
+                else status.innerHTML = `<i class="fas fa-moon text-red-500"></i> Mağazamız Kapalı`;
+            }
+
+            if(d === 3) { // Çarşamba Halk Günü
+                document.getElementById('halk-gunu-banner').classList.remove('hidden');
+                document.getElementById('bot-header').classList.replace('bg-primary', 'bg-halk');
+            }
+        }
+        setInterval(engine, 1000); engine();
+
+        function toggleDarkMode() { isManual = true; document.documentElement.classList.toggle('dark'); }
+        function toggleContact() {
+            const p = document.getElementById('contact-panel'); const i = document.getElementById('contact-icon');
+            p.classList.toggle('opacity-0'); p.classList.toggle('pointer-events-none'); p.classList.toggle('translate-y-10'); p.classList.toggle('scale-90');
+            i.classList.toggle('fa-headset'); i.classList.toggle('fa-times');
+        }
+
+        const fabrics = [
+            { name: 'OYSHO', icon: 'fa-wind', desc: 'Premium esneklik ve yumuşak dokusuyla ev ve spor giyimde maksimum konfor sağlar.' },
+            { name: 'İPEK', icon: 'fa-gem', desc: 'Tamamen doğal liflerden üretilen, benzersiz parlaklık ve zerafet sunan lüks dokuma.' },
+            { name: 'TEDDY', icon: 'fa-paw', desc: 'Yumuşak ve pofuduk yapısı sayesinde kış aylarında mükemmel ısı yalıtımı ve konfor sunar.' },
+            { name: 'YÜN', icon: 'fa-scroll', desc: 'Yüksek kalite yün liflerinden elde edilen, kışlık dış giyimin en prestijli kumaşı.' },
+            { name: 'DERİ', icon: 'fa-vest', desc: 'Modern tasarımlar için tasarlanmış, dayanıklı ve estetik görünümlü yüzey dokusu.' },
+            { name: 'VİSKON', icon: 'fa-leaf', desc: 'Hava alan doğal yapısı ve dökümlü duruşuyla günlük giyimin en rahat seçeneğidir.' },
+            { name: 'PENYE', icon: 'fa-tshirt', desc: 'Pamuklu dokusu ve esnek yapısıyla her mevsim tercih edilen temel tekstil ürünü.' },
+            { name: 'MÜSLİN', icon: 'fa-baby-carriage', desc: 'Bebek sağlığına uygun, ultra hafif ve nefes alabilen doğal dokuma kumaş.' },
+            { name: 'KAPİTONE', icon: 'fa-shapes', desc: 'İç dolgusu sayesinde soğuk havalarda koruyucu ve hacimli bir şıklık sağlar.' },
+            { name: 'ASTAR', icon: 'fa-layer-group', desc: 'Kıyafetlerin iç formunu koruyan ve giyimi kolaylaştıran pürüzsüz yüzey kumaşı.' },
+            { name: 'MEDİNE İPEĞİ', icon: 'fa-kaaba', desc: 'Tesettür giyimde dökümlü yapısı ve iç göstermeyen dokusuyla en çok tercih edilen kumaştır.' },
+            { name: 'MARKA KUMAŞLAR', icon: 'fa-star', desc: 'Dünya moda devlerinin koleksiyonları için üretilen sınırlı sayıda özel dokumalar.' },
+            { name: 'KETEN', icon: 'fa-sun', desc: 'Doğal gözenekleri sayesinde yazın vücudu serin tutan zamansız bir klasik.' },
+            { name: 'TRİKO', icon: 'fa-mitten', desc: 'Yumuşak örgü dokusuyla vücudu saran, konforlu kışlık giyim tercihi.' },
+            { name: 'SU GEÇİRMEZ', icon: 'fa-umbrella', desc: 'Özel kaplaması ile sıvı ve rüzgar temasını kesen teknolojik dış mekan kumaşı.' }
+        ];
+
+        const grid = document.getElementById('fabric-grid');
+        fabrics.forEach(f => {
+            const c = document.createElement('div');
+            c.className = 'glass p-10 rounded-[40px] shadow-lg cursor-pointer flex flex-col items-center group hover:-translate-y-3 relative z-20';
+            c.innerHTML = `<div class="w-20 h-20 glass rounded-3xl flex items-center justify-center text-primary text-3xl mb-6 group-hover:bg-primary group-hover:text-white transition-all"><i class="fas ${f.icon}"></i></div><h4 class="font-black text-[12px] uppercase tracking-widest text-center">${f.name}</h4>`;
+            c.onclick = () => openModal(f);
+            grid.appendChild(c);
+        });
+
+        function openModal(f) {
+            document.getElementById('m-title').innerText = f.name;
+            document.getElementById('m-desc').innerText = f.desc;
+            document.getElementById('m-icon').className = `fas ${f.icon}`;
+            document.getElementById('fabric-modal').classList.replace('hidden', 'flex');
+        }
+        function closeModal() { document.getElementById('fabric-modal').classList.replace('flex', 'hidden'); }
+
+        // AI Logic
+        function toggleBot() { document.getElementById('bot-window').classList.toggle('hidden'); }
+        async function askBot() {
+            const input = document.getElementById('bot-input');
+            const query = input.value.trim().toLowerCase();
+            if(!query) return;
+
+            addMsg(input.value, true);
+            input.value = '';
+            document.getElementById('bot-typing').classList.remove('hidden');
+
+            setTimeout(() => {
+                document.getElementById('bot-typing').classList.add('hidden');
+                let res = "Bize ulaşın panelinden sorunuza cevap bulabilirsiniz.";
+                
+                // Sipariş
+                if (query.includes("sipariş") || query.includes("almak istiyorum")) {
+                    res = "Siparişiniz için sizi direkt WhatsApp hattımıza yönlendiriyorum. <a href='https://wa.me/905368938558' target='_blank' class='text-primary underline font-black'>Açılmazsa buraya tıklayın.</a>";
+                    window.open('https://wa.me/905368938558', '_blank');
+                }
+                // Hava
+                else if (query.includes("hava") || query.includes("yağmur")) {
+                    res = "Hava durumu için Meteoroloji sitesine yönlendiriliyorsunuz.";
+                    window.open('https://www.mgm.gov.tr', '_blank');
+                }
+                // Ulaşım / Otopark
+                else if (query.includes("ulaşım") || query.includes("otopark") || query.includes("nerede")) {
+                    res = "Mağazamız M4 Metrosu Belediye durağına yakındır. Yakında ücretli otopark mevcuttur. <a href='https://maps.app.goo.gl/QDJ8ei1FDQk6J7mv8' target='_blank' class='text-primary underline font-black'>Haritada Göster</a>";
+                }
+                // Halk Günü
+                else if (query.includes("halk günü")) {
+                    res = "Halk günü her Çarşamba! Yeni kumaşlar ve indirimler için mağazamızı ziyaret edebilirsiniz.";
+                }
+                // Sohbet
+                else if (query.includes("merhaba")) res = "Merhaba! Size nasıl yardımcı olabilirim?";
+                else if (query.includes("nasılsın")) res = "Harikayım, kumaşları listelemek için sabırsızlanıyorum!";
+
+                const fabricMatch = fabrics.find(f => query.includes(f.name.toLowerCase()));
+                if(fabricMatch) res = `${fabricMatch.name} stoklarımızda: ${fabricMatch.desc}`;
+
+                typeMsg(res);
+            }, 1000);
+        }
+
+        function addMsg(t, u) {
+            const b = document.getElementById('chat-box');
+            const d = document.createElement('div');
+            d.className = u ? 'bg-primary text-white p-5 rounded-[30px] rounded-tr-none ml-auto max-w-[85%] shadow-lg' : 'glass p-5 rounded-[30px] rounded-tl-none mr-auto max-w-[85%] border-white/20';
+            d.innerHTML = t;
+            b.appendChild(d); b.scrollTop = b.scrollHeight;
+        }
+
+        function typeMsg(text) {
+            const b = document.getElementById('chat-box');
+            const d = document.createElement('div');
+            d.className = 'glass p-5 rounded-[30px] rounded-tl-none mr-auto max-w-[85%] border-white/20 text-slate-700 dark:text-slate-200';
+            b.appendChild(d);
+            const words = text.split(" ");
+            words.forEach((w, i) => {
+                const s = document.createElement('span');
+                s.className = 'word'; s.style.animationDelay = `${i * 0.07}s`; s.innerHTML = w + " ";
+                d.appendChild(s);
+            });
+            b.scrollTop = b.scrollHeight;
+        }
+        document.getElementById('bot-input').addEventListener('keypress', e => e.key === 'Enter' && askBot());
+    </script>
+</body>
+</html>
