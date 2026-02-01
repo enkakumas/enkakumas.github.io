@@ -1,14 +1,11 @@
 <!DOCTYPE html>
 <html lang="tr" class="light">
 <head>
-    <link rel="icon" type="image/png" href="logo.png">
-    <meta name="keywords" content="EN-KA Kumaş, Ankara, Keçiören, ucuz kumaş, kaliteli kumaş, kumaş markası">
-    <meta name="theme-color" content="#ff0000"> 
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="EN-KA Kumaş – Ankara Keçiören’de ucuz ve kaliteli kumaşlar. Uygun fiyatlarla en iyi kumaşları hemen keşfedin.">
-
-    <title>EN-KA KUMAŞ | Ankara'nın ve Keçiören'in en uygun kumaşçısı </title>
+    <meta name="keywords" content="EN-KA Kumaş, Ankara, Keçiören, ucuz kumaş, kaliteli kumaş, kumaş markası">
+    <title>EN-KA KUMAŞ | Ankara'nın ve Keçiören'in en uygun kumaşçısı</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <script>
@@ -16,101 +13,256 @@
             darkMode: 'class',
             theme: {
                 extend: {
-                    colors: { primary: '#E11D48', halk: '#4F46E5' }, // Eski sevilen kurumsal renk
-                    borderRadius: { 'custom': '50px' }
+                    colors: { primary: '#E11D48', secondary: '#881337', halk: '#4F46E5' },
+                    borderRadius: { 'custom': '50px' },
+                    fontFamily: {
+                        sans: ['Plus Jakarta Sans', 'sans-serif'],
+                        poppins: ['Poppins', 'sans-serif']
+                    },
+                    animation: {
+                        'shine': 'shine 3s linear infinite',
+                    },
+                    keyframes: {
+                        shine: {
+                            '0%': { backgroundPosition: '200% center' },
+                            '100%': { backgroundPosition: '-200% center' },
+                        }
+                    }
                 }
             }
         }
     </script>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;800&display=swap');
-        * { transition: background-color 0.5s ease, color 0.5s ease, border-color 0.5s ease, backdrop-filter 0.5s ease, transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1); }
-        body { font-family: 'Plus Jakarta Sans', sans-serif; overflow-x: hidden; }
+        @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;800&family=Poppins:wght@300;400;500;700;900&display=swap');
+        
+        body { font-family: 'Plus Jakarta Sans', sans-serif; overflow-x: hidden; scroll-behavior: smooth; }
+        .trans-base { transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); }
 
-        /* Eski Tasarımın Temeli: Liquid Background */
+        /* Liquid Background */
         .liquid-bg {
             position: fixed; inset: 0; z-index: -1;
             background: linear-gradient(-45deg, #f8fafc, #f1f5f9, #fee2e2, #e0f2fe);
             background-size: 400% 400%;
             animation: gradientMove 15s ease infinite;
+            will-change: background-position;
         }
         .dark .liquid-bg { background: linear-gradient(-45deg, #0f172a, #1e293b, #450a0a, #020617); }
         @keyframes gradientMove { 0% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } 100% { background-position: 0% 50%; } }
 
+        /* Glassmorphism */
         .glass {
-            background: rgba(255, 255, 255, 0.4);
-            backdrop-filter: blur(25px) saturate(160%);
-            -webkit-backdrop-filter: blur(25px) saturate(160%);
-            border: 1px solid rgba(255, 255, 255, 0.4);
+            background: rgba(255, 255, 255, 0.45);
+            backdrop-filter: blur(25px) saturate(180%);
+            -webkit-backdrop-filter: blur(25px) saturate(180%);
+            border: 1px solid rgba(255, 255, 255, 0.5);
         }
         .dark .glass { background: rgba(15, 23, 42, 0.75); border: 1px solid rgba(255, 255, 255, 0.1); }
+
+        /* SCROLLBAR GİZLEME*/
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+
+        /* Chips & Elements */
+        .chip {
+            background: rgba(255,255,255,0.3); border: 1px solid rgba(255,255,255,0.4);
+            backdrop-filter: blur(4px);
+            padding: 8px 16px; border-radius: 99px; font-size: 10px; font-weight: 700; 
+            cursor: pointer; white-space: nowrap; transition: 0.2s; display: inline-flex; align-items: center; gap: 6px;
+        }
+        .chip:hover { background: #E11D48; color: white; border-color: #E11D48; transform: translateY(-2px); }
+        .dark .chip { background: rgba(0,0,0,0.4); border-color: rgba(255,255,255,0.15); color: #ccc; }
+        .dark .chip:hover { background: #E11D48; color: white; }
+
+        /* Animations */
+        .reveal { opacity: 0; transform: translateY(40px); transition: all 1s ease-out; }
+        .reveal.active { opacity: 1; transform: translateY(0); }
+
+        .text-shimmer {
+            background: linear-gradient(to right, #E11D48 20%, #ff8a8a 40%, #ff8a8a 60%, #E11D48 80%);
+            background-size: 200% auto;
+            color: transparent; -webkit-background-clip: text; background-clip: text;
+            animation: shine 4s linear infinite;
+        }
+        .dark .text-shimmer {
+             background: linear-gradient(to right, #fff 20%, #888 40%, #888 60%, #fff 80%);
+             background-size: 200% auto;
+             color: transparent; -webkit-background-clip: text; background-clip: text;
+        }
 
         #splash {
             position: fixed; inset: 0; background: #E11D48; z-index: 9999;
             display: flex; justify-content: center; align-items: center; color: white;
-            transition: transform 1s cubic-bezier(0.85, 0, 0.15, 1), opacity 0.5s ease;
+            transition: transform 0.8s cubic-bezier(0.85, 0, 0.15, 1);
         }
-        .splash-hidden { transform: translateY(-100%); pointer-events: none; opacity: 0; }
-        .scrollbar-hide::-webkit-scrollbar { display: none; }
+        .splash-hidden { transform: translateY(-100%); pointer-events: none; }
         
-        .word { display: inline-block; opacity: 0; transform: translateY(5px); animation: fadeInUp 0.3s forwards; }
-        @keyframes fadeInUp { to { opacity: 1; transform: translateY(0); } }
-        
-        .urgency-blink { animation: urgencyPulse 1s infinite alternate; }
-        @keyframes urgencyPulse { from { color: #E11D48; transform: scale(1); } to { color: #EA580C; transform: scale(1.05); } }
-        
-        .busy-text { color: #E11D48; font-weight: 900; letter-spacing: 0.1em; animation: busyPulse 2s infinite; }
-        @keyframes busyPulse { 0% { opacity: 0.3; } 50% { opacity: 1; } 100% { opacity: 0.3; } }
+        .fabric-card { transition: transform 0.3s, box-shadow 0.3s; }
+        .fabric-card:hover { transform: translateY(-8px); box-shadow: 0 25px 30px -10px rgba(0, 0, 0, 0.15); }
+
+        /* Chat Typing Dots */
+        .typing-dot {
+            width: 6px; height: 6px; border-radius: 50%; background-color: currentColor;
+            animation: typing 1.4s infinite ease-in-out both;
+        }
+        .typing-dot:nth-child(1) { animation-delay: -0.32s; }
+        .typing-dot:nth-child(2) { animation-delay: -0.16s; }
+        @keyframes typing { 0%, 80%, 100% { transform: scale(0); } 40% { transform: scale(1); } }
     </style>
 </head>
-<body class="text-slate-900 dark:text-slate-100 antialiased">
+<body class="text-slate-900 dark:text-slate-100 antialiased trans-base">
 
     <div class="liquid-bg"></div>
 
     <div id="splash">
         <div class="text-center">
-            <h1 class="text-5xl font-black tracking-tighter">EN-KA KUMAŞ</h1>
+            <h1 class="text-6xl font-black tracking-tighter">EN-KA</h1>
             <div class="mt-4 flex justify-center gap-2">
-                <div class="w-2 h-2 bg-white rounded-full animate-bounce"></div>
-                <div class="w-2 h-2 bg-white rounded-full animate-bounce" style="animation-delay: 0.1s"></div>
+                <div class="w-3 h-3 bg-white rounded-full animate-bounce"></div>
+                <div class="w-3 h-3 bg-white rounded-full animate-bounce" style="animation-delay: 0.1s"></div>
+                <div class="w-3 h-3 bg-white rounded-full animate-bounce" style="animation-delay: 0.2s"></div>
             </div>
         </div>
     </div>
 
     <div id="halk-gunu-banner" class="hidden bg-primary text-white text-center py-2.5 font-bold text-[10px] uppercase tracking-[0.4em] fixed top-0 w-full z-[80] shadow-xl">
-        Bugün Halk Günü - EN-KA KUMAŞ AYRICALIKLARINI KEŞFEDİN 
+        Bugün Çarşamba: Halk Günü İndirimleri Başladı!
     </div>
 
-    <nav class="fixed w-full z-50 px-6 py-6">
-        <div class="max-w-7xl mx-auto flex justify-between items-center glass rounded-full px-10 py-5 shadow-2xl border-white/30">
-            <div class="text-2xl font-black tracking-tighter text-primary">EN-KA <span class="text-slate-800 dark:text-white uppercase">Kumaş</span></div>
-            <div class="flex items-center gap-6">
+    <nav class="fixed w-full z-50 px-4 md:px-6 py-6">
+        <div class="max-w-7xl mx-auto flex justify-between items-center glass rounded-full px-8 py-4 shadow-2xl border-white/30 backdrop-blur-xl">
+            <div class="text-2xl font-black tracking-tighter text-primary">EN-KA <span class="text-slate-800 dark:text-white uppercase text-lg">Kumaş</span></div>
+            <div class="flex items-center gap-4">
                 <span id="live-clock" class="hidden md:block text-[11px] font-black opacity-60 tracking-[0.2em]">00:00:00</span>
-                <button onclick="toggleDarkMode()" class="w-12 h-12 flex items-center justify-center rounded-full glass hover:bg-primary hover:text-white shadow-lg transition-all">
-                    <i class="fas fa-moon dark:hidden"></i>
-                    <i class="fas fa-sun hidden dark:block"></i>
+                <button onclick="toggleDarkMode()" class="w-10 h-10 flex items-center justify-center rounded-full glass hover:bg-primary hover:text-white shadow-lg trans-base">
+                    <i class="fas fa-moon dark:hidden"></i><i class="fas fa-sun hidden dark:block"></i>
                 </button>
             </div>
         </div>
     </nav>
 
-    <main class="pt-44 pb-32 px-6 max-w-7xl mx-auto relative z-10">
-        <div class="glass rounded-custom p-12 md:p-20 shadow-2xl mb-16 relative overflow-hidden border-white/20">
-            <h2 id="greeting" class="text-5xl md:text-8xl font-black mb-4 tracking-tighter">...</h2>
-            <div id="busy-alert" class="hidden busy-text text-[12px] mb-8 uppercase tracking-widest">Mağazamız şu an çok yoğun</div>
+    <main class="pt-40 pb-12 px-6 max-w-7xl mx-auto relative z-10">
+        <div class="glass rounded-custom p-10 md:p-20 shadow-2xl mb-12 relative overflow-hidden border-white/20">
+            <h2 id="greeting" class="text-5xl md:text-8xl font-black mb-4 tracking-tighter trans-base">...</h2>
+            <div id="busy-alert" class="hidden text-primary font-black text-[12px] mb-8 uppercase tracking-widest animate-pulse">Mağazamız şu an çok yoğun</div>
             <div id="status-badge" class="inline-flex items-center gap-4 px-8 py-3.5 rounded-full text-[11px] font-black uppercase tracking-[0.2em] glass border-white/50"></div>
         </div>
         
-        <div class="grid grid-cols-2 lg:grid-cols-4 gap-8" id="fabric-grid"></div>
+        <div class="mb-16 text-center reveal active">
+            <a href="kalip-koleksiyonu.html" class="inline-flex items-center gap-4 px-10 py-5 glass rounded-full text-primary font-black uppercase tracking-widest shadow-xl hover:scale-105 hover:bg-primary hover:text-white trans-base group border-white/40">
+                <i class="fas fa-ruler-combined text-xl"></i>
+                <span>Özel Kalıp Koleksiyonu</span>
+                <i class="fas fa-arrow-right opacity-0 group-hover:opacity-100 -translate-x-2 group-hover:translate-x-0 trans-base"></i>
+            </a>
+        </div>
+
+        <div class="grid grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8" id="fabric-grid"></div>
     </main>
+
+    <div class="max-w-7xl mx-auto px-6 space-y-24 pb-32 relative z-10">
+
+        <section class="text-center reveal" id="about-section">
+            <div class="inline-block px-6 py-2 rounded-full glass text-[10px] font-black uppercase tracking-[0.3em] text-primary mb-8">Marka Hikayemiz</div>
+            <div class="glass p-10 md:p-14 rounded-[40px] border-white/30 shadow-xl font-poppins">
+                <h3 class="text-3xl font-bold mb-8">EN-KA KUMAŞ HAKKINDA</h3>
+                <div class="text-sm md:text-base leading-relaxed space-y-6 text-slate-700 dark:text-slate-300 font-medium">
+                    <p>EN‑KA Kumaş, Ankara’nın Keçiören ilçesinde kurulmuş, <span class="text-primary font-bold">22 yılı aşkın tecrübesiyle</span> kaliteli kumaş sunan köklü bir markadır.</p>
+                    <p>Kurulduğu günden bu yana, hem <span class="font-bold">profesyonel terzilerin</span> hem de <span class="font-bold">ev kullanıcılarının</span> ihtiyaçlarına yönelik geniş ürün yelpazesiyle hizmet veriyoruz.</p>
+                    <p>Amacımız, kalite, güven ve müşteri memnuniyeti odaklı çalışarak, her müşterimize hızlı ve kolay erişim sağlamaktır.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="reveal">
+            <h3 class="text-center text-2xl font-black uppercase tracking-tighter mb-10">Sıkça Sorulan Sorular</h3>
+            <div class="grid md:grid-cols-2 gap-6">
+                <div class="glass p-6 rounded-[30px] border-white/20 hover:bg-white/20 trans-base">
+                    <div class="flex items-center gap-3 mb-2"><i class="fas fa-calendar-check text-primary"></i> <h4 class="font-bold text-sm">Pazar günü açık mısınız?</h4></div>
+                    <p class="text-xs text-slate-600 dark:text-slate-400 font-medium ml-7">Evet, pazar günleri de hizmetinizdeyiz.</p>
+                </div>
+                <div class="glass p-6 rounded-[30px] border-white/20 hover:bg-white/20 trans-base">
+                    <div class="flex items-center gap-3 mb-2"><i class="fas fa-truck text-primary"></i> <h4 class="font-bold text-sm">Kapıya kargo var mı?</h4></div>
+                    <p class="text-xs text-slate-600 dark:text-slate-400 font-medium ml-7">Bu durum siparişinize göre değişkenlik gösterir.</p>
+                </div>
+                <div class="glass p-6 rounded-[30px] border-white/20 hover:bg-white/20 trans-base col-span-2 md:col-span-1">
+                    <div class="flex items-center gap-3 mb-2"><i class="fas fa-tag text-primary"></i> <h4 class="font-bold text-sm">Neden bu kadar ucuz?</h4></div>
+                    <p class="text-xs text-slate-600 dark:text-slate-400 font-medium ml-7 leading-relaxed">
+                        EN‑KA Kumaş olarak, ürünlerimizi mümkün olan en uygun fiyatlarla sunmaya çalışıyoruz. Bazen düşük fiyat, kaliteyi düşürmek anlamına gelmez; amacımız herkesin bütçesine uygun ve erişilebilir ürünler sunmaktır.
+                    </p>
+                </div>
+                <div class="glass p-6 rounded-[30px] border-white/20 hover:bg-white/20 trans-base">
+                    <div class="flex items-center gap-3 mb-2"><i class="fas fa-layer-group text-primary"></i> <h4 class="font-bold text-sm">Başka çeşit var mı?</h4></div>
+                    <p class="text-xs text-slate-600 dark:text-slate-400 font-medium ml-7">Evet, mağazamızda 100 binlerce çeşit mevcuttur.</p>
+                </div>
+                <div class="glass p-6 rounded-[30px] border-white/20 hover:bg-white/20 trans-base">
+                    <div class="flex items-center gap-3 mb-2"><i class="fas fa-balance-scale text-primary"></i> <h4 class="font-bold text-sm">Kilo ile kumaş var mı?</h4></div>
+                    <p class="text-xs text-slate-600 dark:text-slate-400 font-medium ml-7">Evet, parça ve kilo ile satışımız vardır.</p>
+                </div>
+                <div class="glass p-6 rounded-[30px] border-white/20 hover:bg-white/20 trans-base">
+                    <div class="flex items-center gap-3 mb-2"><i class="fas fa-cut text-primary"></i> <h4 class="font-bold text-sm">Terzi hizmeti var mı?</h4></div>
+                    <p class="text-xs text-slate-600 dark:text-slate-400 font-medium ml-7">Hayır, şu anlık dikiş/terzi hizmetimiz yoktur.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="reveal">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div class="glass p-8 rounded-[35px] text-center group hover:bg-primary hover:text-white trans-base">
+                    <i class="fas fa-crown text-4xl mb-4 text-primary group-hover:text-white"></i>
+                    <h4 class="font-black uppercase text-sm mb-2">Markalı Ürünler</h4>
+                    <p class="text-xs opacity-70">Dünya markalarının ihraç fazlası ve özel serileri.</p>
+                </div>
+                <div class="glass p-8 rounded-[35px] text-center group hover:bg-primary hover:text-white trans-base">
+                    <i class="fas fa-leaf text-4xl mb-4 text-primary group-hover:text-white"></i>
+                    <h4 class="font-black uppercase text-sm mb-2">Doğal İçerik</h4>
+                    <p class="text-xs opacity-70">Ağırlıklı olarak pamuk ve iplikten üretilmiş sağlıklı dokumalar.</p>
+                </div>
+                <div class="glass p-8 rounded-[35px] text-center group hover:bg-primary hover:text-white trans-base">
+                    <i class="fas fa-shield-alt text-4xl mb-4 text-primary group-hover:text-white"></i>
+                    <h4 class="font-black uppercase text-sm mb-2">Güvenilir Kalite</h4>
+                    <p class="text-xs opacity-70">Yılların tecrübesiyle seçilmiş, defosuz ve sağlam ürünler.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="reveal" id="stats-section">
+            <div class="glass rounded-[50px] p-12 border-white/20 shadow-2xl">
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-10 text-center font-poppins">
+                    <div>
+                        <div class="text-5xl md:text-6xl font-black text-primary mb-2 counter" data-target="10000">0</span>+</div>
+                        <div class="text-[10px] font-bold uppercase tracking-[0.3em]">Kumaş Çeşidi</div>
+                    </div>
+                    <div>
+                        <div class="text-5xl md:text-6xl font-black text-primary mb-2 counter" data-target="1">0</div>
+                        <div class="text-[10px] font-bold uppercase tracking-[0.3em]">Dev Mağaza</div>
+                    </div>
+                    <div>
+                        <div class="text-5xl md:text-6xl font-black text-primary mb-2"><span class="counter" data-target="1000">0</span>+</div>
+                        <div class="text-[10px] font-bold uppercase tracking-[0.3em]">Memnun Müşteri</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="text-center py-10 reveal">
+            <h2 class="text-3xl md:text-5xl font-black italic mb-6 font-poppins text-shimmer leading-tight">
+                "Bizim önceliğimiz kalite ve memnuniyet."
+            </h2>
+            <div class="inline-flex items-center gap-3 opacity-80">
+                <div class="w-10 h-[2px] bg-primary"></div>
+                <span class="text-sm font-bold uppercase tracking-widest">ALİ TUBAY - Kurucu</span>
+                <div class="w-10 h-[2px] bg-primary"></div>
+            </div>
+        </section>
+
+    </div>
 
     <div class="fixed bottom-10 left-10 z-[100]">
         <div id="contact-panel" class="transition-all duration-500 w-72 glass rounded-[40px] shadow-2xl p-6 mb-5 opacity-0 pointer-events-none translate-y-10 scale-90 border-white/30">
             <div class="space-y-2">
-                <a href="https://wa.me/905368938558" target="_blank" class="flex items-center justify-between p-4 hover:bg-green-500 hover:text-white rounded-[25px] transition group">
+                <button onclick="openWaOptions()" class="w-full flex items-center justify-between p-4 hover:bg-green-500 hover:text-white rounded-[25px] transition group">
                     <span class="text-[10px] font-black uppercase tracking-widest">WhatsApp</span>
                     <i class="fab fa-whatsapp text-xl text-green-500 group-hover:text-white"></i>
-                </a>
+                </button>
                 <a href="https://instagram.com/enka_kumascilik_a.s" target="_blank" class="flex items-center justify-between p-4 hover:bg-pink-500 hover:text-white rounded-[25px] transition group">
                     <span class="text-[10px] font-black uppercase tracking-widest">Instagram</span>
                     <i class="fab fa-instagram text-xl text-pink-500 group-hover:text-white"></i>
@@ -125,23 +277,39 @@
                 </a>
             </div>
         </div>
-        <button onclick="toggleContact()" class="glass pl-6 pr-8 py-5 rounded-full shadow-2xl flex items-center gap-4 text-primary hover:scale-105 active:scale-95 transition-all">
+
+        <div id="wa-panel" class="hidden absolute bottom-24 left-0 w-72 glass rounded-[40px] shadow-2xl p-6 border-white/30 animate-in fade-in slide-in-from-bottom-5">
+            <div class="mb-4 flex justify-between items-center">
+                <span class="text-[10px] font-black uppercase text-green-600">WhatsApp Seçenekleri</span>
+                <button onclick="closeWaOptions()" class="text-xs text-slate-500"><i class="fas fa-times"></i></button>
+            </div>
+            <div class="space-y-3">
+                <a href="https://wa.me/905368938558" target="_blank" class="block p-4 bg-green-500 text-white rounded-[20px] text-center text-[10px] font-black uppercase hover:scale-105 trans-base shadow-lg">
+                    <i class="fab fa-whatsapp text-lg mr-2"></i> Sohbet Başlat
+                </a>
+                <a href="https://whatsapp.com/channel/0029Vb6w5zh9Bb6527JIkD2v" target="_blank" class="block p-4 bg-white dark:bg-slate-800 text-green-600 border border-green-500 rounded-[20px] text-center text-[10px] font-black uppercase hover:bg-green-50 dark:hover:bg-slate-700 trans-base">
+                    <i class="fas fa-rss text-lg mr-2"></i> Kanalı Ziyaret Et
+                </a>
+            </div>
+        </div>
+
+        <button onclick="toggleContact()" class="glass pl-6 pr-8 py-5 rounded-full shadow-2xl flex items-center gap-4 text-primary hover:scale-105 active:scale-95 trans-base">
             <div class="w-10 h-10 bg-primary text-white rounded-full flex items-center justify-center"><i class="fas fa-headset" id="contact-icon"></i></div>
             <span class="text-[11px] font-black uppercase tracking-[0.2em]">Bize Ulaşın</span>
         </button>
     </div>
 
     <div class="fixed bottom-10 right-10 z-[100]">
-        <button onclick="toggleBot()" class="w-16 h-16 bg-primary text-white rounded-full shadow-2xl flex items-center justify-center text-2xl hover:scale-110 active:scale-95 transition-all">
+        <button onclick="toggleBot()" class="w-16 h-16 bg-primary text-white rounded-full shadow-2xl flex items-center justify-center text-2xl hover:scale-110 active:scale-95 trans-base">
             <i class="fas fa-robot"></i>
         </button>
 
         <div id="bot-window" class="hidden absolute bottom-24 right-0 w-[350px] md:w-[420px] glass rounded-[50px] shadow-2xl overflow-hidden flex flex-col border border-white/40">
-            <div class="bg-primary p-7 text-white flex justify-between items-center" id="bot-header">
-                <div class="flex items-center gap-4">
-                    <div class="w-12 h-12 bg-white/20 rounded-2xl flex items-center justify-center text-xl relative">
+            <div class="bg-primary p-6 text-white flex justify-between items-center" id="bot-header">
+                <div class="flex items-center gap-3">
+                    <div class="w-9 h-9 bg-white/20 rounded-xl flex items-center justify-center text-lg relative">
                         <i class="fas fa-microchip"></i>
-                        <div class="absolute -top-1 -right-1 w-3.5 h-3.5 bg-green-400 rounded-full border-2 border-primary animate-pulse"></div>
+                        <div class="absolute -top-1 -right-1 w-2.5 h-2.5 bg-green-400 rounded-full border-2 border-primary animate-pulse"></div>
                     </div>
                     <div>
                         <div class="font-black text-[10px] uppercase tracking-[0.3em]">EN-KA ASİSTAN</div>
@@ -151,31 +319,35 @@
                 <button onclick="toggleBot()"><i class="fas fa-times opacity-50"></i></button>
             </div>
             
-            <div id="chat-box" class="h-96 overflow-y-auto p-8 space-y-6 text-[13px] font-bold scrollbar-hide bg-white/5">
-                <div class="bg-white/50 dark:bg-slate-800/50 p-6 rounded-[35px] rounded-tl-none border border-white/10 shadow-sm leading-relaxed">
-                    Merhaba! Kumaş stoklarımız, halk günü ve ulaşım hakkında size yardımcı olabilirim.
+            <div id="chat-box" class="h-72 overflow-y-auto p-6 space-y-4 text-[12px] font-bold no-scrollbar bg-white/5">
+                <div class="bg-white/50 dark:bg-slate-800/50 p-4 rounded-[25px] rounded-tl-none border border-white/10 shadow-sm leading-relaxed">
+                    Merhaba! Stok sorgulamak, adres tarifi almak veya sipariş vermek için aşağıdan seçim yapabilirsiniz.
                 </div>
             </div>
 
-            <div id="bot-typing" class="hidden px-8 py-2">
-                <div class="flex gap-1.5"><div class="w-1.5 h-1.5 bg-primary/40 rounded-full animate-bounce"></div><div class="w-1.5 h-1.5 bg-primary/40 rounded-full animate-bounce" style="animation-delay: 0.1s"></div></div>
+            <div class="px-5 py-3 overflow-x-auto whitespace-nowrap no-scrollbar border-t border-white/10 bg-white/5 backdrop-blur-md">
+                <div id="quick-chips" class="flex gap-2">
+                    <button class="chip" onclick="handlePrompt('Sipariş vermek istiyorum')"><i class="fas fa-shopping-bag"></i> Sipariş Ver</button>
+                    <button class="chip" onclick="handlePrompt('Halk günü ne zaman?')"><i class="fas fa-calendar-alt"></i> Halk Günü</button>
+                    <button class="chip" onclick="handlePrompt('Konum tarifi')"><i class="fas fa-map-marked-alt"></i> Konum</button>
+                    <button class="chip" onclick="handlePrompt('WhatsApp Kanalı')"><i class="fab fa-whatsapp"></i> WA Kanalı</button>
+                    <button class="chip" onclick="handlePrompt('Kargo durumu')"><i class="fas fa-truck"></i> Kargo?</button>
+                    <button class="chip" onclick="handlePrompt('Toptan satış')"><i class="fas fa-box-open"></i> Toptan</button>
+                </div>
             </div>
 
-            <div class="p-6 bg-white/20 backdrop-blur-xl border-t border-white/10">
+            <div class="p-4 bg-white/20 backdrop-blur-xl">
                 <div class="relative flex items-center">
-                    <input type="text" id="bot-input" placeholder="Bir soru sorun..." class="w-full p-6 pr-16 bg-white/60 dark:bg-slate-900/60 rounded-full focus:outline-none focus:ring-2 ring-primary/30 transition-all font-bold text-sm">
-                    <button onclick="askBot()" class="absolute right-2 w-12 h-12 bg-primary text-white rounded-full flex items-center justify-center shadow-lg hover:scale-105"><i class="fas fa-paper-plane text-sm"></i></button>
+                    <input type="text" id="bot-input" placeholder="Yazın..." class="w-full p-4 pr-12 bg-white/60 dark:bg-slate-900/60 rounded-full focus:outline-none focus:ring-2 ring-primary/30 trans-base font-bold text-xs">
+                    <button onclick="askBot()" class="absolute right-2 w-10 h-10 bg-primary text-white rounded-full flex items-center justify-center shadow-lg hover:scale-105"><i class="fas fa-paper-plane text-xs"></i></button>
                 </div>
             </div>
         </div>
     </div>
 
-    <footer class="py-24 px-6 text-center relative z-10">
-        <div class="max-w-7xl mx-auto glass rounded-[50px] p-16 shadow-2xl border-white/10">
-            <div class="opacity-60">
-                <p class="text-[10px] font-extrabold uppercase tracking-widest">© 2026 EN-KA KUMAŞÇILIK A.Ş.</p>
-                <a href="https://aftortechnologies.github.io/AFTOR/" target="_blank" class="text-[10px] font-black text-primary mt-4 inline-block hover:tracking-widest transition-all">DESIGNED BY AFTOR TECHNOLOGIES</a>
-            </div>
+    <footer class="py-12 px-6 text-center relative z-10">
+        <div class="max-w-7xl mx-auto opacity-50">
+            <p class="text-[10px] font-extrabold uppercase tracking-widest">© 2026 EN-KA KUMAŞÇILIK A.Ş.</p>
         </div>
     </footer>
 
@@ -185,30 +357,67 @@
                 <div id="m-icon-box" class="w-24 h-24 bg-primary text-white rounded-[35px] flex items-center justify-center text-4xl mx-auto mb-8 shadow-2xl shadow-primary/30"><i id="m-icon" class="fas"></i></div>
                 <h2 id="m-title" class="text-4xl font-black mb-6 tracking-tighter uppercase"></h2>
                 <p id="m-desc" class="text-slate-500 dark:text-slate-400 leading-relaxed text-lg mb-10 font-bold"></p>
-                <button onclick="closeModal()" class="w-full bg-slate-900 dark:bg-white dark:text-slate-900 text-white py-5 rounded-[25px] font-black tracking-widest hover:bg-primary hover:text-white transition-all">GERİ DÖN</button>
+                <button onclick="closeModal()" class="w-full bg-slate-900 dark:bg-white dark:text-slate-900 text-white py-5 rounded-[25px] font-black tracking-widest hover:bg-primary hover:text-white trans-base">LİSTEYE DÖN</button>
             </div>
         </div>
     </div>
 
     <script>
-        // Splash
-        function hideSplash() { 
-            const splash = document.getElementById('splash');
-            splash.classList.add('splash-hidden'); 
-            setTimeout(() => splash.style.display = 'none', 1000);
-        }
-        window.addEventListener('load', hideSplash);
+        // --- Core Engine & Splash ---
+        window.addEventListener('load', () => {
+            const s = document.getElementById('splash');
+            s.classList.add('splash-hidden');
+            setTimeout(() => s.style.display = 'none', 1000);
+            checkReveal();
+        });
 
-        // Core Engine
-        let isManual = false;
+        // Scroll Animation Logic
+        function checkReveal() {
+            const reveals = document.querySelectorAll('.reveal');
+            reveals.forEach(r => {
+                const wHeight = window.innerHeight;
+                const rTop = r.getBoundingClientRect().top;
+                if(rTop < wHeight - 100) r.classList.add('active');
+            });
+        }
+        window.addEventListener('scroll', checkReveal);
+
+        // Counter Logic
+        let countersStarted = false;
+        const statsSection = document.getElementById('stats-section');
+        
+        window.addEventListener('scroll', () => {
+            if(!countersStarted && statsSection.getBoundingClientRect().top < window.innerHeight - 100) {
+                countersStarted = true;
+                const counters = document.querySelectorAll('.counter');
+                counters.forEach(c => {
+                    const target = +c.getAttribute('data-target');
+                    const inc = target / 100;
+                    let count = 0;
+                    const update = () => {
+                        count += inc;
+                        if(count < target) {
+                            c.innerText = Math.ceil(count).toLocaleString('tr-TR');
+                            requestAnimationFrame(update);
+                        } else {
+                            c.innerText = target.toLocaleString('tr-TR');
+                        }
+                    };
+                    update();
+                });
+            }
+        });
+
+        // Time & Theme Engine
+        let manualTheme = false;
         function engine() {
             const now = new Date();
             const h = now.getHours(); const m = now.getMinutes(); const d = now.getDay();
             const totalMins = h * 60 + m;
 
-            document.getElementById('live-clock').innerText = `${h.toString().padStart(2,'0')}:${m.toString().padStart(2,'0')}:${now.getSeconds().toString().padStart(2,'0')}`;
+            document.getElementById('live-clock').innerText = `${h.toString().padStart(2,'0')}:${m.toString().padStart(2,'0')}`;
 
-            if (!isManual) {
+            if (!manualTheme) {
                 if (h >= 17 || h < 6) document.documentElement.classList.add('dark');
                 else document.documentElement.classList.remove('dark');
             }
@@ -219,37 +428,44 @@
             if (h < 12) greet.innerText = "Günaydın"; 
             else if (h < 18) {
                 greet.innerText = "İyi Günler";
-                // 15:00 - 17:00 Yoğunluk
-                if(h >= 15 && h < 17) busy.classList.remove('hidden');
-                else busy.classList.add('hidden');
-            } 
-            else greet.innerText = "İyi Akşamlar";
+                if(h >= 15 && h < 17) busy.classList.remove('hidden'); else busy.classList.add('hidden');
+            } else greet.innerText = "İyi Akşamlar";
             
             const status = document.getElementById('status-badge');
             let open = (d === 0) ? 720 : 480; let close = (d === 0) ? 1080 : 1140;
 
             if (totalMins >= open && totalMins < close) {
-                if (close - totalMins <= 30) status.innerHTML = `<span class="urgency-blink font-black">MAĞAZAMIZ BİRAZDAN KAPANACAK</span>`;
-                else status.innerHTML = `<i class="fas fa-check-circle text-green-500"></i> Şu an Hizmete Açığız`;
+                status.innerHTML = `<i class="fas fa-check-circle text-green-500"></i> Şu an Hizmete Açığız`;
             } else {
-                if (totalMins < open && open - totalMins <= 30) status.innerHTML = `<span class="text-blue-500 animate-pulse font-black">MAĞAZAMIZ BİRAZDAN AÇILACAK</span>`;
-                else status.innerHTML = `<i class="fas fa-moon text-red-500"></i> Mağazamız Kapalı`;
+                status.innerHTML = `<i class="fas fa-moon text-red-500"></i> Mağazamız Kapalı`;
             }
 
-            if(d === 3) { // Çarşamba Halk Günü
+            if(d === 3) {
                 document.getElementById('halk-gunu-banner').classList.remove('hidden');
                 document.getElementById('bot-header').classList.replace('bg-primary', 'bg-halk');
             }
         }
         setInterval(engine, 1000); engine();
 
-        function toggleDarkMode() { isManual = true; document.documentElement.classList.toggle('dark'); }
+        function toggleDarkMode() { manualTheme = true; document.documentElement.classList.toggle('dark'); }
+
+        // Contact Logic
         function toggleContact() {
-            const p = document.getElementById('contact-panel'); const i = document.getElementById('contact-icon');
-            p.classList.toggle('opacity-0'); p.classList.toggle('pointer-events-none'); p.classList.toggle('translate-y-10'); p.classList.toggle('scale-90');
+            const p = document.getElementById('contact-panel'); 
+            const i = document.getElementById('contact-icon');
+            const wa = document.getElementById('wa-panel');
+            
+            if(!wa.classList.contains('hidden')) wa.classList.add('hidden');
+
+            p.classList.toggle('opacity-0'); p.classList.toggle('pointer-events-none'); 
+            p.classList.toggle('translate-y-10'); p.classList.toggle('scale-90');
             i.classList.toggle('fa-headset'); i.classList.toggle('fa-times');
         }
 
+        function openWaOptions() { document.getElementById('contact-panel').classList.add('hidden'); document.getElementById('wa-panel').classList.remove('hidden'); }
+        function closeWaOptions() { document.getElementById('wa-panel').classList.add('hidden'); document.getElementById('contact-panel').classList.remove('hidden'); }
+
+        // Fabric Logic
         const fabrics = [
             { name: 'OYSHO', icon: 'fa-wind', desc: 'Premium esneklik ve yumuşak dokusuyla ev ve spor giyimde maksimum konfor sağlar.' },
             { name: 'İPEK', icon: 'fa-gem', desc: 'Tamamen doğal liflerden üretilen, benzersiz parlaklık ve zerafet sunan lüks dokuma.' },
@@ -271,8 +487,8 @@
         const grid = document.getElementById('fabric-grid');
         fabrics.forEach(f => {
             const c = document.createElement('div');
-            c.className = 'glass p-10 rounded-[40px] shadow-lg cursor-pointer flex flex-col items-center group hover:-translate-y-3 relative z-20';
-            c.innerHTML = `<div class="w-20 h-20 glass rounded-3xl flex items-center justify-center text-primary text-3xl mb-6 group-hover:bg-primary group-hover:text-white transition-all"><i class="fas ${f.icon}"></i></div><h4 class="font-black text-[12px] uppercase tracking-widest text-center">${f.name}</h4>`;
+            c.className = 'fabric-card glass p-8 md:p-10 rounded-[40px] shadow-lg cursor-pointer flex flex-col items-center group relative z-20';
+            c.innerHTML = `<div class="w-16 h-16 md:w-20 md:h-20 glass rounded-3xl flex items-center justify-center text-primary text-2xl md:text-3xl mb-6 group-hover:bg-primary group-hover:text-white trans-base pointer-events-none"><i class="fas ${f.icon}"></i></div><h4 class="font-black text-[10px] md:text-[12px] uppercase tracking-widest text-center pointer-events-none">${f.name}</h4>`;
             c.onclick = () => openModal(f);
             grid.appendChild(c);
         });
@@ -285,8 +501,24 @@
         }
         function closeModal() { document.getElementById('fabric-modal').classList.replace('flex', 'hidden'); }
 
-        // AI Logic
+        // --- Chatbot Logic (New Animation) ---
         function toggleBot() { document.getElementById('bot-window').classList.toggle('hidden'); }
+        function handlePrompt(msg) { document.getElementById('bot-input').value = msg; askBot(); }
+
+        function showTyping() {
+            const b = document.getElementById('chat-box');
+            const d = document.createElement('div');
+            d.id = 'temp-typing';
+            d.className = 'glass p-4 rounded-[20px] rounded-tl-none mr-auto border-white/20 w-16';
+            d.innerHTML = `<div class="flex gap-1 items-center justify-center"><div class="typing-dot text-slate-500"></div><div class="typing-dot text-slate-500"></div><div class="typing-dot text-slate-500"></div></div>`;
+            b.appendChild(d); b.scrollTop = b.scrollHeight;
+        }
+
+        function removeTyping() {
+            const t = document.getElementById('temp-typing');
+            if(t) t.remove();
+        }
+
         async function askBot() {
             const input = document.getElementById('bot-input');
             const query = input.value.trim().toLowerCase();
@@ -294,45 +526,38 @@
 
             addMsg(input.value, true);
             input.value = '';
-            document.getElementById('bot-typing').classList.remove('hidden');
+            
+            // Show Typing Bubble
+            showTyping();
 
             setTimeout(() => {
-                document.getElementById('bot-typing').classList.add('hidden');
-                let res = "Bize ulaşın panelinden sorunuza cevap bulabilirsiniz.";
+                removeTyping();
                 
-                // Sipariş
-                if (query.includes("sipariş") || query.includes("almak istiyorum")) {
-                    res = "Siparişiniz için sizi direkt WhatsApp hattımıza yönlendiriyorum. <a href='https://wa.me/905368938558' target='_blank' class='text-primary underline font-black'>Açılmazsa buraya tıklayın.</a>";
+                let res = "Bu konuda detaylı bilgi için lütfen bizi arayınız.";
+                if (query.includes("sipariş")) {
+                    res = "Sipariş için WhatsApp hattımız: <a href='https://wa.me/905368938558' target='_blank' class='text-primary underline font-black'>Sohbeti Başlat</a>";
                     window.open('https://wa.me/905368938558', '_blank');
                 }
-                // Hava
-                else if (query.includes("hava") || query.includes("yağmur")) {
-                    res = "Hava durumu için Meteoroloji sitesine yönlendiriliyorsunuz.";
-                    window.open('https://www.mgm.gov.tr', '_blank');
+                else if (query.includes("kanal")) {
+                    res = "Kampanyalar için kanalımızı takip edin.";
+                    window.open('https://whatsapp.com/channel/0029Vb6w5zh9Bb6527JIkD2v', '_blank');
                 }
-                // Ulaşım / Otopark
-                else if (query.includes("ulaşım") || query.includes("otopark") || query.includes("nerede")) {
-                    res = "Mağazamız M4 Metrosu Belediye durağına yakındır. Yakında ücretli otopark mevcuttur. <a href='https://maps.app.goo.gl/QDJ8ei1FDQk6J7mv8' target='_blank' class='text-primary underline font-black'>Haritada Göster</a>";
+                else if (query.includes("konum") || query.includes("nerede")) {
+                    res = "Keçiören / Ankara konumumuz haritada açılıyor...";
+                    window.open('https://maps.app.goo.gl/QDJ8ei1FDQk6J7mv8', '_blank');
                 }
-                // Halk Günü
-                else if (query.includes("halk günü")) {
-                    res = "Halk günü her Çarşamba! Yeni kumaşlar ve indirimler için mağazamızı ziyaret edebilirsiniz.";
-                }
-                // Sohbet
-                else if (query.includes("merhaba")) res = "Merhaba! Size nasıl yardımcı olabilirim?";
-                else if (query.includes("nasılsın")) res = "Harikayım, kumaşları listelemek için sabırsızlanıyorum!";
-
-                const fabricMatch = fabrics.find(f => query.includes(f.name.toLowerCase()));
-                if(fabricMatch) res = `${fabricMatch.name} stoklarımızda: ${fabricMatch.desc}`;
+                else if (query.includes("halk günü")) res = "Her Çarşamba halk günüdür! Büyük indirimler sizi bekliyor.";
+                else if (query.includes("kargo")) res = "Kargo durumumuz aldığınız ürünün miktarına ve türüne göre değişmektedir.";
+                else if (query.includes("toptan")) res = "Toptan alımlar için lütfen doğrudan telefonla iletişime geçiniz.";
 
                 typeMsg(res);
-            }, 1000);
+            }, 1200); // Biraz daha organik gecikme
         }
 
         function addMsg(t, u) {
             const b = document.getElementById('chat-box');
             const d = document.createElement('div');
-            d.className = u ? 'bg-primary text-white p-5 rounded-[30px] rounded-tr-none ml-auto max-w-[85%] shadow-lg' : 'glass p-5 rounded-[30px] rounded-tl-none mr-auto max-w-[85%] border-white/20';
+            d.className = u ? 'bg-primary text-white p-3 rounded-[20px] rounded-tr-none ml-auto max-w-[85%] shadow-md text-xs' : 'glass p-3 rounded-[20px] rounded-tl-none mr-auto max-w-[85%] border-white/20 text-xs';
             d.innerHTML = t;
             b.appendChild(d); b.scrollTop = b.scrollHeight;
         }
@@ -340,12 +565,12 @@
         function typeMsg(text) {
             const b = document.getElementById('chat-box');
             const d = document.createElement('div');
-            d.className = 'glass p-5 rounded-[30px] rounded-tl-none mr-auto max-w-[85%] border-white/20 text-slate-700 dark:text-slate-200';
+            d.className = 'glass p-3 rounded-[20px] rounded-tl-none mr-auto max-w-[85%] border-white/20 text-slate-700 dark:text-slate-200 text-xs';
             b.appendChild(d);
             const words = text.split(" ");
             words.forEach((w, i) => {
                 const s = document.createElement('span');
-                s.className = 'word'; s.style.animationDelay = `${i * 0.07}s`; s.innerHTML = w + " ";
+                s.className = 'word'; s.style.animationDelay = `${i * 0.05}s`; s.innerHTML = w + " ";
                 d.appendChild(s);
             });
             b.scrollTop = b.scrollHeight;
