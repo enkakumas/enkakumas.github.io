@@ -2,12 +2,11 @@
 <html lang="tr" class="light">
 <head>
     <meta charset="UTF-8">
-    <link rel="icon" type="image/png" href="logo.png" />
+   <link rel="icon" type="image/png" href="logo.png" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="EN-KA Kumaş – Ankara Keçiören’de ucuz ve kaliteli kumaşlar. Uygun fiyatlarla en iyi kumaşları hemen keşfedin.">
     <meta name="keywords" content="EN-KA Kumaş, Ankara, Keçiören, ucuz kumaş, kaliteli kumaş, kumaş markası">
-    <script src="https://cdn.tailwindcss.com"</script>
-    <title>EN-KA KUMAŞ | Ankara'nın ve Keçiören'in en uygun kumaşçısı</title>
+    <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <script>
         tailwind.config = {
@@ -100,6 +99,7 @@
         .fabric-card { transition: transform 0.3s, box-shadow 0.3s; }
         .fabric-card:hover { transform: translateY(-8px); box-shadow: 0 25px 30px -10px rgba(0, 0, 0, 0.15); }
 
+        /* Chat Typing Dots */
         .typing-dot {
             width: 6px; height: 6px; border-radius: 50%; background-color: currentColor;
             animation: typing 1.4s infinite ease-in-out both;
@@ -131,6 +131,7 @@
     <nav class="fixed w-full z-50 px-4 md:px-6 py-6">
         <div class="max-w-7xl mx-auto flex justify-between items-center glass rounded-full px-8 py-4 shadow-2xl border-white/30 backdrop-blur-xl">
             <div class="text-2xl font-black tracking-tighter text-primary">EN-KA <span class="text-slate-800 dark:text-white uppercase text-lg">Kumaş</span></div>
+            
             <div class="flex items-center gap-4">
                 <span id="live-clock" class="hidden md:block text-[11px] font-black opacity-60 tracking-[0.2em]">00:00:00</span>
                 <button onclick="toggleDarkMode()" class="w-10 h-10 flex items-center justify-center rounded-full glass hover:bg-primary hover:text-white shadow-lg trans-base">
@@ -367,7 +368,7 @@
                 <i class="fas fa-times text-xl"></i>
             </button>
             <div class="rounded-[30px] overflow-hidden bg-white/10 relative">
-                <img src="gorsel.jpg" alt="Kampanya" class="w-full h-auto object-cover block" onerror="this.style.display='none'; document.getElementById('popup-1').classList.add('hidden')">
+                <img src="gorsel.png" alt="Kampanya" class="w-full h-auto object-cover block" onerror="this.style.display='none'; document.getElementById('popup-1').classList.add('hidden')">
             </div>
         </div>
         <div class="absolute inset-0 -z-10 cursor-pointer" onclick="closePopup1()"></div>
@@ -379,7 +380,7 @@
                 <i class="fas fa-times text-xl"></i>
             </button>
             <div class="rounded-[30px] overflow-hidden bg-white/10 relative">
-                <img src="gorsel2.jpg" alt="Kampanya 2" class="w-full h-auto object-cover block" onerror="this.style.display='none'; document.getElementById('popup-2').classList.add('hidden')">
+                <img src="gorsel2.png" alt="Kampanya 2" class="w-full h-auto object-cover block" onerror="this.style.display='none'; document.getElementById('popup-2').classList.add('hidden')">
             </div>
         </div>
         <div class="absolute inset-0 -z-10 cursor-pointer" onclick="closePopup2()"></div>
@@ -393,19 +394,16 @@
             setTimeout(() => s.style.display = 'none', 1000);
             checkReveal();
 
-            // POPUP MANTIĞI: Site açıldıktan 1.5 sn sonra Popup 1 açılır.
+            // POPUP BAŞLATMA
             setTimeout(() => {
                 document.getElementById('popup-1').classList.remove('hidden');
                 document.getElementById('popup-1').classList.add('flex');
             }, 1500);
         });
 
-        // Popup Kapatma Fonksiyonları
         function closePopup1() {
             document.getElementById('popup-1').classList.add('hidden');
             document.getElementById('popup-1').classList.remove('flex');
-            
-            // Popup 1 kapandıktan 0.5 saniye sonra Popup 2 açılsın (zincirleme)
             setTimeout(() => {
                 document.getElementById('popup-2').classList.remove('hidden');
                 document.getElementById('popup-2').classList.add('flex');
@@ -431,7 +429,6 @@
         // Counter Logic
         let countersStarted = false;
         const statsSection = document.getElementById('stats-section');
-        
         window.addEventListener('scroll', () => {
             if(!countersStarted && statsSection.getBoundingClientRect().top < window.innerHeight - 100) {
                 countersStarted = true;
