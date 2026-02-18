@@ -6,8 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="EN-KA Kumaş – Ankara Keçiören’de ucuz ve kaliteli kumaşlar. Uygun fiyatlarla en iyi kumaşları hemen keşfedin.">
     <meta name="keywords" content="EN-KA Kumaş, Ankara, Keçiören, ucuz kumaş, kaliteli kumaş, kumaş markası">
+    <script src="https://cdn.tailwindcss.com"</script>
     <title>EN-KA KUMAŞ | Ankara'nın ve Keçiören'in en uygun kumaşçısı</title>
-    <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <script>
         tailwind.config = {
@@ -59,7 +59,7 @@
         }
         .dark .glass { background: rgba(15, 23, 42, 0.75); border: 1px solid rgba(255, 255, 255, 0.1); }
 
-        /* SCROLLBAR GİZLEME*/
+        /* Scrollbar Gizleme */
         .no-scrollbar::-webkit-scrollbar { display: none; }
         .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
 
@@ -100,7 +100,6 @@
         .fabric-card { transition: transform 0.3s, box-shadow 0.3s; }
         .fabric-card:hover { transform: translateY(-8px); box-shadow: 0 25px 30px -10px rgba(0, 0, 0, 0.15); }
 
-        /* Chat Typing Dots */
         .typing-dot {
             width: 6px; height: 6px; border-radius: 50%; background-color: currentColor;
             animation: typing 1.4s infinite ease-in-out both;
@@ -160,13 +159,12 @@
     </main>
 
     <div class="max-w-7xl mx-auto px-6 space-y-24 pb-32 relative z-10">
-
         <section class="text-center reveal" id="about-section">
             <div class="inline-block px-6 py-2 rounded-full glass text-[10px] font-black uppercase tracking-[0.3em] text-primary mb-8">Marka Hikayemiz</div>
             <div class="glass p-10 md:p-14 rounded-[40px] border-white/30 shadow-xl font-poppins">
                 <h3 class="text-3xl font-bold mb-8">EN-KA KUMAŞ HAKKINDA</h3>
                 <div class="text-sm md:text-base leading-relaxed space-y-6 text-slate-700 dark:text-slate-300 font-medium">
-                    <p>EN‑KA Kumaş, Ankara’nın Keçiören ilçesinde kurulmuş, <span class="text-primary font-bold">22 yılı aşkın tecrübesiyle</span> kaliteli kumaş sunan köklü bir markadır.</p>
+                    <p>EN‑KA Kumaş, Ankara’nın Keçiören ilçesinde kurulmuş, <span class="text-primary font-bold">22 yılı aşkın tecrübesiyle</span> kaliteli kumaş ve dikiş malzemeleri sunan köklü bir markadır.</p>
                     <p>Kurulduğu günden bu yana, hem <span class="font-bold">profesyonel terzilerin</span> hem de <span class="font-bold">ev kullanıcılarının</span> ihtiyaçlarına yönelik geniş ürün yelpazesiyle hizmet veriyoruz.</p>
                     <p>Amacımız, kalite, güven ve müşteri memnuniyeti odaklı çalışarak, her müşterimize hızlı ve kolay erişim sağlamaktır.</p>
                 </div>
@@ -229,7 +227,7 @@
             <div class="glass rounded-[50px] p-12 border-white/20 shadow-2xl">
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-10 text-center font-poppins">
                     <div>
-                        <div class="text-5xl md:text-6xl font-black text-primary mb-2 counter" data-target="10000">0</span>+</div>
+                        <div class="text-5xl md:text-6xl font-black text-primary mb-2 counter" data-target="10000">0</div>
                         <div class="text-[10px] font-bold uppercase tracking-[0.3em]">Kumaş Çeşidi</div>
                     </div>
                     <div>
@@ -363,14 +361,61 @@
         </div>
     </div>
 
+    <div id="popup-1" class="fixed inset-0 z-[2000] hidden items-center justify-center p-4 md:p-8 bg-black/60 backdrop-blur-md">
+        <div class="relative w-full max-w-4xl glass rounded-[40px] p-2 md:p-4 shadow-2xl animate-in zoom-in duration-500 border border-white/30">
+            <button onclick="closePopup1()" class="absolute -top-4 -right-4 md:-top-5 md:-right-5 w-12 h-12 bg-primary text-white rounded-full flex items-center justify-center shadow-xl hover:scale-110 trans-base z-50">
+                <i class="fas fa-times text-xl"></i>
+            </button>
+            <div class="rounded-[30px] overflow-hidden bg-white/10 relative">
+                <img src="gorsel.jpg" alt="Kampanya" class="w-full h-auto object-cover block" onerror="this.style.display='none'; document.getElementById('popup-1').classList.add('hidden')">
+            </div>
+        </div>
+        <div class="absolute inset-0 -z-10 cursor-pointer" onclick="closePopup1()"></div>
+    </div>
+
+    <div id="popup-2" class="fixed inset-0 z-[2000] hidden items-center justify-center p-4 md:p-8 bg-black/60 backdrop-blur-md">
+        <div class="relative w-full max-w-4xl glass rounded-[40px] p-2 md:p-4 shadow-2xl animate-in zoom-in duration-500 border border-white/30">
+            <button onclick="closePopup2()" class="absolute -top-4 -right-4 md:-top-5 md:-right-5 w-12 h-12 bg-primary text-white rounded-full flex items-center justify-center shadow-xl hover:scale-110 trans-base z-50">
+                <i class="fas fa-times text-xl"></i>
+            </button>
+            <div class="rounded-[30px] overflow-hidden bg-white/10 relative">
+                <img src="gorsel2.jpg" alt="Kampanya 2" class="w-full h-auto object-cover block" onerror="this.style.display='none'; document.getElementById('popup-2').classList.add('hidden')">
+            </div>
+        </div>
+        <div class="absolute inset-0 -z-10 cursor-pointer" onclick="closePopup2()"></div>
+    </div>
+
     <script>
-        // --- Core Engine & Splash ---
+        // --- Core Engine & Splash & Popup Logic ---
         window.addEventListener('load', () => {
             const s = document.getElementById('splash');
             s.classList.add('splash-hidden');
             setTimeout(() => s.style.display = 'none', 1000);
             checkReveal();
+
+            // POPUP MANTIĞI: Site açıldıktan 1.5 sn sonra Popup 1 açılır.
+            setTimeout(() => {
+                document.getElementById('popup-1').classList.remove('hidden');
+                document.getElementById('popup-1').classList.add('flex');
+            }, 1500);
         });
+
+        // Popup Kapatma Fonksiyonları
+        function closePopup1() {
+            document.getElementById('popup-1').classList.add('hidden');
+            document.getElementById('popup-1').classList.remove('flex');
+            
+            // Popup 1 kapandıktan 0.5 saniye sonra Popup 2 açılsın (zincirleme)
+            setTimeout(() => {
+                document.getElementById('popup-2').classList.remove('hidden');
+                document.getElementById('popup-2').classList.add('flex');
+            }, 500);
+        }
+
+        function closePopup2() {
+            document.getElementById('popup-2').classList.add('hidden');
+            document.getElementById('popup-2').classList.remove('flex');
+        }
 
         // Scroll Animation Logic
         function checkReveal() {
@@ -502,7 +547,7 @@
         }
         function closeModal() { document.getElementById('fabric-modal').classList.replace('flex', 'hidden'); }
 
-        // --- Chatbot Logic (New Animation) ---
+        // --- Chatbot Logic ---
         function toggleBot() { document.getElementById('bot-window').classList.toggle('hidden'); }
         function handlePrompt(msg) { document.getElementById('bot-input').value = msg; askBot(); }
 
@@ -528,7 +573,6 @@
             addMsg(input.value, true);
             input.value = '';
             
-            // Show Typing Bubble
             showTyping();
 
             setTimeout(() => {
@@ -552,7 +596,7 @@
                 else if (query.includes("toptan")) res = "Toptan alımlar için lütfen doğrudan telefonla iletişime geçiniz.";
 
                 typeMsg(res);
-            }, 1200); // Biraz daha organik gecikme
+            }, 1200);
         }
 
         function addMsg(t, u) {
