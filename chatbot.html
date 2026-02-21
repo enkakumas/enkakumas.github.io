@@ -1,0 +1,677 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>EN-KA KUMAŞ | AFTOR AI</title>
+    <link rel="icon" type="image/png" href="logo.png" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="EN-KA Kumaş – Ankara Keçiören’de ucuz ve kaliteli kumaşlar. Uygun fiyatlarla en iyi kumaşları hemen keşfedin.">
+    <meta name="keywords" content="EN-KA Kumaş, Ankara, Keçiören, ucuz kumaş, kaliteli kumaş, kumaş markası">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: { sans: ['Inter', 'sans-serif'] }
+                }
+            }
+        }
+    </script>
+    <style>
+        body { font-family: 'Inter', sans-serif; overflow: hidden; height: 100vh; }
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+        
+        .input-container:focus-within { box-shadow: 0 0 0 2px rgba(0, 0, 0, 0.05); }
+        .dark .input-container:focus-within { box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.1); }
+
+        .cursor-block { display: inline-block; width: 8px; height: 1em; background-color: currentColor; margin-left: 4px; vertical-align: text-bottom; animation: blink 1s step-end infinite; }
+        @keyframes blink { 50% { opacity: 0; } }
+
+        .dot-typing { display: flex; gap: 4px; align-items: center; height: 24px; }
+        .dot { width: 6px; height: 6px; background-color: #9ca3af; border-radius: 50%; animation: dotPulse 1.4s infinite ease-in-out both; }
+        .dot:nth-child(1) { animation-delay: -0.32s; }
+        .dot:nth-child(2) { animation-delay: -0.16s; }
+        @keyframes dotPulse {
+            0%, 80%, 100% { transform: scale(0.6); opacity: 0.5; }
+            40% { transform: scale(1.2); opacity: 1; }
+        }
+
+        .msg-user-bubble { background-color: #f3f4f6; padding: 12px 16px; border-radius: 24px; font-size: 15px; color: #111827; }
+        .dark .msg-user-bubble { background-color: #374151; color: #f9fafb; }
+        .msg-bot-text { font-size: 15px; line-height: 1.6; }
+
+        .modal-overlay { background-color: rgba(0, 0, 0, 0.4); backdrop-filter: blur(4px); }
+
+        .action-btn.active { color: #111827; }
+        .dark .action-btn.active { color: #f9fafb; }
+        .action-btn.active i { font-weight: 900; } 
+
+        @keyframes slideDown {
+            0% { transform: translateY(-100%); opacity: 0; }
+            100% { transform: translateY(0); opacity: 1; }
+        }
+        .toast-enter { animation: slideDown 0.3s ease-out forwards; }
+    </style>
+</head>
+<body class="flex flex-col bg-white dark:bg-gray-900 text-gray-900 dark:text-gray-100 transition-colors duration-300">
+
+    <div id="toast" class="fixed top-4 left-1/2 -translate-x-1/2 z-[200] hidden items-center gap-2 px-4 py-2 bg-green-50 border border-green-200 text-green-700 rounded-full shadow-lg text-sm font-medium">
+        <i class="fas fa-check-circle"></i>
+        <span>Panoya kopyalandı</span>
+    </div>
+
+    <header class="flex items-center justify-between px-6 py-4 z-50 bg-white dark:bg-gray-900 border-b border-transparent dark:border-gray-800 transition-colors">
+        <div class="flex items-center gap-4">
+            <a href="index.html" class="w-8 h-8 flex items-center justify-center rounded-full hover:bg-gray-100 dark:hover:bg-gray-800 text-gray-600 dark:text-gray-400 transition-colors">
+                <i class="fas fa-chevron-left text-sm"></i>
+            </a>
+
+            <div class="relative">
+                <button onclick="toggleModelMenu()" class="flex items-center gap-2 px-3 py-1.5 rounded-lg border border-gray-200 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors text-sm font-medium">
+                    <span id="current-model-text">AFTOR AI Standart</span>
+                    <i class="fas fa-chevron-down text-[10px] text-gray-400"></i>
+                </button>
+                <div id="model-menu" class="hidden absolute top-full left-0 mt-2 w-56 bg-white dark:bg-gray-800 border border-gray-100 dark:border-gray-700 rounded-xl shadow-lg flex-col py-1 z-50 overflow-hidden">
+                    <button id="btn-model-std" onclick="selectModel('std')" class="px-4 py-3 text-left text-sm flex flex-col border-b border-gray-50 dark:border-gray-700 transition-colors bg-blue-50 dark:bg-blue-900/40">
+                        <span class="font-medium">AFTOR AI Standart</span>
+                        <span class="text-[10px] text-gray-500 dark:text-gray-400 mt-1">Hızlı ve net günlük yanıtlar</span>
+                    </button>
+                    <button id="btn-model-pro" onclick="selectModel('pro')" class="px-4 py-3 text-left text-sm hover:bg-gray-50 dark:hover:bg-gray-700 flex flex-col transition-colors">
+                        <span class="font-medium text-blue-600 dark:text-blue-400">AFTOR AI Pro</span>
+                        <span class="text-[10px] text-gray-500 dark:text-gray-400 mt-1">Detaylı, teknik ve sektörel analiz</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <div class="flex items-center gap-3">
+            <button onclick="toggleDarkMode(true)" class="w-8 h-8 flex items-center justify-center rounded-full hover:bg-gray-100 dark:hover:bg-gray-800 text-gray-600 dark:text-gray-400 transition-colors">
+                <i class="fas fa-moon dark:hidden"></i>
+                <i class="fas fa-sun hidden dark:block"></i>
+            </button>
+            <button onclick="openDict()" class="text-sm font-medium text-gray-600 dark:text-gray-300 hover:text-black dark:hover:text-white transition-colors px-3 py-1.5 rounded-lg border border-gray-200 dark:border-gray-700">
+                Akıllı Sorular
+            </button>
+        </div>
+    </header>
+
+    <main id="chat-box" class="flex-1 overflow-y-auto px-6 lg:px-24 pt-10 pb-48 no-scrollbar relative w-full max-w-4xl mx-auto">
+        
+        <div id="greeting-container" class="absolute inset-0 flex flex-col items-center justify-center transition-opacity duration-500 pb-32">
+            <h2 id="dynamic-greeting" class="text-3xl font-normal text-center text-gray-900 dark:text-white h-10"></h2>
+        </div>
+
+        <div id="messages" class="flex flex-col gap-8 w-full"></div>
+
+        <div id="typing-indicator" class="hidden w-full justify-start mt-4">
+            <div class="dot-typing">
+                <div class="dot"></div><div class="dot"></div><div class="dot"></div>
+            </div>
+        </div>
+    </main>
+
+    <div class="fixed bottom-0 left-0 w-full bg-white dark:bg-gray-900 pt-4 pb-6 px-6 z-40">
+        <div class="max-w-3xl mx-auto relative">
+            
+            <div id="ai-suggestion-box" onclick="useSuggestion()" class="mb-3 w-full border border-gray-200 dark:border-gray-700 rounded-2xl p-4 cursor-pointer hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors flex flex-col justify-center bg-white dark:bg-gray-900 shadow-sm hidden">
+                <span class="text-xs font-semibold text-gray-800 dark:text-gray-200 mb-1">AFTOR AI Önerisi</span>
+                <span id="ai-suggestion-text" class="text-sm text-gray-600 dark:text-gray-400">Şunu sormayı deneyin: EN-KA KUMAŞ yol tarifi al</span>
+            </div>
+
+            <div id="catalog-popup" class="hidden absolute bottom-full left-0 mb-4 w-full sm:w-80 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-2xl shadow-xl p-3 z-50">
+                <div class="text-xs font-semibold text-gray-500 dark:text-gray-400 mb-2 px-1 flex justify-between">
+                    <span>Eklemek istediğiniz Kumaşı Seçin</span>
+                    <span class="text-[10px]">Popüler Kumaşlar</span>
+                </div>
+                <div class="grid grid-cols-2 sm:grid-cols-3 gap-2 max-h-56 overflow-y-auto no-scrollbar" id="catalog-grid"></div>
+            </div>
+
+            <div id="selected-item" class="hidden absolute bottom-full left-4 mb-2 bg-gray-100 dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg px-3 py-1.5 flex items-center gap-2 text-xs font-medium z-40 text-gray-800 dark:text-gray-200">
+                <i class="fas fa-layer-group text-gray-400"></i>
+                <span id="selected-item-name">Ürün</span>
+                <button onclick="clearItem()" class="text-gray-400 hover:text-red-500 ml-1"><i class="fas fa-times"></i></button>
+            </div>
+
+            <div class="input-container bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-full flex items-center p-1.5 shadow-sm transition-shadow">
+                
+                <button onclick="toggleCatalog()" class="w-10 h-10 flex items-center justify-center rounded-full text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors font-medium shrink-0">
+                    <i class="fas fa-plus text-lg"></i>
+                </button>
+
+                <input type="text" id="user-input" placeholder="Bir şeyler sorun..." class="flex-1 bg-transparent border-none outline-none text-[15px] px-3 text-gray-800 dark:text-gray-100 placeholder-gray-400 dark:placeholder-gray-500" onkeypress="handleEnter(event)">
+
+                <button onclick="sendMessage()" class="w-10 h-10 rounded-full bg-black dark:bg-white text-white dark:text-black flex items-center justify-center hover:bg-gray-800 dark:hover:bg-gray-200 transition-colors shrink-0">
+                    <i class="fas fa-arrow-up text-sm"></i>
+                </button>
+            </div>
+            
+            <div class="text-center mt-2">
+                <span class="text-[10px] text-gray-400 dark:text-gray-500">AFTOR AI hata yapabilir. Önemli bilgileri kontrol edin.</span>
+            </div>
+        </div>
+    </div>
+
+    <div id="dict-modal" class="fixed inset-0 z-[100] hidden modal-overlay items-center justify-center p-4">
+        <div class="w-full max-w-2xl bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-800 h-[80vh] rounded-3xl flex flex-col shadow-2xl overflow-hidden relative" onclick="event.stopPropagation()">
+            <div class="p-5 flex justify-between items-center border-b border-gray-100 dark:border-gray-800">
+                <h3 class="font-semibold text-lg text-gray-900 dark:text-white">Akıllı Sorular</h3>
+                <button onclick="closeDict()" class="w-8 h-8 rounded-full hover:bg-gray-100 dark:hover:bg-gray-800 flex items-center justify-center text-gray-500 dark:text-gray-400 transition-colors">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="p-4 border-b border-gray-100 dark:border-gray-800">
+                <input type="text" id="dict-search" onkeyup="filterDict()" placeholder="Soru veya konu ara..." class="w-full bg-gray-50 dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-xl py-2.5 px-4 text-sm outline-none focus:border-gray-400 dark:focus:border-gray-500 transition-colors dark:text-white">
+            </div>
+            <div id="dict-list" class="flex-1 overflow-y-auto p-2 no-scrollbar"></div>
+        </div>
+    </div>
+
+    <div id="feedback-modal" class="fixed inset-0 z-[110] hidden modal-overlay items-center justify-center p-4">
+        <div class="bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-800 rounded-2xl p-6 w-full max-w-sm shadow-2xl flex flex-col gap-4 text-center">
+            <h3 class="text-lg font-semibold text-gray-900 dark:text-white">Bize geri bildirim yollayın</h3>
+            <p class="text-sm text-gray-500 dark:text-gray-400">Bu yanıtın neden yetersiz olduğunu düşünüyorsunuz? Geri bildiriminiz EN-KA KUMAŞ sistemini geliştirmemize yardımcı olacaktır.</p>
+            <div class="flex flex-col gap-2 mt-2">
+                <a href="https://forms.gle/KKiU3u7notTrvpQJ8" target="_blank" onclick="closeFeedback()" class="w-full py-2.5 bg-black dark:bg-white text-white dark:text-black rounded-xl text-sm font-medium hover:bg-gray-800 dark:hover:bg-gray-200 transition-colors inline-block">Geri Bildirimde Bulunun
+                </a>
+                <button onclick="closeFeedback()" class="w-full py-2.5 bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 rounded-xl text-sm font-medium hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors">Hayır, teşekkürler</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // --- OTOMATİK KARANLIK MOD ---
+        function checkAutoDarkMode() {
+            const hour = new Date().getHours();
+            if (hour >= 17 || hour < 6) {
+                document.documentElement.classList.add('dark');
+            }
+        }
+
+        function toggleDarkMode(manual = false) {
+            document.documentElement.classList.toggle('dark');
+        }
+
+        // --- GELİŞMİŞ BİLGİ BANKASI VE SORU HAVUZU ---
+        // Bu yapı artık "kelime puanlama" sistemiyle çalışacak.
+        
+        const knowledgeBase = [
+            {
+                ids: ["yazlık", "yazın", "sıcak", "terletmeyen", "serin", "bunaltmayan", "ferah", "nefes alan", "hafif", "güneş", "yaz akşamı", "yaz tatili", "plaj"],
+                sampleQ: "Yazlık elbise için hangi kumaşı önerirsin?",
+                std: "Sıcak yaz günlerinde vücudu serin tutan, hava geçiren doğal kumaşlar en iyi tercihtir. Özellikle **Keten**, **Vual**, **Müslin**, **Şile Bezi** ve **Viskon** kumaşları öneririm. Bu kumaşlar teri emer ve hızlı kurur.",
+                pro: "AFTOR AI Pro Analizi: Yaz mevsimi ve yüksek sıcaklık koşulları için termal regülasyon sağlayan **hidrofilik** (nem emici) lifler tercih edilmelidir. **%100 Selülozik** kökenli **Keten (Linen)** ve **Viskon** elyaflar, yüksek hava geçirgenliği (air permeability) katsayıları sayesinde deri yüzeyindeki nemi kapiler yolla dışarı atar. Sentetik karışımlardan kaçınılmalı; gramajı düşük (80-130 g/m²) ve seyrek dokulu (low thread count) kumaş konstrüksiyonları seçilerek evaporasyon (buharlaşma) hızı maksimize edilmelidir."
+            },
+            {
+                ids: ["kışlık", "kışın", "soğuk", "kaban", "mont", "sıcak tutan", "üşütmeyen", "kalın", "ısıyı koruyan", "atkı", "şal", "polar"],
+                sampleQ: "Kışlık kaban için sıcak tutan kumaş hangisidir?",
+                std: "Soğuk havalarda sizi sıcak tutacak en iyi seçenekler **Yün Kaşe**, **Polar**, **Şardonlu Üç İplik** ve **Kapitone** kumaşlardır. Bu kumaşlar vücut ısısını hapseder ve soğuğu geçirmez.",
+                pro: "AFTOR AI Pro Analizi: Düşük ortam sıcaklıklarında vücut ısısını korumak (thermal insulation) amacıyla, lifler arasında durağan hava (dead air) tutabilen hacimli yapılar gereklidir. **Yün (Wool)** ve **Kaşmir** gibi protein esaslı lifler, doğal kıvrımları (crimp) sayesinde yüksek ısı yalıtımı sağlar. Endüstriyel alternatif olarak, **Şardonlama (napping)** işlemi ile yüzey alanı genişletilmiş **Polar** ve **Bondit** kumaşlar, rüzgar direnci (wind resistance) ve ısı tutma kapasitesi açısından teknik üstünlük sunar."
+            },
+            {
+                ids: ["spor", "tayt", "esnek", "hareket", "likra", "elastan", "fitness", "koşu", "antrenman", "dalgıç", "scuba"],
+                sampleQ: "Spor taytı dikmek için esnek kumaş önerin nedir?",
+                std: "Spor yaparken rahat hareket etmek için esnekliği yüksek kumaşlar gerekir. Özellikle **Likralı Dalgıç (Scuba)**, **Sandy**, **Likralı Penye** ve **Mikrofiber** kumaşları tercih etmelisin.",
+                pro: "AFTOR AI Pro Analizi: Kinetik hareket özgürlüğü (elastic recovery) gerektiren performans giyiminde, **Poliüretan (Elastan/Lycra)** katkısı %15-30 bandında olan **Kompresyon** özellikli kumaşlar zorunludur. Doku arası nemi hızla yüzeye iten (wicking) hidrofobik sentetik karışımlar, laktik asit birikimini ve statik sürtünmeyi minimize eder. **Dalgıç Krep** ve **Interlock** örgü teknikleri, opaklık (opacity) sağlayarak dikim sonrası form stabilitesini korur."
+            },
+            {
+                ids: ["gece elbisesi", "şık", "abiye", "dökümlü", "parlak", "şifon", "saten", "düğün", "davet", "lüks", "akşam"],
+                sampleQ: "Şık bir gece elbisesi için hangi kumaş uygundur?",
+                std: "Şık ve dökümlü bir görünüm için **Saten**, **Şifon**, **İpek Krep** ve **Hayal Tül** en iyi tercihlerdir. Bu kumaşlar ışığı güzel yansıtır ve üzerinizde zarif durur.",
+                pro: "AFTOR AI Pro Analizi: Abiye segmentinde, ışık kırılma indeksi (refractive index) yüksek yüzeyler önceliklidir. Dökümlülük (drape) katsayısı yüksek **Viskon Saten** ve **İpek Şifon** lifleri, vücut formuna uyum sağlayan akışkan bir siluet oluşturur. Krep örgülü dokumalar (Crêpe de Chine), mat ve sofistike bir doku sunarken; sentetik karışımlı organzeler yapısal hacim (volume) kazandırmak için idealdir."
+            },
+            {
+                ids: ["bebek", "çocuk", "hassas", "alerji", "organik", "cilt dostu", "yumuşak", "tahriş etmeyen"],
+                sampleQ: "Bebek pijaması için hangi kumaş daha güvenlidir?",
+                std: "Bebekler ve hassas ciltler için kesinlikle **%100 Organik Pamuk**, **Doğal Müslin** ve **Bambu** kumaşları öneririm. Bu kumaşlar nefes alır, yumuşacıktır ve kimyasal içermez.",
+                pro: "AFTOR AI Pro Analizi: Pediatrik tekstil ürünlerinde, **Oeko-Tex Standard 100** sertifikasına sahip, formaldehit ve ağır metal kalıntısı içermeyen lifler zorunludur. Cilt bariyer fonksiyonunu bozmayan, pH dengeli (5.5) ve hipoalerjenik **Organik Pamuk** (Organic Cotton) ile **Bambu** rejenere lifler, sürtünme katsayısı en düşük olan materyallerdir. Sentetik liflerden (polyester) tamamen kaçınılarak atopik dermatit riski minimize edilmelidir."
+            },
+            {
+                ids: ["yıkama", "derece", "sıcaklık", "temizlik", "çekme", "bozulma", "ütü", "kuruma", "leke"],
+                sampleQ: "Yazlık elbise hangi derecede yıkanmalıdır?",
+                std: "Kumaşın çekmemesi ve ömrünün uzaması için genellikle **30 derecede** yıkamak en güvenlisidir. Çok sıcak su kumaş liflerini bozar. Hassas kumaşları ise **elde** veya **hassas programda** yıkamalısınız.",
+                pro: "AFTOR AI Pro Analizi: Tekstil liflerinin (özellikle protein ve rejenere selüloziklerin) hidrotermal stabilitesini korumak için yıkama banyosu sıcaklığı **30-40°C** aralığında tutulmalıdır. Yüksek sıcaklık (60°C+), polimer zincirlerinde gevşemeye yol açarak boyutsal değişim (shrinkage/çekme) ve renk haslığı kaybına (fading) neden olur. Santrifüj devrinin düşük tutulması (max 600 rpm), mekanik aşınmayı ve lif tüylenmesini (pilling) önler."
+            },
+            {
+                ids: ["iş", "ofis", "kırışmayan", "kırışmaya dayanıklı", "gömlek", "pantolon", "resmi", "kaliteli"],
+                sampleQ: "Ofiste giyilecek gömlek için hangi kumaş daha şık durur?",
+                std: "Gün boyu şık ve düzgün görünmek için **Poplin**, **Oxford** ve hafif likralı **Pamuk Saten** kumaşlar harikadır. Kırışmaya dayanıklı olması için az miktarda polyester karışımlı kumaşları da tercih edebilirsiniz.",
+                pro: "AFTOR AI Pro Analizi: Kurumsal giyimde, buruşmazlık (crease resistance) performansı yüksek apreli kumaşlar tercih edilmelidir. Çapraz bağ (cross-linking) teknolojisiyle işlenmiş **Non-Iron** (ütü gerektirmeyen) pamuklu kumaşlar, lif esnekliğini koruyarak form stabilitesi sağlar. Dokuma sıklığı yüksek (high thread count) **Oxford** ve **Twill** (dimi) örgüler, opaklık ve dayanıklılık sunarken profesyonel bir tuşe (handfeel) yaratır."
+            },
+            {
+                ids: ["yağmurlu", "su geçirmez", "rüzgar", "dış giyim", "mont", "parka"],
+                sampleQ: "Yağmurlu havalar için hangi kumaş daha kullanışlı olur?",
+                std: "Yağmur ve rüzgar için **Su İtici (Water Repellent)** özellikli **Bondit**, **Paraşüt** ve **Softshell** kumaşlar en iyi sonucu verir. Sizi kuru tutar.",
+                pro: "AFTOR AI Pro Analizi: Hidrostatik basınç dayanımı yüksek, **Laminasyon** veya **Coating (Kaplama)** teknolojisi uygulanmış teknik tekstiller (Gore-Tex benzeri membranlar) kullanılmalıdır. Su moleküllerinin yüzey gerilimini artıran **DWR (Durable Water Repellent)** apresi, damlacıkların kumaşa nüfuz etmeden kaymasını sağlar. Aynı zamanda mikro-gözenekli yapısı sayesinde içerideki buharı dışarı atarak (breathability) terlemeyi önler."
+            }
+        ];
+
+        // --- DİNAMİK KARŞILAMA VE MESAJLAR ---
+        let currentModel = 'std';
+        let attachedItem = null;
+        let lastUserMessage = "";
+        let isTyping = false;
+        let isGreetingActive = true;
+
+        const directLinks = [
+            { keys: ["sipariş", "satın", "whatsapp", "fiyat"], ans: "Sipariş oluşturmak ve fiyat bilgisi almak için doğrudan WhatsApp hattımıza bağlanabilirsiniz.", pro: "AFTOR AI: Kurumsal B2B, perakende sipariş talepleri ve stok/fiyat sorgulamaları için resmi WhatsApp hattımız üzerinden teknik satış uzmanlarımızla görüşebilirsiniz.", link: "https://wa.me/905368938558", btnText: "WhatsApp'a Bağlan" },
+            { keys: ["telefon", "ara", "ulaş", "numara"], ans: "Bize telefon numaramızdan anında ulaşabilirsiniz.", pro: "AFTOR AI: İletişim merkezimize doğrudan telefon bağlantısı kurarak müşteri temsilcilerimizden destek alabilirsiniz.", link: "tel:+905368938558", btnText: "Hemen Ara" },
+            { keys: ["adres", "konum", "nerede", "yer", "yol tarifi", "mağaza"], ans: "Mağazamızın yol tarifi için haritalar bağlantısına tıklayabilirsiniz.", pro: "AFTOR AI: Fiziksel showroomumuz ve depo konumumuz için güncel Google Haritalar rotasını aşağıdan alabilirsiniz.", link: "https://share.google/5scR1J0CXII19NauRnde", btnText: "Haritalarda Aç" },
+            { keys: ["instagram", "sosyal", "hesap", "model"], ans: "Bizi Instagram'dan takip edebilir, güncel modellerimizi görebilirsiniz.", pro: "AFTOR AI: Güncel EN-KA KUMAŞ kartelaları, yeni sezon üretimleri ve dijital referanslarımız için resmi Instagram hesabımızı inceleyebilirsiniz.", link: "https://www.instagram.com/enka_kumascilik_a.s", btnText: "Instagram'a Git" }
+        ];
+
+        const productsList = [
+            "Medine İpeği", "Premium Yün Kaşe", "Organik Keten", "Saf Viskon", "Krep Şifon", "Gabardin", "Poplin", "Suni Deri",
+            "Peluş Kumaş", "Teddy Kumaş", "Aerobin", "Paraşüt", "Denim (Kot)", "Saten", "Doğal Müslin", "Penye", "Dalgıç",
+            "Scuba Krep", "Jarse", "Kadife", "Fitilli Kadife", "Triko Örme", "Sandy Kumaş", "Polar", "Hayal Tül", "Fransız Dantel",
+            "Pazen", "Kanvas", "Empirme", "Döşemelik Süet"
+        ];
+
+        // --- BAŞLANGIÇ ---
+        window.onload = () => {
+            checkAutoDarkMode(); 
+            runGreetingCycle();
+            showAiSuggestion();
+            setInterval(showAiSuggestion, 8000);
+            
+            document.getElementById('dict-modal').addEventListener('click', closeDict);
+
+            document.getElementById('catalog-grid').innerHTML = productsList.map(p => `
+                <div onclick="selectItem('${p}')" class="p-2 border border-gray-100 dark:border-gray-700 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-700 cursor-pointer text-xs font-medium text-gray-700 dark:text-gray-300 text-center transition-colors truncate">
+                    ${p}
+                </div>
+            `).join('');
+            
+            // Bilgi bankasını listele (Sadece örnek soruları göster)
+            document.getElementById('dict-list').innerHTML = knowledgeBase.map(item => `
+                <div onclick="askFromDict('${item.sampleQ}')" class="p-3 border-b border-gray-50 dark:border-gray-800 hover:bg-gray-50 dark:hover:bg-gray-800 cursor-pointer transition-colors">
+                    <div class="font-medium text-sm text-gray-800 dark:text-gray-200">${item.sampleQ}</div>
+                </div>
+            `).join('');
+        };
+
+        // --- MODEL SEÇİMİ ---
+        function toggleModelMenu() {
+            document.getElementById('model-menu').classList.toggle('hidden');
+            document.getElementById('model-menu').classList.toggle('flex');
+        }
+
+        function selectModel(m) {
+            currentModel = m;
+            document.getElementById('current-model-text').innerText = m === 'std' ? "AFTOR AI Standart" : "AFTOR AI Pro";
+            
+            const btnStd = document.getElementById('btn-model-std');
+            const btnPro = document.getElementById('btn-model-pro');
+            
+            if (m === 'std') {
+                btnStd.classList.add('bg-blue-50', 'dark:bg-blue-900/40');
+                btnStd.classList.remove('hover:bg-gray-50', 'dark:hover:bg-gray-700');
+                btnPro.classList.remove('bg-blue-50', 'dark:bg-blue-900/40');
+                btnPro.classList.add('hover:bg-gray-50', 'dark:hover:bg-gray-700');
+            } else {
+                btnPro.classList.add('bg-blue-50', 'dark:bg-blue-900/40');
+                btnPro.classList.remove('hover:bg-gray-50', 'dark:hover:bg-gray-700');
+                btnStd.classList.remove('bg-blue-50', 'dark:bg-blue-900/40');
+                btnStd.classList.add('hover:bg-gray-50', 'dark:hover:bg-gray-700');
+            }
+            toggleModelMenu();
+        }
+
+        // --- DAKTİLO EFEKTİ ---
+        const greetings = [
+            "Size nasıl yardımcı olabilirim?", 
+            "EN-KA KUMAŞ dünyasına hoş geldiniz.", 
+            "Bugün hangi kumaş projeniz var?", 
+            "İhtiyacınıza uygun kumaşı bulmanıza yardımcı olabilirim.",
+            "Sen hazır olduğunda hazırım.",
+            "Size uygun kumaşı birlikte bulalım.",
+            "Seni gördüğüme sevindim.",
+            "Dalmaya hazır mısın?",
+           
+        ];
+        let gIndex = 0;
+        
+        function runGreetingCycle() {
+            if (!isGreetingActive) return;
+            const target = document.getElementById('dynamic-greeting');
+            const text = greetings[gIndex];
+            target.innerHTML = "";
+            let i = 0;
+            
+            function typeChar() {
+                if (!isGreetingActive) return;
+                if (i < text.length) {
+                    target.innerHTML = text.substring(0, i+1) + '<span class="cursor-block"></span>';
+                    i++;
+                    setTimeout(typeChar, 50); 
+                } else {
+                    target.innerHTML = text; 
+                    setTimeout(() => {
+                        gIndex = (gIndex + 1) % greetings.length;
+                        if (isGreetingActive) runGreetingCycle();
+                    }, 4000); 
+                }
+            }
+            typeChar();
+        }
+
+        // --- AI ÖNERİSİ ---
+        const suggestions = ["Yazlık elbise için hangi kumaşı önerirsin?", "Kumaşın çekmemesi için kaç derecede yıkamalıyım?", "Spor taytı dikmek için esnek kumaş önerin nedir?", "Bebek pijaması için hangi kumaş daha güvenlidir?"];
+        function showAiSuggestion() {
+            const box = document.getElementById('ai-suggestion-box');
+            if(!document.getElementById('greeting-container').classList.contains('hidden')) {
+                box.classList.remove('hidden');
+                document.getElementById('ai-suggestion-text').innerText = "Şunu sormayı deneyin: " + suggestions[Math.floor(Math.random() * suggestions.length)];
+            }
+        }
+        function useSuggestion() {
+            const txt = document.getElementById('ai-suggestion-text').innerText.replace("Şunu sormayı deneyin: ", "");
+            document.getElementById('user-input').value = txt;
+            document.getElementById('ai-suggestion-box').classList.add('hidden');
+            sendMessage();
+        }
+
+        // --- KATALOG ---
+        function toggleCatalog() {
+            const popup = document.getElementById('catalog-popup');
+            if(popup.classList.contains('hidden')) {
+                popup.classList.remove('hidden');
+            } else {
+                popup.classList.add('hidden');
+            }
+        }
+
+        function selectItem(name) {
+            attachedItem = name;
+            document.getElementById('selected-item-name').innerText = name;
+            document.getElementById('selected-item').classList.remove('hidden');
+            document.getElementById('catalog-popup').classList.add('hidden');
+            document.getElementById('user-input').focus();
+        }
+
+        function clearItem() {
+            attachedItem = null;
+            document.getElementById('selected-item').classList.add('hidden');
+        }
+
+        // --- SÖZLÜK ---
+        function openDict() {
+            const modal = document.getElementById('dict-modal');
+            modal.classList.remove('hidden');
+            modal.classList.add('flex');
+        }
+
+        function closeDict() {
+            document.getElementById('dict-modal').classList.add('hidden');
+            document.getElementById('dict-modal').classList.remove('flex');
+        }
+
+        function filterDict() {
+            const val = document.getElementById('dict-search').value.toLowerCase();
+            const items = document.getElementById('dict-list').children;
+            Array.from(items).forEach(item => {
+                item.style.display = item.innerText.toLowerCase().includes(val) ? 'block' : 'none';
+            });
+        }
+
+        function askFromDict(q) {
+            document.getElementById('user-input').value = q;
+            closeDict();
+            sendMessage();
+        }
+
+        // --- MESAJ GÖNDERME ---
+        function handleEnter(e) {
+            if(e.key === 'Enter') sendMessage();
+        }
+
+        function sendMessage() {
+            if(isTyping) return;
+            const input = document.getElementById('user-input');
+            const text = input.value.trim();
+            
+            if(!text && !attachedItem) return;
+
+            isGreetingActive = false; 
+            document.getElementById('greeting-container').classList.add('hidden');
+            document.getElementById('ai-suggestion-box').classList.add('hidden');
+            
+            let fullUserText = text;
+            if(attachedItem) {
+                fullUserText = text ? `[İncelenen Kumaş: ${attachedItem}] ${text}` : `[İncelenen Kumaş: ${attachedItem}] Bu kumaşın özellikleri nelerdir?`;
+            }
+            
+            lastUserMessage = fullUserText;
+            input.value = '';
+
+            appendUserMessage(fullUserText);
+            
+            let currentAttachedItem = attachedItem;
+            clearItem();
+
+            isTyping = true;
+            document.getElementById('typing-indicator').classList.remove('hidden');
+            document.getElementById('typing-indicator').classList.add('flex');
+            scrollToBottom();
+
+            setTimeout(() => {
+                document.getElementById('typing-indicator').classList.add('hidden');
+                document.getElementById('typing-indicator').classList.remove('flex');
+                
+                const response = generateResponse(fullUserText, currentAttachedItem);
+                appendBotMessage(response.text, response.link, response.btnText);
+            }, 800);
+        }
+
+        // --- ALGORİTMA: CEVAP ÜRETME ---
+        function generateResponse(queryText, item) {
+            let text = ""; let link = null; let btnText = "Bağlantıya Git";
+            const query = queryText.toLowerCase();
+            const pureQuery = query.replace(/\[.*?\]/g, '').trim();
+
+            // 1. Günlük İfadeler (ÖNCELİKLİ)
+            if (pureQuery === 'merhaba' || pureQuery === 'selam' || pureQuery === 'selamlar' || pureQuery === 'sa' || pureQuery === 'mrb') {
+                return { text: "Merhaba! EN-KA KUMAŞ dünyasına hoş geldiniz. Kumaşlar, dikiş önerileri veya sipariş hakkında size nasıl yardımcı olabilirim?", link, btnText };
+            }
+            if (pureQuery.includes('teşekkür') || pureQuery === 'sağol' || pureQuery === 'tşk') {
+                return { text: "Rica ederim! EN-KA KUMAŞ olarak her zaman yanınızdayız. Başka bir sorunuz olursa sormaktan çekinmeyin.", link, btnText };
+            }
+            if (pureQuery.includes('iyi günler') || pureQuery.includes('iyi çalışmalar')) {
+                return { text: "Çok teşekkürler, size de harika bir gün dilerim! Yeni projelerinizde başarılar.", link, btnText };
+            }
+
+            // 2. İletişim / Yönlendirme (ÖNCELİKLİ)
+            const dirMatch = directLinks.find(d => d.keys.some(k => query.includes(k)));
+            if(dirMatch) {
+                text = currentModel === 'pro' ? dirMatch.pro : dirMatch.ans;
+                link = dirMatch.link;
+                btnText = dirMatch.btnText;
+                return { text, link, btnText };
+            }
+
+            // 3. Bilgi Bankası Anahtar Kelime Eşleştirme (PUANLAMA SİSTEMİ)
+            let bestMatch = null;
+            let maxScore = 0;
+
+            knowledgeBase.forEach(kb => {
+                let score = 0;
+                kb.ids.forEach(id => {
+                    if (query.includes(id)) {
+                        score += 1;
+                        // Tam eşleşme varsa ekstra puan (örn: "yazlık elbise" hem "yazlık" hem "elbise" içeriyorsa)
+                    }
+                });
+                
+                if (score > maxScore) {
+                    maxScore = score;
+                    bestMatch = kb;
+                }
+            });
+
+            if (bestMatch && maxScore > 0) {
+                text = currentModel === 'pro' ? bestMatch.pro : bestMatch.std;
+                return { text, link, btnText };
+            }
+
+            // 4. Spesifik Kumaş Adı Varsa (Fallback)
+            if(item || productsList.some(p => query.includes(p.toLowerCase()))) {
+                let targetFabric = item || productsList.find(p => query.includes(p.toLowerCase()));
+                if(targetFabric) {
+                    if(currentModel === 'std') {
+                        text = `**${targetFabric}**, EN-KA KUMAŞ kalitesiyle sunduğumuz en popüler ürünlerimizden biridir. Dayanıklı yapısı ve şık duruşuyla projelerinizde güvenle kullanabilirsiniz.`;
+                    } else {
+                        text = `AFTOR AI Pro Analizi: **${targetFabric}** ürünü, endüstriyel standartlarda test edilmiş mukavemet değerlerine sahiptir. Lif kompozisyonu ve apre işlemleri, uzun ömürlü kullanım (durability) ve boyutsal stabilite sağlar. Konfeksiyon aşamasında uygun iğne ve iplik tansiyonu ile mükemmel sonuçlar verir.`;
+                    }
+                    return { text, link, btnText };
+                }
+            }
+
+            // 5. Hiçbiri Bulunamadıysa
+            text = "Bu konuda tam emin olamadım. Ancak kumaş türü, kullanım alanı veya mevsim belirterek sorunuzu tekrar ederseniz (örneğin: 'Yazlık elbise kumaşı nedir?') size nokta atışı bir öneride bulunabilirim.";
+            return { text, link, btnText };
+        }
+
+        function appendUserMessage(text) {
+            const div = document.createElement('div');
+            div.className = "flex w-full justify-end group mt-6";
+            div.innerHTML = `
+                <div class="flex flex-col items-end gap-1">
+                    <div class="msg-user-bubble">${text}</div>
+                    <div class="flex gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
+                        <button onclick="editUserMessage()" class="text-gray-400 hover:text-gray-800 dark:hover:text-gray-200 p-1"><i class="fas fa-pen text-xs"></i></button>
+                    </div>
+                </div>
+            `;
+            document.getElementById('messages').appendChild(div);
+        }
+
+        function appendBotMessage(text, link, btnText) {
+            const div = document.createElement('div');
+            div.className = "flex w-full justify-start mt-6";
+            
+            let linkHTML = "";
+            if(link) {
+                linkHTML = `<div class="mt-4 hidden link-container"><a href="${link}" target="_blank" class="px-5 py-2.5 bg-gray-100 dark:bg-gray-800 text-gray-800 dark:text-gray-200 text-sm font-medium rounded-xl hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors inline-flex items-center gap-2 border border-gray-200 dark:border-gray-700">${btnText} <i class="fas fa-external-link-alt text-xs"></i></a></div>`;
+            }
+
+            const actionsHTML = `
+                <div class="flex items-center gap-3 mt-4 text-gray-400 dark:text-gray-500 hidden actions-container">
+                    <button onclick="copyToClipboard(this)" class="action-btn hover:text-gray-800 dark:hover:text-gray-200 transition-colors"><i class="far fa-copy"></i></button>
+                    <button onclick="regenWithOtherModel()" class="action-btn hover:text-gray-800 dark:hover:text-gray-200 transition-colors flex items-center gap-1 text-xs font-medium">
+                        <i class="fas fa-sync-alt"></i> Başka model ile yeniden oluştur
+                    </button>
+                    <button onclick="toggleActionBtn(this)" class="action-btn hover:text-gray-800 dark:hover:text-gray-200 transition-colors ml-auto"><i class="far fa-thumbs-up"></i></button>
+                    <button onclick="openFeedback(this)" class="action-btn hover:text-gray-800 dark:hover:text-gray-200 transition-colors"><i class="far fa-thumbs-down"></i></button>
+                </div>
+            `;
+
+            div.innerHTML = `
+                <div class="w-full max-w-2xl">
+                    <div class="msg-bot-text text-gray-900 dark:text-gray-100 leading-relaxed"></div>
+                    ${linkHTML}
+                    ${actionsHTML}
+                </div>
+            `;
+            document.getElementById('messages').appendChild(div);
+            
+            const textContainer = div.querySelector('.msg-bot-text');
+            typeWriterWordByWord(textContainer, text, () => {
+                isTyping = false;
+                const linkCont = div.querySelector('.link-container');
+                if(linkCont) linkCont.classList.remove('hidden');
+                div.querySelector('.actions-container').classList.remove('hidden');
+                scrollToBottom();
+            });
+        }
+
+        function typeWriterWordByWord(element, text, callback) {
+            const words = text.split(' ');
+            let i = 0;
+            let currentHTML = "";
+            element.innerHTML = '<span class="cursor-block"></span>';
+
+            function type() {
+                if (i < words.length) {
+                    currentHTML += (i === 0 ? '' : ' ') + words[i];
+                    let renderHTML = currentHTML.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
+                    element.innerHTML = renderHTML + '<span class="cursor-block"></span>';
+                    i++;
+                    setTimeout(type, 45); 
+                    scrollToBottom();
+                } else {
+                    let finalHTML = currentHTML.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
+                    element.innerHTML = finalHTML;
+                    if(callback) callback();
+                }
+            }
+            type();
+        }
+
+        function editUserMessage() {
+            if(!isTyping) {
+                document.getElementById('user-input').value = lastUserMessage.replace(/\[.*?\] /, '');
+                document.getElementById('user-input').focus();
+            }
+        }
+
+        function copyToClipboard(btn) {
+            const container = btn.closest('.max-w-2xl');
+            const textToCopy = container.querySelector('.msg-bot-text').innerText;
+            navigator.clipboard.writeText(textToCopy).then(() => {
+                btn.classList.add('active');
+                btn.innerHTML = '<i class="fas fa-copy"></i>'; 
+                const toast = document.getElementById('toast');
+                toast.classList.remove('hidden');
+                toast.classList.add('flex', 'toast-enter');
+                setTimeout(() => {
+                    toast.classList.add('hidden');
+                    toast.classList.remove('flex', 'toast-enter');
+                }, 2500);
+            });
+        }
+
+        function toggleActionBtn(btn) {
+            btn.classList.toggle('active');
+            const icon = btn.querySelector('i');
+            if(btn.classList.contains('active')) {
+                icon.classList.remove('far'); icon.classList.add('fas'); 
+            } else {
+                icon.classList.remove('fas'); icon.classList.add('far'); 
+            }
+        }
+
+        function regenWithOtherModel() {
+            if(isTyping || !lastUserMessage) return;
+            const newModel = currentModel === 'std' ? 'pro' : 'std';
+            selectModel(newModel);
+            const match = lastUserMessage.match(/\[İncelenen Kumaş: (.*?)\] (.*)/);
+            if(match) {
+                attachedItem = match[1];
+                document.getElementById('user-input').value = match[2] || "Bu kumaşın özellikleri nelerdir?";
+            } else {
+                document.getElementById('user-input').value = lastUserMessage;
+            }
+            sendMessage();
+        }
+
+        function openFeedback(btn) {
+            toggleActionBtn(btn); 
+            document.getElementById('feedback-modal').classList.remove('hidden');
+            document.getElementById('feedback-modal').classList.add('flex');
+        }
+
+        function closeFeedback() {
+            document.getElementById('feedback-modal').classList.add('hidden');
+            document.getElementById('feedback-modal').classList.remove('flex');
+        }
+
+        function scrollToBottom() {
+            const chatBox = document.getElementById('chat-box');
+            chatBox.scrollTop = chatBox.scrollHeight;
+        }
+    </script>
+</body>
+</html>
