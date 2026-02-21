@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="tr" class="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EN-KA KUMAŞ | Ürünler</title>
+    <link rel="icon" type="image/png" href="logo.png" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="EN-KA Kumaş – Ankara Keçiören’de ucuz ve kaliteli kumaşlar. Uygun fiyatlarla en iyi kumaşları hemen keşfedin.">
+    <meta name="keywords" content="EN-KA Kumaş, Ankara, Keçiören, ucuz kumaş, kaliteli kumaş, kumaş markası">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: { primary: '#E11D48', secondary: '#881337', halk: '#4F46E5' },
+                    fontFamily: { sans: ['Plus Jakarta Sans', 'sans-serif'], poppins: ['Poppins', 'sans-serif'] }
+                }
+            }
+        }
+    </script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;800&family=Poppins:wght@300;400;500;700;900&display=swap');
+        body { font-family: 'Plus Jakarta Sans', sans-serif; overflow-x: hidden; scroll-behavior: smooth; padding-bottom: 120px; }
+        .trans-base { transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1); }
+        .no-scrollbar::-webkit-scrollbar { display: none; } .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+
+        /* Liquid Background */
+        .liquid-bg {
+            position: fixed; inset: 0; z-index: -1;
+            background: linear-gradient(-45deg, #f8fafc, #f1f5f9, #fee2e2, #e0f2fe);
+            background-size: 400% 400%; animation: gradientMove 15s ease infinite;
+        }
+        .dark .liquid-bg { background: linear-gradient(-45deg, #0f172a, #1e293b, #450a0a, #020617); }
+        @keyframes gradientMove { 0% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } 100% { background-position: 0% 50%; } }
+
+        /* Glassmorphism */
+        .glass { background: rgba(255, 255, 255, 0.45); backdrop-filter: blur(20px); border: 1px solid rgba(255, 255, 255, 0.5); }
+        .dark .glass { background: rgba(15, 23, 42, 0.75); border: 1px solid rgba(255, 255, 255, 0.1); }
+        
+        .glass-input { background: rgba(255, 255, 255, 0.6); backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.8); }
+        .dark .glass-input { background: rgba(15, 23, 42, 0.6); border: 1px solid rgba(255, 255, 255, 0.2); }
+
+        .bottom-nav-glass {
+            background: rgba(255, 255, 255, 0.7); backdrop-filter: blur(30px) saturate(200%);
+            border: 1px solid rgba(255, 255, 255, 0.6); box-shadow: 0 -10px 40px rgba(0,0,0,0.05);
+        }
+        .dark .bottom-nav-glass { background: rgba(15, 23, 42, 0.85); border-top: 1px solid rgba(255, 255, 255, 0.1); }
+
+        /* Product Image Hover */
+        .prod-img-container { overflow: hidden; border-radius: 20px; aspect-ratio: 1; }
+        .prod-img-container img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.6s ease; }
+        .product-card:hover .prod-img-container img { transform: scale(1.1); }
+    </style>
+</head>
+<body class="text-slate-900 dark:text-slate-100 antialiased trans-base">
+
+    <div class="liquid-bg"></div>
+
+    <nav class="fixed top-0 w-full z-50 px-4 py-4 backdrop-blur-md bg-white/30 dark:bg-black/30 border-b border-white/20 shadow-sm">
+        <div class="max-w-6xl mx-auto flex items-center gap-3">
+            <a href="index.html" class="w-12 h-12 flex-shrink-0 flex items-center justify-center rounded-full glass hover:bg-primary hover:text-white trans-base text-lg shadow-md">
+                <i class="fas fa-chevron-left"></i>
+            </a>
+            <div class="relative flex-1">
+                <i class="fas fa-search absolute left-4 top-1/2 transform -translate-y-1/2 text-slate-500 text-lg"></i>
+                <input type="text" id="searchInput" onkeyup="filterProducts()" placeholder="Kumaş veya Kategori Ara..." class="w-full glass-input rounded-full py-3 pl-12 pr-4 outline-none focus:ring-2 focus:ring-primary/50 trans-base text-sm font-bold shadow-inner text-slate-800 dark:text-white placeholder-slate-500">
+            </div>
+            <button onclick="toggleDarkMode()" class="w-12 h-12 flex-shrink-0 flex items-center justify-center rounded-full glass hover:bg-primary hover:text-white trans-base shadow-md">
+                <i class="fas fa-moon dark:hidden"></i><i class="fas fa-sun hidden dark:block"></i>
+            </button>
+        </div>
+    </nav>
+
+    <main class="pt-28 px-4 max-w-6xl mx-auto">
+        
+        <div class="glass rounded-[30px] p-5 mb-6 shadow-lg border border-primary/20 flex flex-col md:flex-row justify-between items-center gap-4 bg-primary/5">
+            <div class="flex items-center gap-4">
+                <div class="w-12 h-12 rounded-full bg-primary/20 flex items-center justify-center text-primary text-2xl animate-pulse"><i class="fas fa-box-open"></i></div>
+                <div>
+                    <h3 class="font-black text-sm uppercase tracking-wider">İstediğin Kumaş Yok Mu?</h3>
+                    <p class="text-xs text-slate-600 dark:text-slate-400 font-medium">Stoklar hızlı tükeniyor veya henüz eklenmemiş olabilir. En net bilgi için bizimle hemen görüşün!</p>
+                </div>
+            </div>
+            <button onclick="toggleContactModal()" class="w-full md:w-auto px-6 py-3 bg-primary text-white rounded-full font-black text-xs uppercase shadow-xl hover:scale-105 trans-base flex items-center justify-center gap-2">
+                <i class="fas fa-headset"></i> Bilgi Al
+            </button>
+        </div>
+
+        <div class="flex gap-3 overflow-x-auto no-scrollbar py-2 mb-8" id="category-filters">
+            </div>
+
+        <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-6" id="product-grid">
+            </div>
+
+    </main>
+
+    <div class="fixed bottom-6 left-1/2 transform -translate-x-1/2 z-[150] w-[95%] max-w-[500px]">
+        <div class="bottom-nav-glass rounded-full flex justify-between items-center px-6 py-3 transition-all duration-300">
+            <a href="index.html" class="flex flex-col items-center gap-1 text-slate-500 hover:text-primary dark:text-slate-400 group transition-all">
+                <div class="p-2 rounded-full group-hover:bg-primary/10 transition-all"><i class="fas fa-home text-lg"></i></div>
+                <span class="text-[8px] font-black uppercase">Ana Sayfa</span>
+            </a>
+            <a href="urunler.html" class="flex flex-col items-center gap-1 text-primary group">
+                <div class="bg-primary/10 p-2 rounded-full group-hover:bg-primary group-hover:text-white transition-all"><i class="fas fa-layer-group text-lg"></i></div>
+                <span class="text-[8px] font-black uppercase">Ürünler</span>
+            </a>
+            <a href="kalip-koleksiyonu.html" class="flex flex-col items-center gap-1 text-slate-500 hover:text-primary dark:text-slate-400 group transition-all">
+                <div class="p-2 rounded-full group-hover:bg-primary/10 transition-all"><i class="fas fa-ruler-combined text-lg"></i></div>
+                <span class="text-[8px] font-black uppercase">Kalıplar</span>
+            </a>
+            <button onclick="toggleContactModal()" class="flex flex-col items-center gap-1 text-slate-500 hover:text-primary dark:text-slate-400 group transition-all">
+                <div class="p-2 rounded-full group-hover:bg-primary/10 transition-all"><i class="fas fa-headset text-lg"></i></div>
+                <span class="text-[8px] font-black uppercase">İletişim</span>
+            </button>
+            <a href="chatbot.html" class="flex flex-col items-center gap-1 text-slate-500 hover:text-primary dark:text-slate-400 group transition-all">
+                <div class="p-2 rounded-full group-hover:bg-primary/10 transition-all"><i class="fas fa-robot text-lg"></i></div>
+                <span class="text-[8px] font-black uppercase">Asistan</span>
+            </a>
+        </div>
+    </div>
+
+    <div id="product-modal" class="fixed inset-0 z-[200] hidden items-center justify-center p-4 bg-black/80 backdrop-blur-sm opacity-0 transition-opacity duration-300">
+        <div class="relative w-full max-w-4xl glass rounded-[40px] overflow-hidden shadow-2xl flex flex-col md:flex-row transform scale-95 transition-transform duration-300" id="modal-content-box">
+            <button onclick="closeProductModal()" class="absolute top-4 right-4 w-10 h-10 bg-white/20 text-white hover:bg-primary rounded-full flex items-center justify-center z-10 trans-base backdrop-blur-md">
+                <i class="fas fa-times"></i>
+            </button>
+            
+            <div class="w-full md:w-1/2 h-64 md:h-[500px] bg-white/10 flex items-center justify-center relative p-4">
+                <img id="modal-img" src="" alt="Kumaş" class="w-full h-full object-contain rounded-2xl drop-shadow-2xl">
+            </div>
+            
+            <div class="w-full md:w-1/2 p-8 md:p-12 flex flex-col justify-center bg-white/60 dark:bg-black/60 backdrop-blur-xl border-l border-white/20">
+                <div class="uppercase tracking-[0.3em] text-[10px] font-black text-primary mb-2" id="modal-brand">EN-KA KUMAŞ</div>
+                <h2 class="text-3xl md:text-5xl font-black mb-4 tracking-tighter" id="modal-title">Kumaş Adı</h2>
+                
+                <div class="flex items-center gap-2 mb-6 opacity-70">
+                    <i class="fas fa-store text-sm"></i>
+                    <span class="text-xs font-bold uppercase">Mağaza: EN-KA Kumaş (Keçiören/Ankara)</span>
+                </div>
+
+                <div class="glass p-4 rounded-2xl border-white/40 mb-8">
+                    <p class="text-sm font-medium text-slate-700 dark:text-slate-300 leading-relaxed" id="modal-desc">
+                        Açıklama buraya gelecek...
+                    </p>
+                </div>
+                
+                <a href="#" target="_blank" id="modal-wa-btn" class="w-full py-4 bg-green-500 hover:bg-green-600 text-white rounded-[20px] font-black text-sm uppercase tracking-widest text-center shadow-[0_10px_20px_rgba(34,197,94,0.3)] hover:shadow-[0_15px_30px_rgba(34,197,94,0.4)] trans-base hover:-translate-y-1 flex justify-center items-center gap-3">
+                    <i class="fab fa-whatsapp text-xl"></i> WhatsApp'tan Detay Al
+                </a>
+            </div>
+        </div>
+        <div class="absolute inset-0 -z-10" onclick="closeProductModal()"></div>
+    </div>
+
+    <div id="contact-modal" class="fixed inset-0 z-[300] hidden items-center justify-center p-6 bg-black/60 backdrop-blur-md">
+        <div class="relative w-full max-w-sm glass rounded-[40px] p-8 shadow-2xl border border-white/30 text-center">
+            <button onclick="toggleContactModal()" class="absolute -top-4 -right-4 w-10 h-10 bg-primary text-white rounded-full flex items-center justify-center shadow-xl hover:scale-110 trans-base"><i class="fas fa-times"></i></button>
+            <h3 class="font-black text-lg uppercase tracking-widest mb-2">Bize Ulaşın</h3>
+            <p class="text-xs mb-6 opacity-80">Stok sorgulama ve toptan alım için...</p>
+            <div class="space-y-3">
+                <a href="https://wa.me/905368938558" target="_blank" class="flex items-center justify-center gap-3 p-4 bg-green-500 text-white rounded-[20px] font-bold text-sm hover:scale-105 trans-base shadow-lg"><i class="fab fa-whatsapp text-xl"></i> WhatsApp Hattımız</a>
+                <a href="tel:+905368938558" class="flex items-center justify-center gap-3 p-4 glass rounded-[20px] font-bold text-sm hover:bg-primary hover:text-white trans-base"><i class="fas fa-phone text-xl text-primary"></i> Hemen Ara</a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function toggleDarkMode() { document.documentElement.classList.toggle('dark'); }
+        
+        function toggleContactModal() {
+            const m = document.getElementById('contact-modal');
+            if(m.classList.contains('hidden')) m.classList.replace('hidden', 'flex');
+            else m.classList.replace('flex', 'hidden');
+        }
+
+        // KUMAŞ VERİ TABANI
+        const products = [
+            // ÖZEL ÜRÜNLER
+            { id: 99, name: "Marka Kumaşlar", cat: "Marka Kumaşlar", img: "k-marka.png", desc: "Dünyaca ünlü tekstil markalarının ihraç fazlası, üstün kaliteli özel seri kumaşları. Model ve stok bilgisi için iletişime geçin.", brand: "İHRAÇ FAZLASI" },
+            { id: 100, name: "Parça Kumaşlar", cat: "Parça Kumaşlar", img: "k-parca.png", desc: "Çeşitli ebatlarda, avantajlı fiyatlarla sunulan karışık kumaşlarımız. Terziler ve hobi projeleri için idealdir.", brand: "EN-KA KUMAŞ" },
+            
+            // DİĞER ÜRÜNLER
+            { id: 1, name: "Teddy Kumaş", cat: "Tüm Kumaşlar", img: "k-teddy.png", desc: "Soğuk günlerin vazgeçilmezi, pofuduk dış giyim ve ev tekstili kumaşı.", brand: "EN-KA KUMAŞ" },
+            { id: 2, name: "Medine İpeği", cat: "Düz Kumaşlar", img: "k-medine.png", desc: "İç göstermeyen, dökümlü ve tiril tiril yapısıyla şık tasarımların bir numarası.", brand: "EN-KA KUMAŞ" },
+            { id: 3, name: "Premium Yün", cat: "Tüm Kumaşlar", img: "k-yun.png", desc: "Doğal yün liflerinden üretilmiş, yüksek ısı yalıtımlı kabanlık kumaş.", brand: "EN-KA KUMAŞ" },
+            { id: 4, name: "Doğal Müslin", cat: "Pamuklular", img: "k-muslin.png", desc: "Bebek sağlığına uygun, nefes alan, %100 pamuklu ultra hafif kumaş.", brand: "EN-KA KUMAŞ" },
+            { id: 5, name: "Saf Viskon", cat: "Düz Kumaşlar", img: "k-viskon.png", desc: "Doğal selülozdan, esnek, terletmeyen ve renkleri canlı tutan yazlık kumaş.", brand: "EN-KA KUMAŞ" },
+            { id: 6, name: "Oysho Tarzı Peluş", cat: "Marka Kumaşlar", img: "k-oysho.png", desc: "Ev giyimi için mükemmel yumuşaklığa sahip özel ihraç fazlası dokuma.", brand: "İHRAÇ FAZLASI" },
+            { id: 7, name: "Hakiki İpek", cat: "Abiyelik", img: "k-ipek.png", desc: "Üst düzey parlaklık ve dokunuş hissi veren lüks gece elbisesi kumaşı.", brand: "EN-KA KUMAŞ" },
+            { id: 8, name: "Suni Deri", cat: "Düz Kumaşlar", img: "k-deri.png", desc: "Ceket, etek ve pantolon için ideal, esnek ve dayanıklı deri görünüm.", brand: "EN-KA KUMAŞ" },
+            { id: 9, name: "Full Likralı Penye", cat: "Pamuklular", img: "k-penye.png", desc: "Günlük t-shirt ve tayt yapımına uygun esnek, pamuklu penye.", brand: "EN-KA KUMAŞ" },
+            { id: 10, name: "Doğal Keten", cat: "Pamuklular", img: "k-keten.png", desc: "Yazlık gömlek ve elbiselerin aranan yüzü, saf ve doğal keten.", brand: "EN-KA KUMAŞ" },
+            { id: 11, name: "Double Krep", cat: "Düz Kumaşlar", img: "k-krep.png", desc: "Dört mevsim kullanılabilen, kırışmaya dayanıklı, dökümlü elbise kumaşı.", brand: "EN-KA KUMAŞ" },
+            { id: 12, name: "Desenli Şifon", cat: "Desenli Kumaşlar", img: "k-sifon.png", desc: "Efil efil, transparan yapısıyla bluz ve elbise tasarımları için harika.", brand: "EN-KA KUMAŞ" },
+            { id: 13, name: "Akfil Poplin", cat: "Pamuklular", img: "k-poplin.png", desc: "Gömleklik ve nevresimlik %100 pamuk, sık dokuma kaliteli kumaş.", brand: "EN-KA KUMAŞ" },
+            { id: 14, name: "Likralı Gabardin", cat: "Tüm Kumaşlar", img: "k-gabardin.png", desc: "Pantolon ve ceket dikimine uygun, sağlam ve hafif esnek yapı.", brand: "EN-KA KUMAŞ" },
+            { id: 15, name: "Kışlık Kaşe", cat: "Tüm Kumaşlar", img: "k-kase.png", desc: "Kaban ve manto dikimi için ideal, rüzgar geçirmeyen kalın tok kumaş.", brand: "EN-KA KUMAŞ" },
+            { id: 16, name: "Fitilli Triko", cat: "Tüm Kumaşlar", img: "k-triko.png", desc: "Kazak, hırka ve süveter için hazır örgü triko kumaş.", brand: "EN-KA KUMAŞ" },
+            { id: 17, name: "İpek Kadife", cat: "Abiyelik", img: "k-kadife.png", desc: "Gece kıyafetlerinde lüks görünüm sağlayan, yumuşak tüylü yüzey.", brand: "EN-KA KUMAŞ" },
+            { id: 18, name: "Likralı Saten", cat: "Abiyelik", img: "k-saten.png", desc: "Parlak, dökümlü ve vücudu saran yapısıyla şık abiye kumaşı.", brand: "EN-KA KUMAŞ" },
+            { id: 19, name: "Esnek Kot (Denim)", cat: "Tüm Kumaşlar", img: "k-kot.png", desc: "Günlük pantolon ve ceketler için likralı dayanıklı jean kumaşı.", brand: "EN-KA KUMAŞ" },
+            { id: 20, name: "Su İtici Paraşüt", cat: "Tüm Kumaşlar", img: "k-parasut.png", desc: "Yağmurluk, rüzgarlık ve spor giyim için su itici ince kumaş.", brand: "EN-KA KUMAŞ" },
+            { id: 21, name: "Dalgıç (Scuba)", cat: "Düz Kumaşlar", img: "k-dalgic.png", desc: "Formunu koruyan, ütü istemeyen, spor ve şık elbiseler için ideal.", brand: "EN-KA KUMAŞ" },
+            { id: 22, name: "Kalın Polar", cat: "Tüm Kumaşlar", img: "k-polar.png", desc: "Eşofman takımları ve battaniyeler için sıcak tutan yumuşak yapı.", brand: "EN-KA KUMAŞ" },
+            { id: 23, name: "Uzun Tüylü Peluş", cat: "Tüm Kumaşlar", img: "k-pelus.png", desc: "Dekoratif amaçlı veya mont yakalarında kullanılan dolgun tüylü yapı.", brand: "EN-KA KUMAŞ" },
+            { id: 24, name: "Krep Scuba", cat: "Düz Kumaşlar", img: "k-scuba.png", desc: "Dalgıç kumaşın krep dokulu hali, tok duran şık giyim kumaşı.", brand: "EN-KA KUMAŞ" },
+            { id: 25, name: "Sandy Kumaş", cat: "Düz Kumaşlar", img: "k-sandy.png", desc: "Akışkan, dökümlü, terletmeyen, günlük tunik ve feraceler için.", brand: "EN-KA KUMAŞ" },
+            { id: 26, name: "Aerobin Kumaş", cat: "Düz Kumaşlar", img: "k-aerobin.png", desc: "Kendinden kırışık görünümüyle ütü gerektirmeyen, rahat yazlık doku.", brand: "EN-KA KUMAŞ" },
+            { id: 27, name: "Hayal Tül", cat: "Abiyelik", img: "k-tul.png", desc: "Gelinlik ve nişanlıklarda hacim ve zarafet katan ince dokuma.", brand: "EN-KA KUMAŞ" },
+            { id: 28, name: "Kordonlu Dantel", cat: "Abiyelik", img: "k-dantel.png", desc: "Özel gün tasarımları için detaylı motiflerle işlenmiş kaliteli dantel.", brand: "EN-KA KUMAŞ" },
+            { id: 29, name: "Astar Jarse", cat: "Düz Kumaşlar", img: "k-jarse.png", desc: "Elbiselerin içine astar olarak veya pratik günlük kıyafetler için.", brand: "EN-KA KUMAŞ" },
+            { id: 30, name: "Pazen (Pamuklu)", cat: "Pamuklular", img: "k-pamuklu.png", desc: "İçi şardonlu, kışlık pijamalar ve çocuk giyimi için yumuşacık yapı.", brand: "EN-KA KUMAŞ" }
+        ];
+
+        // Kategoriler
+        const categories = ["Tüm Kumaşlar", "Parça Kumaşlar", "Marka Kumaşlar", "Düz Kumaşlar", "Desenli Kumaşlar", "Pamuklular", "Abiyelik"];
+        let currentCat = "Tüm Kumaşlar";
+
+        // Filtre Çubuklarını Bas
+        const catBox = document.getElementById('category-filters');
+        categories.forEach(cat => {
+            const btn = document.createElement('button');
+            btn.className = `px-5 py-2 rounded-full font-bold text-[10px] uppercase tracking-wider whitespace-nowrap trans-base border shadow-sm ${cat === currentCat ? 'bg-primary text-white border-primary' : 'glass text-slate-600 dark:text-slate-300 hover:bg-primary/20 hover:text-primary'}`;
+            btn.innerText = cat;
+            btn.onclick = () => {
+                currentCat = cat;
+                document.querySelectorAll('#category-filters button').forEach(b => {
+                    b.classList.remove('bg-primary', 'text-white', 'border-primary');
+                    b.classList.add('glass', 'text-slate-600', 'dark:text-slate-300');
+                });
+                btn.classList.add('bg-primary', 'text-white', 'border-primary');
+                btn.classList.remove('glass', 'text-slate-600', 'dark:text-slate-300');
+                document.getElementById('searchInput').value = ""; // arama temizle
+                renderProducts();
+            };
+            catBox.appendChild(btn);
+        });
+
+        // Ürünleri Ekrana Bas
+        const grid = document.getElementById('product-grid');
+        function renderProducts(searchTxt = "") {
+            grid.innerHTML = "";
+            let filtered = products;
+            
+            if(searchTxt) {
+                filtered = products.filter(p => p.name.toLowerCase().includes(searchTxt.toLowerCase()) || p.cat.toLowerCase().includes(searchTxt.toLowerCase()));
+            } else if (currentCat !== "Tüm Kumaşlar") {
+                filtered = products.filter(p => p.cat === currentCat);
+            }
+
+            if(filtered.length === 0) {
+                grid.innerHTML = `<div class="col-span-2 md:col-span-4 text-center py-10 opacity-50"><i class="fas fa-search-minus text-4xl mb-4"></i><p>Bu kategoride ürün bulunamadı. Lütfen "Bilgi Al" butonunu kullanın.</p></div>`;
+                return;
+            }
+
+            filtered.forEach(p => {
+                const card = document.createElement('div');
+                card.className = "product-card glass rounded-[30px] p-3 md:p-4 cursor-pointer hover:shadow-2xl trans-base flex flex-col group border-white/40";
+                card.onclick = () => openProductModal(p);
+                
+                // Eğer görsel bulunamazsa yer tutucu simge
+                const imgTag = `<img src="${p.img}" alt="${p.name}" onerror="this.onerror=null; this.src='data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMDAgMTAwIiBmaWxsPSIjZTExZDQ4Ij48cmVjdCB3aWR0aD0iMTAwIiBoZWlnaHQ9IjEwMCIgZmlsbD0iI2YxZjVmOSIvPjx0ZXh0IHg9IjUwIiB5PSI1MCIgZm9udC1mYW1pbHk9IkFyaWFsIiBmb250LXNpemU9IjEwIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBkeT0iLjMiPkfDtlJTRUw8L3RleHQ+PC9zdmc+'">`;
+
+                card.innerHTML = `
+                    <div class="relative prod-img-container bg-white/50 dark:bg-black/20 mb-3 shadow-inner">
+                        ${imgTag}
+                        <div class="absolute inset-0 bg-black/30 opacity-0 group-hover:opacity-100 trans-base flex items-center justify-center backdrop-blur-[2px]">
+                            <span class="bg-primary text-white text-[10px] font-black uppercase px-4 py-2 rounded-full"><i class="fas fa-eye"></i> İncele</span>
+                        </div>
+                    </div>
+                    <div class="px-2 pb-2 flex-1 flex flex-col">
+                        <span class="text-[8px] font-black uppercase tracking-widest text-primary mb-1">${p.brand}</span>
+                        <h4 class="font-bold text-sm md:text-base leading-tight mb-2 text-slate-800 dark:text-slate-100">${p.name}</h4>
+                        <div class="mt-auto">
+                            <span class="text-[10px] bg-slate-200 dark:bg-slate-700 px-3 py-1 rounded-full font-bold text-slate-600 dark:text-slate-300">${p.cat}</span>
+                        </div>
+                    </div>
+                `;
+                grid.appendChild(card);
+            });
+        }
+
+        // Arama Motoru
+        function filterProducts() {
+            const val = document.getElementById('searchInput').value;
+            renderProducts(val);
+        }
+
+        // Modal İşlemleri
+        const modal = document.getElementById('product-modal');
+        const modalContent = document.getElementById('modal-content-box');
+
+        function openProductModal(product) {
+            document.getElementById('modal-title').innerText = product.name;
+            document.getElementById('modal-desc').innerText = product.desc;
+            document.getElementById('modal-brand').innerText = product.brand;
+            
+            const mImg = document.getElementById('modal-img');
+            mImg.src = product.img;
+            mImg.onerror = function() {
+                this.src = "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMDAgMTAwIiBmaWxsPSIjZTExZDQ4Ij48cmVjdCB3aWR0aD0iMTAwIiBoZWlnaHQ9IjEwMCIgZmlsbD0iI2YxZjVmOSIvPjx0ZXh0IHg9IjUwIiB5PSI1MCIgZm9udC1mYW1pbHk9IkFyaWFsIiBmb250LXNpemU9IjEwIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBkeT0iLjMiPkfDtlJTRUw8L3RleHQ+PC9zdmc+";
+            };
+
+            // İŞTE BURASI! TÜM ÜRÜNLER İÇİN OTOMATİK MESAJ YARATAN KISIM
+            const waBtn = document.getElementById('modal-wa-btn');
+            const msg = `Merhaba, ${product.name} ürünü hakkında detaylı fiyat ve stok bilgisi alabilir miyim?`;
+            waBtn.href = `https://wa.me/905368938558?text=${encodeURIComponent(msg)}`;
+
+            modal.classList.replace('hidden', 'flex');
+            setTimeout(() => {
+                modal.classList.remove('opacity-0');
+                modalContent.classList.remove('scale-95');
+                modalContent.classList.add('scale-100');
+            }, 50);
+        }
+
+        function closeProductModal() {
+            modal.classList.add('opacity-0');
+            modalContent.classList.remove('scale-100');
+            modalContent.classList.add('scale-95');
+            setTimeout(() => {
+                modal.classList.replace('flex', 'hidden');
+            }, 300);
+        }
+
+        // İlk Yükleme
+        window.addEventListener('load', () => renderProducts());
+    </script>
+</body>
+</html>
