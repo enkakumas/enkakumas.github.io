@@ -72,7 +72,7 @@
 
             <div class="relative">
                 <button onclick="toggleModelMenu()" class="flex items-center gap-2 px-3 py-1.5 rounded-lg border border-gray-200 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors text-sm font-medium">
-                    <span id="current-model-text">EN-ASİST Flah</span>
+                    <span id="current-model-text">EN-ASİST Flash</span>
                     <i class="fas fa-chevron-down text-[10px] text-gray-400"></i>
                 </button>
                 <div id="model-menu" class="hidden absolute top-full left-0 mt-2 w-56 bg-white dark:bg-gray-800 border border-gray-100 dark:border-gray-700 rounded-xl shadow-lg flex-col py-1 z-50 overflow-hidden">
@@ -118,7 +118,7 @@
         <div class="max-w-3xl mx-auto relative">
             
             <div id="ai-suggestion-box" onclick="useSuggestion()" class="mb-3 w-full border border-gray-200 dark:border-gray-700 rounded-2xl p-4 cursor-pointer hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors flex flex-col justify-center bg-white dark:bg-gray-900 shadow-sm hidden">
-                <span class="text-xs font-semibold text-gray-800 dark:text-gray-200 mb-1">AFTOR AI Önerisi</span>
+                <span class="text-xs font-semibold text-gray-800 dark:text-gray-200 mb-1">EN-ASİST ÖNERİSİ </span>
                 <span id="ai-suggestion-text" class="text-sm text-gray-600 dark:text-gray-400">Şunu sormayı deneyin: EN-KA KUMAŞ yol tarifi al</span>
             </div>
 
@@ -258,10 +258,10 @@
         let isGreetingActive = true;
 
         const directLinks = [
-            { keys: ["sipariş", "satın", "whatsapp", "fiyat"], ans: "Sipariş oluşturmak ve fiyat bilgisi almak için doğrudan WhatsApp hattımıza bağlanabilirsiniz.", pro: "AFTOR AI: Kurumsal B2B, perakende sipariş talepleri ve stok/fiyat sorgulamaları için resmi WhatsApp hattımız üzerinden teknik satış uzmanlarımızla görüşebilirsiniz.", link: "https://wa.me/905368938558", btnText: "WhatsApp'a Bağlan" },
-            { keys: ["telefon", "ara", "ulaş", "numara"], ans: "Bize telefon numaramızdan anında ulaşabilirsiniz.", pro: "AFTOR AI: İletişim merkezimize doğrudan telefon bağlantısı kurarak müşteri temsilcilerimizden destek alabilirsiniz.", link: "tel:+905368938558", btnText: "Hemen Ara" },
-            { keys: ["adres", "konum", "nerede", "yer", "yol tarifi", "mağaza"], ans: "Mağazamızın yol tarifi için haritalar bağlantısına tıklayabilirsiniz.", pro: "AFTOR AI: Fiziksel showroomumuz ve depo konumumuz için güncel Google Haritalar rotasını aşağıdan alabilirsiniz.", link: "https://share.google/5scR1J0CXII19NauRnde", btnText: "Haritalarda Aç" },
-            { keys: ["instagram", "sosyal", "hesap", "model"], ans: "Bizi Instagram'dan takip edebilir, güncel modellerimizi görebilirsiniz.", pro: "AFTOR AI: Güncel EN-KA KUMAŞ kartelaları, yeni sezon üretimleri ve dijital referanslarımız için resmi Instagram hesabımızı inceleyebilirsiniz.", link: "https://www.instagram.com/enka_kumascilik_a.s", btnText: "Instagram'a Git" }
+            { keys: ["sipariş", "satın", "whatsapp", "fiyat"], ans: "Sipariş oluşturmak ve fiyat bilgisi almak için doğrudan WhatsApp hattımıza bağlanabilirsiniz.", pro: "EN-ASİST: Kurumsal B2B, perakende sipariş talepleri ve stok/fiyat sorgulamaları için resmi WhatsApp hattımız üzerinden teknik satış uzmanlarımızla görüşebilirsiniz.", link: "https://wa.me/905368938558", btnText: "WhatsApp'a Bağlan" },
+            { keys: ["telefon", "ara", "ulaş", "numara"], ans: "Bize telefon numaramızdan anında ulaşabilirsiniz.", pro: "EN-ASİST: İletişim merkezimize doğrudan telefon bağlantısı kurarak müşteri temsilcilerimizden destek alabilirsiniz.", link: "tel:+905368938558", btnText: "Hemen Ara" },
+            { keys: ["adres", "konum", "nerede", "yer", "yol tarifi", "mağaza"], ans: "Mağazamızın yol tarifi için haritalar bağlantısına tıklayabilirsiniz.", pro: "EN-ASİST: Fiziksel showroomumuz ve depo konumumuz için güncel Google Haritalar rotasını aşağıdan alabilirsiniz.", link: "https://share.google/5scR1J0CXII19NauRnde", btnText: "Haritalarda Aç" },
+            { keys: ["instagram", "sosyal", "hesap", "model"], ans: "Bizi Instagram'dan takip edebilir, güncel modellerimizi görebilirsiniz.", pro: "EN-ASİST: Güncel EN-KA KUMAŞ kartelaları, yeni sezon üretimleri ve dijital referanslarımız için resmi Instagram hesabımızı inceleyebilirsiniz.", link: "https://www.instagram.com/enka_kumascilik_a.s", btnText: "Instagram'a Git" }
         ];
 
         const productsList = [
