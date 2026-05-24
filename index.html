@@ -52,8 +52,6 @@
         }
     </script>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;800&family=Poppins:wght@300;400;500;700;900&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&display=swap');
-
         *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
         
         :root {
@@ -91,8 +89,8 @@
         }
         /* Force white text in dark mode for headings without explicit dark: class */
         .dark [style*="color:#1a2332"] { color: #f0e8ea !important; }
-        /* Theme transition */
-        *, *::before, *::after {
+        /* Theme transition - slider-track hariç */
+        *:not(.slider-track), *::before, *::after {
             transition-property: background-color, border-color, color, box-shadow;
             transition-duration: 0.35s;
             transition-timing-function: ease;
@@ -174,10 +172,15 @@
         }
 
         /* ── SLIDER ── */
-        .slider-wrapper { position: relative; overflow: hidden; }
+        .slider-wrapper {
+            position: relative; overflow: hidden;
+            border-radius: 24px;
+            margin: 0 16px;
+        }
         .slider-track {
             display: flex;
             transition: transform 0.8s cubic-bezier(0.77,0,0.175,1);
+            will-change: transform;
         }
         .slide {
             min-width: 100%; height: 65vw; max-height: 600px;
@@ -440,28 +443,25 @@
     <!-- ─────────────────────────────────── -->
     <div class="slider-wrapper pt-20" id="hero-slider">
         <div class="slider-track" id="sliderTrack">
-            <div class="slide active" id="slide-0">
-                <img src="gorsel1.png" alt="EN-KA Kumaş" id="slide-img-0">
+            <div class="slide active" id="slide-0" style="background:linear-gradient(135deg,#1a0a10 0%,#4a0d20 50%,#8b1a3a 100%);">
+                <img src="gorsel1.png" alt="EN-KA Kumaş" id="slide-img-0" style="width:100%;height:100%;object-fit:cover;transform:scale(1.02);transition:transform 6s ease-out;">
                 <div class="slide-overlay"></div>
-                <div class="slide-content">
-                    <div class="section-label mb-3" style="background:rgba(255,255,255,0.15);border-color:rgba(255,255,255,0.3);color:white;">Ankara'nın Kalbinden</div>
-                    <h2 style="font-family:'Playfair Display',serif;font-size:clamp(1.8rem,5vw,3.2rem);font-weight:700;color:white;line-height:1.2;margin-top:0.5rem;">Kaliteyi Hissedin,<br><em>Dokunun.</em></h2>
+                <div class="slide-content" style="text-align:center;">
+                    <h2 style="font-family:'Playfair Display',serif;font-size:clamp(2.2rem,6vw,4rem);font-weight:800;color:white;line-height:1.1;text-shadow:0 4px 24px rgba(0,0,0,0.5);">Modanın Kalbi</h2>
                 </div>
             </div>
-            <div class="slide" id="slide-1">
-                <img src="gorsel2.png" alt="EN-KA Kumaş Koleksiyonu" id="slide-img-1">
+            <div class="slide" id="slide-1" style="background:linear-gradient(135deg,#0a1a0f 0%,#0d3a1e 50%,#1a6635 100%);">
+                <img src="gorsel2.png" alt="EN-KA Kumaş Koleksiyonu" id="slide-img-1" style="width:100%;height:100%;object-fit:cover;transform:scale(1.02);transition:transform 6s ease-out;">
                 <div class="slide-overlay"></div>
-                <div class="slide-content">
-                    <div class="section-label mb-3" style="background:rgba(255,255,255,0.15);border-color:rgba(255,255,255,0.3);color:white;">22 Yıllık Deneyim</div>
-                    <h2 style="font-family:'Playfair Display',serif;font-size:clamp(1.8rem,5vw,3.2rem);font-weight:700;color:white;line-height:1.2;margin-top:0.5rem;">Marka Kumaşlar,<br><em>Uygun Fiyatlar.</em></h2>
+                <div class="slide-content" style="text-align:center;">
+                    <h2 style="font-family:'Playfair Display',serif;font-size:clamp(2.2rem,6vw,4rem);font-weight:800;color:white;line-height:1.1;text-shadow:0 4px 24px rgba(0,0,0,0.5);">Yeni Koleksiyon</h2>
                 </div>
             </div>
-            <div class="slide" id="slide-2">
-                <img src="gorsel3.png" alt="EN-KA Kumaş Mağaza" id="slide-img-2">
+            <div class="slide" id="slide-2" style="background:linear-gradient(135deg,#0d0a1a 0%,#1e1040 50%,#3a1a7a 100%);">
+                <img src="gorsel3.png" alt="EN-KA Kumaş Mağaza" id="slide-img-2" style="width:100%;height:100%;object-fit:cover;transform:scale(1.02);transition:transform 6s ease-out;">
                 <div class="slide-overlay"></div>
-                <div class="slide-content">
-                    <div class="section-label mb-3" style="background:rgba(255,255,255,0.15);border-color:rgba(255,255,255,0.3);color:white;">Keçiören, Ankara</div>
-                    <h2 style="font-family:'Playfair Display',serif;font-size:clamp(1.8rem,5vw,3.2rem);font-weight:700;color:white;line-height:1.2;margin-top:0.5rem;">Bizi Bir Kez Görün,<br><em>Farkı Yaşayın.</em></h2>
+                <div class="slide-content" style="text-align:center;">
+                    <h2 style="font-family:'Playfair Display',serif;font-size:clamp(2.2rem,6vw,4rem);font-weight:800;color:white;line-height:1.1;text-shadow:0 4px 24px rgba(0,0,0,0.5);">Halk İndirimleri</h2>
                 </div>
             </div>
         </div>
@@ -1095,9 +1095,7 @@
     <script>
     // ── SPLASH ──
     window.addEventListener('load', () => {
-        setTimeout(() => {
-            document.getElementById('splash').classList.add('splash-hidden');
-        }, 1200);
+        document.getElementById('splash').classList.add('splash-hidden');
         checkReveal();
         initSlider();
     });
