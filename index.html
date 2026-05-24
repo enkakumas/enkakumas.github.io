@@ -1,465 +1,1250 @@
 <!DOCTYPE html>
 <html lang="tr" class="light">
 <head>
-    <script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "LocalBusiness",
-  "name": "EN-KA KUMAŞ",
-  "image": "https://enkakumas.github.io/logo.png",
-  "description": "Toptan ve perakende kumaş satışı. Geniş ürün yelpazesi ile sektörde öncü hizmet.",
-  "address": {
-    "@type": "PostalAddress",
-    "addressLocality": "Ankara",
-    "addressCountry": "TR"
-  },
-  "priceRange": "$$"
-}
-</script>
-    <script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "WebSite",
-  "name": "EN-KA KUMAŞÇILIK",
-  "url": "https://enkakumas.github.io/"
-}
-</script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>EN-KA KUMAŞ |Ankara Keçiören Kumaşçı - 81 İle Hızlı Kargo</title>
-    <meta property="og:site_name" content="EN-KA KUMAŞÇILIK">
     <link rel="icon" type="image/png" href="logo.png" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="EN-KA Kumaş – Ankara Keçiören’de ucuz ve kaliteli kumaşlar. Uygun fiyatlarla en iyi kumaşları hemen keşfedin.">
+    <meta name="description" content="EN-KA Kumaş – Ankara Keçiören'de ucuz ve kaliteli kumaşlar. Uygun fiyatlarla en iyi kumaşları hemen keşfedin.">
     <meta name="keywords" content="EN-KA Kumaş, Ankara, Keçiören, ucuz kumaş, kaliteli kumaş, kumaş markası">
+    <meta property="og:site_name" content="EN-KA KUMAŞÇILIK">
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "LocalBusiness",
+      "name": "EN-KA KUMAŞ",
+      "image": "https://enkakumas.github.io/logo.png",
+      "description": "Toptan ve perakende kumaş satışı. Geniş ürün yelpazesi ile sektörde öncü hizmet.",
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Ankara",
+        "addressCountry": "TR"
+      },
+      "priceRange": "$$"
+    }
+    </script>
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      "name": "EN-KA KUMAŞÇILIK",
+      "url": "https://enkakumas.github.io/"
+    }
+    </script>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;800&family=Poppins:wght@300;400;500;700;900&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&display=swap" rel="stylesheet">
     <script>
         tailwind.config = {
             darkMode: 'class',
             theme: {
                 extend: {
-                    colors: { primary: '#E11D48', secondary: '#881337', halk: '#4F46E5' },
-                    borderRadius: { 'custom': '50px' },
+                    colors: { primary: '#E11D48', secondary: '#881337' },
                     fontFamily: {
                         sans: ['Plus Jakarta Sans', 'sans-serif'],
-                        poppins: ['Poppins', 'sans-serif']
+                        poppins: ['Poppins', 'sans-serif'],
+                        playfair: ['Playfair Display', 'serif'],
+                        cormorant: ['Cormorant Garamond', 'serif']
                     }
                 }
             }
         }
     </script>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;800&family=Poppins:wght@300;400;500;700;900&display=swap');
-        body { font-family: 'Plus Jakarta Sans', sans-serif; overflow-x: hidden; scroll-behavior: smooth; padding-bottom: 100px; }
-        .trans-base { transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1); }
+        @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;800&family=Poppins:wght@300;400;500;700;900&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&display=swap');
 
-        /* Liquid Background */
-        .liquid-bg {
-            position: fixed; inset: 0; z-index: -1;
-            background: linear-gradient(-45deg, #f8fafc, #f1f5f9, #fee2e2, #e0f2fe);
-            background-size: 400% 400%; animation: gradientMove 15s ease infinite;
-        }
-        .dark .liquid-bg { background: linear-gradient(-45deg, #0f172a, #1e293b, #450a0a, #020617); }
-        @keyframes gradientMove { 0% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } 100% { background-position: 0% 50%; } }
-
-        /* Splash */
-        #splash {
-            position: fixed; inset: 0; background: #E11D48; z-index: 9999;
-            display: flex; justify-content: center; align-items: center; color: white;
-            transition: transform 0.8s cubic-bezier(0.85, 0, 0.15, 1), opacity 0.5s;
-        }
-        .splash-hidden { transform: translateY(-100%); opacity: 0; pointer-events: none; }
-
-        /* Glassmorphism */
-        .glass {
-            background: rgba(255, 255, 255, 0.45); backdrop-filter: blur(20px);
-            border: 1px solid rgba(255, 255, 255, 0.5);
-        }
-        .dark .glass { background: rgba(15, 23, 42, 0.75); border: 1px solid rgba(255, 255, 255, 0.1); }
-
-        /* Scroll Reveal Animasyonları (Apple Tarzı) */
-        .reveal-up { opacity: 0; transform: translateY(50px); transition: all 1s ease-out; }
-        .reveal-up.active { opacity: 1; transform: translateY(0); }
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
         
-        .reveal-left { opacity: 0; transform: translateX(-50px); transition: all 1s ease-out; }
+        :root {
+            --brand-red: #E11D48;
+            --brand-red-dark: #be123c;
+            --brand-primary: #E11D48;
+            --glass-bg: rgba(255,255,255,0.55);
+            --glass-border: rgba(255,255,255,0.65);
+            --glass-shadow: 0 8px 32px rgba(225,29,72,0.07);
+            --surface: rgba(248,252,255,0.9);
+        }
+        .dark {
+            --glass-bg: rgba(10,20,35,0.75);
+            --glass-border: rgba(255,255,255,0.08);
+            --glass-shadow: 0 8px 32px rgba(0,0,0,0.4);
+            --surface: rgba(10,20,35,0.95);
+        }
+
+        html { scroll-behavior: smooth; transition: background-color 0.4s ease, color 0.4s ease; }
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            overflow-x: hidden;
+            padding-bottom: 100px;
+            background: #f8f4f4;
+            color: #1a2332;
+            transition: background 0.5s ease, color 0.5s ease;
+        }
+        .dark body, body.dark {
+            background: #0d0608;
+            color: #f0e8ea;
+        }
+        .dark { background: #0d0608; color: #f0e8ea; }
+        .dark h1, .dark h2, .dark h3, .dark h4, .dark h5, .dark p, .dark span:not([style*="color"]) {
+            color: inherit;
+        }
+        /* Force white text in dark mode for headings without explicit dark: class */
+        .dark [style*="color:#1a2332"] { color: #f0e8ea !important; }
+        /* Theme transition */
+        *, *::before, *::after {
+            transition-property: background-color, border-color, color, box-shadow;
+            transition-duration: 0.35s;
+            transition-timing-function: ease;
+        }
+
+        /* ── STATIC PROFESSIONAL BACKGROUND ── */
+        .page-bg {
+            position: fixed; inset: 0; z-index: -2;
+            background: 
+                radial-gradient(ellipse 80% 60% at 20% 10%, rgba(225,29,72,0.04) 0%, transparent 60%),
+                radial-gradient(ellipse 60% 50% at 80% 80%, rgba(190,18,60,0.03) 0%, transparent 60%),
+                #f8f4f4;
+        }
+        .dark .page-bg {
+            background:
+                radial-gradient(ellipse 80% 60% at 20% 10%, rgba(225,29,72,0.06) 0%, transparent 60%),
+                radial-gradient(ellipse 60% 50% at 80% 80%, rgba(190,18,60,0.05) 0%, transparent 60%),
+                #0d0608;
+        }
+
+        /* ── NOISE TEXTURE OVERLAY ── */
+        .noise-overlay {
+            position: fixed; inset: 0; z-index: -1; pointer-events: none;
+            opacity: 0.025;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+        }
+
+        /* ── LIQUID GLASS BASE ── */
+        .glass {
+            background: var(--glass-bg);
+            backdrop-filter: blur(24px) saturate(180%);
+            -webkit-backdrop-filter: blur(24px) saturate(180%);
+            border: 1px solid var(--glass-border);
+            box-shadow: var(--glass-shadow), inset 0 1px 0 rgba(255,255,255,0.4);
+        }
+        .glass-deep {
+            background: rgba(255,255,255,0.42);
+            backdrop-filter: blur(40px) saturate(200%);
+            -webkit-backdrop-filter: blur(40px) saturate(200%);
+            border: 1px solid rgba(255,255,255,0.7);
+            box-shadow: 0 20px 60px rgba(225,29,72,0.12), inset 0 1px 0 rgba(255,255,255,0.6);
+        }
+        .dark .glass-deep {
+            background: rgba(10,22,40,0.8);
+            border: 1px solid rgba(255,255,255,0.1);
+            box-shadow: 0 20px 60px rgba(0,0,0,0.5), inset 0 1px 0 rgba(255,255,255,0.06);
+        }
+
+        /* ── SPLASH ── */
+        #splash {
+            position: fixed; inset: 0; z-index: 9999;
+            background: #ffffff;
+            display: flex; justify-content: center; align-items: center;
+            transition: opacity 0.9s cubic-bezier(0.85,0,0.15,1), transform 0.9s cubic-bezier(0.85,0,0.15,1);
+        }
+        .splash-hidden { opacity: 0; transform: scale(1.05); pointer-events: none; }
+        .splash-spinner {
+            width: 64px; height: 64px; border-radius: 50%;
+            border: 4px solid rgba(225,29,72,0.12);
+            border-top-color: #E11D48;
+            animation: splashSpin 0.85s linear infinite;
+        }
+        @keyframes splashSpin { to { transform: rotate(360deg); } }
+
+        /* ── NAVBAR (LIQUID GLASS PREMIUM) ── */
+        .nav-liquid {
+            background: rgba(255,250,250,0.78);
+            backdrop-filter: blur(40px) saturate(200%) brightness(1.05);
+            -webkit-backdrop-filter: blur(40px) saturate(200%) brightness(1.05);
+            border: 1px solid rgba(255,255,255,0.75);
+            box-shadow: 0 4px 24px rgba(225,29,72,0.08), 0 1px 0 rgba(255,255,255,0.8) inset;
+            border-radius: 32px;
+        }
+        .dark .nav-liquid {
+            background: rgba(15,5,8,0.88);
+            border: 1px solid rgba(255,255,255,0.08);
+            box-shadow: 0 4px 24px rgba(0,0,0,0.4);
+            border-radius: 32px;
+        }
+
+        /* ── SLIDER ── */
+        .slider-wrapper { position: relative; overflow: hidden; }
+        .slider-track {
+            display: flex;
+            transition: transform 0.8s cubic-bezier(0.77,0,0.175,1);
+        }
+        .slide {
+            min-width: 100%; height: 65vw; max-height: 600px;
+            position: relative; overflow: hidden; flex-shrink: 0;
+        }
+        .slide img {
+            width: 100%; height: 100%; object-fit: cover;
+            transform: scale(1.02);
+            transition: transform 6s ease-out;
+        }
+        .slide.active img { transform: scale(1); }
+        .slide-overlay {
+            position: absolute; inset: 0;
+            background: linear-gradient(to top, rgba(6,13,24,0.65) 0%, rgba(6,13,24,0.1) 60%, transparent 100%);
+        }
+        .slide-content {
+            position: absolute; bottom: 0; left: 0; right: 0;
+            padding: 2.5rem; color: white;
+        }
+        .slider-dots { position: absolute; bottom: 1.5rem; right: 1.5rem; display: flex; gap: 8px; z-index: 10; }
+        .slider-dot {
+            width: 8px; height: 8px; border-radius: 50%;
+            background: rgba(255,255,255,0.45); cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        .slider-dot.active { background: white; width: 24px; border-radius: 4px; }
+        .slider-prev, .slider-next {
+            position: absolute; top: 50%; transform: translateY(-50%);
+            z-index: 10; width: 44px; height: 44px;
+            background: rgba(255,255,255,0.18); backdrop-filter: blur(12px);
+            border: 1px solid rgba(255,255,255,0.35); border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            color: white; cursor: pointer; transition: all 0.3s;
+            font-size: 14px;
+        }
+        .slider-prev { left: 1rem; }
+        .slider-next { right: 1rem; }
+        .slider-prev:hover, .slider-next:hover { background: rgba(255,255,255,0.35); transform: translateY(-50%) scale(1.1); }
+
+        /* ── SCROLL REVEAL ── */
+        .reveal-up { opacity: 0; transform: translateY(40px); transition: opacity 0.9s cubic-bezier(0.4,0,0.2,1), transform 0.9s cubic-bezier(0.4,0,0.2,1); }
+        .reveal-up.active { opacity: 1; transform: translateY(0); }
+        .reveal-left { opacity: 0; transform: translateX(-40px); transition: opacity 0.9s cubic-bezier(0.4,0,0.2,1), transform 0.9s cubic-bezier(0.4,0,0.2,1); }
         .reveal-left.active { opacity: 1; transform: translateX(0); }
-
-        .reveal-right { opacity: 0; transform: translateX(50px); transition: all 1s ease-out; }
+        .reveal-right { opacity: 0; transform: translateX(40px); transition: opacity 0.9s cubic-bezier(0.4,0,0.2,1), transform 0.9s cubic-bezier(0.4,0,0.2,1); }
         .reveal-right.active { opacity: 1; transform: translateX(0); }
+        .reveal-scale { opacity: 0; transform: scale(0.93); transition: opacity 0.8s ease, transform 0.8s ease; }
+        .reveal-scale.active { opacity: 1; transform: scale(1); }
 
-        .popup-img { max-height: 75vh; width: 100%; object-fit: contain; border-radius: 25px; }
+        /* Stagger delays */
+        .delay-1 { transition-delay: 0.1s; }
+        .delay-2 { transition-delay: 0.2s; }
+        .delay-3 { transition-delay: 0.3s; }
+        .delay-4 { transition-delay: 0.4s; }
 
-        /* Kumaş Görsel Çerçevesi */
-        .fabric-img-container {
-            position: relative; overflow: hidden; border-radius: 40px; box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+        /* ── GREETING SECTION ── */
+        .greeting-section {
+            position: relative; overflow: hidden;
         }
-        .fabric-img-container img {
-            width: 100%; height: 100%; object-fit: cover; transition: transform 0.7s ease;
+        .greeting-orb {
+            position: absolute; border-radius: 50%; filter: blur(60px);
+            animation: orbFloat 8s ease-in-out infinite;
+            pointer-events: none;
         }
-        .fabric-img-container:hover img { transform: scale(1.05); }
+        @keyframes orbFloat {
+            0%,100% { transform: translate(0,0) scale(1); }
+            33% { transform: translate(20px,-15px) scale(1.05); }
+            66% { transform: translate(-15px,10px) scale(0.97); }
+        }
+        .time-ring {
+            width: 120px; height: 120px; border-radius: 50%;
+            border: 2px solid rgba(225,29,72,0.2);
+            display: flex; align-items: center; justify-content: center;
+            position: relative; margin: 0 auto 1.5rem;
+        }
+        .time-ring::before {
+            content: ''; position: absolute; inset: -6px;
+            border-radius: 50%; border: 1px solid rgba(225,29,72,0.12);
+        }
+        .time-ring::after {
+            content: ''; position: absolute; inset: 6px;
+            border-radius: 50%; border: 1px dashed rgba(225,29,72,0.15);
+            animation: ringRotate 20s linear infinite;
+        }
+        @keyframes ringRotate { to { transform: rotate(360deg); } }
 
-        /* Alt Navbar */
-        .bottom-nav-glass {
-            background: rgba(255, 255, 255, 0.7); backdrop-filter: blur(30px) saturate(200%);
-            border: 1px solid rgba(255, 255, 255, 0.6); box-shadow: 0 -10px 40px rgba(0,0,0,0.05);
+        /* ── FABRIC CARDS ── */
+        .fabric-card {
+            position: relative; overflow: hidden;
+            border-radius: 32px;
+            transition: transform 0.5s cubic-bezier(0.4,0,0.2,1), box-shadow 0.5s ease;
         }
-        .dark .bottom-nav-glass {
-            background: rgba(15, 23, 42, 0.85); border-top: 1px solid rgba(255, 255, 255, 0.1);
+        .fabric-card:hover { transform: translateY(-6px); box-shadow: 0 30px 60px rgba(225,29,72,0.18); }
+        .fabric-card img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.7s ease; }
+        .fabric-card:hover img { transform: scale(1.06); }
+
+        /* ── POPULAR PRODUCTS BLUR SECTION ── */
+        .products-blur-bg {
+            position: relative; border-radius: 40px; overflow: hidden;
         }
+        .products-blur-grid {
+            display: grid; grid-template-columns: repeat(4,1fr); gap: 4px;
+            position: absolute; inset: 0;
+        }
+        .products-blur-grid > div {
+            background-size: cover; background-position: center;
+            filter: blur(12px) saturate(0.7) brightness(0.6);
+            transform: scale(1.05);
+        }
+        .products-blur-overlay {
+            position: relative; z-index: 2;
+            display: flex; align-items: center; justify-content: center;
+            padding: 5rem 2rem; min-height: 200px;
+        }
+
+        /* ── REVIEWS ── */
+        .review-card {
+            border-radius: 24px; padding: 1.5rem;
+            transition: transform 0.4s ease, box-shadow 0.4s ease;
+        }
+        .review-card:hover { transform: translateY(-4px); box-shadow: 0 20px 40px rgba(225,29,72,0.12); }
+        .star-filled { color: #f59e0b; }
+
+        /* ── MARKA HİKAYESİ ── */
+        .story-section {
+            position: relative; overflow: hidden;
+        }
+        .story-line {
+            position: absolute; left: 0; top: 0; bottom: 0; width: 3px;
+            background: linear-gradient(to bottom, transparent, #E11D48, #be123c, transparent);
+            border-radius: 2px;
+        }
+
+        /* ── SSS ACCORDION ── */
+        .faq-item { border-radius: 20px; overflow: hidden; transition: all 0.3s ease; }
+        .faq-answer { max-height: 0; overflow: hidden; transition: max-height 0.4s cubic-bezier(0.4,0,0.2,1); }
+        .faq-answer.open { max-height: 200px; }
+        .faq-icon { transition: transform 0.3s ease; }
+        .faq-icon.rotated { transform: rotate(45deg); }
+
+        /* ── STATS ── */
+        .stat-card {
+            border-radius: 28px; padding: 2rem;
+            text-align: center; position: relative; overflow: hidden;
+            transition: transform 0.4s ease;
+        }
+        .stat-card:hover { transform: translateY(-4px); }
+        .stat-card::before {
+            content: ''; position: absolute; top: -40px; right: -40px;
+            width: 120px; height: 120px; border-radius: 50%;
+            background: radial-gradient(circle, rgba(225,29,72,0.12), transparent);
+        }
+
+        /* ── BOTTOM NAVBAR (PREMIUM LIQUID GLASS) ── */
+        .bottom-nav-liquid {
+            background: rgba(255,250,250,0.88);
+            backdrop-filter: blur(50px) saturate(220%) brightness(1.08);
+            -webkit-backdrop-filter: blur(50px) saturate(220%) brightness(1.08);
+            border: 1px solid rgba(255,255,255,0.82);
+            box-shadow: 
+                0 -1px 0 rgba(255,255,255,0.9) inset,
+                0 -8px 32px rgba(225,29,72,0.07),
+                0 2px 8px rgba(225,29,72,0.04);
+        }
+        .dark .bottom-nav-liquid {
+            background: rgba(15,5,8,0.92);
+            border: 1px solid rgba(255,255,255,0.07);
+            box-shadow: 0 -8px 32px rgba(0,0,0,0.45);
+        }
+        .nav-icon-wrap {
+            width: 42px; height: 42px; border-radius: 14px;
+            display: flex; align-items: center; justify-content: center;
+            transition: all 0.3s cubic-bezier(0.34,1.56,0.64,1);
+        }
+        .nav-btn:hover .nav-icon-wrap, .nav-btn.active .nav-icon-wrap {
+            background: rgba(225,29,72,0.1);
+            box-shadow: 0 4px 12px rgba(225,29,72,0.15);
+        }
+        .nav-btn.active .nav-icon-wrap { background: #E11D48; color: white; box-shadow: 0 6px 20px rgba(225,29,72,0.4); }
+        .nav-btn.active .nav-icon-wrap i { color: white !important; }
+
+        /* ── FEATURE CARDS ── */
+        .feature-card {
+            border-radius: 28px; padding: 2rem; text-align: center;
+            transition: all 0.4s cubic-bezier(0.4,0,0.2,1);
+            position: relative; overflow: hidden;
+        }
+        .feature-card::after {
+            content: ''; position: absolute; inset: 0; border-radius: 28px;
+            background: linear-gradient(135deg, transparent 60%, rgba(225,29,72,0.04));
+            opacity: 0; transition: opacity 0.4s;
+        }
+        .feature-card:hover::after { opacity: 1; }
+        .feature-card:hover { transform: translateY(-6px); }
+
+        /* ── HALK GÜNÜ BANNER ── */
+        #halk-gunu-banner {
+            background: linear-gradient(90deg, #E11D48, #be123c, #E11D48);
+            background-size: 200% 100%;
+            animation: bannerShift 4s ease infinite;
+        }
+        @keyframes bannerShift { 0%,100%{background-position:0%} 50%{background-position:100%} }
+
+        /* ── SECTION LABEL ── */
+        .section-label {
+            display: inline-flex; align-items: center; gap: 8px;
+            padding: 6px 16px; border-radius: 100px;
+            font-size: 10px; font-weight: 800; letter-spacing: 0.35em; text-transform: uppercase;
+            color: #E11D48;
+            background: rgba(225,29,72,0.08);
+            border: 1px solid rgba(225,29,72,0.2);
+        }
+        .dark .section-label { background: rgba(225,29,72,0.12); border-color: rgba(225,29,72,0.3); }
+
+        /* ── QUOTE ── */
+        .quote-mark { font-family: 'Playfair Display', serif; font-size: 120px; line-height: 0.7; opacity: 0.08; user-select: none; color: #E11D48; }
+
+        /* ── TRANSITION ── */
+        .trans { transition: all 0.4s cubic-bezier(0.4,0,0.2,1); }
     </style>
 </head>
-<body class="text-slate-900 dark:text-slate-100 antialiased trans-base">
+<body class="text-slate-900 dark:text-slate-100 antialiased">
 
-    <div class="liquid-bg"></div>
+    <div class="page-bg"></div>
+    <div class="noise-overlay"></div>
 
+    <!-- SPLASH -->
     <div id="splash">
-        <div class="text-center">
-            <h1 class="text-7xl font-black tracking-tighter">EN-KA KUMAŞ</h1>
-            <p class="text-[10px] tracking-[0.5em] font-bold mt-2 opacity-80 uppercase">Dokunduğunuz kalite</p>
-        </div>
+        <div class="splash-spinner"></div>
     </div>
 
-    <nav class="fixed w-full z-50 px-4 py-6 top-0">
-        <div class="max-w-6xl mx-auto flex justify-between items-center glass rounded-full px-8 py-4 shadow-2xl">
-            <div class="text-2xl font-black tracking-tighter text-primary">EN-KA <span class="text-slate-800 dark:text-white text-lg uppercase">Kumaş</span></div>
-            <div class="flex items-center gap-4">
-                <span id="live-clock" class="text-[11px] font-black opacity-60">00:00</span>
-                <button onclick="toggleDarkMode()" class="w-10 h-10 flex items-center justify-center rounded-full glass hover:bg-primary hover:text-white trans-base">
-                    <i class="fas fa-moon dark:hidden"></i><i class="fas fa-sun hidden dark:block"></i>
+    <!-- HALK GÜNÜ BANNER -->
+    <div id="halk-gunu-banner" class="hidden text-white text-center py-2.5 font-black text-[10px] uppercase tracking-[0.4em] fixed top-0 w-full z-[80] shadow-xl">
+        ✦ Bugün Çarşamba: Halk Günü İndirimleri Başladı ✦
+    </div>
+
+    <!-- TOP NAVBAR -->
+    <nav class="fixed w-full z-50 px-4 py-4 top-0">
+        <div class="max-w-6xl mx-auto flex justify-between items-center nav-liquid rounded-[20px] px-6 py-3 shadow-xl">
+            <!-- LOGO -->
+            <div class="flex items-center gap-3">
+                <img src="logo.png" alt="EN-KA Kumaş" class="h-9 w-auto trans" onerror="this.style.display='none'; document.getElementById('logo-fallback').style.display='flex'">
+                <div id="logo-fallback" style="display:none;" class="flex items-center gap-1">
+                    <span style="font-family:'Cormorant Garamond',serif;font-size:1.4rem;font-weight:700;color:#E11D48;letter-spacing:0.05em;">EN-KA</span>
+                    <span style="font-family:'Plus Jakarta Sans',sans-serif;font-size:0.75rem;font-weight:800;letter-spacing:0.15em;opacity:0.6;text-transform:uppercase;">Kumaş</span>
+                </div>
+            </div>
+            <div class="flex items-center gap-3">
+                <span id="live-clock" class="text-[11px] font-black opacity-50 tabular-nums tracking-widest"></span>
+                <button onclick="toggleDarkMode()" class="w-9 h-9 flex items-center justify-center rounded-full glass hover:bg-primary hover:text-white trans text-slate-600 dark:text-slate-300">
+                    <i class="fas fa-moon text-sm dark:hidden"></i>
+                    <i class="fas fa-sun text-sm hidden dark:block"></i>
                 </button>
             </div>
         </div>
     </nav>
 
-    <div id="halk-gunu-banner" class="hidden bg-primary text-white text-center py-2.5 font-bold text-[10px] uppercase tracking-[0.4em] fixed top-0 w-full z-[80] shadow-xl">
-        Bugün Çarşamba: Halk Gününe Özel Kampanyalar Başladı!
+    <!-- ─────────────────────────────────── -->
+    <!-- HERO SLIDER                          -->
+    <!-- ─────────────────────────────────── -->
+    <div class="slider-wrapper pt-20" id="hero-slider">
+        <div class="slider-track" id="sliderTrack">
+            <div class="slide active" id="slide-0">
+                <img src="gorsel1.png" alt="EN-KA Kumaş" id="slide-img-0">
+                <div class="slide-overlay"></div>
+                <div class="slide-content">
+                    <div class="section-label mb-3" style="background:rgba(255,255,255,0.15);border-color:rgba(255,255,255,0.3);color:white;">Ankara'nın Kalbinden</div>
+                    <h2 style="font-family:'Playfair Display',serif;font-size:clamp(1.8rem,5vw,3.2rem);font-weight:700;color:white;line-height:1.2;margin-top:0.5rem;">Kaliteyi Hissedin,<br><em>Dokunun.</em></h2>
+                </div>
+            </div>
+            <div class="slide" id="slide-1">
+                <img src="gorsel2.png" alt="EN-KA Kumaş Koleksiyonu" id="slide-img-1">
+                <div class="slide-overlay"></div>
+                <div class="slide-content">
+                    <div class="section-label mb-3" style="background:rgba(255,255,255,0.15);border-color:rgba(255,255,255,0.3);color:white;">22 Yıllık Deneyim</div>
+                    <h2 style="font-family:'Playfair Display',serif;font-size:clamp(1.8rem,5vw,3.2rem);font-weight:700;color:white;line-height:1.2;margin-top:0.5rem;">Marka Kumaşlar,<br><em>Uygun Fiyatlar.</em></h2>
+                </div>
+            </div>
+            <div class="slide" id="slide-2">
+                <img src="gorsel3.png" alt="EN-KA Kumaş Mağaza" id="slide-img-2">
+                <div class="slide-overlay"></div>
+                <div class="slide-content">
+                    <div class="section-label mb-3" style="background:rgba(255,255,255,0.15);border-color:rgba(255,255,255,0.3);color:white;">Keçiören, Ankara</div>
+                    <h2 style="font-family:'Playfair Display',serif;font-size:clamp(1.8rem,5vw,3.2rem);font-weight:700;color:white;line-height:1.2;margin-top:0.5rem;">Bizi Bir Kez Görün,<br><em>Farkı Yaşayın.</em></h2>
+                </div>
+            </div>
+        </div>
+        <!-- Controls -->
+        <button class="slider-prev" onclick="sliderMove(-1)" aria-label="Önceki"><i class="fas fa-chevron-left"></i></button>
+        <button class="slider-next" onclick="sliderMove(1)" aria-label="Sonraki"><i class="fas fa-chevron-right"></i></button>
+        <div class="slider-dots">
+            <div class="slider-dot active" onclick="goToSlide(0)"></div>
+            <div class="slider-dot" onclick="goToSlide(1)"></div>
+            <div class="slider-dot" onclick="goToSlide(2)"></div>
+        </div>
     </div>
 
-    <main class="pt-40 pb-10 px-6 max-w-6xl mx-auto">
-        <div class="glass rounded-[50px] p-12 md:p-24 text-center shadow-2xl mb-12 border-white/40 reveal-up">
-            <h2 id="greeting" class="text-5xl md:text-7xl font-black mb-6 tracking-tighter italic">Merhaba</h2>
-            <div id="status-badge" class="inline-flex items-center gap-3 px-6 py-2.5 rounded-full text-[10px] font-black uppercase glass border-white/40"></div>
+    <!-- ─────────────────────────────────── -->
+    <!-- GREETING SECTION                    -->
+    <!-- ─────────────────────────────────── -->
+    <main class="py-10 px-6 max-w-6xl mx-auto">
+        <div class="greeting-section glass-deep rounded-[44px] p-10 md:p-16 text-center shadow-2xl reveal-scale relative overflow-hidden">
+            <!-- Decorative orbs -->
+            <div class="greeting-orb" style="width:280px;height:280px;background:radial-gradient(circle,rgba(225,29,72,0.1),transparent);top:-80px;left:-80px;"></div>
+            <div class="greeting-orb" style="width:200px;height:200px;background:radial-gradient(circle,rgba(2,132,199,0.08),transparent);bottom:-60px;right:-60px;animation-delay:3s;animation-duration:10s;"></div>
+
+            <div class="time-ring relative z-10">
+                <i class="fas fa-sun text-2xl" id="greeting-icon" style="color:#E11D48;"></i>
+            </div>
+
+            <h2 id="greeting" class="text-5xl md:text-7xl font-black mb-4 tracking-tight relative z-10 dark:text-white" style="font-family:'Cormorant Garamond',serif;font-style:italic;color:#1a2332;"></h2>
+            <p class="text-sm font-medium opacity-55 mb-6 relative z-10 tracking-wider uppercase">EN-KA Kumaş'a Hoş Geldiniz</p>
+            
+            <div id="status-badge" class="inline-flex items-center gap-2 px-5 py-2 rounded-full text-[10px] font-black uppercase tracking-widest glass border border-white/40 relative z-10"></div>
         </div>
     </main>
 
-    <div class="max-w-6xl mx-auto px-6 space-y-32 pb-20 overflow-hidden">
-        
-        <div class="flex flex-col md:flex-row items-center gap-10">
-            <div class="w-full md:w-1/2 fabric-img-container h-80 bg-white/20 dark:bg-black/20 flex items-center justify-center reveal-left">
-                <img src="teddy.png" alt="Teddy Kumaş" onerror="this.style.display='none'; this.nextElementSibling.classList.remove('hidden')">
-                <i class="fas fa-paw text-6xl text-primary/30 hidden absolute"></i>
+    <!-- ─────────────────────────────────── -->
+    <!-- POPÜLER KUMAŞLARIMIZ               -->
+    <!-- ─────────────────────────────────── -->
+    <section class="max-w-6xl mx-auto px-6 pb-20">
+
+        <div class="text-center mb-16 reveal-up">
+            <div class="section-label mb-4">Koleksiyon</div>
+            <h2 style="font-family:'Playfair Display',serif;font-size:clamp(2.2rem,6vw,4rem);font-weight:700;line-height:1.1;color:#1a2332;" class="dark:text-white">
+                Popüler <em>Kumaşlarımız</em>
+            </h2>
+            <p class="text-slate-500 dark:text-slate-400 mt-3 text-base font-medium max-w-lg mx-auto">Her doku, her renk, her ihtiyaç için seçilmiş koleksiyonumuz.</p>
+        </div>
+
+        <div class="space-y-24 overflow-hidden">
+
+            <!-- Teddy -->
+            <div class="flex flex-col md:flex-row items-center gap-10">
+                <div class="w-full md:w-1/2 fabric-card h-80 bg-white/20 dark:bg-black/20 flex items-center justify-center reveal-left overflow-hidden shadow-xl" style="box-shadow:0 20px 50px rgba(225,29,72,0.12);">
+                    <img src="teddy.png" alt="Teddy Kumaş" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+                    <div style="display:none;" class="w-full h-full flex items-center justify-center">
+                        <i class="fas fa-paw text-7xl" style="color:rgba(225,29,72,0.2)"></i>
+                    </div>
+                </div>
+                <div class="w-full md:w-1/2 reveal-right">
+                    <div class="section-label mb-4">Kış Favorisi</div>
+                    <h3 style="font-family:'Playfair Display',serif;font-size:2.8rem;font-weight:700;line-height:1.1;margin-bottom:1rem;" class="dark:text-white">Teddy Kumaş</h3>
+                    <p class="text-slate-600 dark:text-slate-400 leading-relaxed text-base font-medium">
+                        Soğuk kış günlerinin vazgeçilmezi. Yumuşak, pofuduk yapısı ve üstün ısı yalıtımı ile dış giyimden ev tekstiline kadar eşsiz bir konfor deneyimi sunar. Dokunduğunuz an kalitesini hissedeceksiniz.
+                    </p>
+                </div>
             </div>
-            <div class="w-full md:w-1/2 reveal-right">
-                <h3 class="text-4xl md:text-5xl font-black mb-4 tracking-tighter">Teddy Kumaş</h3>
-                <p class="text-lg text-slate-600 dark:text-slate-400 leading-relaxed font-medium">
-                    Soğuk kış günlerinin vazgeçilmezi. Yumuşak, pofuduk yapısı ve üstün ısı yalıtımı ile dış giyimden ev tekstiline kadar eşsiz bir konfor deneyimi sunar. Dokunduğunuz an kalitesini hissedeceksiniz.
-                </p>
+
+            <!-- Medine İpeği -->
+            <div class="flex flex-col md:flex-row-reverse items-center gap-10">
+                <div class="w-full md:w-1/2 fabric-card h-80 bg-white/20 dark:bg-black/20 flex items-center justify-center reveal-right overflow-hidden shadow-xl" style="box-shadow:0 20px 50px rgba(225,29,72,0.12);">
+                    <img src="medine-ipegi.png" alt="Medine İpeği" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+                    <div style="display:none;" class="w-full h-full flex items-center justify-center">
+                        <i class="fas fa-kaaba text-7xl" style="color:rgba(225,29,72,0.2)"></i>
+                    </div>
+                </div>
+                <div class="w-full md:w-1/2 text-left md:text-right reveal-left">
+                    <div class="section-label mb-4 md:ml-auto">Tesettür Seçimi</div>
+                    <h3 style="font-family:'Playfair Display',serif;font-size:2.8rem;font-weight:700;line-height:1.1;margin-bottom:1rem;" class="dark:text-white">Medine İpeği</h3>
+                    <p class="text-slate-600 dark:text-slate-400 leading-relaxed text-base font-medium">
+                        Zarafetin dökümlü hali. İç göstermeyen tok yapısı, ipeksi dokunuşu ve nefes alan özel iplikleriyle tesettür giyimin ve şık tasarımların bir numaralı tercihidir.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Yün -->
+            <div class="flex flex-col md:flex-row items-center gap-10">
+                <div class="w-full md:w-1/2 fabric-card h-80 bg-white/20 dark:bg-black/20 flex items-center justify-center reveal-left overflow-hidden shadow-xl" style="box-shadow:0 20px 50px rgba(225,29,72,0.12);">
+                    <img src="yun.png" alt="Yün Kumaş" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+                    <div style="display:none;" class="w-full h-full flex items-center justify-center">
+                        <i class="fas fa-scroll text-7xl" style="color:rgba(225,29,72,0.2)"></i>
+                    </div>
+                </div>
+                <div class="w-full md:w-1/2 reveal-right">
+                    <div class="section-label mb-4">Premium Seçki</div>
+                    <h3 style="font-family:'Playfair Display',serif;font-size:2.8rem;font-weight:700;line-height:1.1;margin-bottom:1rem;" class="dark:text-white">Premium Yün</h3>
+                    <p class="text-slate-600 dark:text-slate-400 leading-relaxed text-base font-medium">
+                        Doğanın bize sunduğu en değerli miras. Yüksek kaliteli doğal yün liflerinden elde edilen bu kumaş, prestijli kabanlar, ceketler ve takımlar için kusursuz bir dikim sağlar.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Müslin -->
+            <div class="flex flex-col md:flex-row-reverse items-center gap-10">
+                <div class="w-full md:w-1/2 fabric-card h-80 bg-white/20 dark:bg-black/20 flex items-center justify-center reveal-right overflow-hidden shadow-xl" style="box-shadow:0 20px 50px rgba(225,29,72,0.12);">
+                    <img src="muslin.png" alt="Müslin" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+                    <div style="display:none;" class="w-full h-full flex items-center justify-center">
+                        <i class="fas fa-baby-carriage text-7xl" style="color:rgba(225,29,72,0.2)"></i>
+                    </div>
+                </div>
+                <div class="w-full md:w-1/2 text-left md:text-right reveal-left">
+                    <div class="section-label mb-4 md:ml-auto">Dört Mevsim</div>
+                    <h3 style="font-family:'Playfair Display',serif;font-size:2.8rem;font-weight:700;line-height:1.1;margin-bottom:1rem;" class="dark:text-white">Doğal Müslin</h3>
+                    <p class="text-slate-600 dark:text-slate-400 leading-relaxed text-base font-medium">
+                        Cildinize nefes aldıran, ultra hafif doğal dokuma. Özellikle bebek sağlığına uygun yapısı ve teri emen özelliği ile dört mevsim güvenle kullanılabilen saf bir dokunuş.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Viskon -->
+            <div class="flex flex-col md:flex-row items-center gap-10">
+                <div class="w-full md:w-1/2 fabric-card h-80 bg-white/20 dark:bg-black/20 flex items-center justify-center reveal-left overflow-hidden shadow-xl" style="box-shadow:0 20px 50px rgba(225,29,72,0.12);">
+                    <img src="viskon.png" alt="Viskon" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+                    <div style="display:none;" class="w-full h-full flex items-center justify-center">
+                        <i class="fas fa-leaf text-7xl" style="color:rgba(225,29,72,0.2)"></i>
+                    </div>
+                </div>
+                <div class="w-full md:w-1/2 reveal-right">
+                    <div class="section-label mb-4">Yaz Vazgeçilmezi</div>
+                    <h3 style="font-family:'Playfair Display',serif;font-size:2.8rem;font-weight:700;line-height:1.1;margin-bottom:1rem;" class="dark:text-white">İpeksi Viskon</h3>
+                    <p class="text-slate-600 dark:text-slate-400 leading-relaxed text-base font-medium">
+                        Doğal selülozdan üretilen, cildi tahriş etmeyen esnek yapı. Renkleri canlı tutan ve tiril tiril dökülen formuyla günlük giyimin ve yaz aylarının vazgeçilmezi.
+                    </p>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- DAHA FAZLA KUMAŞ BUTONU -->
+        <div class="products-blur-bg reveal-up mt-20" style="border-radius:40px;overflow:hidden;min-height:220px;">
+            <div class="products-blur-grid" aria-hidden="true">
+                <div style="background-image:url('k-kadife.png');background-color:#8B7355;"></div>
+                <div style="background-image:url('k-deri.png');background-color:#6B4226;"></div>
+                <div style="background-image:url('k-jarse.png');background-color:#2D4A6B;"></div>
+                <div style="background-image:url('k-poplin.png');background-color:#4A6741;"></div>
+            </div>
+            <div class="products-blur-overlay" style="background:rgba(10,20,35,0.5);backdrop-filter:blur(0px);">
+                <div class="text-center">
+                    <p class="text-white/70 text-sm font-medium mb-4 tracking-widest uppercase">Koleksiyonumuz Burada Bitmiyor</p>
+                    <a href="urunler.html" class="inline-flex items-center gap-3 px-10 py-5 rounded-full font-black text-sm uppercase tracking-widest text-white trans hover:scale-105 hover:shadow-2xl" style="background:linear-gradient(135deg,#E11D48,#be123c);box-shadow:0 12px 40px rgba(225,29,72,0.45);">
+                        <i class="fas fa-grid-2 text-base"></i>
+                        Tüm Ürünleri Keşfet
+                        <i class="fas fa-arrow-right text-base"></i>
+                    </a>
+                </div>
             </div>
         </div>
 
-        <div class="flex flex-col md:flex-row-reverse items-center gap-10">
-            <div class="w-full md:w-1/2 fabric-img-container h-80 bg-white/20 dark:bg-black/20 flex items-center justify-center reveal-right">
-                <img src="medine-ipegi.png" alt="Medine İpeği" onerror="this.style.display='none'; this.nextElementSibling.classList.remove('hidden')">
-                <i class="fas fa-kaaba text-6xl text-primary/30 hidden absolute"></i>
+    </section>
+
+    <!-- ─────────────────────────────────── -->
+    <!-- FEATURE CARDS                       -->
+    <!-- ─────────────────────────────────── -->
+    <section class="max-w-6xl mx-auto px-6 pb-20">
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div class="feature-card glass-deep reveal-up delay-1">
+                <div class="w-14 h-14 rounded-2xl flex items-center justify-center mx-auto mb-5" style="background:linear-gradient(135deg,rgba(225,29,72,0.15),rgba(225,29,72,0.05));border:1px solid rgba(225,29,72,0.2);">
+                    <i class="fas fa-crown text-2xl" style="color:#E11D48;"></i>
+                </div>
+                <h4 class="font-black uppercase text-sm mb-2 tracking-wider">Markalı Ürünler</h4>
+                <p class="text-xs opacity-60 leading-relaxed">Dünya markalarının ihraç fazlası serileri.</p>
             </div>
-            <div class="w-full md:w-1/2 text-left md:text-right reveal-left">
-                <h3 class="text-4xl md:text-5xl font-black mb-4 tracking-tighter">Medine İpeği</h3>
-                <p class="text-lg text-slate-600 dark:text-slate-400 leading-relaxed font-medium">
-                    Zarafetin dökümlü hali. İç göstermeyen tok yapısı, ipeksi dokunuşu ve nefes alan özel iplikleriyle tesettür giyimin ve şık tasarımların bir numaralı tercihidir.
-                </p>
+            <div class="feature-card glass-deep reveal-up delay-2">
+                <div class="w-14 h-14 rounded-2xl flex items-center justify-center mx-auto mb-5" style="background:linear-gradient(135deg,rgba(225,29,72,0.12),rgba(190,18,60,0.05));border:1px solid rgba(225,29,72,0.18);">
+                    <i class="fas fa-seedling text-2xl" style="color:#E11D48;"></i>
+                </div>
+                <h4 class="font-black uppercase text-sm mb-2 tracking-wider">Doğal İçerik</h4>
+                <p class="text-xs opacity-60 leading-relaxed">Ağırlıklı olarak pamuk ve iplik dokumalar.</p>
+            </div>
+            <div class="feature-card glass-deep reveal-up delay-3">
+                <div class="w-14 h-14 rounded-2xl flex items-center justify-center mx-auto mb-5" style="background:linear-gradient(135deg,rgba(225,29,72,0.12),rgba(225,29,72,0.04));border:1px solid rgba(225,29,72,0.2);">
+                    <i class="fas fa-shield-check text-2xl" style="color:#E11D48;"></i>
+                </div>
+                <h4 class="font-black uppercase text-sm mb-2 tracking-wider">Güvenilir Kalite</h4>
+                <p class="text-xs opacity-60 leading-relaxed">Yılların tecrübesiyle defosuz ürünler.</p>
             </div>
         </div>
+    </section>
 
-        <div class="flex flex-col md:flex-row items-center gap-10">
-            <div class="w-full md:w-1/2 fabric-img-container h-80 bg-white/20 dark:bg-black/20 flex items-center justify-center reveal-left">
-                <img src="yun.png" alt="Yün Kumaş" onerror="this.style.display='none'; this.nextElementSibling.classList.remove('hidden')">
-                <i class="fas fa-scroll text-6xl text-primary/30 hidden absolute"></i>
-            </div>
-            <div class="w-full md:w-1/2 reveal-right">
-                <h3 class="text-4xl md:text-5xl font-black mb-4 tracking-tighter">Premium Yün</h3>
-                <p class="text-lg text-slate-600 dark:text-slate-400 leading-relaxed font-medium">
-                    Doğanın bize sunduğu en değerli miras. Yüksek kaliteli doğal yün liflerinden elde edilen bu kumaş, prestijli kabanlar, ceketler ve takımlar için kusursuz bir dikim sağlar.
-                </p>
+    <!-- ─────────────────────────────────── -->
+    <!-- STATS                               -->
+    <!-- ─────────────────────────────────── -->
+    <section class="max-w-6xl mx-auto px-6 pb-20 reveal-up" id="stats-section">
+        <div class="glass-deep rounded-[44px] p-10 md:p-16">
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
+                <div class="stat-card">
+                    <div class="text-4xl md:text-5xl font-black mb-2 counter" data-target="22" style="font-family:'Cormorant Garamond',serif;color:#E11D48;">0</div>
+                    <div class="text-xs font-black uppercase tracking-widest opacity-55">Yıllık Deneyim</div>
+                </div>
+                <div class="stat-card">
+                    <div class="text-4xl md:text-5xl font-black mb-2 counter" data-target="1" style="font-family:'Cormorant Garamond',serif;color:#E11D48;">0</div>
+                    <div class="text-xs font-black uppercase tracking-widest opacity-55">Dev Mağaza</div>
+                </div>
+                <div class="stat-card">
+                    <div class="text-4xl md:text-5xl font-black mb-2" style="font-family:'Cormorant Garamond',serif;color:#E11D48;"><span class="counter" data-target="10000">0</span>+</div>
+                    <div class="text-xs font-black uppercase tracking-widest opacity-55">Kumaş Çeşidi</div>
+                </div>
+                <div class="stat-card">
+                    <div class="text-4xl md:text-5xl font-black mb-2" style="font-family:'Cormorant Garamond',serif;color:#E11D48;"><span class="counter" data-target="5000">0</span>+</div>
+                    <div class="text-xs font-black uppercase tracking-widest opacity-55">Memnun Müşteri</div>
+                </div>
             </div>
         </div>
+    </section>
 
-        <div class="flex flex-col md:flex-row-reverse items-center gap-10">
-            <div class="w-full md:w-1/2 fabric-img-container h-80 bg-white/20 dark:bg-black/20 flex items-center justify-center reveal-right">
-                <img src="muslin.png" alt="Müslin" onerror="this.style.display='none'; this.nextElementSibling.classList.remove('hidden')">
-                <i class="fas fa-baby-carriage text-6xl text-primary/30 hidden absolute"></i>
-            </div>
-            <div class="w-full md:w-1/2 text-left md:text-right reveal-left">
-                <h3 class="text-4xl md:text-5xl font-black mb-4 tracking-tighter">Doğal Müslin</h3>
-                <p class="text-lg text-slate-600 dark:text-slate-400 leading-relaxed font-medium">
-                    Cildinize nefes aldıran, ultra hafif doğal dokuma. Özellikle bebek sağlığına uygun yapısı ve teri emen özelliği ile dört mevsim güvenle kullanılabilen saf bir dokunuş.
-                </p>
-            </div>
+    <!-- ─────────────────────────────────── -->
+    <!-- BİZ ANLATMAYALIM, ONLAR ANLATSUN   -->
+    <!-- ─────────────────────────────────── -->
+    <section class="max-w-6xl mx-auto px-6 pb-20">
+
+        <div class="text-center mb-14 reveal-up">
+            <div class="section-label mb-4">Müşteri Yorumları</div>
+            <h2 style="font-family:'Playfair Display',serif;font-size:clamp(1.8rem,5vw,3.2rem);font-weight:700;line-height:1.15;color:#1a2332;" class="dark:text-white">
+                Biz Anlatmayalım,<br><em>Onlar Anlatsın.</em>
+            </h2>
         </div>
 
-        <div class="flex flex-col md:flex-row items-center gap-10">
-            <div class="w-full md:w-1/2 fabric-img-container h-80 bg-white/20 dark:bg-black/20 flex items-center justify-center reveal-left">
-                <img src="viskon.png" alt="Viskon" onerror="this.style.display='none'; this.nextElementSibling.classList.remove('hidden')">
-                <i class="fas fa-leaf text-6xl text-primary/30 hidden absolute"></i>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+
+            <!-- Review 1 -->
+            <div class="review-card glass-deep reveal-up delay-1">
+                <div class="flex items-center gap-3 mb-3">
+                    <div class="w-10 h-10 rounded-full flex items-center justify-center font-black text-sm text-white flex-shrink-0" style="background:linear-gradient(135deg,#E11D48,#be123c);">U</div>
+                    <div>
+                        <p class="font-bold text-sm">Umut Melih Tubay</p>
+                        <div class="flex gap-0.5 mt-0.5">
+                            <i class="fas fa-star star-filled text-xs"></i><i class="fas fa-star star-filled text-xs"></i><i class="fas fa-star star-filled text-xs"></i><i class="fas fa-star star-filled text-xs"></i><i class="fas fa-star star-filled text-xs"></i>
+                        </div>
+                    </div>
+                </div>
+                <p class="text-sm leading-relaxed opacity-80">Ankara çapında en ucuz ve kaliteli kumaşlar satan bir mağaza. Marka kumaşlar var kalitesi mükemmel, öneririm.</p>
             </div>
-            <div class="w-full md:w-1/2 reveal-right">
-                <h3 class="text-4xl md:text-5xl font-black mb-4 tracking-tighter">İpeksi Viskon</h3>
-                <p class="text-lg text-slate-600 dark:text-slate-400 leading-relaxed font-medium">
-                    Doğal selülozdan üretilen, cildi tahriş etmeyen esnek yapı. Renkleri canlı tutan ve tiril tiril dökülen formuyla günlük giyimin ve yaz aylarının vazgeçilmezi.
-                </p>
+
+            <!-- Review 2 -->
+            <div class="review-card glass-deep reveal-up delay-2">
+                <div class="flex items-center gap-3 mb-3">
+                    <div class="w-10 h-10 rounded-full flex items-center justify-center font-black text-sm text-white flex-shrink-0" style="background:linear-gradient(135deg,#7c3aed,#a855f7);">A</div>
+                    <div>
+                        <p class="font-bold text-sm">Ayse Kandemir</p>
+                        <div class="flex gap-0.5 mt-0.5">
+                            <i class="fas fa-star star-filled text-xs"></i><i class="fas fa-star star-filled text-xs"></i><i class="fas fa-star star-filled text-xs"></i><i class="fas fa-star star-filled text-xs"></i><i class="fas fa-star star-filled text-xs"></i>
+                        </div>
+                    </div>
+                </div>
+                <p class="text-sm leading-relaxed opacity-80">Kumaşları kaliteli, 10 TL'ye marka kumaş aldım. Aileme ve tüm dikiş seven hanımlara öneriyorum 👍</p>
             </div>
+
+            <!-- Review 3 -->
+            <div class="review-card glass-deep reveal-up delay-3">
+                <div class="flex items-center gap-3 mb-3">
+                    <div class="w-10 h-10 rounded-full flex items-center justify-center font-black text-sm text-white flex-shrink-0" style="background:linear-gradient(135deg,#E11D48,#be123c);">A</div>
+                    <div>
+                        <p class="font-bold text-sm">Aslı Eylül</p>
+                        <div class="flex gap-0.5 mt-0.5">
+                            <i class="fas fa-star star-filled text-xs"></i><i class="fas fa-star star-filled text-xs"></i><i class="fas fa-star star-filled text-xs"></i><i class="fas fa-star star-filled text-xs"></i><i class="fas fa-star star-filled text-xs"></i>
+                        </div>
+                    </div>
+                </div>
+                <p class="text-sm leading-relaxed opacity-80">Fiyatlar son derece uygun, sahibi güler yüzlü ve yardımcı. Kumaşlar süper, herkese tavsiye ediyorum.</p>
+            </div>
+
+            <!-- Review 4 -->
+            <div class="review-card glass-deep reveal-up delay-1">
+                <div class="flex items-center gap-3 mb-3">
+                    <div class="w-10 h-10 rounded-full flex items-center justify-center font-black text-sm text-white flex-shrink-0" style="background:linear-gradient(135deg,#f59e0b,#ef4444);">F</div>
+                    <div>
+                        <p class="font-bold text-sm">Fatma Çiçek</p>
+                        <div class="flex gap-0.5 mt-0.5">
+                            <i class="fas fa-star star-filled text-xs"></i><i class="fas fa-star star-filled text-xs"></i><i class="fas fa-star star-filled text-xs"></i><i class="fas fa-star star-filled text-xs"></i><i class="fas fa-star star-filled text-xs"></i>
+                        </div>
+                    </div>
+                </div>
+                <p class="text-sm leading-relaxed opacity-80">Fiyatlar çok uygundu. 10 TL'ye parça kumaş vardi, bu fiyata bu zamanda çok iyi. Tekrar uğramak isterim.</p>
+            </div>
+
+            <!-- Review 5 -->
+            <div class="review-card glass-deep reveal-up delay-2">
+                <div class="flex items-center gap-3 mb-3">
+                    <div class="w-10 h-10 rounded-full flex items-center justify-center font-black text-sm text-white flex-shrink-0" style="background:linear-gradient(135deg,#E11D48,#be123c);">Ü</div>
+                    <div>
+                        <p class="font-bold text-sm">Ümmügülsüm Şenol</p>
+                        <div class="flex gap-0.5 mt-0.5">
+                            <i class="fas fa-star star-filled text-xs"></i><i class="fas fa-star star-filled text-xs"></i><i class="fas fa-star star-filled text-xs"></i><i class="fas fa-star star-filled text-xs"></i><i class="fas fa-star star-filled text-xs"></i>
+                        </div>
+                    </div>
+                </div>
+                <p class="text-sm leading-relaxed opacity-80">Çok güzel kumaşlar var, kaliteli marka kumaşları çok uygun fiyata alıyoruz. Keçiören'in en güzel ve en uygun kumaşçısı!</p>
+            </div>
+
+            <!-- Review 6 -->
+            <div class="review-card glass-deep reveal-up delay-3">
+                <div class="flex items-center gap-3 mb-3">
+                    <div class="w-10 h-10 rounded-full flex items-center justify-center font-black text-sm text-white flex-shrink-0" style="background:linear-gradient(135deg,#E11D48,#f43f5e);">İ</div>
+                    <div>
+                        <p class="font-bold text-sm">İdil Latife Çandır</p>
+                        <div class="flex gap-0.5 mt-0.5">
+                            <i class="fas fa-star star-filled text-xs"></i><i class="fas fa-star star-filled text-xs"></i><i class="fas fa-star star-filled text-xs"></i><i class="fas fa-star star-filled text-xs"></i><i class="fas fa-star star-filled text-xs"></i>
+                        </div>
+                    </div>
+                </div>
+                <p class="text-sm leading-relaxed opacity-80">Kumaşlar hem uygun hem kaliteli. Çalışanlar çok güler yüzlü. Uğramanızı tavsiye ederim. Teşekkürler Ali Bey!</p>
+            </div>
+
+            <!-- Review 7 -->
+            <div class="review-card glass-deep reveal-up delay-1">
+                <div class="flex items-center gap-3 mb-3">
+                    <div class="w-10 h-10 rounded-full flex items-center justify-center font-black text-sm text-white flex-shrink-0" style="background:linear-gradient(135deg,#be123c,#E11D48);">R</div>
+                    <div>
+                        <p class="font-bold text-sm">Rukiye Narin</p>
+                        <div class="flex gap-0.5 mt-0.5">
+                            <i class="fas fa-star star-filled text-xs"></i><i class="fas fa-star star-filled text-xs"></i><i class="fas fa-star star-filled text-xs"></i><i class="fas fa-star star-filled text-xs"></i><i class="fas fa-star star-filled text-xs"></i>
+                        </div>
+                    </div>
+                </div>
+                <p class="text-sm leading-relaxed opacity-80">Çok güzel ve kaliteli kumaşları çok uyguna alıyorum. Kesinlikle tavsiye ederim.</p>
+            </div>
+
+            <!-- Review 8 -->
+            <div class="review-card glass-deep reveal-up delay-2">
+                <div class="flex items-center gap-3 mb-3">
+                    <div class="w-10 h-10 rounded-full flex items-center justify-center font-black text-sm text-white flex-shrink-0" style="background:linear-gradient(135deg,#E11D48,#be123c);">O</div>
+                    <div>
+                        <p class="font-bold text-sm">Osman Ayyıldız</p>
+                        <div class="flex gap-0.5 mt-0.5">
+                            <i class="fas fa-star star-filled text-xs"></i><i class="fas fa-star star-filled text-xs"></i><i class="fas fa-star star-filled text-xs"></i><i class="fas fa-star star-filled text-xs"></i><i class="fas fa-star star-filled text-xs"></i>
+                        </div>
+                    </div>
+                </div>
+                <p class="text-sm leading-relaxed opacity-80">Ali Bey ve Emre Bey'in önerdiği kaliteli marka (Lacoste, Beymen) ürünleri uygun fiyata aldık. Teşekkürler!</p>
+            </div>
+
+            <!-- Review 9 -->
+            <div class="review-card glass-deep reveal-up delay-3">
+                <div class="flex items-center gap-3 mb-3">
+                    <div class="w-10 h-10 rounded-full flex items-center justify-center font-black text-sm text-white flex-shrink-0" style="background:linear-gradient(135deg,#f59e0b,#d97706);">H</div>
+                    <div>
+                        <p class="font-bold text-sm">Hacer Şahin</p>
+                        <div class="flex gap-0.5 mt-0.5">
+                            <i class="fas fa-star star-filled text-xs"></i><i class="fas fa-star star-filled text-xs"></i><i class="fas fa-star star-filled text-xs"></i><i class="fas fa-star star-filled text-xs"></i><i class="fas fa-star star-filled text-xs"></i>
+                        </div>
+                    </div>
+                </div>
+                <p class="text-sm leading-relaxed opacity-80">Enka Kumaş çok güzel ve uygun. Bu güzel kumaşlar için teşekkür ederim, Rabbim razı olsun.</p>
+            </div>
+
+            <!-- Review 10 -->
+            <div class="review-card glass-deep reveal-up delay-1 md:col-start-1">
+                <div class="flex items-center gap-3 mb-3">
+                    <div class="w-10 h-10 rounded-full flex items-center justify-center font-black text-sm text-white flex-shrink-0" style="background:linear-gradient(135deg,#6366f1,#8b5cf6);">Ç</div>
+                    <div>
+                        <div class="flex items-center gap-2">
+                            <p class="font-bold text-sm">Çağo 65</p>
+                            <span class="text-[9px] font-black px-2 py-0.5 rounded-full" style="background:rgba(225,29,72,0.12);color:#E11D48;border:1px solid rgba(225,29,72,0.2);">Yerel Rehber</span>
+                        </div>
+                        <div class="flex gap-0.5 mt-0.5">
+                            <i class="fas fa-star star-filled text-xs"></i><i class="fas fa-star star-filled text-xs"></i><i class="fas fa-star star-filled text-xs"></i><i class="fas fa-star star-filled text-xs"></i><i class="fas fa-star star-filled text-xs"></i>
+                        </div>
+                    </div>
+                </div>
+                <p class="text-sm leading-relaxed opacity-80">Aileme önerdim, memnun kaldılar. Uygun ve kaliteli, yardımcı oldular.</p>
+            </div>
+
+            <!-- Review 11 -->
+            <div class="review-card glass-deep reveal-up delay-2">
+                <div class="flex items-center gap-3 mb-3">
+                    <div class="w-10 h-10 rounded-full flex items-center justify-center font-black text-sm text-white flex-shrink-0" style="background:linear-gradient(135deg,#E11D48,#E11D48);">A</div>
+                    <div>
+                        <p class="font-bold text-sm">Abdülkadir</p>
+                        <div class="flex gap-0.5 mt-0.5">
+                            <i class="fas fa-star star-filled text-xs"></i><i class="fas fa-star star-filled text-xs"></i><i class="fas fa-star star-filled text-xs"></i><i class="fas fa-star star-filled text-xs"></i><i class="fas fa-star star-filled text-xs"></i>
+                        </div>
+                    </div>
+                </div>
+                <p class="text-sm leading-relaxed opacity-80">Mükemmel. Başka söze gerek yok, her şey tastamam.</p>
+            </div>
+
         </div>
 
-        <div class="relative mt-20 reveal-up rounded-[50px] overflow-hidden">
-            <div class="grid grid-cols-2 md:grid-cols-4 gap-4 p-8 opacity-40 grayscale pointer-events-none">
-                <div class="h-32 bg-slate-300 rounded-3xl"></div><div class="h-32 bg-slate-400 rounded-3xl"></div>
-                <div class="h-32 bg-slate-500 rounded-3xl hidden md:block"></div><div class="h-32 bg-slate-300 rounded-3xl hidden md:block"></div>
+        <!-- GOOGLE MAPS BUTTON -->
+        <div class="text-center mt-12 reveal-up">
+            <a href="https://maps.app.goo.gl/QDJ8ei1FDQk6J7mv8" target="_blank" class="inline-flex items-center gap-3 px-8 py-4 rounded-full font-bold text-sm trans hover:scale-105" style="background:white;color:#1a2332;box-shadow:0 8px 30px rgba(0,0,0,0.12);border:1px solid rgba(0,0,0,0.06);">
+                <svg width="20" height="20" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M24 4C15.16 4 8 11.16 8 20C8 31.5 24 44 24 44C24 44 40 31.5 40 20C40 11.16 32.84 4 24 4Z" fill="#EA4335"/>
+                    <path d="M24 25C21.24 25 19 22.76 19 20C19 17.24 21.24 15 24 15C26.76 15 29 17.24 29 20C29 22.76 26.76 25 24 25Z" fill="white"/>
+                </svg>
+                Google'da Daha Fazla Yorum Gör
+                <i class="fas fa-external-link-alt text-xs opacity-60"></i>
+            </a>
+        </div>
+
+    </section>
+
+    <!-- ─────────────────────────────────── -->
+    <!-- MARKA HİKAYEMİZ                    -->
+    <!-- ─────────────────────────────────── -->
+    <section class="max-w-6xl mx-auto px-6 pb-20 reveal-up" id="about-section">
+        <div class="glass-deep rounded-[44px] overflow-hidden">
+            <div class="p-10 md:p-16 relative">
+                <!-- Decorative line -->
+                <div style="position:absolute;left:0;top:3rem;bottom:3rem;width:3px;background:linear-gradient(to bottom,transparent,#E11D48,#be123c,transparent);border-radius:2px;"></div>
+
+                <div class="pl-6 md:pl-8">
+                    <div class="section-label mb-6">Biz Kimiz</div>
+                    <h2 class="mb-8" style="font-family:'Playfair Display',serif;font-size:clamp(2rem,5vw,3.5rem);font-weight:700;line-height:1.1;color:#1a2332;" >
+                        <span class="dark:text-white">EN-KA Kumaş</span><br>
+                        <em style="color:#E11D48;">Hakkında</em>
+                    </h2>
+
+                    <div class="space-y-6 max-w-2xl" style="font-family:'Cormorant Garamond',serif;font-size:1.2rem;line-height:1.8;color:#374151;" class="dark:text-slate-300">
+                        <p class="dark:text-slate-300">EN‑KA Kumaş, Ankara'nın Keçiören ilçesinde kurulmuş, <strong style="color:#E11D48;font-weight:700;">22 yılı aşkın tecrübesiyle</strong> kaliteli kumaş ve dikiş malzemeleri sunan köklü bir markadır.</p>
+                        <p class="dark:text-slate-300">Kurulduğu günden bu yana, hem profesyonel terzilerin hem de ev kullanıcılarının ihtiyaçlarına yönelik geniş ürün yelpazesiyle hizmet veriyoruz.</p>
+                        <p class="dark:text-slate-300">Sürekli yenilenen ürünlerimiz ve kalıplarımızla sizlere ilham vermeye devam ediyoruz.</p>
+                    </div>
+
+                    <div class="mt-10">
+                        <a href="hakkimizda.html" class="inline-flex items-center gap-3 px-8 py-4 rounded-full font-black text-sm uppercase tracking-widest text-white trans hover:scale-105 hover:shadow-xl" style="background:linear-gradient(135deg,#E11D48,#be123c);box-shadow:0 8px 30px rgba(225,29,72,0.35);">
+                            <i class="fas fa-book-open text-base"></i>
+                            Yolculuğumuzun Tamamı
+                            <i class="fas fa-arrow-right text-base"></i>
+                        </a>
+                    </div>
+                </div>
             </div>
-            <div class="absolute inset-0 backdrop-blur-xl bg-white/40 dark:bg-black/60 flex items-center justify-center z-10 border border-white/20">
-                <a href="urunler.html" class="px-8 py-5 md:px-12 md:py-6 bg-primary text-white rounded-full font-black text-xs md:text-sm uppercase tracking-[0.2em] shadow-2xl hover:scale-110 trans-base flex items-center gap-3">
-                    Daha Fazla Kumaş İçin Ürünlere Gidin <i class="fas fa-arrow-right"></i>
+        </div>
+    </section>
+
+    <!-- ─────────────────────────────────── -->
+    <!-- SIKÇA SORULAN SORULAR              -->
+    <!-- ─────────────────────────────────── -->
+    <section class="max-w-6xl mx-auto px-6 pb-20">
+        <div class="text-center mb-12 reveal-up">
+            <div class="section-label mb-4">Merak Ettikleriniz</div>
+            <h2 style="font-family:'Playfair Display',serif;font-size:clamp(1.8rem,4vw,3rem);font-weight:700;" class="dark:text-white">Sıkça Sorulan Sorular</h2>
+        </div>
+
+        <div class="space-y-4 max-w-3xl mx-auto">
+
+            <div class="faq-item glass-deep reveal-up">
+                <button class="w-full flex items-center justify-between p-6 text-left" onclick="toggleFaq(this)">
+                    <div class="flex items-center gap-4">
+                        <div class="w-10 h-10 rounded-xl flex items-center justify-center flex-shrink-0" style="background:rgba(225,29,72,0.1);"><i class="fas fa-calendar-check" style="color:#E11D48;"></i></div>
+                        <span class="font-bold text-sm">Pazar günü açık mısınız?</span>
+                    </div>
+                    <i class="fas fa-plus faq-icon text-sm opacity-50 flex-shrink-0"></i>
+                </button>
+                <div class="faq-answer">
+                    <p class="px-6 pb-6 text-sm opacity-65 ml-14">Evet, pazar günleri de hizmetinizdeyiz.</p>
+                </div>
+            </div>
+
+            <div class="faq-item glass-deep reveal-up delay-1">
+                <button class="w-full flex items-center justify-between p-6 text-left" onclick="toggleFaq(this)">
+                    <div class="flex items-center gap-4">
+                        <div class="w-10 h-10 rounded-xl flex items-center justify-center flex-shrink-0" style="background:rgba(225,29,72,0.08);"><i class="fas fa-truck" style="color:#E11D48;"></i></div>
+                        <span class="font-bold text-sm">Kapıya kargo var mı?</span>
+                    </div>
+                    <i class="fas fa-plus faq-icon text-sm opacity-50 flex-shrink-0"></i>
+                </button>
+                <div class="faq-answer">
+                    <p class="px-6 pb-6 text-sm opacity-65 ml-14">Bu durum siparişe göre değişkenlik gösterir.</p>
+                </div>
+            </div>
+
+            <div class="faq-item glass-deep reveal-up delay-2">
+                <button class="w-full flex items-center justify-between p-6 text-left" onclick="toggleFaq(this)">
+                    <div class="flex items-center gap-4">
+                        <div class="w-10 h-10 rounded-xl flex items-center justify-center flex-shrink-0" style="background:rgba(225,29,72,0.1);"><i class="fas fa-tag" style="color:#E11D48;"></i></div>
+                        <span class="font-bold text-sm">Neden bu kadar ucuz?</span>
+                    </div>
+                    <i class="fas fa-plus faq-icon text-sm opacity-50 flex-shrink-0"></i>
+                </button>
+                <div class="faq-answer">
+                    <p class="px-6 pb-6 text-sm opacity-65 ml-14">Amacımız herkesin bütçesine uygun ve erişilebilir kaliteli ürünler sunmaktır. Düşük fiyat, kaliteyi düşürmek anlamına gelmez.</p>
+                </div>
+            </div>
+
+            <div class="faq-item glass-deep reveal-up delay-1">
+                <button class="w-full flex items-center justify-between p-6 text-left" onclick="toggleFaq(this)">
+                    <div class="flex items-center gap-4">
+                        <div class="w-10 h-10 rounded-xl flex items-center justify-center flex-shrink-0" style="background:rgba(225,29,72,0.1);"><i class="fas fa-weight-hanging" style="color:#E11D48;"></i></div>
+                        <span class="font-bold text-sm">Kilo ile kumaş var mı?</span>
+                    </div>
+                    <i class="fas fa-plus faq-icon text-sm opacity-50 flex-shrink-0"></i>
+                </button>
+                <div class="faq-answer">
+                    <p class="px-6 pb-6 text-sm opacity-65 ml-14">Evet, kilo ile satışımız vardır.</p>
+                </div>
+            </div>
+
+            <div class="faq-item glass-deep reveal-up delay-2">
+                <button class="w-full flex items-center justify-between p-6 text-left" onclick="toggleFaq(this)">
+                    <div class="flex items-center gap-4">
+                        <div class="w-10 h-10 rounded-xl flex items-center justify-center flex-shrink-0" style="background:rgba(225,29,72,0.08);"><i class="fas fa-scissors" style="color:#E11D48;"></i></div>
+                        <span class="font-bold text-sm">Terzi hizmeti var mı?</span>
+                    </div>
+                    <i class="fas fa-plus faq-icon text-sm opacity-50 flex-shrink-0"></i>
+                </button>
+                <div class="faq-answer">
+                    <p class="px-6 pb-6 text-sm opacity-65 ml-14">Hayır, şu an dikiş hizmetimiz yoktur.</p>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- ─────────────────────────────────── -->
+    <!-- ALINTI                              -->
+    <!-- ─────────────────────────────────── -->
+    <section class="max-w-4xl mx-auto px-6 pb-24 text-center reveal-up">
+        <div class="relative">
+            <div class="quote-mark absolute -top-8 left-4 select-none" style="font-size:8rem;opacity:0.06;color:#E11D48;">"</div>
+            <blockquote style="font-family:'Cormorant Garamond',serif;font-size:clamp(1.6rem,4vw,2.8rem);font-weight:400;font-style:italic;line-height:1.4;color:#1a2332;" class="dark:text-white">
+                "Kalite bir seçenek değil, bizim standardımızdır."
+            </blockquote>
+            <div class="flex items-center justify-center gap-4 mt-8">
+                <div class="h-px w-16" style="background:linear-gradient(to right,transparent,#E11D48);"></div>
+                <span class="text-xs font-black uppercase tracking-widest opacity-50">ALİ TUBAY · Kurucu</span>
+                <div class="h-px w-16" style="background:linear-gradient(to left,transparent,#E11D48);"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ─────────────────────────────────── -->
+    <!-- FOOTER                              -->
+    <!-- ─────────────────────────────────── -->
+    <footer class="max-w-6xl mx-auto px-6 pb-8 pt-4 reveal-up">
+        <div class="glass-deep rounded-[44px] p-10 md:p-14 text-center" style="border:1px solid rgba(225,29,72,0.12);">
+            <!-- Brand -->
+            <div class="flex flex-col items-center gap-3 mb-8">
+                <div class="flex items-center gap-2">
+                    <span style="font-family:'Cormorant Garamond',serif;font-size:2rem;font-weight:700;color:#E11D48;letter-spacing:0.06em;line-height:1;">EN-KA</span>
+                    <span style="font-family:'Plus Jakarta Sans',sans-serif;font-size:0.9rem;font-weight:800;letter-spacing:0.25em;text-transform:uppercase;opacity:0.65;">KUMAŞ</span>
+                </div>
+                <div class="h-px w-24" style="background:linear-gradient(to right,transparent,#E11D48,transparent);"></div>
+            </div>
+
+            <!-- Location badge -->
+            <div class="inline-flex items-center gap-2 px-5 py-3 rounded-full mb-8 text-sm font-semibold" style="background:rgba(225,29,72,0.07);border:1px solid rgba(225,29,72,0.15);color:#E11D48;">
+                <i class="fas fa-location-dot text-sm"></i>
+                <span>Yalnızca Ankara Keçiören'deyiz</span>
+            </div>
+
+            <!-- Description -->
+            <p class="text-sm leading-relaxed opacity-65 max-w-lg mx-auto mb-10" style="font-family:'Cormorant Garamond',serif;font-size:1.05rem;">
+                EN-KA Kumaş, 22 yılı aşkın deneyimiyle yalnızca Ankara Keçiören'de hizmet vermektedir. Başka bir şube ya da bayimiz bulunmamaktadır; güvenilir hizmeti tek adresimizden, doğrudan sizlere sunuyoruz.
+            </p>
+
+            <!-- Divider -->
+            <div class="h-px mb-8" style="background:linear-gradient(to right,transparent,rgba(225,29,72,0.2),transparent);"></div>
+
+            <!-- Copyright + AFTOR -->
+            <div class="flex flex-col md:flex-row items-center justify-between gap-4 text-[11px] font-bold uppercase tracking-widest opacity-50">
+                <span>© 2026 EN-KA KUMAŞ · Tüm Hakları Saklıdır</span>
+                <a href="https://aftortechnologies.github.io/AFTOR/" target="_blank" rel="noopener" class="hover:opacity-100 trans" style="opacity:0.5;color:inherit;text-decoration:none;">
+                    Site <span style="color:#E11D48;opacity:1;" class="hover:underline">AFTOR Technologies</span> Tarafından Hazırlanmıştır
                 </a>
             </div>
         </div>
-    </div>
+    </footer>
 
-    <div class="max-w-6xl mx-auto px-6 space-y-24 pb-20 relative z-10">
-        
-        <section class="text-center reveal-up" id="about-section">
-            <div class="inline-block px-6 py-2 rounded-full glass text-[10px] font-black uppercase tracking-[0.3em] text-primary mb-8">Marka Hikayemiz</div>
-            <div class="glass p-10 md:p-14 rounded-[40px] shadow-xl font-poppins border-white/30">
-                <h3 class="text-3xl font-bold mb-8">EN-KA KUMAŞ HAKKINDA</h3>
-                <div class="text-sm md:text-base leading-relaxed space-y-6 text-slate-700 dark:text-slate-300 font-medium">
-                    <p>EN‑KA Kumaş, Ankara’nın Keçiören ilçesinde kurulmuş, <span class="text-primary font-bold">22 yılı aşkın tecrübesiyle</span> kaliteli kumaş ve dikiş malzemeleri sunan köklü bir markadır.</p>
-                    <p>Kurulduğu günden bu yana, hem profesyonel terzilerin hem de ev kullanıcılarının ihtiyaçlarına yönelik geniş ürün yelpazesiyle hizmet veriyoruz.</p>
-                    <p>Sürekli yenilenen ürünlerimiz ve kalıplarımızla sizlere ilham vermeye devam ediyoruz.</p>
-                </div>
-            </div>
-        </section>
+    <!-- ─────────────────────────────────── -->
+    <div class="fixed bottom-5 left-1/2 transform -translate-x-1/2 z-[150] w-[96%] max-w-[520px]">
+        <div class="bottom-nav-liquid rounded-[24px] flex justify-between items-center px-5 py-3">
 
-        <section class="reveal-up">
-            <h3 class="text-center text-3xl font-black uppercase tracking-tighter mb-10">Sıkça Sorulan Sorular</h3>
-            <div class="grid md:grid-cols-2 gap-6">
-                <div class="glass p-6 rounded-[30px] border-white/20 hover:bg-white/20 trans-base">
-                    <div class="flex items-center gap-3 mb-2"><i class="fas fa-calendar-check text-primary"></i> <h4 class="font-bold text-sm">Pazar günü açık mısınız?</h4></div>
-                    <p class="text-xs text-slate-600 dark:text-slate-400 font-medium ml-7">Evet, pazar günleri de hizmetinizdeyiz.</p>
-                </div>
-                <div class="glass p-6 rounded-[30px] border-white/20 hover:bg-white/20 trans-base">
-                    <div class="flex items-center gap-3 mb-2"><i class="fas fa-truck text-primary"></i> <h4 class="font-bold text-sm">Kapıya kargo var mı?</h4></div>
-                    <p class="text-xs text-slate-600 dark:text-slate-400 font-medium ml-7">Bu durum siparişe göre değişkenlik gösterir.</p>
-                </div>
-                <div class="glass p-6 rounded-[30px] border-white/20 hover:bg-white/20 trans-base col-span-2">
-                    <div class="flex items-center gap-3 mb-2"><i class="fas fa-tag text-primary"></i> <h4 class="font-bold text-sm">Neden bu kadar ucuz?</h4></div>
-                    <p class="text-xs text-slate-600 dark:text-slate-400 font-medium ml-7">Amacımız herkesin bütçesine uygun ve erişilebilir kaliteli ürünler sunmaktır. Düşük fiyat, kaliteyi düşürmek anlamına gelmez.</p>
-                </div>
-                <div class="glass p-6 rounded-[30px] border-white/20 hover:bg-white/20 trans-base">
-                    <div class="flex items-center gap-3 mb-2"><i class="fas fa-balance-scale text-primary"></i> <h4 class="font-bold text-sm">Kilo ile kumaş var mı?</h4></div>
-                    <p class="text-xs text-slate-600 dark:text-slate-400 font-medium ml-7">Evet, kilo ile satışımız vardır.</p>
-                </div>
-                <div class="glass p-6 rounded-[30px] border-white/20 hover:bg-white/20 trans-base">
-                    <div class="flex items-center gap-3 mb-2"><i class="fas fa-cut text-primary"></i> <h4 class="font-bold text-sm">Terzi hizmeti var mı?</h4></div>
-                    <p class="text-xs text-slate-600 dark:text-slate-400 font-medium ml-7">Hayır, şu an dikiş hizmetimiz yoktur.</p>
-                </div>
-            </div>
-        </section>
-
-        <section class="reveal-up">
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                <div class="glass p-8 rounded-[35px] text-center hover:bg-primary hover:text-white trans-base group">
-                    <i class="fas fa-crown text-4xl mb-4 text-primary group-hover:text-white"></i>
-                    <h4 class="font-black uppercase text-sm mb-2">Markalı Ürünler</h4>
-                    <p class="text-xs opacity-70">Dünya markalarının ihraç fazlası serileri.</p>
-                </div>
-                <div class="glass p-8 rounded-[35px] text-center hover:bg-primary hover:text-white trans-base group">
-                    <i class="fas fa-leaf text-4xl mb-4 text-primary group-hover:text-white"></i>
-                    <h4 class="font-black uppercase text-sm mb-2">Doğal İçerik</h4>
-                    <p class="text-xs opacity-70">Ağırlıklı olarak pamuk ve iplik dokumalar.</p>
-                </div>
-                <div class="glass p-8 rounded-[35px] text-center hover:bg-primary hover:text-white trans-base group">
-                    <i class="fas fa-shield-alt text-4xl mb-4 text-primary group-hover:text-white"></i>
-                    <h4 class="font-black uppercase text-sm mb-2">Güvenilir Kalite</h4>
-                    <p class="text-xs opacity-70">Yılların tecrübesiyle defosuz ürünler.</p>
-                </div>
-            </div>
-        </section>
-
-        <section class="reveal-up" id="stats-section">
-            <div class="glass rounded-[50px] p-12 border-white/20 shadow-2xl">
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-10 text-center font-poppins">
-                    <div>
-                        <div class="text-5xl md:text-6xl font-black text-primary mb-2 counter" data-target="10000">0</div>
-                        <div class="text-[10px] font-bold uppercase tracking-[0.3em]">Kumaş Çeşidi</div>
-                    </div>
-                    <div>
-                        <div class="text-5xl md:text-6xl font-black text-primary mb-2 counter" data-target="1">0</div>
-                        <div class="text-[10px] font-bold uppercase tracking-[0.3em]">Dev Mağaza</div>
-                    </div>
-                    <div>
-                        <div class="text-5xl md:text-6xl font-black text-primary mb-2"><span class="counter" data-target="1000">0</span>+</div>
-                        <div class="text-[10px] font-bold uppercase tracking-[0.3em]">Memnun Müşteri</div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section class="text-center py-10 reveal-up">
-            <h2 class="text-3xl md:text-5xl font-black italic mb-6 font-poppins text-primary leading-tight">
-                "Kalite bir seçenek değil, bizim standardımızdır."
-            </h2>
-            <div class="inline-flex items-center gap-3 opacity-80">
-                <div class="w-10 h-[2px] bg-primary"></div>
-                <span class="text-sm font-bold uppercase tracking-widest">ALİ TUBAY - Kurucu</span>
-                <div class="w-10 h-[2px] bg-primary"></div>
-            </div>
-        </section>
-    </div>
-
-    <div class="fixed bottom-6 left-1/2 transform -translate-x-1/2 z-[150] w-[95%] max-w-[500px]">
-        <div class="bottom-nav-glass rounded-full flex justify-between items-center px-6 py-3 transition-all duration-300">
-            <a href="index.html" class="flex flex-col items-center gap-1 text-primary group">
-                <div class="bg-primary/10 p-2 rounded-full group-hover:bg-primary group-hover:text-white transition-all"><i class="fas fa-home text-lg"></i></div>
-                <span class="text-[8px] font-black uppercase">Ana Sayfa</span>
+            <a href="index.html" class="nav-btn active flex flex-col items-center gap-1 text-primary">
+                <div class="nav-icon-wrap"><i class="fas fa-house text-base" style="color:#E11D48;"></i></div>
+                <span class="text-[7px] font-black uppercase tracking-wider">Ana Sayfa</span>
             </a>
-            <a href="urunler.html" class="flex flex-col items-center gap-1 text-slate-500 hover:text-primary dark:text-slate-400 group transition-all">
-                <div class="p-2 rounded-full group-hover:bg-primary/10 transition-all"><i class="fas fa-layer-group text-lg"></i></div>
-                <span class="text-[8px] font-black uppercase">Ürünler</span>
+
+            <a href="urunler.html" class="nav-btn flex flex-col items-center gap-1 text-slate-500 hover:text-primary dark:text-slate-400 trans">
+                <div class="nav-icon-wrap"><i class="fas fa-swatchbook text-base"></i></div>
+                <span class="text-[7px] font-black uppercase tracking-wider">Ürünler</span>
             </a>
-            <a href="kalip-koleksiyonu.html" class="flex flex-col items-center gap-1 text-slate-500 hover:text-primary dark:text-slate-400 group transition-all">
-                <div class="p-2 rounded-full group-hover:bg-primary/10 transition-all"><i class="fas fa-ruler-combined text-lg"></i></div>
-                <span class="text-[8px] font-black uppercase">Kalıplar</span>
+
+            <a href="kalip-koleksiyonu.html" class="nav-btn flex flex-col items-center gap-1 text-slate-500 hover:text-primary dark:text-slate-400 trans">
+                <div class="nav-icon-wrap"><i class="fas fa-drafting-compass text-base"></i></div>
+                <span class="text-[7px] font-black uppercase tracking-wider">Kalıplar</span>
             </a>
-            <button onclick="toggleContactModal()" class="flex flex-col items-center gap-1 text-slate-500 hover:text-primary dark:text-slate-400 group transition-all">
-                <div class="p-2 rounded-full group-hover:bg-primary/10 transition-all"><i class="fas fa-headset text-lg"></i></div>
-                <span class="text-[8px] font-black uppercase">İletişim</span>
+
+            <button onclick="toggleContactModal()" class="nav-btn flex flex-col items-center gap-1 text-slate-500 hover:text-primary dark:text-slate-400 trans">
+                <div class="nav-icon-wrap"><i class="fas fa-comments text-base"></i></div>
+                <span class="text-[7px] font-black uppercase tracking-wider">İletişim</span>
             </button>
-            <a href="chatbot.html" class="flex flex-col items-center gap-1 text-slate-500 hover:text-primary dark:text-slate-400 group transition-all">
-                <div class="p-2 rounded-full group-hover:bg-primary/10 transition-all"><i class="fas fa-robot text-lg"></i></div>
-                <span class="text-[8px] font-black uppercase">Asistan</span>
+
+            <a href="chatbot.html" class="nav-btn flex flex-col items-center gap-1 text-slate-500 hover:text-primary dark:text-slate-400 trans">
+                <div class="nav-icon-wrap">
+                    <span style="
+                        font-family:'Plus Jakarta Sans',sans-serif;
+                        font-size:13px;
+                        font-weight:900;
+                        letter-spacing:-0.03em;
+                        background:linear-gradient(135deg,#E11D48,#be123c);
+                        -webkit-background-clip:text;
+                        -webkit-text-fill-color:transparent;
+                        background-clip:text;
+                        animation:aiPulse 2.5s ease-in-out infinite;
+                        display:inline-block;
+                        position:relative;
+                    ">AI</span>
+                </div>
+                <span class="text-[7px] font-black uppercase tracking-wider">EN-AI</span>
             </a>
+
         </div>
     </div>
 
+    <!-- CONTACT MODAL -->
     <div id="contact-modal" class="fixed inset-0 z-[200] hidden items-center justify-center p-6 bg-black/60 backdrop-blur-md">
-        <div class="relative w-full max-w-sm glass rounded-[40px] p-8 shadow-2xl animate-in zoom-in duration-300 border border-white/30 text-center">
-            <button onclick="toggleContactModal()" class="absolute -top-4 -right-4 w-10 h-10 bg-primary text-white rounded-full flex items-center justify-center shadow-xl hover:scale-110 trans-base"><i class="fas fa-times"></i></button>
-            <h3 class="font-black text-lg uppercase tracking-widest mb-6">Bize Ulaşın</h3>
+        <div class="relative w-full max-w-sm glass-deep rounded-[36px] p-8 shadow-2xl border border-white/30 text-center">
+            <button onclick="toggleContactModal()" class="absolute -top-4 -right-4 w-10 h-10 flex items-center justify-center rounded-full shadow-xl hover:scale-110 trans text-white" style="background:#E11D48;"><i class="fas fa-times text-sm"></i></button>
+            <h3 class="font-black text-base uppercase tracking-widest mb-6">Bize Ulaşın</h3>
             <div class="space-y-3">
-                <a href="https://wa.me/905368938558" target="_blank" class="flex items-center justify-center gap-3 p-4 bg-green-500 text-white rounded-[20px] font-bold text-sm hover:scale-105 trans-base shadow-lg"><i class="fab fa-whatsapp text-xl"></i> WhatsApp</a>
-                <a href="https://instagram.com/enka_kumascilik_a.s" target="_blank" class="flex items-center justify-center gap-3 p-4 bg-pink-500 text-white rounded-[20px] font-bold text-sm hover:scale-105 trans-base shadow-lg"><i class="fab fa-instagram text-xl"></i> Instagram</a>
-                <a href="https://maps.app.goo.gl/QDJ8ei1FDQk6J7mv8" target="_blank" class="flex items-center justify-center gap-3 p-4 bg-blue-500 text-white rounded-[20px] font-bold text-sm hover:scale-105 trans-base shadow-lg"><i class="fas fa-map-marked-alt text-xl"></i> Haritalar</a>
-                <a href="tel:+905368938558" class="flex items-center justify-center gap-3 p-4 glass rounded-[20px] font-bold text-sm hover:bg-primary hover:text-white trans-base"><i class="fas fa-phone text-xl text-primary"></i> Hemen Ara</a>
+                <a href="https://wa.me/905368938558" target="_blank" class="flex items-center justify-center gap-3 p-4 rounded-[16px] font-bold text-sm hover:scale-105 trans shadow-lg text-white" style="background:#25D366;"><i class="fab fa-whatsapp text-lg"></i> WhatsApp</a>
+                <a href="https://instagram.com/enka_kumascilik_a.s" target="_blank" class="flex items-center justify-center gap-3 p-4 rounded-[16px] font-bold text-sm hover:scale-105 trans shadow-lg text-white" style="background:linear-gradient(135deg,#f58529,#dd2a7b,#8134af);"><i class="fab fa-instagram text-lg"></i> Instagram</a>
+                <a href="https://maps.app.goo.gl/QDJ8ei1FDQk6J7mv8" target="_blank" class="flex items-center justify-center gap-3 p-4 rounded-[16px] font-bold text-sm hover:scale-105 trans shadow-lg text-white" style="background:#4285F4;"><i class="fas fa-map-location-dot text-lg"></i> Google Haritalar</a>
+                <a href="tel:+905368938558" class="flex items-center justify-center gap-3 p-4 glass rounded-[16px] font-bold text-sm hover:bg-primary hover:text-white trans"><i class="fas fa-phone text-lg" style="color:#E11D48;"></i> Hemen Ara</a>
             </div>
         </div>
     </div>
 
-    <div id="popup-1" class="fixed inset-0 z-[2000] hidden items-center justify-center p-6 bg-black/80 backdrop-blur-md">
-        <div class="relative glass rounded-[40px] p-2 shadow-2xl animate-in zoom-in duration-500 max-w-3xl">
-            <button onclick="closeP1()" class="absolute -top-4 -right-4 w-12 h-12 bg-primary text-white rounded-full flex items-center justify-center shadow-xl hover:scale-110 trans-base"><i class="fas fa-times"></i></button>
-            <img src="gorsel.png" class="popup-img" onerror="this.parentElement.parentElement.classList.add('hidden')">
-        </div>
-    </div>
-
-    <div id="popup-2" class="fixed inset-0 z-[2000] hidden items-center justify-center p-6 bg-black/80 backdrop-blur-md">
-        <div class="relative glass rounded-[40px] p-2 shadow-2xl animate-in zoom-in duration-500 max-w-3xl">
-            <button onclick="closeP2()" class="absolute -top-4 -right-4 w-12 h-12 bg-primary text-white rounded-full flex items-center justify-center shadow-xl hover:scale-110 trans-base"><i class="fas fa-times"></i></button>
-            <img src="gorsel2.png" class="popup-img" onerror="this.parentElement.parentElement.classList.add('hidden')">
-        </div>
-    </div>
-
+    <!-- ══════════════════════════════════ -->
+    <!-- SCRIPTS                            -->
+    <!-- ══════════════════════════════════ -->
     <script>
-        // Splash Fix
-        window.addEventListener('load', () => {
-            setTimeout(() => {
-                document.getElementById('splash').classList.add('splash-hidden');
-                // Popupları başlat
-                setTimeout(() => {
-                    document.getElementById('popup-1').classList.replace('hidden', 'flex');
-                }, 600);
-            }, 1000); 
-            checkReveal();
+    // ── SPLASH ──
+    window.addEventListener('load', () => {
+        setTimeout(() => {
+            document.getElementById('splash').classList.add('splash-hidden');
+        }, 1200);
+        checkReveal();
+        initSlider();
+    });
+
+    // ── SLIDER ──
+    let currentSlide = 0;
+    const totalSlides = 3;
+    let sliderInterval;
+
+    function goToSlide(n) {
+        const track = document.getElementById('sliderTrack');
+        const dots = document.querySelectorAll('.slider-dot');
+        const slides = document.querySelectorAll('.slide');
+
+        slides[currentSlide].classList.remove('active');
+        currentSlide = (n + totalSlides) % totalSlides;
+        slides[currentSlide].classList.add('active');
+
+        track.style.transform = `translateX(-${currentSlide * 100}%)`;
+        dots.forEach((d,i) => d.classList.toggle('active', i === currentSlide));
+    }
+
+    function sliderMove(dir) {
+        goToSlide(currentSlide + dir);
+        resetSliderTimer();
+    }
+
+    function resetSliderTimer() {
+        clearInterval(sliderInterval);
+        sliderInterval = setInterval(() => goToSlide(currentSlide + 1), 3000);
+    }
+
+    function initSlider() {
+        sliderInterval = setInterval(() => goToSlide(currentSlide + 1), 3000);
+    }
+
+    // Touch support for slider
+    let touchStartX = 0;
+    document.getElementById('hero-slider').addEventListener('touchstart', e => { touchStartX = e.touches[0].clientX; }, {passive:true});
+    document.getElementById('hero-slider').addEventListener('touchend', e => {
+        const diff = touchStartX - e.changedTouches[0].clientX;
+        if(Math.abs(diff) > 40) { sliderMove(diff > 0 ? 1 : -1); }
+    }, {passive:true});
+
+    // ── FAQ ACCORDION ──
+    function toggleFaq(btn) {
+        const answer = btn.nextElementSibling;
+        const icon = btn.querySelector('.faq-icon');
+        answer.classList.toggle('open');
+        icon.classList.toggle('rotated');
+    }
+
+    // ── CONTACT MODAL ──
+    function toggleContactModal() {
+        const m = document.getElementById('contact-modal');
+        m.classList.contains('hidden') ? m.classList.replace('hidden','flex') : m.classList.replace('flex','hidden');
+    }
+    document.getElementById('contact-modal').addEventListener('click', function(e) {
+        if(e.target === this) toggleContactModal();
+    });
+
+    // ── SCROLL REVEAL ──
+    function checkReveal() {
+        document.querySelectorAll('.reveal-up, .reveal-left, .reveal-right, .reveal-scale').forEach(el => {
+            if(el.getBoundingClientRect().top < window.innerHeight - 80) el.classList.add('active');
         });
+    }
+    window.addEventListener('scroll', checkReveal, {passive:true});
 
-        // Popuplar
-        function closeP1() {
-            document.getElementById('popup-1').classList.replace('flex', 'hidden');
-            setTimeout(() => document.getElementById('popup-2').classList.replace('hidden', 'flex'), 400);
-        }
-        function closeP2() { document.getElementById('popup-2').classList.replace('flex', 'hidden'); }
-
-        // Modal İletişim
-        function toggleContactModal() {
-            const m = document.getElementById('contact-modal');
-            if(m.classList.contains('hidden')) m.classList.replace('hidden', 'flex');
-            else m.classList.replace('flex', 'hidden');
-        }
-
-        // Animasyonlar
-        function checkReveal() {
-            const reveals = document.querySelectorAll('.reveal-up, .reveal-left, .reveal-right');
-            reveals.forEach(r => {
-                const wHeight = window.innerHeight;
-                const rTop = r.getBoundingClientRect().top;
-                if(rTop < wHeight - 100) r.classList.add('active');
+    // ── COUNTERS ──
+    let countersStarted = false;
+    window.addEventListener('scroll', () => {
+        const statsSection = document.getElementById('stats-section');
+        if(!countersStarted && statsSection && statsSection.getBoundingClientRect().top < window.innerHeight - 80) {
+            countersStarted = true;
+            document.querySelectorAll('.counter').forEach(c => {
+                const target = +c.getAttribute('data-target');
+                const duration = 2000;
+                const startTime = performance.now();
+                const easeOut = t => 1 - Math.pow(1 - t, 3);
+                const update = (now) => {
+                    const elapsed = now - startTime;
+                    const progress = Math.min(elapsed / duration, 1);
+                    c.innerText = Math.ceil(easeOut(progress) * target).toLocaleString('tr-TR');
+                    if(progress < 1) requestAnimationFrame(update);
+                };
+                requestAnimationFrame(update);
             });
         }
-        window.addEventListener('scroll', checkReveal);
+    }, {passive:true});
 
-        // Sayaçlar
-        let countersStarted = false;
-        const statsSection = document.getElementById('stats-section');
-        window.addEventListener('scroll', () => {
-            if(!countersStarted && statsSection && statsSection.getBoundingClientRect().top < window.innerHeight - 100) {
-                countersStarted = true;
-                const counters = document.querySelectorAll('.counter');
-                counters.forEach(c => {
-                    const target = +c.getAttribute('data-target');
-                    const inc = target / 100;
-                    let count = 0;
-                    const update = () => {
-                        count += inc;
-                        if(count < target) {
-                            c.innerText = Math.ceil(count).toLocaleString('tr-TR');
-                            requestAnimationFrame(update);
-                        } else {
-                            c.innerText = target.toLocaleString('tr-TR');
-                        }
-                    };
-                    update();
-                });
-            }
-        });
+    // ── ENGINE (clock + greeting + status + halk) ──
+    let manualTheme = false;
+    function engine() {
+        const now = new Date();
+        const h = now.getHours();
+        const m = now.getMinutes().toString().padStart(2,'0');
+        const d = now.getDay();
 
-        // Tema ve Saat
-        let manualTheme = false;
-        function engine() {
-            const now = new Date();
-            const h = now.getHours();
-            const m = now.getMinutes().toString().padStart(2,'0');
-            const d = now.getDay();
-            
-            document.getElementById('live-clock').innerText = h + ":" + m;
-            
-            if (!manualTheme) {
-                if (h >= 17 || h < 6) document.documentElement.classList.add('dark');
-                else document.documentElement.classList.remove('dark');
-            }
+        document.getElementById('live-clock').innerText = h + ':' + m;
 
-            const greet = document.getElementById('greeting');
-            if(h < 12) greet.innerText = "Günaydın";
-            else if(h < 18) greet.innerText = "İyi Günler";
-            else greet.innerText = "İyi Akşamlar";
-
-            const badge = document.getElementById('status-badge');
-            if(h >= 9 && h < 19) badge.innerHTML = '<span class="w-2 h-2 bg-green-500 rounded-full animate-pulse"></span> Mağaza Açık';
-            else badge.innerHTML = '<span class="w-2 h-2 bg-red-500 rounded-full"></span> Mağaza Kapalı';
-
-            // Çarşamba Bug Fix: Eleman varsa işlem yap.
-            const banner = document.getElementById('halk-gunu-banner');
-            if(d === 3 && banner) banner.classList.remove('hidden');
+        if(!manualTheme) {
+            document.documentElement.classList.toggle('dark', h >= 19 || h < 6);
         }
-        setInterval(engine, 1000); engine();
 
-        function toggleDarkMode() { manualTheme = true; document.documentElement.classList.toggle('dark'); }
+        const greetEl = document.getElementById('greeting');
+        const iconEl = document.getElementById('greeting-icon');
+        if(h < 6) {
+            greetEl.innerText = 'İyi Geceler';
+            iconEl.className = 'fas fa-moon text-2xl';
+            iconEl.style.color = '#E11D48';
+        } else if(h < 12) {
+            greetEl.innerText = 'Günaydın';
+            iconEl.className = 'fas fa-sun text-2xl';
+            iconEl.style.color = '#E11D48';
+        } else if(h < 18) {
+            greetEl.innerText = 'İyi Günler';
+            iconEl.className = 'fas fa-cloud-sun text-2xl';
+            iconEl.style.color = '#E11D48';
+        } else {
+            greetEl.innerText = 'İyi Akşamlar';
+            iconEl.className = 'fas fa-moon-stars text-2xl';
+            iconEl.style.color = '#E11D48';
+        }
+
+        const badge = document.getElementById('status-badge');
+        if(h >= 9 && h < 19) {
+            badge.innerHTML = '<span style="width:8px;height:8px;background:#22c55e;border-radius:50%;display:inline-block;animation:pulse 2s infinite;"></span><span style="font-size:10px;font-weight:800;letter-spacing:0.2em;color:#16a34a;">Mağaza Açık</span>';
+        } else {
+            badge.innerHTML = '<span style="width:8px;height:8px;background:#ef4444;border-radius:50%;display:inline-block;"></span><span style="font-size:10px;font-weight:800;letter-spacing:0.2em;color:#dc2626;">Mağaza Kapalı</span>';
+        }
+
+        const banner = document.getElementById('halk-gunu-banner');
+        if(d === 3 && banner) banner.classList.remove('hidden');
+    }
+    setInterval(engine, 1000);
+    engine();
+
+    function toggleDarkMode() {
+        manualTheme = true;
+        document.documentElement.classList.toggle('dark');
+    }
+
+    // Pulse keyframe injection
+    const style = document.createElement('style');
+    style.textContent = '@keyframes pulse { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:0.6;transform:scale(1.3)} } @keyframes aiPulse { 0%,100%{opacity:1;filter:brightness(1)} 50%{opacity:0.75;filter:brightness(1.3)} }';
+    document.head.appendChild(style);
     </script>
 </body>
 </html>
