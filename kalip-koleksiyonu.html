@@ -1,146 +1,1038 @@
 <!DOCTYPE html>
-<html lang="tr" class="light">
+<html lang="tr" data-theme="light">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kalıp Koleksiyonu | EN-KA KUMAŞ</title>
-    <link rel="icon" type="image/png" href="logo.png" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="EN-KA Kumaş – Ankara Keçiören’de ucuz ve kaliteli kumaşlar. Uygun fiyatlarla en iyi kumaşları hemen keşfedin.">
-    <meta name="keywords" content="EN-KA Kumaş, Ankara, Keçiören, ucuz kumaş, kaliteli kumaş, kumaş markası">
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-    <script>
-        tailwind.config = {
-            darkMode: 'class',
-            theme: {
-                extend: {
-                    colors: { primary: '#E11D48', secondary: '#881337' },
-                    borderRadius: { 'custom': '50px' },
-                    fontFamily: {
-                        sans: ['Plus Jakarta Sans', 'sans-serif'],
-                        poppins: ['Poppins', 'sans-serif']
-                    }
-                }
-            }
-        }
-    </script>
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;800&family=Poppins:wght@300;400;500;700;900&display=swap');
-        
-        body { font-family: 'Plus Jakarta Sans', sans-serif; overflow-x: hidden; scroll-behavior: smooth; }
-        .trans-base { transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1); }
-
-        /* Liquid Background */
-        .liquid-bg {
-            position: fixed; inset: 0; z-index: -1;
-            background: linear-gradient(-45deg, #f8fafc, #f1f5f9, #fee2e2, #e0f2fe);
-            background-size: 400% 400%;
-            animation: gradientMove 15s ease infinite;
-        }
-        .dark .liquid-bg { background: linear-gradient(-45deg, #0f172a, #1e293b, #450a0a, #020617); }
-        @keyframes gradientMove { 0% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } 100% { background-position: 0% 50%; } }
-
-        /* Glassmorphism */
-        .glass {
-            background: rgba(255, 255, 255, 0.4);
-            backdrop-filter: blur(25px) saturate(180%);
-            -webkit-backdrop-filter: blur(25px) saturate(180%);
-            border: 1px solid rgba(255, 255, 255, 0.5);
-        }
-        .dark .glass { background: rgba(15, 23, 42, 0.7); border: 1px solid rgba(255, 255, 255, 0.1); }
-
-        .search-glass {
-            background: rgba(255, 255, 255, 0.2);
-            border: 1px solid rgba(255, 255, 255, 0.3);
-            backdrop-filter: blur(15px);
-        }
-        .dark .search-glass { background: rgba(0, 0, 0, 0.2); }
-
-        .reveal { opacity: 0; transform: translateY(30px); animation: revealIn 0.8s forwards; }
-        @keyframes revealIn { to { opacity: 1; transform: translateY(0); } }
-    </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="EN-KA KUMAŞ Kalıp Koleksiyonu — Profesyonel dikiş kalıplarını keşfedin ve indirin." />
+  <title>EN-KA KUMAŞ · Kalıp Koleksiyonu</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    /* ─── DESIGN TOKENS ─────────────────────────────────────── */
+    :root {
+      --bg-primary:    #f7f4f0;
+      --bg-secondary:  #ede9e3;
+      --bg-orb-1:      rgba(193,158,139,0.28);
+      --bg-orb-2:      rgba(167,140,124,0.18);
+      --bg-orb-3:      rgba(220,200,185,0.22);
+      --glass-bg:      rgba(255,255,255,0.55);
+      --glass-border:  rgba(255,255,255,0.75);
+      --glass-shadow:  rgba(130,100,80,0.10);
+      --nav-glass:     rgba(255,255,255,0.72);
+      --nav-border:    rgba(255,255,255,0.85);
+      --text-primary:  #2a1f18;
+      --text-secondary:#6b5b50;
+      --text-muted:    #a09080;
+      --accent:        #b07b5e;
+      --accent-dark:   #8c5e42;
+      --accent-glow:   rgba(176,123,94,0.30);
+      --accent-light:  rgba(176,123,94,0.10);
+      --btn-bg:        linear-gradient(135deg, #c9876a 0%, #a06040 100%);
+      --btn-hover:     linear-gradient(135deg, #d99070 0%, #b07050 100%);
+      --btn-shadow:    rgba(160,96,64,0.35);
+      --badge-bg:      rgba(176,123,94,0.12);
+      --badge-color:   #8c5e42;
+      --search-bg:     rgba(255,255,255,0.70);
+      --search-border: rgba(180,150,130,0.30);
+      --toggle-track:  rgba(176,123,94,0.20);
+      --toggle-thumb:  #b07b5e;
+      --toggle-icon:   "☀️";
+      --scrollbar-thumb: rgba(176,123,94,0.35);
+      --transition: 0.38s cubic-bezier(.4,0,.2,1);
+    }
+    [data-theme="dark"] {
+      --bg-primary:    #16110e;
+      --bg-secondary:  #1f1812;
+      --bg-orb-1:      rgba(140,90,60,0.22);
+      --bg-orb-2:      rgba(100,65,45,0.16);
+      --bg-orb-3:      rgba(180,120,80,0.10);
+      --glass-bg:      rgba(30,22,15,0.60);
+      --glass-border:  rgba(180,140,110,0.18);
+      --glass-shadow:  rgba(0,0,0,0.40);
+      --nav-glass:     rgba(22,17,14,0.80);
+      --nav-border:    rgba(180,140,110,0.15);
+      --text-primary:  #f0e8df;
+      --text-secondary:#c4a98a;
+      --text-muted:    #7a6555;
+      --accent:        #d4956a;
+      --accent-dark:   #e8b08a;
+      --accent-glow:   rgba(212,149,106,0.25);
+      --accent-light:  rgba(212,149,106,0.08);
+      --btn-bg:        linear-gradient(135deg, #c07855 0%, #9a5a35 100%);
+      --btn-hover:     linear-gradient(135deg, #d08862 0%, #ae6840 100%);
+      --btn-shadow:    rgba(200,120,70,0.30);
+      --badge-bg:      rgba(212,149,106,0.14);
+      --badge-color:   #d4956a;
+      --search-bg:     rgba(30,22,15,0.65);
+      --search-border: rgba(180,140,110,0.25);
+      --toggle-track:  rgba(212,149,106,0.20);
+      --toggle-thumb:  #d4956a;
+      --toggle-icon:   "🌙";
+      --scrollbar-thumb: rgba(212,149,106,0.30);
+    }
+    /* ─── RESET & BASE ──────────────────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: var(--bg-primary);
+      color: var(--text-primary);
+      min-height: 100vh;
+      overflow-x: hidden;
+      transition: background-color var(--transition), color var(--transition);
+    }
+    /* ─── SCROLLBAR ─────────────────────────────────────────── */
+    ::-webkit-scrollbar { width: 6px; }
+    ::-webkit-scrollbar-track { background: transparent; }
+    ::-webkit-scrollbar-thumb {
+      background: var(--scrollbar-thumb);
+      border-radius: 99px;
+    }
+    /* ─── BACKGROUND ORBS ───────────────────────────────────── */
+    .bg-canvas {
+      position: fixed;
+      inset: 0;
+      z-index: 0;
+      pointer-events: none;
+      overflow: hidden;
+    }
+    .orb {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(80px);
+      opacity: 0.9;
+      transition: background var(--transition);
+    }
+    .orb-1 {
+      width: 600px; height: 600px;
+      top: -180px; left: -160px;
+      background: var(--bg-orb-1);
+      animation: floatA 14s ease-in-out infinite;
+    }
+    .orb-2 {
+      width: 500px; height: 500px;
+      bottom: -120px; right: -140px;
+      background: var(--bg-orb-2);
+      animation: floatB 18s ease-in-out infinite;
+    }
+    .orb-3 {
+      width: 350px; height: 350px;
+      top: 40%; left: 55%;
+      background: var(--bg-orb-3);
+      animation: floatC 22s ease-in-out infinite;
+    }
+    @keyframes floatA {
+      0%,100% { transform: translate(0,0) scale(1); }
+      50%      { transform: translate(40px,30px) scale(1.06); }
+    }
+    @keyframes floatB {
+      0%,100% { transform: translate(0,0) scale(1); }
+      50%      { transform: translate(-35px,-25px) scale(1.05); }
+    }
+    @keyframes floatC {
+      0%,100% { transform: translate(0,0) scale(1); }
+      33%      { transform: translate(-20px,20px) scale(1.04); }
+      66%      { transform: translate(20px,-15px) scale(0.97); }
+    }
+    /* ─── LAYOUT ────────────────────────────────────────────── */
+    .page-wrapper {
+      position: relative;
+      z-index: 1;
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 0 24px 80px;
+    }
+    /* ─── NAVBAR ────────────────────────────────────────────── */
+    .navbar {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      padding: 14px 28px;
+      margin: 0 -24px;
+      background: var(--nav-glass);
+      border-bottom: 1px solid var(--nav-border);
+      backdrop-filter: blur(22px) saturate(1.4);
+      -webkit-backdrop-filter: blur(22px) saturate(1.4);
+      transition: background var(--transition), border-color var(--transition);
+    }
+    .back-btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 40px; height: 40px;
+      border-radius: 50%;
+      background: var(--accent-light);
+      border: 1px solid var(--glass-border);
+      color: var(--accent);
+      text-decoration: none;
+      font-size: 18px;
+      font-weight: 600;
+      flex-shrink: 0;
+      transition: background var(--transition), transform 0.2s, box-shadow 0.2s;
+    }
+    .back-btn:hover {
+      background: var(--accent-glow);
+      transform: translateX(-3px);
+      box-shadow: 0 0 0 4px var(--accent-glow);
+    }
+    .back-btn svg { width: 18px; height: 18px; }
+    .brand {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      line-height: 1.2;
+    }
+    .brand-name {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: var(--text-primary);
+      letter-spacing: 0.04em;
+      transition: color var(--transition);
+    }
+    .brand-sub {
+      font-size: 0.68rem;
+      font-weight: 400;
+      color: var(--text-muted);
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      transition: color var(--transition);
+    }
+    /* Theme Toggle */
+    .theme-toggle {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 6px 14px;
+      border-radius: 99px;
+      background: var(--toggle-track);
+      transition: background var(--transition), transform 0.2s;
+    }
+    .theme-toggle:hover { transform: scale(1.05); }
+    .theme-toggle-icon {
+      font-size: 15px;
+      line-height: 1;
+      transition: transform 0.4s;
+    }
+    .theme-toggle-label {
+      font-size: 0.72rem;
+      font-weight: 500;
+      color: var(--text-secondary);
+      white-space: nowrap;
+      transition: color var(--transition);
+    }
+    .theme-toggle:hover .theme-toggle-icon { transform: rotate(20deg); }
+    /* ─── HERO STRIP ────────────────────────────────────────── */
+    .hero {
+      padding: 56px 0 32px;
+      text-align: center;
+    }
+    .hero-eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.72rem;
+      font-weight: 500;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 16px;
+      padding: 6px 18px;
+      border-radius: 99px;
+      border: 1px solid var(--accent-glow);
+      background: var(--accent-light);
+      transition: color var(--transition), border-color var(--transition);
+    }
+    .hero-eyebrow svg { width: 13px; height: 13px; }
+    .hero-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2rem, 5vw, 3.6rem);
+      font-weight: 700;
+      color: var(--text-primary);
+      line-height: 1.15;
+      margin-bottom: 12px;
+      transition: color var(--transition);
+    }
+    .hero-title span { color: var(--accent); }
+    .hero-subtitle {
+      font-size: 0.95rem;
+      color: var(--text-secondary);
+      font-weight: 300;
+      max-width: 500px;
+      margin: 0 auto 36px;
+      line-height: 1.6;
+      transition: color var(--transition);
+    }
+    /* ─── SEARCH BAR ────────────────────────────────────────── */
+    .search-wrap {
+      max-width: 600px;
+      margin: 0 auto 48px;
+      position: relative;
+    }
+    .search-icon {
+      position: absolute;
+      left: 20px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--text-muted);
+      display: flex;
+      align-items: center;
+      pointer-events: none;
+      transition: color var(--transition);
+    }
+    .search-icon svg { width: 18px; height: 18px; }
+    #searchInput {
+      width: 100%;
+      height: 54px;
+      padding: 0 54px 0 52px;
+      border-radius: 99px;
+      border: 1.5px solid var(--search-border);
+      background: var(--search-bg);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      font-family: 'Inter', sans-serif;
+      font-size: 0.92rem;
+      font-weight: 400;
+      color: var(--text-primary);
+      outline: none;
+      transition: all var(--transition);
+      box-shadow: 0 4px 24px var(--glass-shadow);
+    }
+    #searchInput::placeholder { color: var(--text-muted); }
+    #searchInput:focus {
+      border-color: var(--accent);
+      box-shadow: 0 0 0 4px var(--accent-glow), 0 6px 28px var(--glass-shadow);
+    }
+    .search-clear {
+      position: absolute;
+      right: 16px;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 28px; height: 28px;
+      border-radius: 50%;
+      border: none;
+      background: var(--accent-light);
+      color: var(--accent);
+      cursor: pointer;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      font-size: 13px;
+      transition: all 0.2s;
+    }
+    .search-clear.visible { display: flex; }
+    .search-clear:hover { background: var(--accent-glow); }
+    /* ─── RESULTS COUNT ─────────────────────────────────────── */
+    .results-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 24px;
+      padding: 0 4px;
+    }
+    .results-count {
+      font-size: 0.82rem;
+      color: var(--text-muted);
+      font-weight: 400;
+      transition: color var(--transition);
+    }
+    .results-count strong { color: var(--accent); font-weight: 600; }
+    /* ─── PATTERNS GRID ─────────────────────────────────────── */
+    /* 
+      =========================================================
+      DYNAMIC CONTAINER — Supabase verileri buraya yüklenecek
+      JavaScript ile renderPatterns(data) fonksiyonunu çağır
+      =========================================================
+    */
+    #patternsContainer {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 24px;
+      animation: fadeInUp 0.5s ease-out both;
+    }
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    /* ─── PATTERN CARD ──────────────────────────────────────── */
+    .pattern-card {
+      position: relative;
+      background: var(--glass-bg);
+      border: 1px solid var(--glass-border);
+      border-radius: 28px;
+      padding: 28px 24px 24px;
+      backdrop-filter: blur(18px) saturate(1.3);
+      -webkit-backdrop-filter: blur(18px) saturate(1.3);
+      box-shadow:
+        0 2px 12px var(--glass-shadow),
+        0 8px 32px rgba(0,0,0,0.05),
+        inset 0 1px 0 rgba(255,255,255,0.5);
+      transition:
+        transform 0.35s cubic-bezier(.2,.8,.4,1),
+        box-shadow 0.35s cubic-bezier(.2,.8,.4,1),
+        border-color 0.35s;
+      cursor: default;
+      animation: cardIn 0.5s ease-out both;
+      overflow: hidden;
+    }
+    [data-theme="dark"] .pattern-card {
+      box-shadow:
+        0 2px 12px rgba(0,0,0,0.35),
+        0 8px 40px rgba(0,0,0,0.30),
+        inset 0 1px 0 rgba(255,255,255,0.04);
+    }
+    @keyframes cardIn {
+      from { opacity: 0; transform: translateY(16px) scale(0.97); }
+      to   { opacity: 1; transform: translateY(0) scale(1); }
+    }
+    /* stagger children */
+    #patternsContainer .pattern-card:nth-child(1) { animation-delay: 0.05s; }
+    #patternsContainer .pattern-card:nth-child(2) { animation-delay: 0.10s; }
+    #patternsContainer .pattern-card:nth-child(3) { animation-delay: 0.15s; }
+    #patternsContainer .pattern-card:nth-child(4) { animation-delay: 0.20s; }
+    #patternsContainer .pattern-card:nth-child(5) { animation-delay: 0.25s; }
+    #patternsContainer .pattern-card:nth-child(6) { animation-delay: 0.30s; }
+    #patternsContainer .pattern-card:nth-child(7) { animation-delay: 0.35s; }
+    #patternsContainer .pattern-card:nth-child(8) { animation-delay: 0.40s; }
+    .pattern-card::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      border-radius: inherit;
+      background: linear-gradient(135deg, rgba(255,255,255,0.08) 0%, transparent 60%);
+      pointer-events: none;
+    }
+    .pattern-card:hover {
+      transform: translateY(-8px) scale(1.015);
+      box-shadow:
+        0 16px 48px rgba(130,80,50,0.18),
+        0 4px 16px rgba(130,80,50,0.10),
+        inset 0 1px 0 rgba(255,255,255,0.6);
+      border-color: rgba(176,123,94,0.35);
+    }
+    [data-theme="dark"] .pattern-card:hover {
+      box-shadow:
+        0 20px 60px rgba(0,0,0,0.50),
+        0 4px 16px rgba(200,130,80,0.20),
+        inset 0 1px 0 rgba(255,255,255,0.05);
+    }
+    /* Shine sweep on hover */
+    .pattern-card::after {
+      content: '';
+      position: absolute;
+      top: 0; left: -100%;
+      width: 60%; height: 100%;
+      background: linear-gradient(
+        105deg,
+        transparent 30%,
+        rgba(255,255,255,0.12) 50%,
+        transparent 70%
+      );
+      transform: skewX(-15deg);
+      transition: left 0.55s ease;
+      pointer-events: none;
+    }
+    .pattern-card:hover::after { left: 150%; }
+    /* Card top strip */
+    .card-icon-area {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 68px; height: 68px;
+      border-radius: 50%;
+      background: var(--accent-light);
+      border: 1px solid var(--accent-glow);
+      margin: 0 auto 20px;
+      transition: background var(--transition), transform 0.3s, box-shadow 0.3s;
+    }
+    .pattern-card:hover .card-icon-area {
+      transform: scale(1.08) rotate(-4deg);
+      box-shadow: 0 0 0 6px var(--accent-glow);
+    }
+    .card-icon-area svg {
+      width: 30px; height: 30px;
+      color: var(--accent);
+      transition: color var(--transition);
+    }
+    .card-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      font-size: 0.65rem;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--badge-color);
+      background: var(--badge-bg);
+      border-radius: 99px;
+      padding: 4px 12px;
+      margin-bottom: 10px;
+      transition: color var(--transition), background var(--transition);
+    }
+    .card-badge-dot {
+      width: 5px; height: 5px;
+      border-radius: 50%;
+      background: currentColor;
+      animation: pulse-dot 2s ease-in-out infinite;
+    }
+    @keyframes pulse-dot {
+      0%,100% { opacity: 1; transform: scale(1); }
+      50%      { opacity: 0.4; transform: scale(0.7); }
+    }
+    .card-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.18rem;
+      font-weight: 600;
+      color: var(--text-primary);
+      line-height: 1.35;
+      margin-bottom: 8px;
+      text-align: center;
+      transition: color var(--transition);
+    }
+    .card-meta {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      margin-bottom: 22px;
+    }
+    .card-meta-item {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      font-size: 0.76rem;
+      color: var(--text-muted);
+      font-weight: 400;
+      transition: color var(--transition);
+    }
+    .card-meta-item svg { width: 13px; height: 13px; }
+    .card-divider {
+      width: 36px; height: 1.5px;
+      background: linear-gradient(90deg, transparent, var(--accent), transparent);
+      margin: 0 auto 20px;
+      border-radius: 99px;
+      opacity: 0.5;
+    }
+    .card-download-btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 9px;
+      width: 100%;
+      height: 46px;
+      border-radius: 99px;
+      border: none;
+      background: var(--btn-bg);
+      color: #fff;
+      font-family: 'Inter', sans-serif;
+      font-size: 0.82rem;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      cursor: pointer;
+      text-decoration: none;
+      box-shadow: 0 4px 18px var(--btn-shadow);
+      transition: background 0.3s, transform 0.2s, box-shadow 0.3s;
+      position: relative;
+      overflow: hidden;
+    }
+    .card-download-btn::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      border-radius: inherit;
+      background: rgba(255,255,255,0);
+      transition: background 0.2s;
+    }
+    .card-download-btn:hover {
+      background: var(--btn-hover);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 28px var(--btn-shadow);
+    }
+    .card-download-btn:hover::before { background: rgba(255,255,255,0.06); }
+    .card-download-btn:active { transform: translateY(0); }
+    .card-download-btn svg { width: 15px; height: 15px; flex-shrink: 0; }
+    /* ─── EMPTY STATE ───────────────────────────────────────── */
+    .empty-state {
+      grid-column: 1/-1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 80px 24px;
+      text-align: center;
+      opacity: 0;
+      animation: fadeIn 0.4s ease-out 0.1s both;
+    }
+    @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+    .empty-icon {
+      width: 72px; height: 72px;
+      border-radius: 50%;
+      background: var(--accent-light);
+      border: 1px solid var(--accent-glow);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 20px;
+      color: var(--accent);
+    }
+    .empty-icon svg { width: 32px; height: 32px; }
+    .empty-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.5rem;
+      font-weight: 600;
+      color: var(--text-primary);
+      margin-bottom: 8px;
+    }
+    .empty-text {
+      font-size: 0.88rem;
+      color: var(--text-muted);
+      max-width: 340px;
+      line-height: 1.6;
+    }
+    /* ─── LOADING SKELETON ──────────────────────────────────── */
+    .skeleton-card {
+      background: var(--glass-bg);
+      border: 1px solid var(--glass-border);
+      border-radius: 28px;
+      padding: 28px 24px 24px;
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
+    }
+    .skeleton-line {
+      border-radius: 99px;
+      background: linear-gradient(
+        90deg,
+        var(--accent-light) 25%,
+        rgba(176,123,94,0.18) 50%,
+        var(--accent-light) 75%
+      );
+      background-size: 200% 100%;
+      animation: shimmer 1.6s infinite;
+    }
+    @keyframes shimmer {
+      0%   { background-position: 200% 0; }
+      100% { background-position: -200% 0; }
+    }
+    .skeleton-circle {
+      width: 68px; height: 68px;
+      border-radius: 50%;
+      margin: 0 auto 20px;
+    }
+    .skeleton-line.h12 { height: 12px; margin-bottom: 10px; width: 40%; margin-left: auto; margin-right: auto; }
+    .skeleton-line.h16 { height: 16px; margin-bottom: 8px; width: 80%; margin-left: auto; margin-right: auto; }
+    .skeleton-line.h14 { height: 14px; margin-bottom: 6px; width: 60%; margin-left: auto; margin-right: auto; }
+    .skeleton-line.btn  { height: 46px; width: 100%; margin-top: 22px; }
+    /* ─── FOOTER ────────────────────────────────────────────── */
+    .footer {
+      margin-top: 80px;
+      padding: 32px 0 0;
+      border-top: 1px solid var(--glass-border);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 12px;
+      transition: border-color var(--transition);
+    }
+    .footer-brand {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1rem;
+      font-weight: 600;
+      color: var(--text-secondary);
+      transition: color var(--transition);
+    }
+    .footer-copy {
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      transition: color var(--transition);
+    }
+    /* ─── RESPONSIVE ────────────────────────────────────────── */
+    @media (max-width: 768px) {
+      .page-wrapper { padding: 0 16px 60px; }
+      .navbar { padding: 12px 16px; margin: 0 -16px; }
+      .brand-name { font-size: 1.05rem; }
+      #patternsContainer { grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 16px; }
+      .hero { padding: 36px 0 20px; }
+    }
+    @media (max-width: 480px) {
+      #patternsContainer { grid-template-columns: 1fr; }
+      .theme-toggle-label { display: none; }
+    }
+    /* ─── THEME TRANSITION OVERLAY ──────────────────────────── */
+    .theme-flash {
+      position: fixed;
+      inset: 0;
+      z-index: 9999;
+      pointer-events: none;
+      background: transparent;
+      transition: background 0.2s;
+    }
+    .theme-flash.active { background: rgba(0,0,0,0.06); }
+  </style>
 </head>
-<body class="text-slate-900 dark:text-slate-100 antialiased trans-base">
-
-    <div class="liquid-bg"></div>
-
-    <nav class="fixed w-full z-50 px-4 md:px-6 py-6">
-        <div class="max-w-7xl mx-auto flex justify-between items-center glass rounded-full px-6 md:px-8 py-4 shadow-2xl">
-            <div class="flex items-center gap-4">
-                <a href="index.html" class="flex items-center gap-2 px-4 py-2 rounded-full hover:bg-white/30 dark:hover:bg-black/20 trans-base text-[11px] font-black uppercase tracking-widest">
-                    <i class="fas fa-chevron-left"></i> Ana Sayfa
-                </a>
-                <div class="h-6 w-[1px] bg-slate-400/30"></div>
-                <div class="text-xl font-black tracking-tighter text-primary">EN-KA KALIP</div>
-            </div>
-            
-            <button onclick="toggleDarkMode()" class="w-10 h-10 flex items-center justify-center rounded-full glass hover:bg-primary hover:text-white trans-base shadow-lg">
-                <i class="fas fa-moon dark:hidden"></i><i class="fas fa-sun hidden dark:block"></i>
-            </button>
-        </div>
-    </nav>
-
-    <main class="pt-44 pb-32 px-6 max-w-7xl mx-auto relative z-10">
-        <div class="text-center mb-20 reveal">
-            <h1 class="font-poppins text-5xl md:text-7xl font-black tracking-tighter mb-8 bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
-                Kalıp Koleksiyonu
-            </h1>
-            
-            <div class="max-w-2xl mx-auto relative group">
-                <div class="absolute inset-0 bg-primary/20 blur-3xl rounded-full opacity-0 group-focus-within:opacity-100 trans-base"></div>
-                <div class="relative flex items-center">
-                    <i class="fas fa-search absolute left-8 text-slate-400"></i>
-                    <input type="text" placeholder="Kalıp arayın..." class="w-full pl-16 pr-8 py-6 rounded-full search-glass focus:outline-none focus:ring-4 ring-primary/20 text-lg font-medium trans-base">
-                </div>
-            </div>
-        </div>
-
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            
-            <div class="glass p-8 rounded-[45px] shadow-xl hover:translate-y-[-10px] trans-base reveal" style="animation-delay: 0.2s">
-                <div class="w-full h-64 bg-white/30 dark:bg-black/20 rounded-[35px] mb-8 flex items-center justify-center overflow-hidden">
-                    <i class="fas fa-ruler-combined text-7xl text-primary/20"></i>
-                </div>
-                
-                <div class="px-2">
-                    <div class="inline-block px-4 py-1.5 rounded-full bg-primary/10 text-primary text-[10px] font-black uppercase tracking-widest mb-4">
-                        Çocuk Giyim
-                    </div>
-                    <h3 class="text-2xl font-black leading-tight mb-4 font-poppins">128-152 Beden Kız Çocuk Elbise Kalıbı</h3>
-                    <p class="text-sm text-slate-600 dark:text-slate-400 font-medium leading-relaxed mb-8">
-                        Modern kesim detayları ve çocuk anatomisine tam uyumlu yapısıyla profesyonel sonuçlar veren dijital kalıp seti. Kolay dikilebilir yapısı sayesinde hem profesyoneller hem de yeni başlayanlar için idealdir.
-                    </p>
-                    
-                    <a href="http://bit.ly/4c9yMCC" target="_blank" class="block w-full text-center bg-slate-900 dark:bg-white dark:text-slate-900 text-white py-5 rounded-[25px] font-black tracking-widest hover:bg-primary hover:text-white shadow-xl hover:shadow-primary/40 trans-base uppercase text-xs">
-                        Kalıba Git
-                    </a>
-                </div>
-            </div>
-
-            </div>
-    </main>
-
-    <footer class="py-12 px-6 text-center opacity-50 relative z-10">
-        <p class="text-[10px] font-extrabold uppercase tracking-widest">© 2026 EN-KA KUMAŞÇILIK A.Ş. | Kalıp Koleksiyonu</p>
-    </footer>
-
-    <script>
-        // Tema Motoru (Ana sayfa ile aynı)
-        let manualTheme = false;
-        function engine() {
-            const h = new Date().getHours();
-            if (!manualTheme) {
-                if (h >= 17 || h < 6) document.documentElement.classList.add('dark');
-                else document.documentElement.classList.remove('dark');
-            }
-        }
-        setInterval(engine, 1000); engine();
-
-        function toggleDarkMode() { 
-            manualTheme = true; 
-            document.documentElement.classList.toggle('dark'); 
-        }
-    </script>
+<body>
+<!-- Theme flash overlay -->
+<div class="theme-flash" id="themeFlash"></div>
+<!-- Animated background orbs -->
+<div class="bg-canvas" aria-hidden="true">
+  <div class="orb orb-1"></div>
+  <div class="orb orb-2"></div>
+  <div class="orb orb-3"></div>
+</div>
+<div class="page-wrapper">
+  <!-- ── NAVBAR ─────────────────────────────────────────── -->
+  <nav class="navbar" role="navigation" aria-label="Ana navigasyon">
+    <a href="index.html" class="back-btn" id="backBtn" title="Ana Sayfaya Dön" aria-label="Ana Sayfaya Dön">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+        <polyline points="15 18 9 12 15 6"/>
+      </svg>
+    </a>
+    <div class="brand">
+      <span class="brand-name">EN-KA KUMAŞ</span>
+      <span class="brand-sub">Kalıp Koleksiyonu</span>
+    </div>
+    <button class="theme-toggle" id="themeToggle" aria-label="Tema değiştir" title="Tema değiştir">
+      <span class="theme-toggle-icon" id="themeIcon">☀️</span>
+      <span class="theme-toggle-label" id="themeLabel">Aydınlık</span>
+    </button>
+  </nav>
+  <!-- ── HERO ───────────────────────────────────────────── -->
+  <header class="hero">
+    <div class="hero-eyebrow" aria-hidden="true">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M12 2l2 7h7l-5.5 4 2 7L12 16l-5.5 4 2-7L3 9h7z"/>
+      </svg>
+      Profesyonel Dikiş Kalıpları
+    </div>
+    <h1 class="hero-title">
+      Koleksiyonumuzu<br/><span>Keşfedin</span>
+    </h1>
+    <p class="hero-subtitle">
+      Her mevsim için özenle hazırlanmış PDF dikiş kalıplarımızı indirin, kendi eserinizi yaratın.
+    </p>
+  </header>
+  <!-- ── SEARCH BAR ─────────────────────────────────────── -->
+  <div class="search-wrap" role="search">
+    <div class="search-icon" aria-hidden="true">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>
+      </svg>
+    </div>
+    <input
+      type="search"
+      id="searchInput"
+      placeholder="Kalıp ara… (elbise, pantolon, ceket…)"
+      autocomplete="off"
+      aria-label="Kalıp ara"
+    />
+    <button class="search-clear" id="searchClear" aria-label="Aramayı temizle" title="Temizle">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round">
+        <line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>
+      </svg>
+    </button>
+  </div>
+  <!-- ── RESULTS BAR ────────────────────────────────────── -->
+  <div class="results-bar" id="resultsBar">
+    <span class="results-count" id="resultsCount">
+      <strong id="countNum">0</strong> kalıp listeleniyor
+    </span>
+  </div>
+  <!-- ══════════════════════════════════════════════════════
+       DYNAMIC PATTERNS CONTAINER
+       ─────────────────────────────────────────────────────
+       Supabase entegrasyonu için:
+       
+         const { data, error } = await supabase
+           .from('patterns')
+           .select('*')
+           .order('created_at', { ascending: false });
+         
+         if (!error) renderPatterns(data);
+       
+       Her kayıt şu alanları içermeli:
+         { id, title, file_url, category, size_range, created_at }
+       ══════════════════════════════════════════════════════ -->
+  <main id="patternsContainer" aria-label="Kalıp listesi">
+    <!-- Kartlar buraya JS ile enjekte edilecek -->
+  </main>
+  <!-- ── FOOTER ─────────────────────────────────────────── -->
+  <footer class="footer">
+    <span class="footer-brand">EN-KA KUMAŞ</span>
+    <span class="footer-copy">© 2025 EN-KA KUMAŞ · Tüm hakları saklıdır.</span>
+  </footer>
+</div><!-- /page-wrapper -->
+<script>
+// ═══════════════════════════════════════════════════════════
+// EN-KA KUMAŞ · Kalıp Koleksiyonu
+// ═══════════════════════════════════════════════════════════
+// ── 2. SVG İKONLARI ────────────────────────────────────────
+const ICONS = {
+  pdf: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+    <polyline points="14 2 14 8 20 8"/>
+    <line x1="16" y1="13" x2="8" y2="13"/>
+    <line x1="16" y1="17" x2="8" y2="17"/>
+    <polyline points="10 9 9 9 8 9"/>
+  </svg>`,
+  scissors: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+    <circle cx="6" cy="6" r="3"/><circle cx="6" cy="18" r="3"/>
+    <line x1="20" y1="4" x2="8.12" y2="15.88"/>
+    <line x1="14.47" y1="14.48" x2="20" y2="20"/>
+    <line x1="8.12" y1="8.12" x2="12" y2="12"/>
+  </svg>`,
+  needle: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M3 17L17 3l4 4L7 21 3 17z"/><path d="M3 17l4 4"/>
+    <circle cx="17" cy="4" r="1.5"/>
+  </svg>`,
+  shirt: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M20.38 3.46L16 2a4 4 0 01-8 0L3.62 3.46a2 2 0 00-1.34 2.23l.58 3.57a1 1 0 00.99.84H6v10c0 1.1.9 2 2 2h8a2 2 0 002-2V10h2.15a1 1 0 00.99-.84l.58-3.57a2 2 0 00-1.34-2.23z"/>
+  </svg>`,
+  ruler: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M1 10h22l-6 13H7L1 10z"/>
+    <line x1="7" y1="10" x2="7" y2="14"/>
+    <line x1="11" y1="10" x2="11" y2="12"/>
+    <line x1="15" y1="10" x2="15" y2="14"/>
+    <line x1="19" y1="10" x2="19" y2="12"/>
+  </svg>`,
+  download: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/>
+    <polyline points="7 10 12 15 17 10"/>
+    <line x1="12" y1="15" x2="12" y2="3"/>
+  </svg>`
+};
+// Kategori bazlı ikon seçici
+function getIconForCategory(category) {
+  const c = (category || '').toLowerCase();
+  if (c.includes('etek') || c.includes('pantolon')) return ICONS.scissors;
+  if (c.includes('gömlek') || c.includes('bluz') || c.includes('tunik')) return ICONS.shirt;
+  if (c.includes('ceket')) return ICONS.ruler;
+  if (c.includes('elbise')) return ICONS.needle;
+  return ICONS.pdf;
+}
+// ── 3. KART OLUŞTURMA ──────────────────────────────────────
+function createPatternCard(pattern) {
+  const card = document.createElement('article');
+  card.className = 'pattern-card';
+  card.dataset.title = (pattern.title || '').toLowerCase();
+  card.dataset.category = (pattern.category || '').toLowerCase();
+  card.innerHTML = `
+    <div class="card-icon-area" aria-hidden="true">
+      ${getIconForCategory(pattern.category)}
+    </div>
+    <div class="card-badge">
+      <span class="card-badge-dot"></span>
+      PDF Kalıp
+    </div>
+    <h2 class="card-title">${escapeHtml(pattern.title || 'İsimsiz Kalıp')}</h2>
+    <div class="card-meta">
+      <span class="card-meta-item">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M4 15s1-1 4-1 5 2 8 2 4-1 4-1V3s-1 1-4 1-5-2-8-2-4 1-4 1z"/><line x1="4" y1="22" x2="4" y2="15"/>
+        </svg>
+        ${escapeHtml(pattern.category || 'Genel')}
+      </span>
+      <span class="card-meta-item">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/>
+        </svg>
+        Beden ${escapeHtml(pattern.size_range || '–')}
+      </span>
+    </div>
+    <div class="card-divider" aria-hidden="true"></div>
+    <a
+      href="${escapeHtml(pattern.file_url || '#')}"
+      class="card-download-btn"
+      ${pattern.file_url && pattern.file_url !== '#' ? 'download' : ''}
+      aria-label="${escapeHtml(pattern.title)} kalıbını indir"
+    >
+      ${ICONS.download}
+      Kalıbı İndir
+    </a>
+  `;
+  return card;
+}
+function escapeHtml(str) {
+  return String(str)
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;');
+}
+// ── 4. RENDER FONKSİYONU (Supabase uyumlu) ─────────────────
+/**
+ * Kalıp kartlarını container'a render eder.
+ * Supabase entegrasyonu için bu fonksiyonu çağırın:
+ *
+ *   const { data } = await supabase.from('patterns').select('*');
+ *   renderPatterns(data);
+ *
+ * @param {Array} patterns - Kalıp nesneleri dizisi
+ */
+function renderPatterns(patterns) {
+  const container = document.getElementById('patternsContainer');
+  container.innerHTML = '';
+  if (!patterns || patterns.length === 0) {
+    container.innerHTML = `
+      <div class="empty-state" role="status">
+        <div class="empty-icon">${ICONS.scissors}</div>
+        <p class="empty-title">Kalıp Bulunamadı</p>
+        <p class="empty-text">Arama kriterlerinize uygun kalıp bulunmuyor.<br>Farklı bir terim deneyin.</p>
+      </div>`;
+    updateCount(0);
+    return;
+  }
+  const fragment = document.createDocumentFragment();
+  patterns.forEach(p => fragment.appendChild(createPatternCard(p)));
+  container.appendChild(fragment);
+  updateCount(patterns.length);
+}
+// ── 5. ARAMA MANTIĞI ───────────────────────────────────────
+// Supabase'den yüklenen kalıpların tutulduğu dizi.
+// loadFromSupabase() çalıştıktan sonra bu dizi dolar.
+let allPatterns = [];
+function filterPatterns(query) {
+  if (!query || query.trim() === '') return allPatterns;
+  const q = query.toLowerCase().trim();
+  return allPatterns.filter(function(p) {
+    return (
+      (p.title    || '').toLowerCase().includes(q) ||
+      (p.category || '').toLowerCase().includes(q)
+    );
+  });
+}
+function updateCount(n) {
+  document.getElementById('countNum').textContent = n;
+}
+// DOM referansları — sayfa yüklendikten sonra erişilecek
+const searchInput = document.getElementById('searchInput');
+const searchClear = document.getElementById('searchClear');
+// Arama gecikmesi (ms) — çok hızlı istekleri engeller
+let searchTimeout = null;
+searchInput.addEventListener('input', function() {
+  const val = searchInput.value;
+  searchClear.classList.toggle('visible', val.length > 0);
+  clearTimeout(searchTimeout);
+  searchTimeout = setTimeout(function() {
+    renderPatterns(filterPatterns(val));
+  }, 220);
+});
+searchClear.addEventListener('click', function() {
+  searchInput.value = '';
+  searchClear.classList.remove('visible');
+  renderPatterns(allPatterns);
+  searchInput.focus();
+});
+// ── 6. TEMA YÖNETİMİ ───────────────────────────────────────
+const DARK_START_HOUR = 17; // 17:00'den sonra dark mode
+function isDarkHour() {
+  return new Date().getHours() >= DARK_START_HOUR;
+}
+function applyTheme(dark, animate) {
+  const htmlEl  = document.documentElement;
+  const iconEl  = document.getElementById('themeIcon');
+  const labelEl = document.getElementById('themeLabel');
+  const flashEl = document.getElementById('themeFlash');
+  if (animate) {
+    flashEl.classList.add('active');
+    setTimeout(function() { flashEl.classList.remove('active'); }, 250);
+  }
+  if (dark) {
+    htmlEl.setAttribute('data-theme', 'dark');
+    iconEl.textContent  = '🌙';
+    labelEl.textContent = 'Karanlık';
+  } else {
+    htmlEl.setAttribute('data-theme', 'light');
+    iconEl.textContent  = '☀️';
+    labelEl.textContent = 'Aydınlık';
+  }
+  // Kullanıcının manuel tercihini ve zamanını kaydet
+  localStorage.setItem('enka-theme-override',    dark ? 'dark' : 'light');
+  localStorage.setItem('enka-theme-override-ts', Date.now().toString());
+}
+function initTheme() {
+  var savedTheme        = localStorage.getItem('enka-theme-override');
+  var savedThemeTs      = parseInt(localStorage.getItem('enka-theme-override-ts') || '0', 10);
+  var nowMs             = Date.now();
+  // 8 saat içinde manuel seçim yapıldıysa ona uy, yoksa saate göre otomatik karar ver
+  var OVERRIDE_TTL_MS   = 8 * 60 * 60 * 1000;
+  var isOverrideActive  = savedTheme && (nowMs - savedThemeTs) < OVERRIDE_TTL_MS;
+  if (isOverrideActive) {
+    applyTheme(savedTheme === 'dark', false);
+  } else {
+    applyTheme(isDarkHour(), false);
+  }
+}
+document.getElementById('themeToggle').addEventListener('click', function() {
+  var currentlyDark = document.documentElement.getAttribute('data-theme') === 'dark';
+  applyTheme(!currentlyDark, true);
+});
+// Saat başı tema kontrolü
+function scheduleHourlyCheck() {
+  var nowDate           = new Date();
+  var msUntilNextHour   = (60 - nowDate.getMinutes()) * 60 * 1000
+                          - nowDate.getSeconds() * 1000;
+  setTimeout(function() {
+    var savedThemeTs    = parseInt(localStorage.getItem('enka-theme-override-ts') || '0', 10);
+    var OVERRIDE_TTL_MS = 8 * 60 * 60 * 1000;
+    var isOverrideActive = (Date.now() - savedThemeTs) < OVERRIDE_TTL_MS;
+    if (!isOverrideActive) {
+      applyTheme(isDarkHour(), true);
+    }
+    scheduleHourlyCheck(); // her saat başı tekrar zamanla
+  }, msUntilNextHour);
+}
+// ── 7. YÜKLEME İSKELETİ ────────────────────────────────────
+function showSkeletons(count) {
+  var container    = document.getElementById('patternsContainer');
+  var skeletonHTML = Array.from({ length: count }, function() {
+    return '<div class="skeleton-card" aria-hidden="true">'
+      + '<div class="skeleton-line skeleton-circle"></div>'
+      + '<div class="skeleton-line h12"></div>'
+      + '<div class="skeleton-line h16"></div>'
+      + '<div class="skeleton-line h14"></div>'
+      + '<div class="skeleton-line btn"></div>'
+      + '</div>';
+  }).join('');
+  container.innerHTML = skeletonHTML;
+}
+// ── 8. SUPABASE BAĞLANTISI ──────────────────────────────────
+var SUPABASE_URL      = 'https://cmpmfxzekywfupsiibln.supabase.co';     
+var SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImNtcG1meHpla3l3ZnVwc2lpYmxuIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODI1NDgzOTQsImV4cCI6MjA5ODEyNDM5NH0.wY8EC_chAFOb9RiGLg569mTaXyjsU-NnDu7lqsK0rrU';                
+// Supabase'den kalıpları çek ve kartlara yansıt
+async function loadFromSupabase() {
+  showSkeletons(8); // Çekerken iskelet göster
+  // Supabase JS v2 ESM modülü (CDN)
+  var supabaseModule = await import(
+    'https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/+esm'
+  );
+  var supabaseClient = supabaseModule.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+  var result = await supabaseClient
+    .from('patterns')
+    .select('id, title, category, size_range, file_url, created_at')
+    .order('created_at', { ascending: false });
+  var patterns   = result.data;   // Gelen kayıtlar
+  var fetchError = result.error;  // Hata varsa dolu olur
+  if (fetchError) {
+    console.error('[EN-KA] Supabase hatası:', fetchError.message);
+    renderPatterns([]); // Hata durumunda boş durum göster
+    return;
+  }
+  allPatterns = patterns || []; // Global diziye ata (arama için kullanılır)
+  renderPatterns(allPatterns);
+}
+// ── 9. BAŞLATMA ─────────────────────────────────────────────
+document.addEventListener('DOMContentLoaded', function() {
+  initTheme();          // Temayı belirle (saat / localStorage)
+  scheduleHourlyCheck(); // Saat başı otomatik tema kontrolü
+  loadFromSupabase();   // Supabase'den veriyi çek → kartları bas
+});
+</script>
 </body>
 </html>
