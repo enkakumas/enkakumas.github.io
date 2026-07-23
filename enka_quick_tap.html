@@ -3,9 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>EN-KA Quick Tap</title>
+    <title>EN-KA Quick Tap & Dijital Ekosistem</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
     <style>
         :root {
             --glass-bg: rgba(255, 255, 255, 0.15);
@@ -22,6 +22,23 @@
             --btn-bg: rgba(255, 255, 255, 0.7);
             --whatsapp: #25d366;
             --instagram: #e4405f;
+
+            /* Özel Kart Renk Tanımları */
+            --red-glass-bg: linear-gradient(135deg, rgba(239, 68, 68, 0.18), rgba(220, 38, 38, 0.06));
+            --red-glass-border: rgba(239, 68, 68, 0.35);
+            --red-glow: rgba(239, 68, 68, 0.25);
+
+            --purple-glass-bg: linear-gradient(135deg, rgba(147, 51, 234, 0.18), rgba(109, 40, 217, 0.06));
+            --purple-glass-border: rgba(168, 85, 247, 0.35);
+            --purple-glow: rgba(168, 85, 247, 0.25);
+
+            --cream-glass-bg: linear-gradient(135deg, rgba(254, 243, 199, 0.75), rgba(251, 207, 232, 0.25));
+            --cream-glass-border: rgba(217, 119, 6, 0.3);
+            --cream-glow: rgba(245, 158, 11, 0.2);
+
+            --enkai-glass-bg: linear-gradient(135deg, #fbbf24 0%, #d97706 20%, #18181b 70%, #09090b 100%);
+            --enkai-glass-border: rgba(251, 191, 36, 0.6);
+            --enkai-glow: rgba(251, 191, 36, 0.4);
         }
 
         [data-theme="dark"] {
@@ -37,6 +54,18 @@
             --bg-gradient-3: #0f0f2a;
             --card-bg: rgba(255, 255, 255, 0.05);
             --btn-bg: rgba(255, 255, 255, 0.08);
+
+            --red-glass-bg: linear-gradient(135deg, rgba(220, 38, 38, 0.28), rgba(127, 29, 29, 0.15));
+            --red-glass-border: rgba(248, 113, 113, 0.3);
+
+            --purple-glass-bg: linear-gradient(135deg, rgba(126, 34, 206, 0.3), rgba(58, 12, 107, 0.15));
+            --purple-glass-border: rgba(192, 132, 252, 0.3);
+
+            --cream-glass-bg: linear-gradient(135deg, rgba(120, 53, 15, 0.35), rgba(69, 26, 3, 0.2));
+            --cream-glass-border: rgba(245, 158, 11, 0.35);
+
+            --enkai-glass-bg: linear-gradient(135deg, #f59e0b 0%, #b45309 18%, #111827 65%, #030712 100%);
+            --enkai-glass-border: rgba(251, 191, 36, 0.7);
         }
 
         * {
@@ -112,6 +141,141 @@
             background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
         }
 
+        /* ================= TOP ANNOUNCEMENT WORK TAPE (SİYAH-SARI İŞ ŞERİDİ MARQUEE) ================= */
+        .work-tape-banner {
+            width: 100%;
+            background: repeating-linear-gradient(
+                -45deg,
+                #111827,
+                #111827 20px,
+                #fbbf24 20px,
+                #fbbf24 40px
+            );
+            color: #000000;
+            padding: 3px 0;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+            position: relative;
+            z-index: 1005;
+            overflow: hidden;
+            border-bottom: 2px solid #f59e0b;
+        }
+
+        .work-tape-inner {
+            background: #0f172a;
+            color: #fbbf24;
+            padding: 8px 0;
+            display: flex;
+            align-items: center;
+            overflow: hidden;
+            border-top: 1px solid rgba(251, 191, 36, 0.4);
+            border-bottom: 1px solid rgba(251, 191, 36, 0.4);
+            font-weight: 800;
+            font-size: 0.85rem;
+            letter-spacing: 0.8px;
+            text-transform: uppercase;
+        }
+
+        .marquee-track {
+            display: flex;
+            white-space: nowrap;
+            will-change: transform;
+            animation: marqueeScroll 22s linear infinite;
+        }
+
+        .marquee-track:hover {
+            animation-play-state: paused;
+        }
+
+        .marquee-content {
+            display: flex;
+            align-items: center;
+            gap: 24px;
+            padding-right: 24px;
+        }
+
+        .marquee-item {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            text-decoration: none;
+            color: #fef08a;
+            transition: color 0.3s;
+        }
+
+        .marquee-item:hover {
+            color: #ffffff;
+            text-shadow: 0 0 8px rgba(251, 191, 36, 0.8);
+        }
+
+        .badge-ai-flash {
+            background: #fbbf24;
+            color: #000;
+            padding: 3px 10px;
+            border-radius: 6px;
+            font-size: 0.75rem;
+            font-weight: 900;
+            letter-spacing: 1px;
+            box-shadow: 0 0 10px rgba(251, 191, 36, 0.6);
+            animation: flashPulse 1.5s infinite alternate;
+        }
+
+        @keyframes marqueeScroll {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+
+        @keyframes flashPulse {
+            0% { transform: scale(1); box-shadow: 0 0 6px rgba(251, 191, 36, 0.5); }
+            100% { transform: scale(1.05); box-shadow: 0 0 16px rgba(251, 191, 36, 0.9); }
+        }
+
+        /* ================= ÇARŞAMBA HALK GÜNÜ BANNERİ ================= */
+        .wednesday-banner {
+            display: none; /* JS ile Çarşamba günü aktif olur */
+            background: linear-gradient(90deg, #ec4899, #8b5cf6, #3b82f6, #ec4899);
+            background-size: 300% 300%;
+            animation: gradientMove 6s ease infinite, pulseWed 2s infinite alternate;
+            color: #ffffff;
+            text-align: center;
+            padding: 10px 16px;
+            font-weight: 800;
+            font-size: 0.9rem;
+            letter-spacing: 0.5px;
+            box-shadow: 0 8px 25px rgba(236, 72, 153, 0.35);
+            position: relative;
+            z-index: 1004;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .wednesday-banner-content {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .wed-sparkle {
+            font-size: 1.1rem;
+            animation: rotateSparkle 3s infinite linear;
+        }
+
+        @keyframes gradientMove {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        @keyframes pulseWed {
+            0% { transform: scale(1); }
+            100% { transform: scale(1.01); }
+        }
+
+        @keyframes rotateSparkle {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
         /* Header */
         .header {
             position: fixed;
@@ -119,7 +283,7 @@
             left: 0;
             right: 0;
             z-index: 1000;
-            padding: 20px 24px;
+            padding: 16px 24px;
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -128,6 +292,12 @@
             -webkit-backdrop-filter: blur(20px) saturate(180%);
             border-bottom: 1px solid var(--glass-border);
             box-shadow: var(--glass-shadow);
+            transition: top 0.3s;
+        }
+
+        /* Top spacing adjustment for header when banners exist */
+        body.has-top-banners .header {
+            position: relative;
         }
 
         /* Back Icon - Pure CSS Arrow */
@@ -228,7 +398,7 @@
 
         /* Main Content */
         .main-content {
-            padding-top: 100px;
+            padding-top: 40px;
             padding-bottom: 140px;
             position: relative;
             z-index: 1;
@@ -237,7 +407,7 @@
         /* Hero Section */
         .hero {
             text-align: center;
-            padding: 60px 24px 40px;
+            padding: 40px 24px 30px;
             max-width: 600px;
             margin: 0 auto;
         }
@@ -252,9 +422,9 @@
             border: 1px solid var(--glass-border);
             border-radius: 100px;
             font-size: 13px;
-            font-weight: 500;
+            font-weight: 600;
             color: var(--text-secondary);
-            margin-bottom: 24px;
+            margin-bottom: 20px;
             animation: fadeInUp 0.6s ease;
         }
 
@@ -272,10 +442,10 @@
         }
 
         .hero h1 {
-            font-size: clamp(2.5rem, 8vw, 4rem);
+            font-size: clamp(2.3rem, 7vw, 3.8rem);
             font-weight: 800;
             line-height: 1.1;
-            margin-bottom: 16px;
+            margin-bottom: 14px;
             background: linear-gradient(135deg, var(--text-primary), var(--accent));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
@@ -284,7 +454,7 @@
         }
 
         .hero .subtitle {
-            font-size: 1.1rem;
+            font-size: 1.05rem;
             color: var(--text-secondary);
             font-weight: 400;
             animation: fadeInUp 0.6s ease 0.2s both;
@@ -307,7 +477,7 @@
             grid-template-columns: 1fr;
             gap: 16px;
             padding: 0 24px;
-            max-width: 500px;
+            max-width: 520px;
             margin: 0 auto;
         }
 
@@ -317,7 +487,7 @@
             -webkit-backdrop-filter: blur(20px) saturate(180%);
             border: 1px solid var(--glass-border);
             border-radius: 24px;
-            padding: 28px;
+            padding: 24px 28px;
             position: relative;
             overflow: hidden;
             transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
@@ -334,7 +504,7 @@
             left: -100%;
             width: 100%;
             height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent);
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.15), transparent);
             transition: left 0.6s;
         }
 
@@ -361,11 +531,59 @@
             border-color: rgba(255, 255, 255, 0.4);
         }
 
+        /* Özel Kart Stilleri */
+        /* 1. EN-KA KUMAŞ RESMİ SİTESİ (Kırmızımsı Minimal Camsı Görünüm) */
+        .glass-card.card-official {
+            background: var(--red-glass-bg);
+            border: 1px solid var(--red-glass-border);
+        }
+        .glass-card.card-official:hover {
+            box-shadow: 0 20px 40px var(--red-glow);
+            border-color: rgba(239, 68, 68, 0.6);
+        }
+
+        /* 2. TEKSTİL YAPAY ZEKASI EN-KAI (Özel Tema: Sarı Başta Siyah Sonda) */
+        .glass-card.card-enkai {
+            background: var(--enkai-glass-bg);
+            border: 1.5px solid var(--enkai-glass-border);
+            color: #ffffff !important;
+        }
+        .glass-card.card-enkai .card-title {
+            color: #ffffff !important;
+            text-shadow: 0 2px 10px rgba(0,0,0,0.5);
+        }
+        .glass-card.card-enkai .card-desc {
+            color: #fde68a !important;
+        }
+        .glass-card.card-enkai:hover {
+            box-shadow: 0 20px 45px var(--enkai-glow);
+            border-color: #fbbf24;
+        }
+
+        /* 3. KALIP KOLEKSİYONU (Krem Rengi) */
+        .glass-card.card-kalip {
+            background: var(--cream-glass-bg);
+            border: 1px solid var(--cream-glass-border);
+        }
+        .glass-card.card-kalip:hover {
+            box-shadow: 0 20px 40px var(--cream-glow);
+            border-color: rgba(217, 119, 6, 0.5);
+        }
+
+        /* 4. HAKKIMIZDA (Morlu) */
+        .glass-card.card-hakkimizda {
+            background: var(--purple-glass-bg);
+            border: 1px solid var(--purple-glass-border);
+        }
+        .glass-card.card-hakkimizda:hover {
+            box-shadow: 0 20px 40px var(--purple-glow);
+            border-color: rgba(168, 85, 247, 0.6);
+        }
+
         .card-header {
             display: flex;
             align-items: center;
             gap: 16px;
-            margin-bottom: 12px;
         }
 
         .card-icon {
@@ -379,33 +597,62 @@
             flex-shrink: 0;
             position: relative;
             overflow: hidden;
+            background: var(--btn-bg);
+            border: 1px solid var(--glass-border);
         }
 
-        .card-icon::before {
-            content: '';
-            position: absolute;
-            inset: 0;
-            background: linear-gradient(135deg, rgba(255,255,255,0.3), transparent);
+        .card-icon img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 14px;
         }
 
         .card-icon.ig {
             background: linear-gradient(135deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888);
+            border: none;
         }
 
         .card-icon.wa {
             background: linear-gradient(135deg, #25d366, #128c7e);
+            border: none;
+        }
+
+        .card-icon.official-icon {
+            background: linear-gradient(135deg, #ef4444, #991b1b);
+            border: none;
+            padding: 4px;
+        }
+
+        .card-icon.enkai-icon {
+            background: linear-gradient(135deg, #fbbf24, #000000);
+            border: 1px solid #fbbf24;
+            padding: 2px;
+        }
+
+        .card-icon.kalip-icon {
+            background: linear-gradient(135deg, #fef3c7, #f59e0b);
+            border: 1px solid rgba(217, 119, 6, 0.3);
+            color: #78350f;
+        }
+
+        .card-icon.hakkimizda-icon {
+            background: linear-gradient(135deg, #c084fc, #6b21a8);
+            border: 1px solid rgba(168, 85, 247, 0.3);
+            color: #ffffff;
         }
 
         .card-title {
-            font-size: 1.25rem;
+            font-size: 1.15rem;
             font-weight: 700;
             color: var(--text-primary);
+            margin-bottom: 3px;
         }
 
         .card-desc {
-            font-size: 0.9rem;
+            font-size: 0.88rem;
             color: var(--text-secondary);
-            line-height: 1.5;
+            line-height: 1.4;
         }
 
         .card-arrow {
@@ -440,6 +687,15 @@
             transform: translateY(-50%) translateX(4px);
         }
 
+        .glass-card.card-enkai:hover .card-arrow {
+            background: #fbbf24;
+            border-color: #fbbf24;
+        }
+
+        .glass-card.card-enkai:hover .card-arrow::after {
+            border-color: #000000;
+        }
+
         .glass-card:hover .card-arrow::after {
             border-color: white;
         }
@@ -447,7 +703,7 @@
         /* Info Section */
         .info-section {
             padding: 40px 24px;
-            max-width: 500px;
+            max-width: 520px;
             margin: 0 auto;
         }
 
@@ -509,7 +765,7 @@
         .bottom-actions {
             display: flex;
             gap: 12px;
-            max-width: 500px;
+            max-width: 520px;
             margin: 0 auto;
             pointer-events: all;
         }
@@ -627,13 +883,16 @@
         /* Responsive */
         @media (max-width: 480px) {
             .hero h1 {
-                font-size: 2.2rem;
+                font-size: 2.1rem;
             }
             .cards-grid {
                 padding: 0 16px;
             }
             .header {
-                padding: 16px 16px;
+                padding: 14px 16px;
+            }
+            .marquee-item {
+                font-size: 0.78rem;
             }
         }
 
@@ -643,13 +902,55 @@
             animation: fadeInUp 0.6s ease forwards;
         }
 
-        .glass-card:nth-child(1) { animation-delay: 0.3s; }
-        .glass-card:nth-child(2) { animation-delay: 0.4s; }
+        .glass-card:nth-child(1) { animation-delay: 0.15s; }
+        .glass-card:nth-child(2) { animation-delay: 0.25s; }
+        .glass-card:nth-child(3) { animation-delay: 0.35s; }
+        .glass-card:nth-child(4) { animation-delay: 0.45s; }
+        .glass-card:nth-child(5) { animation-delay: 0.55s; }
+        .glass-card:nth-child(6) { animation-delay: 0.65s; }
     </style>
 </head>
-<body>
+<body class="has-top-banners">
     <div class="bg-mesh"></div>
     <div class="noise"></div>
+
+    <!-- EN-KAI YAYINDA İŞ ŞERİDİ (SİYAH & SARI İKAZ / DUYURU ŞERİDİ) -->
+    <div class="work-tape-banner">
+        <div class="work-tape-inner">
+            <div class="marquee-track">
+                <div class="marquee-content">
+                    <a href="https://enkai.onrender.com" class="marquee-item">
+                        <span class="badge-ai-flash">EN-KAI</span>
+                        <span>ŞİMDİ YAYINDA!</span>
+                        <span>•</span>
+                        <span>AI İLE KİŞİSELLEŞTİRİLMİŞ ULTRA HIZLI AKILLI YANITLAR ALIN</span>
+                        <span>•</span>
+                        <span style="text-decoration: underline; font-weight: 900;">ŞİMDİ DENEYİN 🚀</span>
+                    </a>
+                </div>
+                <!-- Continuous loop copy -->
+                <div class="marquee-content" aria-hidden="true">
+                    <a href="https://enkai.onrender.com" class="marquee-item">
+                        <span class="badge-ai-flash">EN-KAI</span>
+                        <span>ŞİMDİ YAYINDA!</span>
+                        <span>•</span>
+                        <span>AI İLE KİŞİSELLEŞTİRİLMİŞ ULTRA HIZLI AKILLI YANITLAR ALIN</span>
+                        <span>•</span>
+                        <span style="text-decoration: underline; font-weight: 900;">ŞİMDİ DENEYİN 🚀</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ÖZEL ÇARŞAMBA HALK GÜNÜ ETIKETI (SADECE ÇARŞAMBA GÜNLERİ GÖRÜNÜR) -->
+    <div class="wednesday-banner" id="wednesdayBanner">
+        <div class="wednesday-banner-content">
+            <span class="wed-sparkle">🛍️</span>
+            <span>BUGÜN ÇARŞAMBA HALK GÜNÜ! ŞİMDİ KUMAŞ ALMANIN TAM ZAMANI</span>
+            <span class="wed-sparkle">✨</span>
+        </div>
+    </div>
 
     <!-- Header -->
     <header class="header">
@@ -671,14 +972,82 @@
         <section class="hero">
             <div class="brand-badge">
                 <div class="pulse"></div>
-                EN-KA KUMAŞ
+                EN-KA KUMAŞ & DİJİTAL ASİSTAN
             </div>
             <h1>Quick Tap</h1>
-            <p class="subtitle">Tek dokunuşla bize ulaşın. Hızlı, modern, şeffaf.</p>
+            <p class="subtitle">Tek dokunuşla bize ulaşın. Hızlı, modern, şeffaf ve yapay zeka destekli.</p>
         </section>
 
-        <!-- Cards -->
+        <!-- Cards Grid -->
         <div class="cards-grid">
+            
+            <!-- 1. EN-KA KUMAŞ RESMİ SİTESİ (En Üst Kısım, Kırmızımsı Minimal Camsı Görünüm) -->
+            <a href="index.html" class="glass-card card-official">
+                <div class="card-header">
+                    <div class="card-icon official-icon">
+                        <img src="logo.png" alt="EN-KA Logo" onerror="this.onerror=null; this.src='data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><path d='m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z'/><polyline points='9 22 9 12 15 12 15 22'/></svg>';">
+                    </div>
+                    <div>
+                        <div class="card-title">EN-KA KUMAŞ RESMİ SİTESİ</div>
+                        <div class="card-desc">enkakumas.github.io • Ana Sayfa</div>
+                    </div>
+                </div>
+                <div class="card-arrow"></div>
+            </a>
+
+            <!-- 2. TEKSTİL YAPAY ZEKASI EN-KAI (Sarı Başta Siyah Sonda Özel Tema) -->
+            <a href="https://enkai.onrender.com" target="_blank" rel="noopener" class="glass-card card-enkai">
+                <div class="card-header">
+                    <div class="card-icon enkai-icon">
+                        <img src="enkai.png" alt="EN-KAI Logo" onerror="this.onerror=null; this.src='data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23fbbf24' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><path d='M12 2a10 10 0 1 0 10 10H12V2z'/><path d='M12 12 2.1 10.5'/><path d='M12 12V22'/></svg>';">
+                    </div>
+                    <div>
+                        <div class="card-title">TEKSTİL YAPAY ZEKASI EN-KAI</div>
+                        <div class="card-desc">enkai.onrender.com • Akıllı Yanıtlar</div>
+                    </div>
+                </div>
+                <div class="card-arrow"></div>
+            </a>
+
+            <!-- 3. KALIP KOLEKSİYONU (Krem Rengi & Modern Minimal Kalıp İkonu) -->
+            <a href="kalip-koleksiyonu.html" class="glass-card card-kalip">
+                <div class="card-header">
+                    <div class="card-icon kalip-icon">
+                        <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#78350f" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M21.3 15.3a2.4 2.4 0 0 1 0 3.4l-2.6 2.6a2.4 2.4 0 0 1-3.4 0L2.7 8.7a2.4 2.4 0 0 1 0-3.4l2.6-2.6a2.4 2.4 0 0 1 3.4 0l12.6 12.6z"/>
+                            <path d="m14.5 12.5 2 2"/>
+                            <path d="m11.5 9.5 2 2"/>
+                            <path d="m8.5 6.5 2 2"/>
+                            <path d="m17.5 15.5 2 2"/>
+                        </svg>
+                    </div>
+                    <div>
+                        <div class="card-title">KALIP KOLEKSİYONU</div>
+                        <div class="card-desc">kalip-koleksiyonu.html • Model & Şablonlar</div>
+                    </div>
+                </div>
+                <div class="card-arrow"></div>
+            </a>
+
+            <!-- 4. HAKKIMIZDA (Morlu Tema & Özel İkon) -->
+            <a href="hakkimizda.html" class="glass-card card-hakkimizda">
+                <div class="card-header">
+                    <div class="card-icon hakkimizda-icon">
+                        <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="12" cy="12" r="10"/>
+                            <line x1="12" y1="16" x2="12" y2="12"/>
+                            <line x1="12" y1="8" x2="12.01" y2="8"/>
+                        </svg>
+                    </div>
+                    <div>
+                        <div class="card-title">HAKKIMIZDA</div>
+                        <div class="card-desc">hakkimizda.html • Hikayemiz & Kalitemiz</div>
+                    </div>
+                </div>
+                <div class="card-arrow"></div>
+            </a>
+
+            <!-- 5. INSTAGRAM (Aynen Korundu) -->
             <a href="https://www.instagram.com/enka_kumascilik_a.s" target="_blank" rel="noopener" class="glass-card">
                 <div class="card-header">
                     <div class="card-icon ig">
@@ -696,6 +1065,7 @@
                 <div class="card-arrow"></div>
             </a>
 
+            <!-- 6. WHATSAPP (Aynen Korundu) -->
             <a href="https://wa.me/905368938558" target="_blank" rel="noopener" class="glass-card">
                 <div class="card-header">
                     <div class="card-icon wa">
@@ -710,6 +1080,7 @@
                 </div>
                 <div class="card-arrow"></div>
             </a>
+
         </div>
 
         <!-- Info Section -->
@@ -786,6 +1157,18 @@
                 checkTimeTheme();
             }
         }, 60000);
+
+        // Çarşamba günü kontrolü (3 = Çarşamba)
+        function checkWednesday() {
+            const today = new Date().getDay();
+            const wedBanner = document.getElementById('wednesdayBanner');
+            if (today === 3) { // 3 = Çarşamba
+                wedBanner.style.display = 'block';
+            } else {
+                wedBanner.style.display = 'none';
+            }
+        }
+        checkWednesday();
 
         // Clock
         function updateClock() {
