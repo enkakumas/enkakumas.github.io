@@ -47,6 +47,8 @@
     --toggle-active: rgba(59, 130, 246, 0.2);
     --wednesday-gradient: linear-gradient(135deg, rgba(245, 158, 11, 0.12) 0%, rgba(239, 68, 68, 0.08) 100%);
     --wednesday-border: rgba(245, 158, 11, 0.25);
+    --weather-text-primary: rgba(255, 255, 255, 0.95);
+    --weather-text-secondary: rgba(255, 255, 255, 0.72);
 }
 
 [data-theme="light"] {
@@ -80,6 +82,8 @@
     --toggle-active: rgba(37, 99, 235, 0.12);
     --wednesday-gradient: linear-gradient(135deg, rgba(245, 158, 11, 0.08) 0%, rgba(239, 68, 68, 0.05) 100%);
     --wednesday-border: rgba(217, 119, 6, 0.2);
+    --weather-text-primary: rgba(15, 23, 42, 0.92);
+    --weather-text-secondary: rgba(15, 23, 42, 0.65);
 }
 
 /* ─── 2. Reset & Base ─── */
@@ -241,14 +245,13 @@ body::before {
     bottom: 0;
     z-index: 1000;
     display: flex;
-    align-items: center;
-    justify-content: center;
-    background: rgba(0, 0, 0, 0.5);
-    backdrop-filter: blur(8px);
-    -webkit-backdrop-filter: blur(8px);
+    align-items: flex-start;
+    justify-content: flex-end;
+    padding: 70px 20px 0;
+    background: rgba(0, 0, 0, 0.2);
     opacity: 0;
     pointer-events: none;
-    transition: opacity 0.3s ease;
+    transition: opacity 0.25s ease;
 }
 
 .theme-settings-modal.active {
@@ -257,17 +260,16 @@ body::before {
 }
 
 .theme-settings-content {
-    width: 90%;
-    max-width: 380px;
-    background: var(--bg-card);
+    width: 92%;
+    max-width: 340px;
+    background: var(--bg-secondary);
     border: 1px solid var(--border-color);
-    border-radius: 24px;
-    padding: 24px;
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
-    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
-    transform: scale(0.9) translateY(20px);
-    transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+    border-radius: 20px;
+    padding: 20px;
+    box-shadow: 0 16px 48px rgba(0, 0, 0, 0.35);
+    transform: scale(0.88) translateY(-12px);
+    transform-origin: top right;
+    transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
     position: relative;
 }
 
@@ -276,38 +278,34 @@ body::before {
 }
 
 .theme-settings-handle {
-    width: 40px;
-    height: 5px;
-    background: var(--border-color);
-    border-radius: 3px;
-    margin: 0 auto 20px;
+    display: none;
 }
 
 .theme-settings-title {
-    font-size: 1.1rem;
+    font-size: 1rem;
     font-weight: 700;
     text-align: center;
-    margin-bottom: 20px;
+    margin-bottom: 16px;
     color: var(--text-primary);
 }
 
 .theme-mode-options {
     display: flex;
     flex-direction: column;
-    gap: 12px;
-    margin-bottom: 24px;
+    gap: 10px;
+    margin-bottom: 16px;
 }
 
 .theme-mode-btn {
     display: flex;
     align-items: center;
-    gap: 14px;
-    padding: 16px 18px;
+    gap: 12px;
+    padding: 12px 14px;
     background: var(--toggle-bg);
     border: 1px solid var(--border-color);
-    border-radius: 16px;
+    border-radius: 14px;
     color: var(--text-primary);
-    font-size: 0.95rem;
+    font-size: 0.9rem;
     font-weight: 500;
     font-family: inherit;
     cursor: pointer;
@@ -359,9 +357,9 @@ body::before {
 .theme-time-range {
     background: var(--toggle-bg);
     border: 1px solid var(--border-color);
-    border-radius: 16px;
-    padding: 16px;
-    margin-bottom: 20px;
+    border-radius: 14px;
+    padding: 14px;
+    margin-bottom: 14px;
 }
 
 .theme-time-range-title {
@@ -420,12 +418,12 @@ body::before {
 
 .theme-close-btn {
     width: 100%;
-    padding: 14px;
+    padding: 12px;
     background: linear-gradient(135deg, var(--accent-blue), #818cf8);
     border: none;
-    border-radius: 14px;
+    border-radius: 12px;
     color: #fff;
-    font-size: 0.95rem;
+    font-size: 0.9rem;
     font-weight: 600;
     font-family: inherit;
     cursor: pointer;
@@ -489,68 +487,6 @@ body::before {
 }
 
 /* ─── Weather Widget Improvements ─── */
-.weather-widget {
-    border-radius: 22px;
-    overflow: hidden;
-    cursor: pointer;
-    position: relative;
-    transition: transform 0.4s cubic-bezier(0.25, 0.8, 0.25, 1), box-shadow 0.3s ease;
-    box-shadow: var(--card-shadow);
-}
-
-.weather-widget:hover {
-    transform: translateY(-4px);
-    box-shadow: var(--card-shadow-hover);
-}
-
-.weather-compact {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 22px 24px;
-    background: var(--weather-gradient);
-    min-height: 120px;
-    transition: opacity 0.3s ease, transform 0.3s ease;
-}
-
-.weather-info-text {
-    font-size: 0.72rem;
-    color: rgba(255, 255, 255, 0.55);
-    font-weight: 500;
-    margin-top: 4px;
-    text-align: right;
-    opacity: 0;
-    transform: translateY(4px);
-    transition: opacity 0.3s ease, transform 0.3s ease;
-}
-
-.weather-compact:hover .weather-info-text {
-    opacity: 1;
-    transform: translateY(0);
-}
-
-.weather-expanded {
-    display: none;
-    background: var(--weather-gradient-dark);
-    padding: 20px;
-    opacity: 0;
-    transform: scale(0.95);
-    transition: opacity 0.35s ease 0.1s, transform 0.35s ease 0.1s;
-}
-
-.weather-widget.expanded {
-    cursor: default;
-}
-
-.weather-widget.expanded .weather-compact {
-    display: none;
-}
-
-.weather-widget.expanded .weather-expanded {
-    display: block;
-    opacity: 1;
-    transform: scale(1);
-}
 
 /* ─── 5. Time Section ─── */
 .time-section {
@@ -835,13 +771,17 @@ body::before {
     overflow: hidden;
     cursor: pointer;
     position: relative;
-    transition: filter 0.2s ease, transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+    transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
     box-shadow: var(--card-shadow);
 }
 
+.weather-widget:hover {
+    transform: translateY(-3px);
+    box-shadow: var(--card-shadow-hover);
+}
+
 .weather-widget.motion-blur {
-    filter: blur(6px);
-    transform: scale(0.98);
+    transform: scale(0.96) !important;
 }
 
 .weather-compact {
@@ -851,7 +791,6 @@ body::before {
     padding: 22px 24px;
     background: var(--weather-gradient);
     min-height: 120px;
-    transition: opacity 0.25s ease, transform 0.3s ease;
 }
 
 .weather-compact-left {
@@ -866,11 +805,12 @@ body::before {
     gap: 5px;
     font-size: 0.82rem;
     font-weight: 500;
-    color: rgba(255, 255, 255, 0.85);
+    color: var(--weather-text-primary);
 }
 
 .weather-city svg {
     opacity: 0.7;
+    color: var(--weather-text-primary);
 }
 
 .weather-temp {
@@ -878,19 +818,23 @@ body::before {
     font-weight: 300;
     letter-spacing: -0.04em;
     line-height: 1.1;
-    color: #ffffff;
+    color: var(--weather-text-primary);
 }
 
 .weather-desc-compact {
     font-size: 0.82rem;
-    color: rgba(255, 255, 255, 0.75);
+    color: var(--weather-text-secondary);
     font-weight: 400;
+    text-align: right;
 }
 
 .weather-compact-right {
     display: flex;
-    align-items: center;
-    justify-content: center;
+    flex-direction: column;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 6px;
+    min-height: 76px;
 }
 
 .weather-icon-compact {
@@ -901,6 +845,24 @@ body::before {
 .weather-icon-compact svg {
     width: 100%;
     height: 100%;
+}
+
+.weather-right-bottom {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 2px;
+}
+
+.weather-info-text {
+    font-size: 0.62rem;
+    color: var(--weather-text-secondary);
+    font-weight: 500;
+    text-align: right;
+    opacity: 0.9;
+    letter-spacing: 0.01em;
+    white-space: nowrap;
+    line-height: 1.2;
 }
 
 .weather-expanded {
@@ -935,7 +897,7 @@ body::before {
 
 .weather-expanded-datetime {
     font-size: 0.82rem;
-    color: rgba(255, 255, 255, 0.6);
+    color: var(--weather-text-secondary);
     font-weight: 500;
 }
 
@@ -947,15 +909,15 @@ body::before {
     height: 32px;
     border: none;
     border-radius: 50%;
-    background: rgba(255, 255, 255, 0.1);
-    color: rgba(255, 255, 255, 0.7);
+    background: rgba(128, 128, 128, 0.15);
+    color: var(--weather-text-secondary);
     cursor: pointer;
     transition: all 0.25s ease;
 }
 
 .weather-close-btn:hover {
-    background: rgba(255, 255, 255, 0.2);
-    color: #fff;
+    background: rgba(128, 128, 128, 0.25);
+    color: var(--weather-text-primary);
     transform: scale(1.1);
 }
 
@@ -980,30 +942,31 @@ body::before {
 .weather-expanded-temp {
     font-size: 2.8rem;
     font-weight: 300;
-    color: #ffffff;
+    color: var(--weather-text-primary);
     letter-spacing: -0.03em;
     line-height: 1;
 }
 
 .weather-expanded-desc {
     font-size: 1rem;
-    color: rgba(255, 255, 255, 0.8);
+    color: var(--weather-text-secondary);
     font-weight: 500;
     margin-top: 2px;
 }
 
 .weather-expanded-city {
     font-size: 0.82rem;
-    color: rgba(255, 255, 255, 0.5);
+    color: var(--weather-text-secondary);
     margin-bottom: 20px;
     font-weight: 400;
+    opacity: 0.7;
 }
 
 .sun-timeline {
     display: flex;
     align-items: center;
     gap: 12px;
-    background: rgba(0, 0, 0, 0.2);
+    background: rgba(0, 0, 0, 0.12);
     border-radius: 14px;
     padding: 14px 16px;
     margin-bottom: 16px;
@@ -1014,7 +977,7 @@ body::before {
     flex-direction: column;
     align-items: center;
     gap: 4px;
-    color: rgba(255, 255, 255, 0.7);
+    color: var(--weather-text-secondary);
     font-size: 0.75rem;
     font-weight: 500;
     flex-shrink: 0;
@@ -1035,7 +998,7 @@ body::before {
 .sun-bar-track {
     width: 100%;
     height: 4px;
-    background: rgba(255, 255, 255, 0.1);
+    background: rgba(128, 128, 128, 0.2);
     border-radius: 2px;
     position: relative;
     overflow: hidden;
@@ -1065,8 +1028,9 @@ body::before {
 
 .sun-duration {
     font-size: 0.7rem;
-    color: rgba(255, 255, 255, 0.4);
+    color: var(--weather-text-secondary);
     font-weight: 500;
+    opacity: 0.6;
 }
 
 .weather-details {
@@ -1082,17 +1046,17 @@ body::before {
     align-items: center;
     gap: 8px;
     padding: 14px 8px;
-    background: rgba(0, 0, 0, 0.15);
+    background: rgba(0, 0, 0, 0.1);
     border-radius: 14px;
     transition: background 0.25s ease;
 }
 
 .weather-detail-item:hover {
-    background: rgba(0, 0, 0, 0.25);
+    background: rgba(0, 0, 0, 0.18);
 }
 
 .weather-detail-item svg {
-    color: rgba(255, 255, 255, 0.55);
+    color: var(--weather-text-secondary);
 }
 
 .detail-text {
@@ -1104,16 +1068,17 @@ body::before {
 
 .detail-label {
     font-size: 0.68rem;
-    color: rgba(255, 255, 255, 0.45);
+    color: var(--weather-text-secondary);
     font-weight: 500;
     text-transform: uppercase;
     letter-spacing: 0.05em;
+    opacity: 0.7;
 }
 
 .detail-value {
     font-size: 0.95rem;
     font-weight: 600;
-    color: rgba(255, 255, 255, 0.9);
+    color: var(--weather-text-primary);
 }
 
 .forecast-scroll {
@@ -1140,14 +1105,14 @@ body::before {
     align-items: center;
     gap: 6px;
     padding: 12px 14px;
-    background: rgba(0, 0, 0, 0.15);
+    background: rgba(0, 0, 0, 0.1);
     border-radius: 16px;
     min-width: 68px;
     transition: background 0.25s ease, transform 0.25s ease;
 }
 
 .forecast-item:hover {
-    background: rgba(0, 0, 0, 0.25);
+    background: rgba(0, 0, 0, 0.18);
     transform: translateY(-2px);
 }
 
@@ -1159,7 +1124,7 @@ body::before {
 .forecast-day {
     font-size: 0.72rem;
     font-weight: 600;
-    color: rgba(255, 255, 255, 0.6);
+    color: var(--weather-text-secondary);
     text-transform: uppercase;
     letter-spacing: 0.03em;
 }
@@ -1181,13 +1146,14 @@ body::before {
 .forecast-high {
     font-size: 0.88rem;
     font-weight: 700;
-    color: rgba(255, 255, 255, 0.9);
+    color: var(--weather-text-primary);
 }
 
 .forecast-low {
     font-size: 0.75rem;
     font-weight: 400;
-    color: rgba(255, 255, 255, 0.4);
+    color: var(--weather-text-secondary);
+    opacity: 0.6;
 }
 
 /* ─── 10. Currency Section ─── */
@@ -1575,11 +1541,13 @@ body::before {
                             <span>Ankara</span>
                         </div>
                         <div class="weather-temp" id="weatherTemp">--°</div>
-                        <div class="weather-desc-compact" id="weatherDescCompact">Yükleniyor</div>
                     </div>
                     <div class="weather-compact-right">
                         <div class="weather-icon-compact" id="weatherIconCompact"></div>
-                        <span class="weather-info-text">Daha fazla bilgi için ></span>
+                        <div class="weather-right-bottom">
+                            <span class="weather-desc-compact" id="weatherDescCompact">Yükleniyor</span>
+                            <span class="weather-info-text">Daha fazla bilgi &rsaquo;</span>
+                        </div>
                     </div>
                 </div>
 
@@ -1900,6 +1868,9 @@ function getWeatherIconKey(code) {
 // ─── State ───
 let state = {
     currentTheme: 'dark',
+    themeMode: 'auto',
+    darkModeStart: 18 * 60,  // 18:00 in minutes
+    darkModeEnd: 6 * 60,     // 06:00 in minutes
     turkeyTime: null,
     weatherData: null,
     weatherExpanded: false,
@@ -2364,23 +2335,168 @@ function initCurrencyToggle() {
 }
 
 // ─── Theme Toggle ───
+function applyTheme(theme) {
+    state.currentTheme = theme;
+    document.documentElement.setAttribute('data-theme', theme);
+    if (state.currencyRates[state.selectedCurrency]) {
+        renderCurrencyChart(state.currencyRates[state.selectedCurrency].rate);
+    }
+}
+
+function getAutoTheme() {
+    const now = getTurkeyTime();
+    const h = now.getHours();
+    const m = now.getMinutes();
+    const currentMins = h * 60 + m;
+
+    const darkStart = state.darkModeStart;
+    const darkEnd = state.darkModeEnd;
+
+    let isDark;
+    if (darkStart <= darkEnd) {
+        isDark = currentMins >= darkStart && currentMins < darkEnd;
+    } else {
+        // crosses midnight
+        isDark = currentMins >= darkStart || currentMins < darkEnd;
+    }
+    return isDark ? 'dark' : 'light';
+}
+
+function parseTimeToMins(timeStr) {
+    const [h, m] = timeStr.split(':').map(Number);
+    return h * 60 + (m || 0);
+}
+
 function initThemeToggle() {
     const toggle = document.getElementById('themeToggle');
-    const saved = localStorage.getItem('dailyBriefTheme');
+    const modal = document.getElementById('themeSettingsModal');
+    const closeBtn = document.getElementById('themeSettingsClose');
+    const modeBtns = document.querySelectorAll('.theme-mode-btn');
+    const darkStartInput = document.getElementById('darkModeStart');
+    const darkEndInput = document.getElementById('darkModeEnd');
 
-    if (saved) {
-        state.currentTheme = saved;
-        document.documentElement.setAttribute('data-theme', saved);
+    // Load saved settings
+    const savedMode = localStorage.getItem('dailyBriefMode') || 'auto';
+    const savedDarkStart = localStorage.getItem('dailyBriefDarkStart') || '18:00';
+    const savedDarkEnd = localStorage.getItem('dailyBriefDarkEnd') || '06:00';
+
+    state.themeMode = savedMode;
+    state.darkModeStart = parseTimeToMins(savedDarkStart);
+    state.darkModeEnd = parseTimeToMins(savedDarkEnd);
+    darkStartInput.value = savedDarkStart;
+    darkEndInput.value = savedDarkEnd;
+
+    // Apply initial theme
+    if (savedMode === 'auto') {
+        applyTheme(getAutoTheme());
+    } else {
+        applyTheme(savedMode);
     }
 
-    toggle.addEventListener('click', () => {
-        state.currentTheme = state.currentTheme === 'dark' ? 'light' : 'dark';
-        document.documentElement.setAttribute('data-theme', state.currentTheme);
-        localStorage.setItem('dailyBriefTheme', state.currentTheme);
+    // Update active button in modal
+    function updateModeBtns() {
+        modeBtns.forEach(btn => {
+            btn.classList.toggle('active', btn.dataset.mode === state.themeMode);
+        });
+    }
+    updateModeBtns();
 
-        if (state.currencyRates[state.selectedCurrency]) {
-            renderCurrencyChart(state.currencyRates[state.selectedCurrency].rate);
+    // Auto theme interval check
+    setInterval(() => {
+        if (state.themeMode === 'auto') {
+            const newTheme = getAutoTheme();
+            if (newTheme !== state.currentTheme) {
+                applyTheme(newTheme);
+            }
         }
+    }, 30000);
+
+    // Short click: toggle dark/light manually (sets mode to manual)
+    let pressTimer = null;
+    let longPressed = false;
+
+    toggle.addEventListener('mousedown', () => {
+        longPressed = false;
+        pressTimer = setTimeout(() => {
+            longPressed = true;
+            openThemeModal();
+        }, 500);
+    });
+    toggle.addEventListener('mouseup', () => {
+        clearTimeout(pressTimer);
+        if (!longPressed) {
+            // short click: toggle theme
+            const newTheme = state.currentTheme === 'dark' ? 'light' : 'dark';
+            state.themeMode = newTheme;
+            localStorage.setItem('dailyBriefMode', newTheme);
+            applyTheme(newTheme);
+            updateModeBtns();
+        }
+    });
+    toggle.addEventListener('mouseleave', () => clearTimeout(pressTimer));
+
+    toggle.addEventListener('touchstart', (e) => {
+        longPressed = false;
+        pressTimer = setTimeout(() => {
+            longPressed = true;
+            openThemeModal();
+        }, 500);
+    }, { passive: true });
+    toggle.addEventListener('touchend', () => {
+        clearTimeout(pressTimer);
+        if (!longPressed) {
+            const newTheme = state.currentTheme === 'dark' ? 'light' : 'dark';
+            state.themeMode = newTheme;
+            localStorage.setItem('dailyBriefMode', newTheme);
+            applyTheme(newTheme);
+            updateModeBtns();
+        }
+    });
+    toggle.addEventListener('touchcancel', () => clearTimeout(pressTimer));
+
+    // Prevent context menu on long press
+    toggle.addEventListener('contextmenu', (e) => e.preventDefault());
+
+    function openThemeModal() {
+        modal.classList.add('active');
+    }
+
+    function closeThemeModal() {
+        modal.classList.remove('active');
+    }
+
+    // Mode buttons
+    modeBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+            state.themeMode = btn.dataset.mode;
+            localStorage.setItem('dailyBriefMode', state.themeMode);
+            updateModeBtns();
+            if (state.themeMode === 'auto') {
+                applyTheme(getAutoTheme());
+            } else {
+                applyTheme(state.themeMode);
+            }
+        });
+    });
+
+    // Time inputs
+    darkStartInput.addEventListener('change', () => {
+        state.darkModeStart = parseTimeToMins(darkStartInput.value);
+        localStorage.setItem('dailyBriefDarkStart', darkStartInput.value);
+        if (state.themeMode === 'auto') applyTheme(getAutoTheme());
+    });
+    darkEndInput.addEventListener('change', () => {
+        state.darkModeEnd = parseTimeToMins(darkEndInput.value);
+        localStorage.setItem('dailyBriefDarkEnd', darkEndInput.value);
+        if (state.themeMode === 'auto') applyTheme(getAutoTheme());
+    });
+
+    // Close button
+    closeBtn.addEventListener('click', closeThemeModal);
+
+    // Close on backdrop click
+    modal.addEventListener('click', (e) => {
+        if (e.target === modal) closeThemeModal();
     });
 }
 
