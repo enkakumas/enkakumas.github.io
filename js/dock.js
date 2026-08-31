@@ -354,6 +354,20 @@
 
     window.toggleContactModal = openContact;
 
+    /* ── Loading Spinner ── */
+    function createLoadingSpinner() {
+        if (document.getElementById('enka-loading-spinner')) return;
+
+        const spinner = document.createElement('div');
+        spinner.id = 'enka-loading-spinner';
+        spinner.innerHTML = `
+            <div class="enka-spinner-container">
+                <div class="enka-spinner-loader"></div>
+            </div>
+        `;
+        document.body.appendChild(spinner);
+    }
+
     /* ── SPA Navigation ── */
     function ensureSpaContent() {
         if (!document.getElementById('spa-content')) {
@@ -416,8 +430,12 @@
         }
 
         isNavigating = true;
+        createLoadingSpinner();
+
         const spaContent = document.getElementById('spa-content');
         if (spaContent) spaContent.classList.add('spa-loading');
+        const loadingSpinner = document.getElementById('enka-loading-spinner');
+        if (loadingSpinner) loadingSpinner.classList.add('open');
 
         try {
             const resp = await fetch(file);
@@ -458,9 +476,19 @@
             setActiveRoute(route);
             window.scrollTo(0, 0);
 
-            setTimeout(() => runPageScripts(file), 100);
+            setTimeout(() => {
+                if (loadingSpinner) loadingSpinner.classList.remove('open');
+                setTimeout(() => {
+                    if (loadingSpinner) loadingSpinner.style.display = 'none';
+                    runPageScripts(file);
+                }, 300);
+            }, 100);
         } catch (err) {
             console.error('[EN-KA SPA]', err);
+            if (loadingSpinner) loadingSpinner.classList.remove('open');
+            setTimeout(() => {
+                if (loadingSpinner) loadingSpinner.style.display = 'none';
+            }, 300);
             window.location.href = ROUTES[route];
         } finally {
             isNavigating = false;
