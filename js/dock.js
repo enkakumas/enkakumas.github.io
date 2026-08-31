@@ -6,13 +6,13 @@
     'use strict';
 
     const ROUTES = {
-        home: 'index-6.html',
+        home: 'index.html',
         urunler: 'urunler.html',
         kalip: 'kalip-koleksiyonu.html'
     };
 
     const ROUTE_FROM_FILE = {
-        'index-6.html': 'home',
+        'index.html': 'home',
         'index.html': 'home',
         'urunler.html': 'urunler',
         'kalip-koleksiyonu.html': 'kalip'
@@ -40,8 +40,8 @@
     /* ── Detect current page ── */
     function getCurrentFile() {
         const path = window.location.pathname;
-        const file = path.split('/').pop() || 'index-6.html';
-        return file.includes('.html') ? file : 'index-6.html';
+        const file = path.split('/').pop() || 'index.html';
+        return file.includes('.html') ? file : 'index.html';
     }
 
     function getRouteFromFile(file) {
@@ -371,7 +371,7 @@
     }
 
     function runPageScripts(file) {
-        if (file.includes('index-6') || file.includes('index.html')) {
+        if (file.includes('index.html') || file.includes('index.html')) {
             if (typeof checkReveal === 'function') checkReveal();
             if (typeof initSlider === 'function') initSlider();
             if (typeof initTurkeyClock === 'function') initTurkeyClock();
@@ -402,7 +402,7 @@
     async function navigateTo(route) {
         if (route === 'contact') { openContact(); return; }
         if (route === 'enkai') {
-            window.location.href = 'chatbot-3.html';
+            window.location.href = 'chatbot.html';
             return;
         }
 
@@ -483,7 +483,7 @@
         });
 
         document.getElementById('enka-dock-enkai')?.addEventListener('click', () => {
-            window.location.href = 'chatbot-3.html';
+            window.location.href = 'chatbot.html';
         });
 
         document.getElementById('enka-contact-close')?.addEventListener('click', closeContact);
