@@ -215,27 +215,33 @@ function initKalipPage() {
     loadFromSupabase();
 }
 
-const searchInput = document.getElementById('searchInput');
-const searchClear = document.getElementById('searchClear');
-let searchTimeout = null;
+var searchInput = document.getElementById('searchInput');
+var searchClear = document.getElementById('searchClear');
+var searchTimeout = null;
 
-searchInput.addEventListener('input', () => {
-    const val = searchInput.value;
-    searchClear.classList.toggle('hidden', val.length === 0);
-    searchClear.classList.toggle('flex', val.length > 0);
-    clearTimeout(searchTimeout);
-    searchTimeout = setTimeout(() => renderPatterns(filterPatterns(val)), 220);
-});
+function initSearchHandlers() {
+    searchInput.removeEventListener('input', searchInput._handler);
+    searchClear.removeEventListener('click', searchClear._handler);
+    searchInput._handler = function() {
+        var val = searchInput.value;
+        searchClear.classList.toggle('hidden', val.length === 0);
+        searchClear.classList.toggle('flex', val.length > 0);
+        clearTimeout(searchTimeout);
+        searchTimeout = setTimeout(function() { renderPatterns(filterPatterns(val)); }, 220);
+    };
+    searchClear._handler = function() {
+        searchInput.value = '';
+        searchClear.classList.add('hidden');
+        searchClear.classList.remove('flex');
+        renderPatterns(allPatterns);
+        searchInput.focus();
+    };
+    searchInput.addEventListener('input', searchInput._handler);
+    searchClear.addEventListener('click', searchClear._handler);
+}
 
-searchClear.addEventListener('click', () => {
-    searchInput.value = '';
-    searchClear.classList.add('hidden');
-    searchClear.classList.remove('flex');
-    renderPatterns(allPatterns);
-    searchInput.focus();
-});
-
-window.addEventListener('load', initKalipPage);
+initSearchHandlers();
+initKalipPage();
 </script>
 <script src="js/dock.js"></script>
 </body>
