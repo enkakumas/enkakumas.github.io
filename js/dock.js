@@ -165,9 +165,6 @@
                 if (typeof initEnkaiDemo === 'function') initEnkaiDemo();
             } else if (file.includes('urunler')) {
                 if (typeof renderProducts === 'function') renderProducts();
-            } else if (file.includes('kalip')) {
-                if (typeof initKalipPage === 'function') initKalipPage();
-                else if (typeof loadFromSupabase === 'function') loadFromSupabase();
             }
         } catch (err) {
             console.error('[EN-KA runPageScripts]', err);
