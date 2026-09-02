@@ -1799,27 +1799,34 @@
         initEnkaiDemo();
     });
     // ── SLIDER ──
-    let currentSlide = 0;
-    const totalSlides = 3;
-    let sliderInterval;
+    var currentSlide = 0;
+    var totalSlides = 3;
+    var sliderInterval;
     function goToSlide(n) {
-        const dots = document.querySelectorAll('.slider-dot');
-        const slides = document.querySelectorAll('.slide');
+        var dots = document.querySelectorAll('.slider-dot');
+        var slides = document.querySelectorAll('.slide');
         slides[currentSlide].classList.remove('active');
         currentSlide = (n + totalSlides) % totalSlides;
         slides[currentSlide].classList.add('active');
-        dots.forEach((d,i) => d.classList.toggle('active', i === currentSlide));
+        dots.forEach(function(d,i) { d.classList.toggle('active', i === currentSlide); });
     }
     function sliderMove(dir) {
         goToSlide(currentSlide + dir);
         resetSliderTimer();
     }
     function resetSliderTimer() {
-        clearInterval(sliderInterval);
-        sliderInterval = setInterval(() => goToSlide(currentSlide + 1), 3000);
+        if (sliderInterval) clearInterval(sliderInterval);
+        sliderInterval = setInterval(function() { goToSlide(currentSlide + 1); }, 3000);
     }
     function initSlider() {
-        sliderInterval = setInterval(() => goToSlide(currentSlide + 1), 3000);
+        if (sliderInterval) clearInterval(sliderInterval);
+        sliderInterval = setInterval(function() { goToSlide(currentSlide + 1); }, 3000);
+    }
+    // Register cleanup for slider on page unload
+    if (typeof registerCleanup === 'function') {
+        registerCleanup(function() {
+            if (sliderInterval) { clearInterval(sliderInterval); sliderInterval = null; }
+        });
     }
     // Touch support for slider
     let touchStartX = 0;
@@ -1960,11 +1967,18 @@
     }
 
     // ── KUMAŞ GÖRSELLERİ (5 saniyede bir geçiş) ──
+    var _imageAnimInterval = null;
     function initImageAnimation() {
-        const boxes = document.querySelectorAll('.image-box');
-        setInterval(() => {
-            boxes.forEach(box => box.classList.toggle('reverse'));
+        var boxes = document.querySelectorAll('.image-box');
+        if (_imageAnimInterval) clearInterval(_imageAnimInterval);
+        _imageAnimInterval = setInterval(function() {
+            boxes.forEach(function(box) { box.classList.toggle('reverse'); });
         }, 5000);
+    }
+    if (typeof registerCleanup === 'function') {
+        registerCleanup(function() {
+            if (_imageAnimInterval) { clearInterval(_imageAnimInterval); _imageAnimInterval = null; }
+        });
     }
 
     // ── EN-KAI CANLI DEMO ──
