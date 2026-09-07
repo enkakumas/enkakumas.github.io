@@ -8,11 +8,10 @@
     <meta property="og:url" content="https://enkakumas.github.io/kalip-koleksiyonu.html">
     <meta property="og:type" content="website">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="robots" content="index, follow">
-    <meta name="google-site-verification" content="google9cc67c0ed550220f" />
+    <meta name="robots" content="noindex, nofollow">
     <link rel="icon" type="image/png" href="logo.png" />
-    <meta name="description" content="EN-KA KUMAŞ Kalıp Koleksiyonu — Profesyonel dikiş kalıplarını keşfedin ve indirin." />
-    <title>EN-KA KUMAŞ · Kalıp Koleksiyonu</title>
+    <meta name="description" content="EN-KA KUMAŞ Kalıp Koleksiyonu — Geçici Bakım Bildirimi" />
+    <title>EN-KA KUMAŞ · Sistem Duyurusu</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <link rel="stylesheet" href="css/dock.css">
@@ -28,11 +27,9 @@
         }
     </script>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;800&display=swap');
-        body { font-family: 'Plus Jakarta Sans', sans-serif; overflow-x: hidden; scroll-behavior: smooth; padding-bottom: 140px; }
+        @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap');
+        body { font-family: 'Plus Jakarta Sans', sans-serif; overflow: hidden; }
         .trans-base { transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1); }
-        .no-scrollbar::-webkit-scrollbar { display: none; }
-        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
 
         .liquid-bg {
             position: fixed; inset: 0; z-index: -1;
@@ -42,69 +39,38 @@
         .dark .liquid-bg { background: linear-gradient(-45deg, #0f172a, #1e293b, #450a0a, #020617); }
         @keyframes gradientMove { 0% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } 100% { background-position: 0% 50%; } }
 
-        .glass { background: rgba(255, 255, 255, 0.45); backdrop-filter: blur(20px); border: 1px solid rgba(255, 255, 255, 0.5); }
-        .dark .glass { background: rgba(15, 23, 42, 0.75); border: 1px solid rgba(255, 255, 255, 0.1); }
-        .glass-input { background: rgba(255, 255, 255, 0.6); backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.8); }
-        .dark .glass-input { background: rgba(15, 23, 42, 0.6); border: 1px solid rgba(255, 255, 255, 0.2); }
+        .glass { background: rgba(255, 255, 255, 0.65); backdrop-filter: blur(24px); border: 1px solid rgba(255, 255, 255, 0.7); }
+        .dark .glass { background: rgba(15, 23, 42, 0.85); border: 1px solid rgba(255, 255, 255, 0.12); }
 
-        .nav-liquid {
-            background: rgba(255, 250, 250, 0.78);
-            backdrop-filter: blur(40px) saturate(200%) brightness(1.05);
-            -webkit-backdrop-filter: blur(40px) saturate(200%) brightness(1.05);
-            border: 1px solid rgba(255, 255, 255, 0.75);
-            box-shadow: 0 4px 24px rgba(225, 29, 72, 0.08), 0 1px 0 rgba(255, 255, 255, 0.8) inset;
-            border-radius: 9999px;
+        .modal-card {
+            box-shadow: 0 25px 60px -15px rgba(225, 29, 72, 0.25), 0 0 0 1px rgba(255, 255, 255, 0.4);
+            animation: modalPop 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
         }
-        .dark .nav-liquid {
-            background: rgba(15, 5, 8, 0.88);
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            box-shadow: 0 4px 24px rgba(0, 0, 0, 0.4);
+        .dark .modal-card {
+            box-shadow: 0 25px 60px -15px rgba(0, 0, 0, 0.7), 0 0 0 1px rgba(255, 255, 255, 0.08);
         }
 
-        .pattern-card {
-            background: rgba(255, 255, 255, 0.5);
-            backdrop-filter: blur(18px);
-            border: 1px solid rgba(255, 255, 255, 0.6);
-            border-radius: 28px;
-            padding: 24px;
-            transition: transform 0.35s cubic-bezier(0.2, 0.8, 0.4, 1), box-shadow 0.35s;
-            animation: cardIn 0.5s ease-out both;
+        @keyframes modalPop {
+            0% { opacity: 0; transform: scale(0.92) translateY(20px); }
+            100% { opacity: 1; transform: scale(1) translateY(0); }
         }
-        .dark .pattern-card { background: rgba(15, 23, 42, 0.7); border-color: rgba(255,255,255,0.1); }
-        .pattern-card:hover { transform: translateY(-6px); box-shadow: 0 16px 48px rgba(225,29,72,0.12); }
-        @keyframes cardIn { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: translateY(0); } }
 
-        .skeleton-line {
-            border-radius: 99px;
-            background: linear-gradient(90deg, rgba(225,29,72,0.08) 25%, rgba(225,29,72,0.15) 50%, rgba(225,29,72,0.08) 75%);
-            background-size: 200% 100%;
-            animation: shimmer 1.6s infinite;
+        .pulse-soft {
+            animation: pulseGlow 2.5s infinite ease-in-out;
         }
-        @keyframes shimmer { 0% { background-position: 200% 0; } 100% { background-position: -200% 0; } }
+        @keyframes pulseGlow {
+            0%, 100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(225, 29, 72, 0.3); }
+            50% { transform: scale(1.05); box-shadow: 0 0 25px 6px rgba(225, 29, 72, 0.35); }
+        }
     </style>
 </head>
-<body class="text-slate-900 dark:text-slate-100 antialiased trans-base">
+<body class="text-slate-900 dark:text-slate-100 antialiased trans-base select-none">
 
+    <!-- Arka Plan Hareketli Gradient -->
     <div class="liquid-bg"></div>
 
-    <nav class="fixed top-0 w-full z-50 px-4 py-4">
-        <div class="max-w-6xl mx-auto nav-liquid flex items-center gap-3 px-4 py-2.5">
-            <img src="logo.png" alt="EN-KA" class="h-8 w-auto flex-shrink-0 hidden sm:block" onerror="this.style.display='none'">
-            <div class="relative flex-1 min-w-0">
-                <i class="fas fa-search absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400 text-sm pointer-events-none"></i>
-                <input type="search" id="searchInput" placeholder="Kalıp ara…" autocomplete="off"
-                    class="w-full bg-transparent border-none outline-none pl-10 pr-9 py-2 text-sm font-semibold text-slate-800 dark:text-white placeholder-slate-400">
-                <button id="searchClear" class="absolute right-2 top-1/2 -translate-y-1/2 w-6 h-6 rounded-full bg-primary/10 text-primary hidden items-center justify-center text-[10px]" aria-label="Temizle">
-                    <i class="fas fa-times"></i>
-                </button>
-            </div>
-            <button onclick="document.documentElement.classList.toggle('dark')" class="w-9 h-9 flex-shrink-0 flex items-center justify-center rounded-full hover:bg-primary/10 trans-base text-slate-600 dark:text-slate-300">
-                <i class="fas fa-moon text-sm dark:hidden"></i><i class="fas fa-sun text-sm hidden dark:block"></i>
-            </button>
-        </div>
-    </nav>
-
-    <main class="pt-24 px-4 max-w-6xl mx-auto">
+    <!-- Arkada Flu Görünecek Sayfa Taslağı -->
+    <div class="filter blur-sm pointer-events-none opacity-40 select-none min-h-screen pt-24 px-4 max-w-6xl mx-auto">
         <div class="text-center mb-8">
             <span class="inline-flex items-center gap-2 px-4 py-2 rounded-full text-[10px] font-black uppercase tracking-widest text-primary glass mb-4">
                 <i class="fas fa-star"></i> Kalıp Koleksiyonu
@@ -112,137 +78,60 @@
             <h1 class="text-3xl md:text-4xl font-black tracking-tighter mb-2">Koleksiyonumuzu <span class="text-primary">Keşfedin</span></h1>
             <p class="text-sm text-slate-600 dark:text-slate-400 max-w-md mx-auto">PDF dikiş kalıplarımızı indirin, kendi eserinizi yaratın.</p>
         </div>
-
-        <div class="flex items-center justify-between mb-6 px-1">
-            <span class="text-xs text-slate-500"><strong id="countNum" class="text-primary">0</strong> kalıp listeleniyor</span>
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+            <div class="h-64 rounded-3xl glass"></div>
+            <div class="h-64 rounded-3xl glass"></div>
+            <div class="h-64 rounded-3xl glass"></div>
         </div>
+    </div>
 
-        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5" id="patternsContainer"></div>
-    </main>
+    <!-- Otomatik Açık Bakım / Duyuru Pop-up Modal (Arkası Blur) -->
+    <div class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-900/40 dark:bg-black/70 backdrop-blur-xl">
+        <div class="relative w-full max-w-lg p-6 sm:p-8 rounded-[32px] glass modal-card text-center">
+            
+            <!-- İkon ve Rozet -->
+            <div class="flex justify-center mb-5">
+                <div class="w-16 h-16 rounded-2xl bg-gradient-to-tr from-primary to-rose-500 text-white flex items-center justify-center text-2xl pulse-soft shadow-lg shadow-primary/30">
+                    <i class="fas fa-screwdriver-wrench"></i>
+                </div>
+            </div>
 
-<script>
-const ICONS = {
-    pdf: `<i class="fas fa-file-pdf text-2xl text-primary"></i>`,
-    scissors: `<i class="fas fa-scissors text-2xl text-primary"></i>`,
-    shirt: `<i class="fas fa-shirt text-2xl text-primary"></i>`,
-    ruler: `<i class="fas fa-ruler-combined text-2xl text-primary"></i>`,
-    needle: `<i class="fas fa-needle-thread text-2xl text-primary"></i>`
-};
+            <div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-[11px] font-bold tracking-wider uppercase bg-primary/10 text-primary mb-3">
+                <i class="fas fa-circle-exclamation text-xs"></i> Sistem Bilgilendirmesi
+            </div>
 
-function getIconForCategory(category) {
-    const c = (category || '').toLowerCase();
-    if (c.includes('etek') || c.includes('pantolon')) return ICONS.scissors;
-    if (c.includes('gömlek') || c.includes('bluz') || c.includes('tunik')) return ICONS.shirt;
-    if (c.includes('ceket')) return ICONS.ruler;
-    if (c.includes('elbise')) return ICONS.needle;
-    return ICONS.pdf;
-}
+            <!-- Başlık -->
+            <h2 class="text-xl sm:text-2xl font-black tracking-tight text-slate-900 dark:text-white mb-4">
+                Önemli Duyuru
+            </h2>
 
-function escapeHtml(str) {
-    return String(str).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
-}
+            <!-- Duyuru Metni -->
+            <div class="space-y-3.5 text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed font-normal text-left sm:text-center px-1">
+                <p class="font-semibold text-slate-800 dark:text-slate-100">
+                    Değerli Kullanıcılarımız,
+                </p>
+                <p>
+                    Almanya (Frankfurt / Central EU) lokasyonlu veritabanı sunucularımızda yaşanan beklenmedik bir teknik aksaklık nedeniyle Kalıp Platformumuz geçici bir süre için erişime kapatılmıştır.
+                </p>
+                <p>
+                    Meydana gelen bu durumdan dolayı son derece üzgünüz. Teknik ekibimiz sistemleri en kısa sürede tekrar sorunsuz şekilde hizmete açmak için çalışmalarını kesintisiz sürdürmektedir.
+                </p>
+                <p class="text-slate-500 dark:text-slate-400 font-medium">
+                    Anlayışınız ve sabrınız için teşekkür ederiz.
+                </p>
+            </div>
 
-function createPatternCard(pattern) {
-    const card = document.createElement('article');
-    card.className = 'pattern-card flex flex-col items-center text-center';
-    card.innerHTML = `
-        <div class="w-16 h-16 rounded-full bg-primary/10 flex items-center justify-center mb-4">${getIconForCategory(pattern.category)}</div>
-        <span class="text-[9px] font-black uppercase tracking-widest text-primary bg-primary/10 px-3 py-1 rounded-full mb-3">PDF Kalıp</span>
-        <h2 class="font-black text-base mb-2">${escapeHtml(pattern.title || 'İsimsiz Kalıp')}</h2>
-        <div class="flex gap-4 text-[11px] text-slate-500 mb-5">
-            <span><i class="fas fa-tag mr-1"></i>${escapeHtml(pattern.category || 'Genel')}</span>
-            <span><i class="fas fa-ruler mr-1"></i>Beden ${escapeHtml(pattern.size_range || '–')}</span>
+            <!-- Alt Buton: Ana Sayfaya Dön -->
+            <div class="mt-7 pt-5 border-t border-slate-200/60 dark:border-slate-800/80">
+                <a href="index.html" 
+                   class="inline-flex items-center justify-center w-full py-3.5 px-6 rounded-2xl text-xs sm:text-sm font-extrabold tracking-wider uppercase text-white bg-gradient-to-r from-primary via-rose-600 to-rose-700 hover:brightness-110 active:scale-[0.98] shadow-lg shadow-primary/30 trans-base gap-2">
+                    <i class="fas fa-house"></i>
+                    <span>ANA SAYFAYA DÖN</span>
+                </a>
+            </div>
+
         </div>
-        <a href="${escapeHtml(pattern.file_url || '#')}" class="w-full py-3 rounded-full font-black text-xs uppercase tracking-wider text-white trans-base hover:scale-105 flex items-center justify-center gap-2"
-            style="background:linear-gradient(135deg,#E11D48,#be123c);box-shadow:0 8px 24px rgba(225,29,72,0.35);"
-            ${pattern.file_url && pattern.file_url !== '#' ? 'download' : ''}>
-            <i class="fas fa-download"></i> Kalıbı İndir
-        </a>
-    `;
-    return card;
-}
+    </div>
 
-function renderPatterns(patterns) {
-    const container = document.getElementById('patternsContainer');
-    container.innerHTML = '';
-    if (!patterns || patterns.length === 0) {
-        container.innerHTML = `<div class="col-span-full text-center py-16 opacity-60"><i class="fas fa-search-minus text-4xl mb-4 text-primary"></i><p class="font-bold">Kalıp bulunamadı.</p></div>`;
-        updateCount(0);
-        return;
-    }
-    patterns.forEach(p => container.appendChild(createPatternCard(p)));
-    updateCount(patterns.length);
-}
-
-let allPatterns = [];
-
-function filterPatterns(query) {
-    if (!query || query.trim() === '') return allPatterns;
-    const q = query.toLowerCase().trim();
-    return allPatterns.filter(p =>
-        (p.title || '').toLowerCase().includes(q) ||
-        (p.category || '').toLowerCase().includes(q)
-    );
-}
-
-function updateCount(n) { document.getElementById('countNum').textContent = n; }
-
-function showSkeletons(count) {
-    document.getElementById('patternsContainer').innerHTML = Array.from({length: count}, () =>
-        `<div class="pattern-card"><div class="skeleton-line w-16 h-16 rounded-full mx-auto mb-4"></div><div class="skeleton-line h-3 w-24 mx-auto mb-3"></div><div class="skeleton-line h-4 w-40 mx-auto mb-2"></div><div class="skeleton-line h-10 w-full mt-4"></div></div>`
-    ).join('');
-}
-
-const SUPABASE_URL = 'https://cmpmfxzekywfupsiibln.supabase.co';
-const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImNtcG1meHpla3l3ZnVwc2lpYmxuIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODI1NDgzOTQsImV4cCI6MjA5ODEyNDM5NH0.wY8EC_chAFOb9RiGLg569mTaXyjsU-NnDu7lqsK0rrU';
-
-async function loadFromSupabase() {
-    showSkeletons(6);
-    try {
-        const { createClient } = await import('https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/+esm');
-        const supabase = createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
-        const { data, error } = await supabase.from('patterns').select('id, title, category, size_range, file_url, created_at').order('created_at', { ascending: false });
-        if (error) { renderPatterns([]); return; }
-        allPatterns = data || [];
-        renderPatterns(allPatterns);
-    } catch (e) {
-        console.error('[EN-KA]', e);
-        renderPatterns([]);
-    }
-}
-
-function initKalipPage() {
-    loadFromSupabase();
-}
-
-var searchInput = document.getElementById('searchInput');
-var searchClear = document.getElementById('searchClear');
-var searchTimeout = null;
-
-function initSearchHandlers() {
-    searchInput.removeEventListener('input', searchInput._handler);
-    searchClear.removeEventListener('click', searchClear._handler);
-    searchInput._handler = function() {
-        var val = searchInput.value;
-        searchClear.classList.toggle('hidden', val.length === 0);
-        searchClear.classList.toggle('flex', val.length > 0);
-        clearTimeout(searchTimeout);
-        searchTimeout = setTimeout(function() { renderPatterns(filterPatterns(val)); }, 220);
-    };
-    searchClear._handler = function() {
-        searchInput.value = '';
-        searchClear.classList.add('hidden');
-        searchClear.classList.remove('flex');
-        renderPatterns(allPatterns);
-        searchInput.focus();
-    };
-    searchInput.addEventListener('input', searchInput._handler);
-    searchClear.addEventListener('click', searchClear._handler);
-}
-
-initSearchHandlers();
-initKalipPage();
-</script>
-<script src="js/dock.js"></script>
 </body>
 </html>
