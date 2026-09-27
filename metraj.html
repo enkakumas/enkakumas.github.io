@@ -1,0 +1,698 @@
+<!DOCTYPE html>
+<html lang="tr" class="light">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Kumaş Metraj Hesaplayıcısı | EN-KA KUMAŞ</title>
+<link rel="icon" type="image/png" href="enkai.png" />
+<meta name="description" content="Kumaş metrajınızı Avrupa standartlarına göre hesaplayın.">
+<meta name="keywords" content="kumaş metraj hesaplayıcı, kumaş hesaplama, EN-KA">
+<meta name="author" content="EN-KA KUMAŞ">
+<meta property="og:title" content="Kumaş Metraj Hesaplayıcısı | EN-KA KUMAŞ">
+<meta property="og:description" content="Avrupa standartlarına göre kumaş metrajınızı hesaplayın.">
+<meta property="og:image" content="enkai.png">
+<meta property="og:url" content="https://enkakumas.github.io/metraj.html">
+<meta property="og:type" content="website">
+<meta name="google-site-verification" content="google9cc67c0ed550220f" />
+<meta name="googlebot" content="index, follow, max-image-preview:large">
+<meta name="robots" content="index, follow">
+<meta name="ChatGPT-User" content="index, follow">
+<meta name="bingbot" content="index, follow, max-image-preview:large">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Kumaş Metraj Hesaplayıcısı | EN-KA KUMAŞ">
+<meta name="twitter:description" content="Kumaş metrajınızı hesaplayın.">
+<meta name="twitter:image" content="enkai.png">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"Kumaş Metraj Hesaplayıcısı","description":"Avrupa standartlarına göre kumaş metrajı hesaplayıcı.","applicationCategory":"UtilityApplication","provider":{"@type":"LocalBusiness","name":"EN-KA KUMAŞ"},"url":"https://enkakumas.github.io/metraj.html"}</script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<link rel="stylesheet" href="css/dock.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@600;700;800;900&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<script>tailwind.config={darkMode:"class",theme:{extend:{colors:{primary:"#E11D48"}}}};</script>
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+html{font-size:16px;-webkit-text-size-adjust:100%}
+html.light{--bg:#fafaf9;--bg2:#f5f5f4;--card:#ffffff;--card2:#fafafa;--border:#e7e5e4;--txt:#0f172a;--txt2:#475569;--txt3:#94a3b8;--accent:#E11D48;--accent2:#fff1f2;--accent3:#fecdd3;--shadow:rgba(0,0,0,0.06);--shadow2:rgba(0,0,0,0.1);--popup-bg:#ffffff;--popup-border:#e7e5e4;--input-bg:#fff;--input-border:#cbd5e1;--btn-bg:#E11D48;--btn-txt:#fff;--btn-hover:#be123c;--tag-bg:#fef2f2;--tag-txt:#be123c;--panel-bg:rgba(255,255,255,0.96);--hover-bg:#f5f5f4}
+html.dark{--bg:#0f172a;--bg2:#1e293b;--card:#1e293b;--card2:#253347;--border:#334155;--txt:#f1f5f9;--txt2:#94a3b8;--txt3:#64748b;--accent:#fb7185;--accent2:#1c0a14;--accent3:#831843;--shadow:rgba(0,0,0,0.3);--shadow2:rgba(0,0,0,0.5);--popup-bg:#1e293b;--popup-border:#334155;--input-bg:#1e293b;--input-border:#475569;--btn-bg:#E11D48;--btn-txt:#fff;--btn-hover:#f43f5e;--tag-bg:#1c0a14;--tag-txt:#fb7185;--panel-bg:rgba(15,23,42,0.96);--hover-bg:#1e293b}
+body{font-family:"Plus Jakarta Sans",system-ui,-apple-system,BlinkMacSystemFont,sans-serif;background:var(--bg);color:var(--txt);min-height:100vh;transition:background .3s,color .3s;overflow-x:hidden;-webkit-font-smoothing:antialiased}
+
+/* Floating Glass Buttons */
+.floating-nav-btn{position:fixed;top:18px;z-index:90;width:44px;height:44px;border-radius:50%;background:rgba(255,255,255,0.78);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border:1px solid rgba(255,255,255,0.85);display:flex;align-items:center;justify-content:center;color:var(--txt);text-decoration:none;font-size:1rem;box-shadow:0 4px 18px rgba(0,0,0,0.08);cursor:pointer;transition:all 0.25s cubic-bezier(0.34,1.56,0.64,1)}
+.dark .floating-nav-btn{background:rgba(30,41,59,0.78);border-color:rgba(255,255,255,0.14);box-shadow:0 4px 20px rgba(0,0,0,0.4)}
+.floating-back-btn{left:18px}
+.floating-theme-btn{right:18px;border:none}
+.floating-nav-btn:hover{transform:scale(1.1);background:var(--btn-bg);color:#fff;border-color:var(--btn-bg);box-shadow:0 6px 20px rgba(225,29,72,0.35)}
+.floating-theme-btn .fa-sun{display:none}
+html.light .floating-theme-btn .fa-moon{display:block}
+html.light .floating-theme-btn .fa-sun{display:none}
+html.dark .floating-theme-btn .fa-moon{display:none}
+html.dark .floating-theme-btn .fa-sun{display:block;color:#fbbf24}
+
+main{padding-top:0}
+
+/* Result Hero (Clean, Compact, Above Fold) */
+#result-hero{position:relative;padding:48px 20px 24px;text-align:center;overflow:hidden;border-bottom:1px solid var(--border);background:var(--card);transition:background .3s}
+#result-hero::before{content:"";position:absolute;inset:0;background:radial-gradient(circle at 50% 25%,var(--accent2) 0%,transparent 70%);opacity:.65;pointer-events:none}
+#result-hero .hero-content{position:relative;z-index:2}
+.result-label{font-size:.82rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--txt3);margin-bottom:2px}
+.result-value{font-size:clamp(3rem,9vw,4.6rem);font-weight:900;line-height:1;color:var(--accent);letter-spacing:-.03em;display:inline-block}
+.result-unit{font-size:1.4rem;font-weight:600;color:var(--txt2);margin-left:4px}
+.result-sub{font-size:.88rem;color:var(--txt2);margin-top:6px;font-weight:500}
+.result-tags{display:flex;flex-wrap:wrap;justify-content:center;gap:6px;margin-top:10px}
+.result-tag{display:inline-flex;align-items:center;gap:5px;padding:4px 12px;border-radius:20px;font-size:.78rem;font-weight:600;background:var(--tag-bg);color:var(--tag-txt);transition:background .3s,color .3s}
+.result-more{display:inline-flex;align-items:center;justify-content:center;width:32px;height:32px;border-radius:50%;border:2px dashed var(--txt3);background:transparent;color:var(--txt3);cursor:pointer;font-size:.8rem;margin-top:10px;transition:all .25s cubic-bezier(0.34,1.56,0.64,1)}
+.result-more:hover{border-color:var(--accent);color:var(--accent);background:var(--accent2);transform:scale(1.1)}
+.result-more.open{border-color:var(--accent);color:var(--accent);background:var(--accent2)}
+.result-more.open .fa-chevron-up{transform:rotate(180deg)}
+.result-more .fa-chevron-up{transition:transform .3s ease}
+.result-extras{max-height:0;opacity:0;overflow:hidden;display:flex;flex-wrap:wrap;justify-content:center;gap:6px;margin-top:0;transform:scale(0.95) translateY(-6px);transition:max-height .35s cubic-bezier(0.4,0,0.2,1),opacity .3s ease,margin-top .3s ease,transform .3s cubic-bezier(0.34,1.56,0.64,1);pointer-events:none}
+.result-extras.show{max-height:160px;opacity:1;margin-top:10px;transform:scale(1) translateY(0);pointer-events:auto}
+
+.calc-disclaimer{display:flex;align-items:flex-start;gap:10px;margin-bottom:18px;padding:12px 16px;border-radius:14px;background:var(--hover-bg);border:1px solid var(--border);font-size:0.78rem;line-height:1.5;color:var(--txt3);text-align:left}
+.calc-disclaimer i{color:var(--accent);font-size:0.88rem;margin-top:2px;flex-shrink:0}
+
+/* Selectors Grid */
+#selectors{position:relative;z-index:2;padding:24px 16px 36px;max-width:680px;margin:0 auto}
+.sel-row{display:flex;gap:10px;align-items:center;margin-bottom:12px}
+.sel-wrap{position:relative;flex:1;min-width:0}
+.sel-btn{display:flex;align-items:center;justify-content:space-between;width:100%;padding:12px 16px;border-radius:14px;border:1.5px solid var(--border);background:var(--card);color:var(--txt);font-family:inherit;font-size:.92rem;font-weight:500;cursor:pointer;transition:all .2s cubic-bezier(0.4,0,0.2,1)}
+.sel-btn:hover{border-color:var(--accent);box-shadow:0 4px 12px var(--shadow)}
+.sel-btn:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.sel-btn .sel-label{font-weight:700;color:var(--accent);font-size:.78rem;text-transform:uppercase;letter-spacing:.05em;display:block;margin-bottom:2px}
+.sel-btn .sel-value{display:block;color:var(--txt);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;font-weight:600}
+.sel-btn .fa-chevron-down{font-size:.75rem;color:var(--txt3);transition:transform .25s ease;flex-shrink:0}
+.sel-btn.open .fa-chevron-down{transform:rotate(180deg);color:var(--accent)}
+
+/* Smooth Glass Floating Dropdowns / Popups (.dp) */
+.dp{position:absolute;top:calc(100% + 8px);left:0;right:0;background:var(--panel-bg);backdrop-filter:blur(24px) saturate(180%);-webkit-backdrop-filter:blur(24px) saturate(180%);border:1.5px solid var(--border);border-radius:20px;box-shadow:0 16px 48px var(--shadow2),0 0 0 1px rgba(255,255,255,0.1) inset;z-index:70;padding:8px;display:none;max-height:280px;overflow-y:auto;transform-origin:top center}
+.dp.show{display:block;animation:glassPop 0.28s cubic-bezier(0.34,1.56,0.64,1) forwards}
+@keyframes glassPop{0%{opacity:0;transform:scale(0.92) translateY(-10px)}100%{opacity:1;transform:scale(1) translateY(0)}}
+.dp::-webkit-scrollbar{width:5px}
+.dp::-webkit-scrollbar-track{background:transparent}
+.dp::-webkit-scrollbar-thumb{background:var(--border);border-radius:10px}
+
+.dp-item{display:flex;align-items:center;gap:12px;padding:11px 14px;border-radius:14px;cursor:pointer;transition:all 0.2s cubic-bezier(0.4,0,0.2,1);font-size:0.92rem;color:var(--txt)}
+.dp-item:hover{background:var(--hover-bg);transform:translateX(4px)}
+.dp-item.sel{background:var(--accent2);color:var(--accent);font-weight:700}
+.dp-item .dp-icon{width:32px;height:32px;border-radius:10px;background:var(--accent2);color:var(--accent);display:flex;align-items:center;justify-content:center;font-size:0.85rem;flex-shrink:0;transition:all 0.2s}
+.dp-item.sel .dp-icon{background:var(--accent);color:#ffffff;box-shadow:0 4px 12px rgba(225,29,72,0.3)}
+.dp-item .dp-txt{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.dp-item .dp-chk{margin-left:auto;font-size:.85rem;color:var(--accent);opacity:0;transition:opacity .15s}
+.dp-item.sel .dp-chk{opacity:1}
+
+.calc-btn-wrap{text-align:center;margin-top:16px}
+.calc-btn{padding:14px 44px;border:none;border-radius:16px;background:linear-gradient(135deg,#E11D48 0%,#be123c 100%);color:#fff;font-family:inherit;font-size:1.05rem;font-weight:800;letter-spacing:0.02em;cursor:pointer;box-shadow:0 6px 20px rgba(225,29,72,0.35);transition:all 0.25s cubic-bezier(0.34,1.56,0.64,1)}
+.calc-btn:hover{transform:translateY(-2px) scale(1.02);box-shadow:0 10px 28px rgba(225,29,72,0.5)}
+.calc-btn:active{transform:scale(0.97)}
+
+/* Kalıp Platformu (Sola Hizalı, Kutusuz, Özel Başlık Fontu) */
+#kalip{padding:36px 16px 20px;max-width:680px;margin:0 auto}
+.kalip-plain{text-align:left}
+.kalip-title{font-family:'Outfit','Plus Jakarta Sans',sans-serif;font-size:1.6rem;font-weight:800;letter-spacing:-.02em;color:var(--txt);margin-bottom:8px;line-height:1.25}
+.kalip-desc{font-size:0.92rem;color:var(--txt2);line-height:1.6;margin-bottom:20px;max-width:560px}
+.kalip-plain-btn{display:inline-flex;align-items:center;gap:10px;padding:13px 28px;border-radius:14px;font-family:inherit;font-weight:800;font-size:0.92rem;letter-spacing:0.04em;text-decoration:none;color:#fff;background:linear-gradient(135deg,#E11D48 0%,#be123c 100%);box-shadow:0 4px 16px rgba(225,29,72,0.3);transition:all .25s cubic-bezier(0.34,1.56,0.64,1)}
+.kalip-plain-btn:hover{transform:translateY(-2px) scale(1.02);box-shadow:0 8px 24px rgba(225,29,72,0.45)}
+
+/* EN-KA KUMAŞ Yapay Zeka (Altın Sarısı Gradyan + Şimşek Arka Planı) */
+#enkai{padding:12px 16px 44px;max-width:680px;margin:0 auto}
+.enkai-ai-card{position:relative;overflow:hidden;border-radius:24px;padding:28px 24px;background:linear-gradient(135deg,rgba(254,243,199,0.7) 0%,rgba(253,230,138,0.35) 45%,var(--card) 100%);border:1.5px solid rgba(245,158,11,0.35);box-shadow:0 10px 32px rgba(245,158,11,0.12);text-align:left;transition:all .3s ease}
+.dark .enkai-ai-card{background:linear-gradient(135deg,rgba(120,53,15,0.35) 0%,rgba(69,26,3,0.2) 45%,var(--card) 100%);border-color:rgba(245,158,11,0.35);box-shadow:0 10px 32px rgba(0,0,0,0.4)}
+.enkai-ai-card:hover{border-color:rgba(245,158,11,0.6);transform:translateY(-2px);box-shadow:0 14px 40px rgba(245,158,11,0.2)}
+.enkai-ai-lightning{position:absolute;right:8px;bottom:-18px;font-size:8rem;color:rgba(245,158,11,0.13);pointer-events:none;transform:rotate(-15deg);transition:all .4s ease}
+.dark .enkai-ai-lightning{color:rgba(251,191,36,0.1)}
+.enkai-ai-card:hover .enkai-ai-lightning{transform:rotate(-10deg) scale(1.08);color:rgba(245,158,11,0.22)}
+.enkai-ai-content{position:relative;z-index:2}
+.enkai-ai-title{font-family:'Outfit','Plus Jakarta Sans',sans-serif;font-size:1.35rem;font-weight:800;letter-spacing:-.02em;color:var(--txt);margin-bottom:8px;line-height:1.3}
+.enkai-ai-desc{font-size:0.88rem;color:var(--txt2);line-height:1.5;margin-bottom:20px;max-width:500px}
+.enkai-ai-btn{display:inline-flex;align-items:center;gap:10px;padding:13px 28px;border-radius:14px;font-family:inherit;font-weight:800;font-size:0.92rem;letter-spacing:0.04em;text-decoration:none;color:#1c1917;background:linear-gradient(135deg,#fbbf24 0%,#f59e0b 50%,#d97706 100%);box-shadow:0 4px 16px rgba(245,158,11,0.35);transition:all .25s cubic-bezier(0.34,1.56,0.64,1)}
+.enkai-ai-btn:hover{transform:translateY(-2px) scale(1.02);box-shadow:0 8px 24px rgba(245,158,11,0.5);color:#000}
+
+/* Floating Quick Access Button */
+#qab{position:fixed;bottom:24px;right:24px;z-index:45;width:52px;height:52px;border-radius:16px;border:none;background:linear-gradient(135deg,#E11D48 0%,#be123c 100%);color:#fff;cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:1.25rem;box-shadow:0 6px 20px rgba(225,29,72,0.4);transition:all 0.25s cubic-bezier(0.34,1.56,0.64,1)}
+#qab:hover{transform:scale(1.08) translateY(-2px);box-shadow:0 10px 28px rgba(225,29,72,0.55)}
+
+footer{padding:24px 16px;text-align:center;font-size:.8rem;color:var(--txt3);border-top:1px solid var(--border)}
+</style>
+</head>
+<body>
+
+<!-- Floating Glass Buttons -->
+<a href="index-6.html" class="floating-nav-btn floating-back-btn" title="Ana Sayfaya Dön" aria-label="Geri">
+  <i class="fas fa-chevron-left"></i>
+</a>
+<button class="floating-nav-btn floating-theme-btn" id="theme-btn" title="Tema Değiştir" aria-label="Tema Değiştir">
+  <i class="fas fa-moon"></i>
+  <i class="fas fa-sun"></i>
+</button>
+
+<main>
+
+<!-- Result Hero Section (Animasyonsuz, Temiz & Ferah) -->
+<section id="result-hero">
+  <div class="hero-content">
+    <div class="result-label">Tahmini Kumaş Miktarı</div>
+    <div><span class="result-value" id="res-val">0.00</span><span class="result-unit">m</span></div>
+    <div class="result-sub" id="res-sub">Ürün seçerek hesaplama yapın</div>
+    <div class="result-tags" id="res-tags"></div>
+    <button class="result-more" id="res-more" aria-label="Daha fazla bilgi"><i class="fas fa-chevron-up"></i></button>
+    <div class="result-extras" id="res-extras"></div>
+  </div>
+</section>
+
+<!-- Selectors Section -->
+<section id="selectors">
+  <div class="calc-disclaimer">
+    <i class="fas fa-circle-info"></i>
+    <span>Hesaplama sonuçları tahmini referans niteliğindedir, tam olarak doğru olmayabilir. En kesin sonuçlar için lütfen bizimle iletişime geçiniz.</span>
+  </div>
+  <div class="sel-row">
+    <div class="sel-wrap" id="w-k">
+      <button class="sel-btn" onclick="window.enkaiT.tog('k')">
+        <div><span class="sel-label">Kategori</span><span class="sel-value">Seçin</span></div>
+        <i class="fas fa-chevron-down"></i>
+      </button>
+      <div class="dp" id="p-k"></div>
+    </div>
+  </div>
+  <div class="sel-row">
+    <div class="sel-wrap" id="w-u">
+      <button class="sel-btn" onclick="window.enkaiT.tog('u')">
+        <div><span class="sel-label">Ürün</span><span class="sel-value">Ürün seçin</span></div>
+        <i class="fas fa-chevron-down"></i>
+      </button>
+      <div class="dp" id="p-u"></div>
+    </div>
+  </div>
+  <div class="sel-row">
+    <div class="sel-wrap" id="w-b">
+      <button class="sel-btn" onclick="window.enkaiT.tog('b')">
+        <div><span class="sel-label">Beden / Model</span><span class="sel-value">Beden / Model seçin</span></div>
+        <i class="fas fa-chevron-down"></i>
+      </button>
+      <div class="dp" id="p-b"></div>
+    </div>
+  </div>
+  <div class="sel-row">
+    <div class="sel-wrap" id="w-e">
+      <button class="sel-btn" onclick="window.enkaiT.tog('e')">
+        <div><span class="sel-label">Kumaş Eni</span><span class="sel-value" id="sel-en">140 – 150 cm (Standart Giyim Eni – En Yaygın)</span></div>
+        <i class="fas fa-chevron-down"></i>
+      </button>
+      <div class="dp" id="p-e"></div>
+    </div>
+  </div>
+  <div class="sel-row">
+    <div class="sel-wrap" id="w-z">
+      <button class="sel-btn" onclick="window.enkaiT.tog('z')">
+        <div><span class="sel-label">Çekme Payı</span><span class="sel-value" id="sel-z">%5</span></div>
+        <i class="fas fa-chevron-down"></i>
+      </button>
+      <div class="dp" id="p-z"></div>
+    </div>
+  </div>
+  <div class="calc-btn-wrap">
+    <button class="calc-btn" onclick="window.enkaiT.calc()">HESAPLA</button>
+  </div>
+</section>
+
+<!-- Kalıp Platformu Section -->
+<section id="kalip">
+  <div class="kalip-plain">
+    <h2 class="kalip-title">EN-KA KUMAŞ Kalıp Platformu</h2>
+    <p class="kalip-desc">Her tarza ve bedene uygun profesyonel dikiş kalıplarına ücretsiz ulaşabilir, tasarımlarınızı hemen hayata geçirebilirsiniz.</p>
+    <a href="kalip-koleksiyonu.html" class="kalip-plain-btn" target="_blank" rel="noopener">
+      KALIPLARA GİT <i class="fas fa-arrow-right"></i>
+    </a>
+  </div>
+</section>
+
+<!-- EN-KA KUMAŞ Yapay Zeka Section -->
+<section id="enkai">
+  <div class="enkai-ai-card">
+    <div class="enkai-ai-lightning">
+      <i class="fas fa-bolt"></i>
+    </div>
+    <div class="enkai-ai-content">
+      <h2 class="enkai-ai-title">EN-KA KUMAŞ Yapay Zeka ile dikiş tavsiyeleri alın</h2>
+      <p class="enkai-ai-desc">Kumaş türlerinden dikiş tekniklerine ve metraj tavsiyelerine kadar aradığınız her şeye anında yanıt bulun.</p>
+      <a href="chatbot.html" class="enkai-ai-btn" target="_blank" rel="noopener">
+        HEMEN DENE <i class="fas fa-arrow-right"></i>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- Quick Access Button -->
+<button id="qab" aria-label="Bize Ulaşın"><i class="fas fa-comments"></i></button>
+
+<!-- Contact Modal Overlay -->
+<div class="enka-contact-overlay" id="enka-contact-overlay">
+  <h2 class="enka-contact-title">Bize Ulaşın</h2>
+  <button class="enka-contact-close" id="enka-contact-close" type="button" aria-label="Kapat"><i class="fas fa-times"></i></button>
+  <div class="enka-contact-actions">
+    <a href="https://wa.me/905368938558" target="_blank" rel="noopener" class="enka-contact-action wa"><i class="fab fa-whatsapp"></i> WhatsApp</a>
+    <a href="https://instagram.com/enka_kumascilik_a.s" target="_blank" rel="noopener" class="enka-contact-action ig"><i class="fab fa-instagram"></i> Instagram</a>
+    <a href="https://maps.app.goo.gl/QDJ8ei1FDQk6J7mv8" target="_blank" rel="noopener" class="enka-contact-action map"><i class="fas fa-map-location-dot"></i> Google Haritalar</a>
+    <a href="tel:+905368938558" class="enka-contact-action phone"><i class="fas fa-phone" style="color:#E11D48;"></i> Hemen Ara</a>
+  </div>
+</div>
+
+</main>
+
+<footer>&copy; 2025 EN-KA KUMAŞ — Tüm hakları saklıdır.</footer>
+
+<script>
+(function(){
+'use strict';
+
+/* ── TEMA (Saat 17:00'den itibaren otomatik karanlık mod) ── */
+var html = document.documentElement;
+var themeBtn = document.getElementById('theme-btn');
+var saved = localStorage.getItem('enka-theme');
+
+if(saved){
+  html.className = saved;
+} else {
+  var hour = new Date().getHours();
+  if(hour >= 17 || hour < 7){
+    html.className = 'dark';
+  } else {
+    html.className = 'light';
+  }
+}
+
+if(themeBtn){
+  themeBtn.addEventListener('click', function(){
+    var isDark = html.classList.contains('dark');
+    if(isDark){
+      html.classList.remove('dark');
+      html.classList.add('light');
+    } else {
+      html.classList.remove('light');
+      html.classList.add('dark');
+    }
+    localStorage.setItem('enka-theme', html.classList.contains('dark') ? 'dark' : 'light');
+  });
+}
+
+/* ── HIZLI ERİŞİM / BİZE ULAŞIN ── */
+var qab = document.getElementById('qab');
+var overlay = document.getElementById('enka-contact-overlay');
+var closeBtn = document.getElementById('enka-contact-close');
+
+if(qab && overlay){
+  qab.addEventListener('click', function(){
+    overlay.classList.add('open');
+    document.body.style.overflow = 'hidden';
+  });
+}
+if(closeBtn && overlay){
+  closeBtn.addEventListener('click', function(){
+    overlay.classList.remove('open');
+    document.body.style.overflow = '';
+  });
+}
+if(overlay){
+  overlay.addEventListener('click', function(e){
+    if(e.target === overlay){
+      overlay.classList.remove('open');
+      document.body.style.overflow = '';
+    }
+  });
+}
+
+/* ── RESULT MORE TOGGLE (Yumuşak Açılır Animasyon) ── */
+var resMore = document.getElementById('res-more');
+var resExtras = document.getElementById('res-extras');
+if(resMore && resExtras){
+  resMore.addEventListener('click', function(){
+    resMore.classList.toggle('open');
+    resExtras.classList.toggle('show');
+  });
+}
+
+/* ── METRAJ VERİLERİ ── */
+var DATA = {
+  categories: [
+    {id:'kadin', name:'Kadın Giyim', icon:'fa-person-dress'},
+    {id:'erkek_cocuk', name:'Erkek & Çocuk Giyim', icon:'fa-people-roof'},
+    {id:'dis_giyim', name:'Dış Giyim', icon:'fa-vest-patches'},
+    {id:'ev', name:'Ev Tekstili & Döşemelik', icon:'fa-couch'}
+  ],
+  products: {
+    kadin: [
+      {id:'elbise_standart', name:'Elbise', icon:'fa-person-dress', base:2.5},
+      {id:'pantolon_standart', name:'Pantolon', icon:'fa-shirt', base:1.8},
+      {id:'canta', name:'Çanta', icon:'fa-bag-shopping', base:0.8, target:'canta'},
+      {id:'diz_elbise', name:'Diz Boyu Elbise (Düz Kesim)', icon:'fa-person-dress', base:2.2},
+      {id:'maxi_elbise', name:'Uzun (Maxi) Elbise', icon:'fa-person-dress', base:3.2},
+      {id:'klos_elbise', name:'Kloş / Pileli Elbise', icon:'fa-person-dress', base:3.8},
+      {id:'bluz', name:'Bluz / Üst Giyim', icon:'fa-shirt', base:1.5},
+      {id:'kadin_gomlek', name:'Kadın Gömlek', icon:'fa-shirt', base:1.6},
+      {id:'duz_etek', name:'Düz / Kalem Etek', icon:'fa-shirt', base:1.2},
+      {id:'klos_etek', name:'Kloş / Uzun Etek', icon:'fa-shirt', base:2.4},
+      {id:'kadin_pantolon', name:'Kadın Pantolon', icon:'fa-shirt', base:1.8},
+      {id:'blazer_ceket', name:'Blazer Ceket', icon:'fa-shirt', base:2.2},
+      {id:'kimono', name:'Kimono / Kaftan', icon:'fa-shirt', base:2.8}
+    ],
+    erkek_cocuk: [
+      {id:'erkek_pantolon_std', name:'Pantolon', icon:'fa-shirt', base:1.8, target:'erkek'},
+      {id:'erkek_gomlek', name:'Erkek Gömlek', icon:'fa-shirt', base:1.8, target:'erkek'},
+      {id:'erkek_pantolon', name:'Erkek Pantolon', icon:'fa-shirt', base:1.8, target:'erkek'},
+      {id:'erkek_ceket', name:'Erkek Ceket', icon:'fa-shirt', base:2.2, target:'erkek'},
+      {id:'yelek', name:'Yelek', icon:'fa-shirt', base:1.3, target:'erkek'},
+      {id:'cocuk_takim', name:'Çocuk Kıyafet Takımı', icon:'fa-child', base:1.5, target:'cocuk'}
+    ],
+    dis_giyim: [
+      {id:'palto_kaban', name:'Palto / Kaban', icon:'fa-vest', base:3.0},
+      {id:'trenckot', name:'Trençkot', icon:'fa-vest', base:3.2},
+      {id:'pardosu_kap', name:'Pardösü / Kap', icon:'fa-vest', base:3.0}
+    ],
+    ev: [
+      {id:'tekli_berjer', name:'Tekli Koltuk / Berjer Örtüsü', icon:'fa-couch', base:4.8, target:'koltuk'},
+      {id:'ikili_kanepe', name:'İkili Kanepe Örtüsü', icon:'fa-couch', base:8.5, target:'koltuk'},
+      {id:'uclu_kanepe', name:'Üçlü Kanepe Örtüsü', icon:'fa-couch', base:11.0, target:'koltuk'},
+      {id:'l_koltuk', name:'L Koltuk / Köşe Koltuk Örtüsü', icon:'fa-couch', base:15.0, target:'koltuk'},
+      {id:'sandalye', name:'Sandalye Kılıfı', icon:'fa-chair', base:1.8, target:'koltuk'},
+      {id:'kirlent', name:'Kırlent / Yastık Kılıfı', icon:'fa-couch', base:0.7, target:'perde_yastik'},
+      {id:'fon_perde', name:'Fon Perde', icon:'fa-window-maximize', base:3.2, target:'perde_yastik'},
+      {id:'masa_ortusu', name:'Masa Örtüsü', icon:'fa-table', base:2.5, target:'masa'},
+      {id:'masa_runner', name:'Masa Runner', icon:'fa-table', base:1.0, target:'masa'},
+      {id:'tek_yatak', name:'Tek Kişilik Yatak Örtüsü', icon:'fa-bed', base:4.2, target:'yatak'},
+      {id:'cift_yatak', name:'Çift Kişilik Yatak Örtüsü', icon:'fa-bed', base:6.5, target:'yatak'},
+      {id:'puf_armut', name:'Puf / Armut Koltuk Kılıfı', icon:'fa-couch', base:2.8, target:'perde_yastik'}
+    ]
+  },
+  sizes: {
+    kadin: [
+      {id:'xs', name:'XS (34)', mult:0.90},
+      {id:'s', name:'S (36)', mult:0.95},
+      {id:'m', name:'M (38)', mult:1.00},
+      {id:'l', name:'L (40)', mult:1.05},
+      {id:'xl', name:'XL (42)', mult:1.10},
+      {id:'2xl', name:'2XL (44)', mult:1.15},
+      {id:'3xl', name:'3XL (46)', mult:1.20},
+      {id:'4xl', name:'4XL (48)', mult:1.25},
+      {id:'5xl', name:'5XL (50)', mult:1.30}
+    ],
+    erkek: [
+      {id:'xs', name:'XS', mult:0.90},
+      {id:'s', name:'S', mult:0.95},
+      {id:'m', name:'M', mult:1.00},
+      {id:'l', name:'L', mult:1.05},
+      {id:'xl', name:'XL', mult:1.10},
+      {id:'2xl', name:'2XL', mult:1.15},
+      {id:'3xl', name:'3XL', mult:1.20},
+      {id:'4xl', name:'4XL', mult:1.25},
+      {id:'5xl', name:'5XL', mult:1.30}
+    ],
+    cocuk: [
+      {id:'2_3', name:'2-3 Yaş', mult:0.75},
+      {id:'4_5', name:'4-5 Yaş', mult:0.85},
+      {id:'6_7', name:'6-7 Yaş', mult:1.00},
+      {id:'8_9', name:'8-9 Yaş', mult:1.15},
+      {id:'10_11', name:'10-11 Yaş', mult:1.25},
+      {id:'12_14', name:'12-14 Yaş', mult:1.35}
+    ],
+    canta: [
+      {id:'standart', name:'Standart Boy (40x40 cm)', mult:1.00},
+      {id:'kucuk', name:'Küçük / Kol Çantası', mult:0.75},
+      {id:'buyuk', name:'Büyük / Tote Bag', mult:1.35}
+    ],
+    koltuk: [
+      {id:'tekli', name:'Tekli Berjer', mult:1.00},
+      {id:'ikili', name:'İkili Kanepe', mult:1.00},
+      {id:'uclu', name:'Üçlü Kanepe', mult:1.00},
+      {id:'l_kose', name:'L / Köşe Koltuk', mult:1.00},
+      {id:'sandalye', name:'Sandalye', mult:1.00}
+    ],
+    yatak: [
+      {id:'tek', name:'Tek Kişilik', mult:1.00},
+      {id:'cift', name:'Çift Kişilik', mult:1.35},
+      {id:'king', name:'Battal (King Size)', mult:1.60}
+    ],
+    masa: [
+      {id:'4k', name:'4 Kişilik', mult:0.85},
+      {id:'6k', name:'6 Kişilik', mult:1.00},
+      {id:'8k', name:'8 Kişilik', mult:1.25},
+      {id:'12k', name:'12 Kişilik', mult:1.60}
+    ],
+    perde_yastik: [
+      {id:'fon', name:'Standart Fon Perde', mult:1.00},
+      {id:'kirlent', name:'Kırlent', mult:1.00},
+      {id:'puf', name:'Puf / Armut', mult:1.00}
+    ]
+  },
+  widths: {
+    giyim: [
+      {id:'90', name:'90 cm (Dar En / Astar / İpek)', val:90},
+      {id:'110_120', name:'110 – 120 cm (Pamuklu / Patchwork / İthal Kumaş)', val:115},
+      {id:'140_150', name:'140 – 150 cm (Standart Giyim Eni – En Yaygın)', val:145},
+      {id:'180', name:'180 cm (Penye / Örme / Triko Kumaş)', val:180}
+    ],
+    ev: [
+      {id:'140_150_ev', name:'140 – 150 cm (Standart Döşemelik & Masa Örtüsü)', val:145},
+      {id:'240', name:'240 cm (Nevresimlik & Çarşaflık Kumaş)', val:240},
+      {id:'280_300', name:'280 – 300 cm (Geniş En Tül, Perde & Döşemelik)', val:290}
+    ]
+  },
+  shrinks: [
+    {id:'0', name:'%0 (Yok)', val:0},
+    {id:'3', name:'%3', val:3},
+    {id:'5', name:'%5', val:5},
+    {id:'8', name:'%8', val:8},
+    {id:'10', name:'%10', val:10},
+    {id:'15', name:'%15', val:15}
+  ]
+};
+
+/* ── SEÇİMLER ── */
+var sel = {
+  cat: null,
+  prod: null,
+  size: null,
+  width: 145,
+  widthId: '140_150',
+  widthName: '140 – 150 cm (Standart Giyim Eni – En Yaygın)',
+  shrink: 5
+};
+var openPanel = null;
+
+function closeAllPanels(){
+  ['k','u','b','e','z'].forEach(function(key){
+    var p = document.getElementById('p-'+key);
+    var w = document.getElementById('w-'+key);
+    if(p) p.classList.remove('show');
+    if(w){
+      var btn = w.querySelector('.sel-btn');
+      if(btn) btn.classList.remove('open');
+    }
+  });
+  openPanel = null;
+}
+
+function renderDropdown(panelId, items, selectedId, onSelect){
+  var panel = document.getElementById(panelId);
+  if(!panel) return;
+  panel.innerHTML = '';
+  if(!items || items.length === 0){
+    panel.innerHTML = '<div style="padding:12px;text-align:center;font-size:0.85rem;color:var(--txt3);">Lütfen önce önceki adımı seçiniz</div>';
+    return;
+  }
+  items.forEach(function(item){
+    var div = document.createElement('div');
+    div.className = 'dp-item' + (item.id === selectedId ? ' sel' : '');
+    div.innerHTML = '<div class="dp-icon"><i class="fas '+(item.icon||'fa-circle-dot')+'"></i></div>' +
+      '<span class="dp-txt">'+item.name+'</span>' +
+      '<i class="fas fa-check dp-chk"></i>';
+    div.addEventListener('click', function(){ onSelect(item); });
+    panel.appendChild(div);
+  });
+}
+
+function updateValue(wrapId, text){
+  var wrap = document.getElementById(wrapId);
+  if(!wrap) return;
+  var valEl = wrap.querySelector('.sel-value');
+  if(valEl) valEl.textContent = text;
+}
+
+function getSizesForCurrentSelection(){
+  if(!sel.cat) return [];
+  if(sel.prod && sel.prod.target === 'canta') return DATA.sizes.canta;
+  if(sel.cat === 'kadin') return DATA.sizes.kadin;
+  if(sel.cat === 'dis_giyim') return DATA.sizes.kadin;
+  if(sel.cat === 'erkek_cocuk'){
+    if(sel.prod && sel.prod.target === 'cocuk') return DATA.sizes.cocuk;
+    return DATA.sizes.erkek;
+  }
+  if(sel.cat === 'ev'){
+    if(sel.prod && sel.prod.target && DATA.sizes[sel.prod.target]){
+      return DATA.sizes[sel.prod.target];
+    }
+    return DATA.sizes.koltuk;
+  }
+  return [];
+}
+
+function getWidthsList(){
+  if(sel.cat === 'ev'){
+    return DATA.widths.ev;
+  } else if(sel.cat){
+    return DATA.widths.giyim;
+  } else {
+    return DATA.widths.giyim.concat(DATA.widths.ev);
+  }
+}
+
+function selectCategory(item){
+  sel.cat = item.id;
+  sel.prod = null;
+  sel.size = null;
+  updateValue('w-k', item.name);
+  updateValue('w-u', 'Ürün seçin');
+  updateValue('w-b', 'Beden / Model seçin');
+  renderDropdown('p-u', DATA.products[item.id] || [], null, selectProduct);
+  renderDropdown('p-b', getSizesForCurrentSelection(), null, selectSize);
+
+  // Kumaş enini kategoriye göre ayarla (140-150 standart seçili)
+  if(item.id === 'ev'){
+    selectWidth(DATA.widths.ev[0]);
+  } else {
+    selectWidth(DATA.widths.giyim[2]);
+  }
+  renderDropdown('p-e', getWidthsList(), sel.widthId, selectWidth);
+  closeAllPanels();
+}
+
+function selectProduct(item){
+  sel.prod = item;
+  sel.size = null;
+  updateValue('w-u', item.name);
+  updateValue('w-b', 'Beden / Model seçin');
+  renderDropdown('p-b', getSizesForCurrentSelection(), null, selectSize);
+  closeAllPanels();
+}
+
+function selectSize(item){
+  sel.size = item;
+  updateValue('w-b', item.name);
+  closeAllPanels();
+}
+
+function selectWidth(item){
+  sel.width = item.val;
+  sel.widthId = item.id;
+  sel.widthName = item.name;
+  updateValue('w-e', item.name);
+  closeAllPanels();
+}
+
+function selectShrink(item){
+  sel.shrink = item.val;
+  updateValue('w-z', item.name);
+  closeAllPanels();
+}
+
+/* ── TOGGLE ── */
+function tog(key){
+  var panelMap = {k:'p-k', u:'p-u', b:'p-b', e:'p-e', z:'p-z'};
+  var panelId = panelMap[key];
+  if(!panelId) return;
+
+  if(openPanel === key){
+    closeAllPanels();
+    return;
+  }
+  closeAllPanels();
+
+  // Dinamik dropdown içeriklerini güncelle
+  if(key === 'e'){
+    renderDropdown('p-e', getWidthsList(), sel.widthId, selectWidth);
+  } else if(key === 'b'){
+    renderDropdown('p-b', getSizesForCurrentSelection(), sel.size ? sel.size.id : null, selectSize);
+  }
+
+  var panel = document.getElementById(panelId);
+  var wrap = document.getElementById('w-'+key);
+  if(panel) panel.classList.add('show');
+  if(wrap){
+    var btn = wrap.querySelector('.sel-btn');
+    if(btn) btn.classList.add('open');
+  }
+  openPanel = key;
+}
+
+/* ── HESAPLAMA (Yuvarlama: 2.15 -> 2.50, 3.60 -> 4.00) ── */
+function calc(){
+  if(!sel.cat){
+    alert('Lütfen önce bir kategori seçin.');
+    return;
+  }
+  if(!sel.prod){
+    alert('Lütfen bir ürün seçin.');
+    return;
+  }
+  if(!sel.size){
+    alert('Lütfen bir beden veya model seçin.');
+    return;
+  }
+
+  var baseM = sel.prod.base;
+  var sizeMult = (sel.size && sel.size.mult !== undefined) ? sel.size.mult : 1.0;
+  var widthFactor = 150 / sel.width;
+  var shrinkFactor = 1 + (sel.shrink / 100);
+
+  var rawTotal = baseM * sizeMult * widthFactor * shrinkFactor;
+  // En yakın 0.50 metreye yukarı yuvarlama (Örn: 2.15 -> 2.50, 3.60 -> 4.00)
+  var total = Math.ceil(rawTotal * 2) / 2;
+
+  var resVal = document.getElementById('res-val');
+  var resSub = document.getElementById('res-sub');
+  var resTags = document.getElementById('res-tags');
+  var resExtras2 = document.getElementById('res-extras');
+
+  if(resVal){
+    resVal.textContent = total.toFixed(2);
+    resVal.style.animation = 'none';
+    resVal.offsetHeight;
+    resVal.style.animation = 'glassPop 0.35s cubic-bezier(0.34,1.56,0.64,1)';
+  }
+  if(resSub) resSub.textContent = sel.prod.name + ' · ' + sel.size.name;
+
+  if(resTags){
+    resTags.innerHTML =
+      '<span class="result-tag"><i class="fas fa-ruler-horizontal"></i> En: '+sel.width+' cm</span>' +
+      '<span class="result-tag"><i class="fas fa-compress-arrows-alt"></i> Çekme: %'+sel.shrink+'</span>';
+  }
+
+  if(resExtras2){
+    var catObj = DATA.categories.find(function(c){ return c.id === sel.cat; });
+    resExtras2.innerHTML =
+      '<span class="result-tag"><i class="fas fa-layer-group"></i> '+( catObj ? catObj.name : '')+'</span>' +
+      '<span class="result-tag"><i class="fas fa-cut"></i> Taban: '+baseM.toFixed(1)+' m</span>' +
+      '<span class="result-tag"><i class="fas fa-arrows-alt-v"></i> Çarpan: x'+sizeMult.toFixed(2)+'</span>' +
+      '<span class="result-tag"><i class="fas fa-calculator"></i> Net: '+rawTotal.toFixed(2)+' m</span>';
+  }
+}
+
+/* ── INIT DROPDOWNS ── */
+renderDropdown('p-k', DATA.categories, null, selectCategory);
+renderDropdown('p-e', getWidthsList(), '140_150', selectWidth);
+renderDropdown('p-z', DATA.shrinks, '5', selectShrink);
+updateValue('w-e', '140 – 150 cm (Standart Giyim Eni – En Yaygın)');
+
+/* ── CLOSE ON OUTSIDE CLICK ── */
+document.addEventListener('click', function(e){
+  if(!e.target.closest('.sel-wrap')){
+    closeAllPanels();
+  }
+});
+
+/* ── EXPOSE ── */
+window.enkaiT = { tog: tog, calc: calc };
+
+})();
+</script>
+</body>
+</html>
+
