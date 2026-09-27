@@ -9,10 +9,10 @@
     <meta property="og:url" content="https://enkakumas.github.io/index.html">
     <meta property="og:type" content="website">
     <meta name="google-site-verification" content="google9cc67c0ed550220f" />
-    <title>EN-KA KUMAŞ |Ankara Keçiören Kumaşçı - 81 İle Hızlı Kargo</title>
+    <title>EN-KA KUMAŞ | Ankara Keçiören Kumaşçı - 81 İle Hızlı Kargo</title>
     <link rel="icon" type="image/png" href="logo.png" />
     <meta name="description" content="EN-KA Kumaş – Ankara Keçiören'de ucuz ve kaliteli kumaşlar. Uygun fiyatlarla en iyi kumaşları hemen keşfedin.">
-    <meta name="keywords" content="EN-KA Kumaş, Ankara, Keçiören, ucuz kumaş, kaliteli kumaş, kumaş markası">
+    <meta name="keywords" content="EN-KA Kumaş, Ankara, Keçiören, ucuz kumaş, kaliteli kumaş, kumaş markası, kalıp koleksiyonu, metraj hesaplama">
     <meta property="og:site_name" content="EN-KA KUMAŞÇILIK">
     <script type="application/ld+json">
     {
@@ -42,47 +42,11 @@
       }
     }
     </script>
-    <script type="application/ld+json">
-    [
-      {
-        "@context": "https://schema.org",
-        "@type": "LocalBusiness",
-        "name": "EN-KA KUMAŞ",
-        "image": "https://enkakumas.github.io/logo.png",
-        "description": "Toptan ve perakende kumaş satışı. Geniş ürün yelpazesi ile sektörde öncü hizmet.",
-        "address": {
-          "@type": "PostalAddress",
-          "addressLocality": "Ankara",
-          "addressCountry": "TR"
-        },
-        "priceRange": "$$"
-      },
-      {
-        "@context": "https://schema.org",
-        "@type": "WebSite",
-        "name": "EN-KA KUMAŞ",
-        "url": "https://enkakumas.github.io/",
-        "potentialAction": {
-          "@type": "SearchAction",
-          "target": "https://enkakumas.github.io/index.html?q={search_term_string}",
-          "query-input": "required name=search_term_string"
-        }
-      }
-    ]
-    </script>
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "WebSite",
-      "name": "EN-KA KUMAŞÇILIK",
-      "url": "https://enkakumas.github.io/"
-    }
-    </script>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <link rel="stylesheet" href="css/dock.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;800&family=Poppins:wght@300;400;500;700;900&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=League+Spartan:wght@300;400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@300;400;500;600;800&family=Poppins:wght@300;400;500;700;900&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&display=swap" rel="stylesheet">
     <script>
         tailwind.config = {
             darkMode: 'class',
@@ -91,6 +55,7 @@
                     colors: { primary: '#E11D48', secondary: '#881337' },
                     fontFamily: {
                         sans: ['Plus Jakarta Sans', 'sans-serif'],
+                        spartan: ['League Spartan', 'sans-serif'],
                         poppins: ['Poppins', 'sans-serif'],
                         playfair: ['Playfair Display', 'serif'],
                         cormorant: ['Cormorant Garamond', 'serif']
@@ -122,7 +87,7 @@
         html { scroll-behavior: smooth; transition: background-color 0.4s ease, color 0.4s ease; overflow-x: hidden; }
         body {
             font-family: 'Plus Jakarta Sans', sans-serif;
-            padding-bottom: 100px;
+            padding-bottom: 90px;
             background: #f8f4f4;
             color: #1a2332;
             transition: background 0.5s ease, color 0.5s ease;
@@ -225,21 +190,31 @@
             border: 1px solid rgba(255,255,255,0.1);
             box-shadow: 0 20px 60px rgba(0,0,0,0.5), inset 0 1px 0 rgba(255,255,255,0.06);
         }
-        /* ── NAVBAR (rounded-full glassmorphism) ── */
-        .nav-liquid {
-            background: rgba(255,250,250,0.78);
-            backdrop-filter: blur(40px) saturate(200%) brightness(1.05);
-            -webkit-backdrop-filter: blur(40px) saturate(200%) brightness(1.05);
-            border: 1px solid rgba(255,255,255,0.75);
-            box-shadow: 0 4px 24px rgba(225,29,72,0.08), 0 1px 0 rgba(255,255,255,0.8) inset;
-            border-radius: 9999px;
+        
+        /* ── YÜZEN NAVBAR (Scroll ile animasyonlu) ── */
+        #nav-liquid-box {
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            background: transparent;
+            border: 1px solid transparent;
+            box-shadow: none;
+            backdrop-filter: blur(0px);
+            -webkit-backdrop-filter: blur(0px);
         }
-        .dark .nav-liquid {
-            background: rgba(15,5,8,0.88);
-            border: 1px solid rgba(255,255,255,0.08);
-            box-shadow: 0 4px 24px rgba(0,0,0,0.4);
-            border-radius: 9999px;
+        #nav-liquid-box.scrolled {
+            background: rgba(255, 250, 250, 0.88);
+            backdrop-filter: blur(35px) saturate(200%) brightness(1.04);
+            -webkit-backdrop-filter: blur(35px) saturate(200%) brightness(1.04);
+            border: 1px solid rgba(255, 255, 255, 0.75);
+            box-shadow: 0 10px 30px rgba(225,29,72,0.09), 0 1px 0 rgba(255,255,255,0.8) inset;
         }
+        .dark #nav-liquid-box.scrolled {
+            background: rgba(15, 6, 10, 0.9);
+            backdrop-filter: blur(35px) saturate(200%);
+            -webkit-backdrop-filter: blur(35px) saturate(200%);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+        }
+
         /* ── SLIDER ── */
         .slider-wrapper {
             position: relative; overflow: hidden;
@@ -295,6 +270,7 @@
         .slider-prev { left: 1rem; }
         .slider-next { right: 1rem; }
         .slider-prev:hover, .slider-next:hover { background: rgba(255,255,255,0.35); transform: translateY(-50%) scale(1.1); }
+        
         /* ── SCROLL REVEAL ── */
         .reveal-up { opacity: 0; transform: translateY(40px); transition: opacity 0.9s cubic-bezier(0.4,0,0.2,1), transform 0.9s cubic-bezier(0.4,0,0.2,1); }
         .reveal-up.active { opacity: 1; transform: translateY(0); }
@@ -308,7 +284,8 @@
         .delay-2 { transition-delay: 0.2s; }
         .delay-3 { transition-delay: 0.3s; }
         .delay-4 { transition-delay: 0.4s; }
-        /* ── ENHANCED GREETING SECTION (Istanbul Time) ── */
+        
+        /* ── GREETING SECTION ── */
         .greeting-section {
             position: relative; overflow: hidden;
         }
@@ -322,7 +299,6 @@
             33% { transform: translate(20px,-15px) scale(1.05); }
             66% { transform: translate(-15px,10px) scale(0.97); }
         }
-        /* Neon Status Sign */
         .neon-sign {
             position: relative;
             display: inline-flex;
@@ -360,23 +336,6 @@
             0%,100% { opacity: 1; transform: scale(1); }
             50% { opacity: 0.5; transform: scale(1.2); }
         }
-        /* City Silhouette Themes */
-        .city-silhouette {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            height: 120px;
-            pointer-events: none;
-            z-index: 1;
-            opacity: 0.08;
-            transition: opacity 0.8s ease;
-        }
-        .city-silhouette svg {
-            width: 100%;
-            height: 100%;
-        }
-        /* ── KARŞILAMA (WELCOME) TASARIM ── */
         #greeting-box { display: block; text-decoration: none; color: inherit; }
         .welcome-content { display: flex; flex-direction: column; justify-content: center; max-width: 420px; }
         .welcome-date { font-size: 10px; font-weight: 800; letter-spacing: 0.3em; text-transform: uppercase; opacity: 0.5; margin-bottom: 14px; }
@@ -402,6 +361,7 @@
             .image-box { width: 60px; height: 200px; }
             .image-box img { transform: skewX(10deg); }
         }
+
         /* ── FABRIC CARDS ── */
         .fabric-card {
             position: relative; overflow: hidden;
@@ -411,7 +371,7 @@
         .fabric-card:hover { transform: translateY(-6px); box-shadow: 0 30px 60px rgba(225,29,72,0.18); }
         .fabric-card img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.7s ease; }
         .fabric-card:hover img { transform: scale(1.06); }
-        /* ── POPULAR PRODUCTS BLUR SECTION ── */
+        
         .products-blur-bg {
             position: relative; border-radius: 40px; overflow: hidden;
         }
@@ -429,439 +389,14 @@
             display: flex; align-items: center; justify-content: center;
             padding: 5rem 2rem; min-height: 200px;
         }
-        /* ── REVIEWS ── */
-        .review-card {
-            border-radius: 24px; padding: 1.5rem;
-            transition: transform 0.4s ease, box-shadow 0.4s ease;
-        }
-        .review-card:hover { transform: translateY(-4px); box-shadow: 0 20px 40px rgba(225,29,72,0.12); }
-        .star-filled { color: #f59e0b; }
-        /* ── MARKA HİKAYESİ ── */
-        .story-section {
-            position: relative; overflow: hidden;
-        }
-        .story-line {
-            position: absolute; left: 0; top: 0; bottom: 0; width: 3px;
-            background: linear-gradient(to bottom, transparent, #E11D48, #be123c, transparent);
-            border-radius: 2px;
-        }
+
         /* ── SSS ACCORDION ── */
         .faq-item { border-radius: 20px; overflow: hidden; transition: all 0.3s ease; }
         .faq-answer { max-height: 0; overflow: hidden; transition: max-height 0.4s cubic-bezier(0.4,0,0.2,1); }
-        .faq-answer.open { max-height: 200px; }
+        .faq-answer.open { max-height: 250px; }
         .faq-icon { transition: transform 0.3s ease; }
         .faq-icon.rotated { transform: rotate(45deg); }
-        /* ── STATS ── */
-        .stat-card {
-            border-radius: 28px; padding: 2rem;
-            text-align: center; position: relative; overflow: hidden;
-            transition: transform 0.4s ease;
-        }
-        .stat-card:hover { transform: translateY(-4px); }
-        .stat-card::before {
-            content: ''; position: absolute; top: -40px; right: -40px;
-            width: 120px; height: 120px; border-radius: 50%;
-            background: radial-gradient(circle, rgba(225,29,72,0.12), transparent);
-        }
-        /* ── BOTTOM NAVBAR (rounded-full glassmorphism premium) ── */
-        .bottom-nav-liquid {
-            background: rgba(255,250,250,0.88);
-            backdrop-filter: blur(50px) saturate(220%) brightness(1.08);
-            -webkit-backdrop-filter: blur(50px) saturate(220%) brightness(1.08);
-            border: 1px solid rgba(255,255,255,0.82);
-            box-shadow: 
-                0 -1px 0 rgba(255,255,255,0.9) inset,
-                0 -8px 32px rgba(225,29,72,0.07),
-                0 2px 8px rgba(225,29,72,0.04);
-            border-radius: 9999px;
-        }
-        .dark .bottom-nav-liquid {
-            background: rgba(15,5,8,0.92);
-            border: 1px solid rgba(255,255,255,0.07);
-            box-shadow: 0 -8px 32px rgba(0,0,0,0.45);
-            border-radius: 9999px;
-        }
-        .nav-icon-wrap {
-            width: 42px; height: 42px; border-radius: 50%;
-            display: flex; align-items: center; justify-content: center;
-            transition: all 0.3s cubic-bezier(0.34,1.56,0.64,1);
-        }
-        .nav-btn:hover .nav-icon-wrap, .nav-btn.active .nav-icon-wrap {
-            background: rgba(225,29,72,0.1);
-            box-shadow: 0 4px 12px rgba(225,29,72,0.15);
-        }
-        .nav-btn.active .nav-icon-wrap { background: #E11D48; color: white; box-shadow: 0 6px 20px rgba(225,29,72,0.4); }
-        .nav-btn.active .nav-icon-wrap i { color: white !important; }
-        /* ── EN-KAI GOLDEN CTA NAV BUTTON ── */
-        .enkai-nav-btn {
-            position: relative;
-            transition: all 0.3s cubic-bezier(0.34,1.56,0.64,1);
-        }
-        .enkai-nav-btn .nav-icon-wrap {
-            background: linear-gradient(135deg, rgba(255,215,0,0.15), rgba(255,165,0,0.1));
-            border: 1px solid rgba(255,215,0,0.3);
-            box-shadow: 0 0 15px rgba(255,215,0,0.1);
-            animation: goldGlow 3s ease-in-out infinite;
-        }
-        @keyframes goldGlow {
-            0%,100% { box-shadow: 0 0 10px rgba(255,215,0,0.15), 0 0 20px rgba(255,215,0,0.05); }
-            50% { box-shadow: 0 0 20px rgba(255,215,0,0.3), 0 0 40px rgba(255,215,0,0.1); }
-        }
-        .enkai-nav-btn:hover .nav-icon-wrap {
-            transform: scale(1.12);
-            box-shadow: 0 0 25px rgba(255,215,0,0.4), 0 0 50px rgba(255,215,0,0.15);
-        }
-        .enkai-nav-btn span { color: #FFD700; font-weight: 900; }
-        .enkai-logo-text {
-            font-family: 'Plus Jakarta Sans',sans-serif;
-            font-size: 12px;
-            font-weight: 900;
-            letter-spacing: -0.02em;
-            background: linear-gradient(135deg, #FFD700, #FFA500, #FFD700);
-            background-size: 200% auto;
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            animation: goldShimmer 3s linear infinite;
-        }
-        @keyframes goldShimmer {
-            0% { background-position: 0% center; }
-            100% { background-position: 200% center; }
-        }
-        /* ── EN-KAI LANDING SECTION ── */
-        .enkai-hero {
-            position: relative;
-            background: linear-gradient(165deg, #08080c 0%, #12101a 35%, #0a0a0f 70%, #060608 100%);
-            overflow: hidden;
-        }
-        .enkai-hero::before {
-            content: '';
-            position: absolute;
-            inset: 0;
-            background:
-                radial-gradient(ellipse 70% 50% at 30% 20%, rgba(225,29,72,0.08) 0%, transparent 55%),
-                radial-gradient(ellipse 50% 40% at 75% 60%, rgba(255,215,0,0.06) 0%, transparent 50%),
-                radial-gradient(ellipse 40% 30% at 50% 90%, rgba(139,92,246,0.05) 0%, transparent 45%);
-            pointer-events: none;
-        }
-        .enkai-hero::after {
-            content: '';
-            position: absolute;
-            inset: 0;
-            background: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");
-            pointer-events: none;
-            opacity: 0.4;
-        }
-        .enkai-stars {
-            position: absolute;
-            inset: 0;
-            pointer-events: none;
-            background-image: 
-                radial-gradient(2px 2px at 20px 30px, rgba(255,255,255,0.3), transparent),
-                radial-gradient(2px 2px at 40px 70px, rgba(255,215,0,0.2), transparent),
-                radial-gradient(1px 1px at 90px 40px, rgba(255,255,255,0.25), transparent),
-                radial-gradient(1px 1px at 130px 80px, rgba(255,255,255,0.15), transparent),
-                radial-gradient(2px 2px at 160px 20px, rgba(255,215,0,0.15), transparent),
-                radial-gradient(1px 1px at 200px 60px, rgba(255,255,255,0.2), transparent),
-                radial-gradient(2px 2px at 250px 90px, rgba(255,255,255,0.1), transparent),
-                radial-gradient(1px 1px at 300px 30px, rgba(255,215,0,0.1), transparent),
-                radial-gradient(1px 1px at 350px 70px, rgba(255,255,255,0.2), transparent),
-                radial-gradient(2px 2px at 400px 50px, rgba(255,255,255,0.15), transparent);
-            background-size: 420px 120px;
-            animation: starsMove 60s linear infinite;
-            opacity: 0.6;
-        }
-        @keyframes starsMove {
-            0% { background-position: 0 0; }
-            100% { background-position: 420px 120px; }
-        }
-        /* AI Orb Animation */
-        .ai-orb-container {
-            position: relative;
-            width: 200px;
-            height: 200px;
-            margin: 0 auto;
-        }
-        .ai-orb {
-            position: absolute;
-            inset: 20px;
-            border-radius: 50%;
-            background: radial-gradient(circle at 40% 40%, rgba(255,215,0,0.25), rgba(225,29,72,0.15) 50%, rgba(10,10,10,0.8) 80%);
-            box-shadow: 
-                0 0 40px rgba(255,215,0,0.15),
-                0 0 80px rgba(255,215,0,0.05),
-                inset 0 0 40px rgba(255,215,0,0.1);
-            animation: orbBreathe 4s ease-in-out infinite;
-        }
-        @keyframes orbBreathe {
-            0%,100% { transform: scale(1); opacity: 0.9; }
-            50% { transform: scale(1.08); opacity: 1; }
-        }
-        .ai-orb-ring {
-            position: absolute;
-            border-radius: 50%;
-            border: 1px solid rgba(255,215,0,0.15);
-            animation: orbRingSpin 8s linear infinite;
-        }
-        .ai-orb-ring:nth-child(1) { inset: 0; animation-duration: 12s; border-color: rgba(255,215,0,0.12); }
-        .ai-orb-ring:nth-child(2) { inset: 10px; animation-duration: 8s; animation-direction: reverse; border-color: rgba(225,29,72,0.1); }
-        .ai-orb-ring:nth-child(3) { inset: 30px; animation-duration: 15s; border-color: rgba(255,215,0,0.08); }
-        @keyframes orbRingSpin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
-        .ai-orb-particles {
-            position: absolute;
-            inset: 0;
-        }
-        .ai-orb-particle {
-            position: absolute;
-            width: 4px; height: 4px;
-            border-radius: 50%;
-            background: rgba(255,215,0,0.5);
-            box-shadow: 0 0 6px rgba(255,215,0,0.4);
-            animation: particleOrbit linear infinite;
-        }
-        @keyframes particleOrbit {
-            0% { transform: rotate(0deg) translateX(90px) rotate(0deg); }
-            100% { transform: rotate(360deg) translateX(90px) rotate(-360deg); }
-        }
-        /* EN-KAI Feature Cards */
-        .enkai-feature {
-            background: rgba(255,255,255,0.04);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            border: 1px solid rgba(255,255,255,0.08);
-            border-radius: 22px;
-            padding: 1.75rem;
-            transition: all 0.4s cubic-bezier(0.4,0,0.2,1);
-            position: relative;
-            overflow: hidden;
-        }
-        .enkai-feature:hover {
-            background: rgba(255,255,255,0.07);
-            border-color: rgba(255,215,0,0.22);
-            transform: translateY(-5px);
-            box-shadow: 0 24px 48px rgba(0,0,0,0.35), 0 0 0 1px rgba(255,215,0,0.08);
-        }
-        .enkai-feature::before {
-            content: '';
-            position: absolute;
-            top: 0; left: 0; right: 0;
-            height: 1px;
-            background: linear-gradient(90deg, transparent, rgba(255,215,0,0.3), transparent);
-            opacity: 0;
-            transition: opacity 0.4s;
-        }
-        .enkai-feature:hover::before { opacity: 1; }
-        /* Gradient text for keywords */
-        .gradient-text-gold {
-            background: linear-gradient(135deg, #FFD700, #FFA500, #FFD700);
-            background-size: 200% auto;
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-        .gradient-text-action {
-            background: linear-gradient(135deg, #E11D48, #be123c);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-        /* HEMEN DENE CTA Button */
-        .enkai-cta-btn {
-            display: inline-flex;
-            align-items: center;
-            gap: 12px;
-            padding: 16px 40px;
-            border-radius: 9999px;
-            font-size: 13px;
-            font-weight: 900;
-            letter-spacing: 0.2em;
-            text-transform: uppercase;
-            color: #0a0a0a;
-            background: linear-gradient(135deg, #FFD700, #FFA500, #FFD700);
-            background-size: 200% auto;
-            border: none;
-            cursor: pointer;
-            text-decoration: none;
-            box-shadow: 0 8px 32px rgba(255,215,0,0.3), 0 0 60px rgba(255,215,0,0.1);
-            animation: ctaShimmer 3s linear infinite, ctaFloat 4s ease-in-out infinite;
-            transition: transform 0.3s, box-shadow 0.3s;
-        }
-        .enkai-cta-btn:hover {
-            transform: translateY(-2px) scale(1.05);
-            box-shadow: 0 12px 40px rgba(255,215,0,0.5), 0 0 80px rgba(255,215,0,0.2);
-        }
-        /* ── EN-KAI CANLI DEMO SOHBET ── */
-        .enkai-stat {
-            padding: 16px 8px;
-            border-radius: 16px;
-            text-align: center;
-            background: rgba(255,255,255,0.04);
-            backdrop-filter: blur(8px);
-            border: 1px solid rgba(255,255,255,0.08);
-            transition: all 0.35s ease;
-        }
-        .enkai-stat:hover { background: rgba(255,255,255,0.08); border-color: rgba(255,215,0,0.28); transform: translateY(-3px); }
-        .enkai-chat-panel {
-            border-radius: 24px;
-            background: rgba(255,255,255,0.04);
-            backdrop-filter: blur(20px) saturate(150%);
-            -webkit-backdrop-filter: blur(20px) saturate(150%);
-            border: 1px solid rgba(255,255,255,0.1);
-            box-shadow: 0 24px 64px rgba(0,0,0,0.4), inset 0 1px 0 rgba(255,255,255,0.06);
-            overflow: hidden;
-        }
-        .chat-body { max-height: 300px; overflow-y: auto; scrollbar-width: thin; scrollbar-color: rgba(255,215,0,0.3) transparent; }
-        .chat-body::-webkit-scrollbar { width: 5px; }
-        .chat-body::-webkit-scrollbar-thumb { background: rgba(255,215,0,0.25); border-radius: 99px; }
-        .chat-msg {
-            max-width: 88%;
-            width: fit-content;
-            padding: 14px 18px;
-            border-radius: 18px;
-            font-size: 13.5px;
-            line-height: 1.65;
-            margin-bottom: 12px;
-            animation: msgIn 0.45s cubic-bezier(0.4,0,0.2,1);
-        }
-        @keyframes msgIn {
-            from { opacity: 0; transform: translateY(12px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-        .enkai-msg {
-            background: rgba(255,255,255,0.06);
-            border: 1px solid rgba(255,255,255,0.09);
-            color: #eae4e6;
-            border-bottom-left-radius: 6px;
-        }
-        .user-msg {
-            margin-left: auto;
-            background: linear-gradient(135deg, rgba(255,215,0,0.16), rgba(255,165,0,0.08));
-            border: 1px solid rgba(255,215,0,0.25);
-            color: #FFD700;
-            border-bottom-right-radius: 6px;
-        }
-        .typing-dot {
-            display: inline-block;
-            width: 7px; height: 7px;
-            margin-right: 4px;
-            border-radius: 50%;
-            background: #FFD700;
-            animation: typingBounce 1.2s ease-in-out infinite;
-        }
-        .typing-dot:nth-child(2) { animation-delay: 0.15s; }
-        .typing-dot:nth-child(3) { animation-delay: 0.3s; }
-        @keyframes typingBounce {
-            0%, 60%, 100% { transform: translateY(0); opacity: 0.4; }
-            30% { transform: translateY(-5px); opacity: 1; }
-        }
-        .ai-orb-typing {
-            position: absolute;
-            inset: 0;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            z-index: 6;
-        }
-        .enkai-chip {
-            padding: 9px 18px;
-            border-radius: 9999px;
-            font-size: 12px;
-            font-weight: 700;
-            color: #d8d2d4;
-            background: rgba(255,255,255,0.04);
-            border: 1px solid rgba(255,255,255,0.1);
-            cursor: pointer;
-            transition: all 0.3s cubic-bezier(0.34,1.56,0.64,1);
-        }
-        .enkai-chip:hover {
-            background: rgba(255,215,0,0.1);
-            border-color: rgba(255,215,0,0.4);
-            color: #FFD700;
-            transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(255,215,0,0.12);
-        }
-        .enkai-num {
-            position: absolute;
-            top: 1.1rem;
-            right: 1.3rem;
-            font-size: 11px;
-            font-weight: 900;
-            letter-spacing: 0.25em;
-            color: rgba(255,255,255,0.12);
-            transition: color 0.35s ease;
-        }
-        .enkai-feature:hover .enkai-num { color: rgba(255,215,0,0.45); }
-        @keyframes ctaShimmer {
-            0% { background-position: 0% center; }
-            100% { background-position: 200% center; }
-        }
-        @keyframes ctaFloat {
-            0%,100% { transform: translateY(0); }
-            50% { transform: translateY(-4px); }
-        }
-        /* ── YENI KALIP KOLEKSIYONU SECTION ── */
-        .kalip-section {
-            position: relative;
-            overflow: hidden;
-        }
-        .kalip-feature-card {
-            background: var(--glass-bg);
-            backdrop-filter: blur(20px) saturate(180%);
-            -webkit-backdrop-filter: blur(20px) saturate(180%);
-            border: 1px solid var(--glass-border);
-            border-radius: 24px;
-            padding: 2rem;
-            transition: all 0.4s cubic-bezier(0.4,0,0.2,1);
-            position: relative;
-            overflow: hidden;
-        }
-        .kalip-feature-card:hover {
-            transform: translateY(-6px);
-            box-shadow: 0 24px 48px rgba(225,29,72,0.12);
-            border-color: rgba(225,29,72,0.25);
-        }
-        .kalip-feature-card::after {
-            content: '';
-            position: absolute;
-            inset: 0;
-            border-radius: inherit;
-            background: linear-gradient(135deg, transparent 60%, rgba(225,29,72,0.04));
-            opacity: 0;
-            transition: opacity 0.4s;
-            pointer-events: none;
-        }
-        .kalip-feature-card:hover::after { opacity: 1; }
-        .kalip-feature-icon {
-            width: 56px; height: 56px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-bottom: 1rem;
-            background: linear-gradient(135deg, rgba(225,29,72,0.12), rgba(225,29,72,0.04));
-            border: 1px solid rgba(225,29,72,0.15);
-            transition: all 0.3s cubic-bezier(0.34,1.56,0.64,1);
-        }
-        .kalip-feature-card:hover .kalip-feature-icon {
-            transform: scale(1.1);
-            box-shadow: 0 4px 16px rgba(225,29,72,0.2);
-        }
-        /* ── FEATURE CARDS ── */
-        .feature-card {
-            border-radius: 28px; padding: 2rem; text-align: center;
-            transition: all 0.4s cubic-bezier(0.4,0,0.2,1);
-            position: relative; overflow: hidden;
-        }
-        .feature-card::after {
-            content: ''; position: absolute; inset: 0; border-radius: 28px;
-            background: linear-gradient(135deg, transparent 60%, rgba(225,29,72,0.04));
-            opacity: 0; transition: opacity 0.4s;
-        }
-        .feature-card:hover::after { opacity: 1; }
-        .feature-card:hover { transform: translateY(-6px); }
+
         /* ── HALK GÜNÜ BANNER ── */
         #halk-gunu-banner {
             background: linear-gradient(90deg, #E11D48, #be123c, #E11D48);
@@ -869,7 +404,6 @@
             animation: bannerShift 4s ease infinite;
         }
         @keyframes bannerShift { 0%,100%{background-position:0%} 50%{background-position:100%} }
-        /* ── SECTION LABEL ── */
         .section-label {
             display: inline-flex; align-items: center; gap: 8px;
             padding: 6px 16px; border-radius: 9999px;
@@ -879,76 +413,137 @@
             border: 1px solid rgba(225,29,72,0.2);
         }
         .dark .section-label { background: rgba(225,29,72,0.12); border-color: rgba(225,29,72,0.3); }
-        /* ── QUOTE ── */
-        .quote-mark { font-family: 'Playfair Display', serif; font-size: 120px; line-height: 0.7; opacity: 0.08; user-select: none; color: #E11D48; }
-        /* ── TRANSITION ── */
         .trans { transition: all 0.4s cubic-bezier(0.4,0,0.2,1); }
-        /* ── GOLDEN SHIMMER KEYWORD ── */
-        .shimmer-gold {
-            background: linear-gradient(90deg, #FFD700, #FFA500, #FFD700, #FFA500);
-            background-size: 300% 100%;
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            animation: shimmerGoldMove 3s linear infinite;
-            font-weight: 800;
+
+        /* ── FULL SCREEN SEARCH MODAL ── */
+        #search-modal {
+            position: fixed; inset: 0; z-index: 999;
+            backdrop-filter: blur(28px) saturate(180%);
+            -webkit-backdrop-filter: blur(28px) saturate(180%);
+            background: rgba(8, 10, 15, 0.85);
+            display: flex; flex-direction: column;
+            opacity: 0; pointer-events: none;
+            transition: opacity 0.35s ease;
         }
-        @keyframes shimmerGoldMove {
-            0% { background-position: 0% center; }
-            100% { background-position: 300% center; }
+        #search-modal.active {
+            opacity: 1; pointer-events: auto;
         }
-        /* ── KALIP CTA BUTTON ── */
-        .kalip-cta-btn {
-            display: inline-flex;
-            align-items: center;
-            gap: 12px;
-            padding: 18px 44px;
+        .search-chip {
+            padding: 8px 16px;
             border-radius: 9999px;
             font-size: 12px;
-            font-weight: 900;
-            letter-spacing: 0.2em;
-            text-transform: uppercase;
-            color: white;
-            background: linear-gradient(135deg, #E11D48, #be123c);
-            border: none;
+            font-weight: 600;
+            background: rgba(255,255,255,0.08);
+            border: 1px solid rgba(255,255,255,0.15);
+            color: #ffffff;
             cursor: pointer;
-            text-decoration: none;
-            box-shadow: 0 8px 32px rgba(225,29,72,0.4);
-            transition: all 0.4s cubic-bezier(0.4,0,0.2,1);
+            transition: all 0.25s ease;
         }
-        .kalip-cta-btn:hover {
-            transform: translateY(-3px) scale(1.05);
-            box-shadow: 0 16px 48px rgba(225,29,72,0.55);
+        .search-chip:hover {
+            background: #E11D48;
+            border-color: #E11D48;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(225,29,72,0.4);
+        }
+
+        /* ── SECTION VIDEO / IMAGE BACKGROUND UTILS ── */
+        .backdrop-section-overlay {
+            position: absolute; inset: 0;
+            background: linear-gradient(135deg, rgba(8,8,12,0.92) 0%, rgba(12,10,16,0.82) 50%, rgba(6,6,8,0.92) 100%);
+            z-index: 1;
         }
     </style>
 </head>
 <body class="text-slate-900 dark:text-slate-100 antialiased page-transition">
     <div class="page-bg"></div>
     <div class="noise-overlay"></div>
+
     <!-- HALK GÜNÜ BANNER -->
     <div id="halk-gunu-banner" class="hidden text-white text-center py-2.5 font-black text-[10px] uppercase tracking-[0.4em] fixed top-0 w-full z-[80] shadow-xl">
         ✦ Bugün Çarşamba: Halk Günü İndirimleri Başladı ✦
     </div>
-    <!-- TOP NAVBAR (rounded-full glassmorphism) -->
-    <nav class="fixed w-full z-50 px-4 py-4 top-0">
-        <div class="max-w-6xl mx-auto flex justify-between items-center nav-liquid px-6 py-3 shadow-xl">
+
+    <!-- ─────────────────────────────────── -->
+    <!-- ÜST YÜZEN NAVBAR                    -->
+    <!-- ─────────────────────────────────── -->
+    <header class="fixed w-full z-50 px-4 py-3 top-0">
+        <div id="nav-liquid-box" class="max-w-6xl mx-auto flex justify-between items-center px-5 py-2.5 rounded-full">
             <!-- LOGO -->
-            <div class="flex items-center gap-3">
-                <img src="logo.png" alt="EN-KA Kumaş" class="h-9 w-auto trans" onerror="this.style.display='none'; document.getElementById('logo-fallback').style.display='flex'">
+            <a href="index.html" class="flex items-center gap-3 group" aria-label="EN-KA Kumaş Ana Sayfa">
+                <img src="logo.png" alt="EN-KA Kumaş" class="h-9 w-auto trans group-hover:scale-105" onerror="this.style.display='none'; document.getElementById('logo-fallback').style.display='flex'">
                 <div id="logo-fallback" style="display:none;" class="flex items-center gap-1">
                     <span style="font-family:'Cormorant Garamond',serif;font-size:1.4rem;font-weight:700;color:#E11D48;letter-spacing:0.05em;">EN-KA</span>
                     <span style="font-family:'Plus Jakarta Sans',sans-serif;font-size:0.75rem;font-weight:800;letter-spacing:0.15em;opacity:0.6;text-transform:uppercase;">Kumaş</span>
                 </div>
-            </div>
-            <div class="flex items-center gap-3">
-                <span id="live-clock" class="text-[11px] font-black opacity-50 tabular-nums tracking-widest"></span>
-                <button onclick="toggleDarkMode()" class="w-9 h-9 flex items-center justify-center rounded-full glass hover:bg-primary hover:text-white trans text-slate-600 dark:text-slate-300">
+            </a>
+
+            <!-- SAĞ KONTROLLER: ARAMA, METRAJ HESAPLAMA, SAAT, TEMA -->
+            <div class="flex items-center gap-2.5 sm:gap-3">
+                <!-- ARAMA BUTONU -->
+                <button onclick="openSearchModal()" class="flex items-center gap-2 px-3 sm:px-4 py-2 rounded-xl glass hover:bg-white/30 dark:hover:bg-white/10 trans text-slate-700 dark:text-slate-200 text-xs font-bold shadow-sm" aria-label="Site İçi Arama">
+                    <i class="fas fa-search text-rose-600 text-xs"></i>
+                    <span class="hidden md:inline text-[11px] opacity-80">Arama Yap</span>
+                </button>
+
+                <!-- METRAJ HESAPLAMA BUTONU -->
+                <a href="metraj.html" class="flex items-center gap-2 px-4 py-2 rounded-xl text-white text-xs font-black tracking-wider uppercase trans hover:scale-105 shadow-md" style="background: linear-gradient(135deg, #E11D48 0%, #be123c 60%, #9f1239 100%); box-shadow: 0 4px 18px rgba(225,29,72,0.35);">
+                    <i class="fas fa-calculator text-xs"></i>
+                    <span class="hidden sm:inline">Metraj Hesaplama</span>
+                </a>
+
+                <!-- CANLI SAAT -->
+                <span id="live-clock" class="text-[11px] font-black opacity-55 tabular-nums tracking-widest hidden lg:inline-block ml-1"></span>
+
+                <!-- KARANLIK / AYDINLIK MOD -->
+                <button onclick="toggleDarkMode()" class="w-9 h-9 flex items-center justify-center rounded-xl glass hover:bg-rose-600 hover:text-white trans text-slate-700 dark:text-slate-300 shadow-sm" aria-label="Tema Değiştir">
                     <i class="fas fa-moon text-sm dark:hidden"></i>
                     <i class="fas fa-sun text-sm hidden dark:block"></i>
                 </button>
             </div>
         </div>
-    </nav>
+    </header>
+
+    <!-- ─────────────────────────────────── -->
+    <!-- TAM EKRAN BLUR ARAMA PENCERESİ      -->
+    <!-- ─────────────────────────────────── -->
+    <div id="search-modal" role="dialog" aria-modal="true" aria-label="Kapsamlı Site Arama">
+        <!-- SOL YUKARIDA YÜZEN ÇARPI BUTONU -->
+        <button onclick="closeSearchModal()" class="fixed top-6 left-6 z-[1000] w-12 h-12 rounded-full glass flex items-center justify-center text-white text-lg hover:bg-rose-600 hover:scale-110 trans shadow-2xl" aria-label="Aramayı Kapat">
+            <i class="fas fa-times"></i>
+        </button>
+
+        <div class="max-w-4xl w-full mx-auto px-6 pt-24 pb-12 flex-1 flex flex-col justify-start">
+            <!-- Arama Kutusu -->
+            <div class="relative mb-8 text-left">
+                <i class="fas fa-search absolute left-6 top-1/2 -translate-y-1/2 text-rose-500 text-xl"></i>
+                <input type="text" id="site-search-input" placeholder="Kumaş, kalıp, metraj veya konu yazın..." class="w-full pl-16 pr-6 py-5 rounded-2xl bg-white/10 dark:bg-white/5 border border-white/20 text-white placeholder-white/40 text-lg md:text-xl font-medium focus:outline-none focus:ring-2 focus:ring-rose-500 focus:border-rose-500 backdrop-blur-md shadow-2xl trans" autofocus oninput="handleSearch(this.value)">
+                <span class="absolute right-5 top-1/2 -translate-y-1/2 text-xs font-bold text-white/30 hidden md:block">ESC ile Kapat</span>
+            </div>
+
+            <!-- Öneriler ve Yönlendirmeler -->
+            <div class="text-left space-y-6">
+                <div>
+                    <h5 class="text-white/50 text-[11px] font-black uppercase tracking-[0.25em] mb-3">Ne Aramıştınız? Hızlı Öneriler</h5>
+                    <div class="flex flex-wrap gap-2.5">
+                        <button class="search-chip" onclick="applySearchQuery('Teddy Kumaş')">Teddy Kumaş</button>
+                        <button class="search-chip" onclick="applySearchQuery('Medine İpeği')">Medine İpeği</button>
+                        <button class="search-chip" onclick="applySearchQuery('Premium Yün')">Premium Yün</button>
+                        <button class="search-chip" onclick="applySearchQuery('Doğal Müslin')">Doğal Müslin</button>
+                        <button class="search-chip" onclick="applySearchQuery('İpeksi Viskon')">İpeksi Viskon</button>
+                        <button class="search-chip" onclick="applySearchQuery('Kalıp Koleksiyonu')">Kalıp Koleksiyonu</button>
+                        <button class="search-chip" onclick="applySearchQuery('Metraj Hesaplama')">Metraj Hesaplama</button>
+                        <button class="search-chip" onclick="applySearchQuery('Halk Günü İndirimi')">Halk Günü İndirimi</button>
+                    </div>
+                </div>
+
+                <!-- Arama Sonuç Alanı -->
+                <div id="search-results-area" class="mt-6 space-y-3 max-h-[45vh] overflow-y-auto pr-2">
+                    <!-- Dinamik Sonuçlar Buraya Gelecek -->
+                </div>
+            </div>
+        </div>
+    </div>
+
     <!-- ─────────────────────────────────── -->
     <!-- HERO SLIDER                          -->
     <!-- ─────────────────────────────────── -->
@@ -985,6 +580,7 @@
             <div class="slider-dot" onclick="goToSlide(2)"></div>
         </div>
     </div>
+
     <!-- ─────────────────────────────────── -->
     <!-- KARŞILAMA (WELCOME) SECTION         -->
     <!-- ─────────────────────────────────── -->
@@ -1037,275 +633,217 @@
             </div>
         </a>
     </main>
+
     <!-- ─────────────────────────────────── -->
-    <!-- EN-KAI LANDING SECTION              -->
+    <!-- EN-KAI SECTION (LEAGUE SPARTAN, SOLA HİZALI, BÖLÜM BÖLÜM) -->
     <!-- ─────────────────────────────────── -->
-    <section class="enkai-hero py-20 md:py-28 px-6 relative">
-        <div class="enkai-stars"></div>
-        
-        <div class="max-w-5xl mx-auto relative z-10">
-            <!-- Header -->
-            <div class="text-center mb-16 reveal-up">
-                <span class="inline-flex items-center gap-2 px-4 py-2 rounded-full text-[10px] font-black uppercase tracking-[0.2em] mb-6" style="background:rgba(255,215,0,0.08);border:1px solid rgba(255,215,0,0.2);color:#FFD700;">
-                    <i class="fas fa-sparkles"></i> Yapay Zeka Asistan
-                </span>
-                <h2 class="text-4xl md:text-6xl font-black mb-4 tracking-tight text-white" style="font-family:'Playfair Display',serif;">
-                    Karşınızda <span class="gradient-text-gold">EN-KAI</span>
+    <section class="py-24 px-6 relative bg-[#07070b] text-white overflow-hidden" id="enkai-section">
+        <!-- Arka Plan Zarafeti -->
+        <div class="absolute inset-0 pointer-events-none opacity-20">
+            <div class="absolute -top-32 -left-32 w-96 h-96 bg-rose-600/30 rounded-full blur-[120px]"></div>
+            <div class="absolute -bottom-32 -right-32 w-96 h-96 bg-amber-500/20 rounded-full blur-[140px]"></div>
+        </div>
+
+        <div class="max-w-6xl mx-auto relative z-10 text-left font-spartan">
+            <!-- Başlık & Giriş (Sola Hizalı) -->
+            <div class="reveal-up mb-16 max-w-3xl">
+                <span class="text-rose-500 text-xs font-black tracking-[0.3em] uppercase block mb-3">Yapay Zeka Destekli Tekstil Danışmanı</span>
+                <h2 class="text-4xl sm:text-6xl md:text-7xl font-black tracking-tight leading-[1.05] mb-6 text-white" style="font-family:'League Spartan',sans-serif;">
+                    Karşınızda <span class="bg-gradient-to-r from-amber-400 via-amber-300 to-rose-400 bg-clip-text text-transparent">EN-KAI</span>
                 </h2>
-                <p class="text-lg md:text-xl text-white/55 max-w-2xl mx-auto font-medium">
-                    Yapay zeka destekli tekstil asistanınız — sorun, yanıt anında gelsin.
+                <p class="text-white/60 text-lg md:text-xl font-normal leading-relaxed">
+                    Dikişten kumaş seçimine, kalıp uyumundan proje danışmanlığına kadar her aşamada sorularınıza doğrudan ve akılcı rehberlik sunan yeni nesil yapay zeka asistanı.
                 </p>
             </div>
-            <!-- AI Orb + Intro -->
-            <div class="flex flex-col md:flex-row items-center gap-12 mb-16 reveal-up">
-                <div class="w-full md:w-1/2 flex justify-center">
-                    <div class="ai-orb-container">
-                        <div class="ai-orb-ring"></div>
-                        <div class="ai-orb-ring"></div>
-                        <div class="ai-orb-ring"></div>
-                        <div class="ai-orb"></div>
-                        <div class="ai-orb-particles">
-                            <div class="ai-orb-particle" style="animation-duration:6s;top:50%;left:50%;"></div>
-                            <div class="ai-orb-particle" style="animation-duration:8s;animation-direction:reverse;top:50%;left:50%;"></div>
-                            <div class="ai-orb-particle" style="animation-duration:10s;top:50%;left:50%;animation-delay:2s;"></div>
-                        </div>
-                        <div class="ai-orb-typing" id="orb-typing" style="display:none;">
-                            <span class="typing-dot"></span><span class="typing-dot"></span><span class="typing-dot"></span>
-                        </div>
+
+            <!-- Bölüm Bölüm Özellikler (Sola Hizalı Metinler, Kartçık Yok, Rozet Yok) -->
+            <div class="divide-y divide-white/10 mb-16">
+                <!-- Bölüm 1 -->
+                <div class="py-8 md:py-10 grid grid-cols-1 md:grid-cols-12 gap-6 items-baseline reveal-up">
+                    <div class="md:col-span-2 text-rose-500/80 font-black text-2xl tracking-widest">
+                        01
                     </div>
-                </div>
-                <div class="w-full md:w-1/2 text-center md:text-left">
-                    <p class="text-white/70 text-base leading-relaxed mb-6">
-                        EN-KAI, kumaş seçiminden dikime kadar her aşamada size rehberlik eden yapay zeka destekli asistanınızdır. Kumaşlarınızı analiz edin, kişiselleştirilmiş öneriler alın ve yaratıcılığınızı keşfedin.
-                    </p>
-                    <div class="flex flex-wrap gap-3 justify-center md:justify-start mb-8">
-                        <span class="px-4 py-2 rounded-full text-[10px] font-black uppercase tracking-widest border border-white/10 text-white/50">
-                            <i class="fas fa-brain mr-2"></i>AI Analiz
-                        </span>
-                        <span class="px-4 py-2 rounded-full text-[10px] font-black uppercase tracking-widest border border-white/10 text-white/50">
-                            <i class="fas fa-bolt mr-2"></i>Hızlı Yanıt
-                        </span>
-                        <span class="px-4 py-2 rounded-full text-[10px] font-black uppercase tracking-widest border border-white/10 text-white/50">
-                            <i class="fas fa-user-cog mr-2"></i>Kişiselleştirme
-                        </span>
+                    <div class="md:col-span-4">
+                        <h3 class="text-2xl md:text-3xl font-bold text-white tracking-tight leading-snug">
+                            Kumaşa Uygun Model ve Proje Rehberliği
+                        </h3>
                     </div>
-                    <div class="grid grid-cols-3 gap-3 max-w-md mx-auto md:mx-0">
-                        <div class="enkai-stat">
-                            <div class="text-2xl font-black gradient-text-gold">0.4sn</div>
-                            <div class="text-[9px] font-bold uppercase tracking-widest text-white/40 mt-1">Ortalama Yanıt</div>
-                        </div>
-                        <div class="enkai-stat">
-                            <div class="text-2xl font-black gradient-text-gold">7/24</div>
-                            <div class="text-[9px] font-bold uppercase tracking-widest text-white/40 mt-1">Her Zaman</div>
-                        </div>
-                        <div class="enkai-stat">
-                            <div class="text-2xl font-black gradient-text-gold">%98</div>
-                            <div class="text-[9px] font-bold uppercase tracking-widest text-white/40 mt-1">Memnuniyet</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- Canlı Demo Sohbet -->
-            <div class="enkai-chat-panel reveal-up mb-16">
-                <div class="flex items-center gap-3 px-6 py-4 border-b border-white/10">
-                    <div class="w-10 h-10 rounded-full flex items-center justify-center overflow-hidden flex-shrink-0" style="background:linear-gradient(135deg,rgba(255,215,0,0.2),rgba(225,29,72,0.15));border:1px solid rgba(255,215,0,0.2);">
-                        <img src="enkai.png" alt="EN-KAI" class="w-7 h-7 object-contain" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
-                        <i class="fas fa-robot text-lg" style="display:none;color:#FFD700;"></i>
-                    </div>
-                    <div>
-                        <p class="text-white font-bold text-sm flex items-center gap-2">
-                            EN-KAI
-                            <span class="text-[8px] font-black px-2 py-0.5 rounded-full" style="background:rgba(255,215,0,0.12);color:#FFD700;border:1px solid rgba(255,215,0,0.25);">AI</span>
+                    <div class="md:col-span-6">
+                        <p class="text-white/65 text-base md:text-lg leading-relaxed font-light">
+                            Elinizdeki kumaşın dokusunu, gramajını ve dökümünü analiz ederek en uygun dikim tasarımlarını belirler. Kararsızlık yaşamadan en şık ve kullanışlı projeye hemen başlayabilirsiniz.
                         </p>
-                        
                     </div>
-                    <div class="ml-auto text-white/25 text-[9px] font-black uppercase tracking-[0.3em]">Canlı Demo</div>
                 </div>
-                <div class="chat-body p-6" id="enkai-chat-body">
-                    <div class="chat-msg enkai-msg">
-                        Merhaba! Ben EN-KAI. Kumaş, kalıp ve dikim konularında sana yardımcı olabilirim. Aşağıdaki sorulardan birine dokun ya da sohbeti tam deneyim için başlat.
+
+                <!-- Bölüm 2 -->
+                <div class="py-8 md:py-10 grid grid-cols-1 md:grid-cols-12 gap-6 items-baseline reveal-up">
+                    <div class="md:col-span-2 text-rose-500/80 font-black text-2xl tracking-widest">
+                        02
                     </div>
-                    <div class="chat-msg user-msg" id="enkai-user-msg" style="display:none;"></div>
-                    <div class="chat-msg enkai-msg" id="enkai-typing" style="display:none;">
-                        <span class="typing-dot"></span><span class="typing-dot"></span><span class="typing-dot"></span>
+                    <div class="md:col-span-4">
+                        <h3 class="text-2xl md:text-3xl font-bold text-white tracking-tight leading-snug">
+                            Görsel Analiz ile Kumaş Tespiti
+                        </h3>
                     </div>
-                    <div class="chat-msg enkai-msg" id="enkai-reply" style="display:none;"></div>
-                </div>
-                <div class="px-6 pb-5 pt-1 flex flex-wrap gap-2" id="enkai-chips">
-                    <button type="button" class="enkai-chip" data-q="Kumaşımdan ne dikebilirim?">Kumaşımdan ne dikebilirim?</button>
-                    <button type="button" class="enkai-chip" data-q="Mont için hangi kumaşı seçmeliyim?">Mont için hangi kumaşı seçmeliyim?</button>
-                    <button type="button" class="enkai-chip" data-q="Kumaş alırken nelere dikkat etmeliyim?">Kumaş alırken nelere dikkat etmeliyim?</button>
-                    <button type="button" class="enkai-chip" data-q="Kalıp kullanmadan nasıl dikebilirim?">Kalıp kullanmadan nasıl dikebilirim?</button>
-                </div>
-                <div class="px-6 pb-6">
-                    <a href="https://enkai.onrender.com" class="w-full flex items-center justify-center gap-3 py-4 rounded-full text-[11px] font-black uppercase tracking-[0.2em] trans" style="background:rgba(255,215,0,0.08);border:1px solid rgba(255,215,0,0.3);color:#FFD700;box-shadow:0 0 20px rgba(255,215,0,0.08);">
-                        <i class="fas fa-comments"></i>
-                        Gerçek EN-KAI ile Sohbete Başla
-                        <i class="fas fa-arrow-right"></i>
-                    </a>
-                </div>
-            </div>
-            <!-- Feature Subsections -->
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-16">
-                
-                <!-- Subsection 1 -->
-                <div class="enkai-feature reveal-up delay-1">
-                    <span class="enkai-num">01</span>
-                    <div class="w-12 h-12 rounded-full flex items-center justify-center mb-4" style="background:linear-gradient(135deg,rgba(255,215,0,0.15),rgba(255,165,0,0.1));border:1px solid rgba(255,215,0,0.2);">
-                        <i class="fas fa-question-circle text-xl" style="color:#FFD700;"></i>
+                    <div class="md:col-span-6">
+                        <p class="text-white/65 text-base md:text-lg leading-relaxed font-light">
+                            Fotoğrafını yüklediğiniz kumaşın iplik cinsini, yapısını ve dikim inceliklerini saniyeler içinde çözümler. Hangi iğne ve ip numarasıyla dikmeniz gerektiğini dahi söyler.
+                        </p>
                     </div>
-                    <h4 class="text-white font-bold text-lg mb-2">Kumaşı aldın ama ne dikeceğine mi karar veremiyorsun?</h4>
-                    <p class="text-white/50 text-sm leading-relaxed">
-                        EN-KAI, elinizdeki kumaşın türünü, dokusunu ve özelliklerini analiz ederek size en uygun dikiş projelerini önerir. Artık kararsızlık yok!
-                    </p>
                 </div>
-                <!-- Subsection 2 -->
-                <div class="enkai-feature reveal-up delay-2">
-                    <span class="enkai-num">02</span>
-                    <div class="w-12 h-12 rounded-full flex items-center justify-center mb-4" style="background:linear-gradient(135deg,rgba(225,29,72,0.15),rgba(190,18,60,0.1));border:1px solid rgba(225,29,72,0.2);">
-                        <i class="fas fa-camera text-xl" style="color:#E11D48;"></i>
+
+                <!-- Bölüm 3 -->
+                <div class="py-8 md:py-10 grid grid-cols-1 md:grid-cols-12 gap-6 items-baseline reveal-up">
+                    <div class="md:col-span-2 text-rose-500/80 font-black text-2xl tracking-widest">
+                        03
                     </div>
-                    <h4 class="text-white font-bold text-lg mb-2">Kumaş Fotoğrafını Yükle <span class="gradient-text-gold">AI Analiz Etsin</span></h4>
-                    <p class="text-white/50 text-sm leading-relaxed">
-                        Kumaşınızın fotoğrafını yükleyin, EN-KAI kumaş türünü, kalitesini ve en uygun kullanım alanlarını saniyeler içinde analiz etsin.
-                    </p>
-                </div>
-                <!-- Subsection 3 -->
-                <div class="enkai-feature reveal-up delay-3">
-                    <span class="enkai-num">03</span>
-                    <div class="w-12 h-12 rounded-full flex items-center justify-center mb-4" style="background:linear-gradient(135deg,rgba(139,92,246,0.15),rgba(124,58,237,0.1));border:1px solid rgba(139,92,246,0.2);">
-                        <i class="fas fa-sliders-h text-xl" style="color:#8b5cf6;"></i>
+                    <div class="md:col-span-4">
+                        <h3 class="text-2xl md:text-3xl font-bold text-white tracking-tight leading-snug">
+                            Kişiselleştirilmiş İletişim Tarzı
+                        </h3>
                     </div>
-                    <h4 class="text-white font-bold text-lg mb-2">Kişiliğine Uygun Olarak Yapay Zekanı <span class="gradient-text-gold">Kişiselleştir</span></h4>
-                    <p class="text-white/50 text-sm leading-relaxed">
-                        Samimi, Resmi veya Normal mod seçenekleriyle EN-KAI'nin iletişim tarzını size göre ayarlayın. Size en uygun deneyimi yaşatın.
-                    </p>
-                </div>
-                <!-- Subsection 4 -->
-                <div class="enkai-feature reveal-up delay-1">
-                    <span class="enkai-num">04</span>
-                    <div class="w-12 h-12 rounded-full flex items-center justify-center mb-4" style="background:linear-gradient(135deg,rgba(34,197,94,0.15),rgba(22,163,74,0.1));border:1px solid rgba(34,197,94,0.2);">
-                        <i class="fas fa-magic text-xl" style="color:#22c55e;"></i>
+                    <div class="md:col-span-6">
+                        <p class="text-white/65 text-base md:text-lg leading-relaxed font-light">
+                            Samimi bir dikiş arkadaşı, teknik bir terzi ustası veya resmi bir tekstil danışmanı modunda sizinle konuşur. Tamamen sizin çalışma alışkanlıklarınıza adapte olur.
+                        </p>
                     </div>
-                    <h4 class="text-white font-bold text-lg mb-2"><span class="gradient-text-gold">AI</span> ile Kumaş Önerisi</h4>
-                    <p class="text-white/50 text-sm leading-relaxed">
-                        Yapmak istediğiniz projeyi anlatın, EN-KAI size en uygun kumaş türlerini, renklerini ve desenlerini önersin. Profesyonel rehberlik artık cebinizde.
-                    </p>
                 </div>
-                <!-- Subsection 5 -->
-                <div class="enkai-feature reveal-up delay-2 md:col-span-2 lg:col-span-2">
-                    <span class="enkai-num">05</span>
-                    <div class="flex flex-col md:flex-row items-start gap-6">
-                        <div class="w-12 h-12 rounded-full flex items-center justify-center flex-shrink-0" style="background:linear-gradient(135deg,rgba(6,182,212,0.15),rgba(8,145,178,0.1));border:1px solid rgba(6,182,212,0.2);">
-                            <i class="fas fa-bolt text-xl" style="color:#06b6d4;"></i>
-                        </div>
-                        <div>
-                            <h4 class="text-white font-bold text-lg mb-2"><span class="shimmer-gold">Ultra</span> Hızlı Yanıtlar</h4>
-                            <p class="text-white/50 text-sm leading-relaxed">
-                                EN-KAI, gelişmiş yapay zeka altyapısıyla sorularınıza saniyeler içinde detaylı ve doğru yanıtlar verir. Beklemeyin, hemen üretin.
-                            </p>
-                        </div>
+
+                <!-- Bölüm 4 -->
+                <div class="py-8 md:py-10 grid grid-cols-1 md:grid-cols-12 gap-6 items-baseline reveal-up">
+                    <div class="md:col-span-2 text-rose-500/80 font-black text-2xl tracking-widest">
+                        04
+                    </div>
+                    <div class="md:col-span-4">
+                        <h3 class="text-2xl md:text-3xl font-bold text-white tracking-tight leading-snug">
+                            Tasarım Fikrine Özel Kumaş ve Kalıp Önerisi
+                        </h3>
+                    </div>
+                    <div class="md:col-span-6">
+                        <p class="text-white/65 text-base md:text-lg leading-relaxed font-light">
+                            Aklınızdaki kıyafet fikrini veya giyeceğiniz mevsimi anlatın; vücut tipinize uygun kalıbı ve ideal kumaş cinsini tek seferde önerir.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Bölüm 5 -->
+                <div class="py-8 md:py-10 grid grid-cols-1 md:grid-cols-12 gap-6 items-baseline reveal-up">
+                    <div class="md:col-span-2 text-rose-500/80 font-black text-2xl tracking-widest">
+                        05
+                    </div>
+                    <div class="md:col-span-4">
+                        <h3 class="text-2xl md:text-3xl font-bold text-white tracking-tight leading-snug">
+                            Ultra Hızlı Yanıtlar ve Kesintisiz Destek
+                        </h3>
+                    </div>
+                    <div class="md:col-span-6">
+                        <p class="text-white/65 text-base md:text-lg leading-relaxed font-light">
+                            Gelişmiş yapay zeka omurgasıyla sorularınıza anında doğru teknik cevaplar verir. 7/24 dikiş masanızın başında size rehberlik eder.
+                        </p>
                     </div>
                 </div>
             </div>
-            <!-- CTA Button -->
-            <div class="text-center reveal-up">
-                <a href="chatbot.html" class="enkai-cta-btn">
-                    <i class="fas fa-rocket"></i>
-                    Hemen Dene
-                    <i class="fas fa-arrow-right"></i>
+
+            <!-- EN-KAI İle Hemen Konuş (Sola Hizalı CTA) -->
+            <div class="reveal-up pt-4 flex items-start">
+                <a href="https://enkai.onrender.com" target="_blank" rel="noopener" class="inline-flex items-center gap-3 px-8 py-4 rounded-xl text-black font-black uppercase text-xs tracking-widest trans hover:scale-105" style="background: linear-gradient(135deg, #FFD700 0%, #FFA500 100%); box-shadow: 0 8px 30px rgba(255,215,0,0.3);">
+                    <i class="fas fa-comments"></i>
+                    EN-KAI ile Sohbete Başla
+                    <i class="fas fa-arrow-right ml-1"></i>
                 </a>
             </div>
         </div>
     </section>
+
     <!-- ─────────────────────────────────── -->
-    <!-- YENİ KALIP KOLEKSİYONU SECTION      -->
+    <!-- YENİ KALIP KOLEKSİYONU SECTION (VİDEO ARKA PLAN: banner1.mp4, SOLA HİZALI, KARTÇIK YOK) -->
     <!-- ─────────────────────────────────── -->
-    <section class="kalip-section max-w-6xl mx-auto px-6 py-20">
-        <div class="text-center mb-16 reveal-up">
-            <h2 style="font-family:'Playfair Display',serif;font-size:clamp(2.2rem,6vw,3.5rem);font-weight:700;line-height:1.1;color:#1a2332;" class="dark:text-white mb-4">
-                Yeni <em>Kalıp Koleksiyonu</em>
-            </h2>
-            <p class="text-slate-500 dark:text-slate-400 text-base font-medium max-w-xl mx-auto">
-                Artık ne dikeceğinize koleksiyonumuzdan hızlıca karar verebilirsiniz
-            </p>
-        </div>
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
-            
-            <!-- Alt Bölüm 1 -->
-            <div class="kalip-feature-card reveal-up delay-1">
-                <div class="kalip-feature-icon">
-                    <i class="fas fa-ruler-combined text-xl" style="color:#E11D48;"></i>
-                </div>
-                <h4 class="font-bold text-base mb-2 dark:text-white" style="color:#1a2332;">Her bedene her kişiye uygun kalıplar</h4>
-                <p class="text-sm opacity-60 leading-relaxed dark:text-slate-300">
-                    XS'tan 5XL'ye kadar geniş beden aralığında, her vücut tipine uygun profesyonel dikim kalıpları.
+    <section class="relative py-28 md:py-36 px-6 overflow-hidden text-white" id="kalip-section">
+        <!-- VİDEO ARKA PLAN (banner1.mp4) -->
+        <video autoplay muted loop playsinline class="absolute inset-0 w-full h-full object-cover">
+            <source src="banner1.mp4" type="video/mp4">
+        </video>
+        <!-- Karartma / Degradeli Katman -->
+        <div class="backdrop-section-overlay"></div>
+
+        <div class="max-w-6xl mx-auto relative z-10 text-left">
+            <!-- Bölüm Başlığı (Sola Hizalı) -->
+            <div class="reveal-up max-w-2xl mb-16">
+                <span class="text-rose-500 text-xs font-black tracking-[0.3em] uppercase block mb-3">Modern Kesimler ve Trend Çizgiler</span>
+                <h2 class="text-4xl sm:text-6xl font-black tracking-tight leading-[1.08] mb-6 text-white" style="font-family:'Playfair Display',serif;">
+                    Yeni <em>Kalıp Koleksiyonu</em>
+                </h2>
+                <p class="text-white/70 text-lg font-normal leading-relaxed">
+                    Artık ne dikeceğinize geniş kalıp arşivimizle zahmetsizce karar verebilirsiniz. Profesyonelce hazırlanmış modellerle hayalinizdeki kıyafeti kolayca hayata geçirin.
                 </p>
             </div>
-            <!-- Alt Bölüm 2 -->
-            <div class="kalip-feature-card reveal-up delay-2">
-                <div class="kalip-feature-icon">
-                    <i class="fas fa-fire text-xl" style="color:#E11D48;"></i>
+
+            <!-- Metin Maddeleri (Sola Hizalı, Kartçık Tasarımı Yok) -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-y-12 gap-x-16 mb-16 border-t border-white/15 pt-12">
+                <div class="reveal-up delay-1 text-left">
+                    <div class="text-rose-400 text-sm font-black uppercase tracking-wider mb-2">01 · Beden Skalası</div>
+                    <h4 class="text-2xl font-bold text-white mb-2">Her Bedene ve Her Vücut Tipine Uygun</h4>
+                    <p class="text-white/60 text-base leading-relaxed font-light">
+                        XS'tan 5XL'ye kadar uzanan geniş beden yelpazesiyle kusursuz dikim sağlayan prova edilmiş kalıp çizimleri.
+                    </p>
                 </div>
-                <h4 class="font-bold text-base mb-2 dark:text-white" style="color:#1a2332;">Modaya <span class="gradient-text-action">uyumlu olun</span></h4>
-                <p class="text-sm opacity-60 leading-relaxed dark:text-slate-300">
-                    Her sezon güncellenen, moda trendlerini yakından takip eden modern ve şık kalıp tasarımları.
-                </p>
-            </div>
-            <!-- Alt Bölüm 3 -->
-            <div class="kalip-feature-card reveal-up delay-3">
-                <div class="kalip-feature-icon">
-                    <i class="fas fa-palette text-xl" style="color:#E11D48;"></i>
+
+                <div class="reveal-up delay-2 text-left">
+                    <div class="text-rose-400 text-sm font-black uppercase tracking-wider mb-2">02 · Moda Trendleri</div>
+                    <h4 class="text-2xl font-bold text-white mb-2">Güncel Modayla Daima Uyumlu</h4>
+                    <p class="text-white/60 text-base leading-relaxed font-light">
+                        Sezonun öne çıkan kesimleri, podyum trendleri ve modern silüetlerle harmanlanmış şık tasarımlar.
+                    </p>
                 </div>
-                <h4 class="font-bold text-base mb-2 dark:text-white" style="color:#1a2332;">Kendi tarzınıza uygun kalıplar <span class="gradient-text-action">keşfedin</span></h4>
-                <p class="text-sm opacity-60 leading-relaxed dark:text-slate-300">
-                    Klasikten avangarda, sportiften şık tarza kadar her zevke hitap eden çeşitli kalıp koleksiyonu.
-                </p>
-            </div>
-            <!-- Alt Bölüm 4 -->
-            <div class="kalip-feature-card reveal-up delay-1">
-                <div class="kalip-feature-icon">
-                    <i class="fas fa-sync-alt text-xl" style="color:#E11D48;"></i>
+
+                <div class="reveal-up delay-3 text-left">
+                    <div class="text-rose-400 text-sm font-black uppercase tracking-wider mb-2">03 · Özgün Stiller</div>
+                    <h4 class="text-2xl font-bold text-white mb-2">Kendi Tarzınıza Özel Kalıplar</h4>
+                    <p class="text-white/60 text-base leading-relaxed font-light">
+                        Klasik takım parçalarından spor sokak giyimine, dökümlü elbiselerden kabanlara kadar kişisel zevkinize uygun alternatifler.
+                    </p>
                 </div>
-                <h4 class="font-bold text-base mb-2 dark:text-white" style="color:#1a2332;">Her gün <span class="gradient-text-action">yenileniyor</span></h4>
-                <p class="text-sm opacity-60 leading-relaxed dark:text-slate-300">
-                    Koleksiyonumuz her gün yeni kalıplarla güncelleniyor. Sık sık kontrol ederek yeni tasarımları kaçırmayın.
-                </p>
-            </div>
-            <!-- Alt Bölüm 5 -->
-            <div class="kalip-feature-card reveal-up delay-2">
-                <div class="kalip-feature-icon">
-                    <i class="fas fa-cloud-sun-rain text-xl" style="color:#E11D48;"></i>
+
+                <div class="reveal-up delay-1 text-left">
+                    <div class="text-rose-400 text-sm font-black uppercase tracking-wider mb-2">04 · Sürekli Güncellik</div>
+                    <h4 class="text-2xl font-bold text-white mb-2">Her Gün Yenilenen Koleksiyon</h4>
+                    <p class="text-white/60 text-base leading-relaxed font-light">
+                        Koleksiyonumuz düzenli aralıklarla yeni kalıplarla zenginleştirilmektedir; yeni modelleri kaçırmamak için düzenli takip edebilirsiniz.
+                    </p>
                 </div>
-                <h4 class="font-bold text-base mb-2 dark:text-white" style="color:#1a2332;">Her mevsime <span class="gradient-text-action">uygun</span></h4>
-                <p class="text-sm opacity-60 leading-relaxed dark:text-slate-300">
-                    Yazlık ince elbiselerden kışlık kalın montlara, her mevsim için özel hazırlanmış kalıp seçenekleri.
-                </p>
-            </div>
-            <!-- Alt Bölüm 6 -->
-            <div class="kalip-feature-card reveal-up delay-3">
-                <div class="kalip-feature-icon">
-                    <i class="fas fa-search text-xl" style="color:#E11D48;"></i>
+
+                <div class="reveal-up delay-2 text-left">
+                    <div class="text-rose-400 text-sm font-black uppercase tracking-wider mb-2">05 · Mevsimsel Çözümler</div>
+                    <h4 class="text-2xl font-bold text-white mb-2">Dört Mevsim İçin Özel Hazırlık</h4>
+                    <p class="text-white/60 text-base leading-relaxed font-light">
+                        Yaz aylarının hafif elbiselerinden kış mevsiminin tok ceket ve montlarına kadar her iklime uygun kalıp yapıları.
+                    </p>
                 </div>
-                <h4 class="font-bold text-base mb-2 dark:text-white" style="color:#1a2332;">Karmaşadan kaçın arama filtresiyle uygun kalıbı anında <span class="gradient-text-action">bulun</span></h4>
-                <p class="text-sm opacity-60 leading-relaxed dark:text-slate-300">
-                    Gelişmiş arama ve filtreleme sistemiyle beden, kategori veya stil seçerek istediğiniz kalıba saniyeler içinde ulaşın.
-                </p>
+
+                <div class="reveal-up delay-3 text-left">
+                    <div class="text-rose-400 text-sm font-black uppercase tracking-wider mb-2">06 · Kolay Erişim</div>
+                    <h4 class="text-2xl font-bold text-white mb-2">Filtreleyin ve Aradığınız Modeli Anında Bulun</h4>
+                    <p class="text-white/60 text-base leading-relaxed font-light">
+                        Gelişmiş arama ve kategori filtreleri sayesinde tarz, kumaş tipi veya giysi türüne göre aradığınız kalıba anında ulaşın.
+                    </p>
+                </div>
             </div>
-        </div>
-        <!-- CTA Button -->
-        <div class="text-center reveal-up">
-            <a href="kalip-koleksiyonu.html" class="kalip-cta-btn">
-                <i class="fas fa-drafting-compass"></i>
-                Hemen Deneyin
-                <i class="fas fa-arrow-right"></i>
-            </a>
+
+            <!-- CTA Butonu (Sola Hizalı) -->
+            <div class="reveal-up text-left">
+                <a href="kalip-koleksiyonu.html" class="inline-flex items-center gap-3 px-8 py-4 rounded-xl text-white font-black text-xs uppercase tracking-widest trans hover:scale-105 shadow-xl" style="background: linear-gradient(135deg, #E11D48 0%, #be123c 100%); box-shadow: 0 8px 32px rgba(225,29,72,0.45);">
+                    <i class="fas fa-drafting-compass"></i>
+                    Kalıp Koleksiyonunu İnceleyin
+                    <i class="fas fa-arrow-right ml-1"></i>
+                </a>
+            </div>
         </div>
     </section>
+
     <!-- ─────────────────────────────────── -->
-    <!-- POPÜLER KUMAŞLARIMIZ               -->
+    <!-- POPÜLER KUMAŞLARIMIZ (DOKUNULMAYAN KISIM) -->
     <!-- ─────────────────────────────────── -->
-    <section class="max-w-6xl mx-auto px-6 pb-20">
+    <section class="max-w-6xl mx-auto px-6 py-24">
         <div class="text-center mb-16 reveal-up">
             <h2 style="font-family:'Playfair Display',serif;font-size:clamp(2.2rem,6vw,4rem);font-weight:700;line-height:1.1;color:#1a2332;" class="dark:text-white">
                 Popüler <em>Kumaşlarımız</em>
@@ -1321,8 +859,7 @@
                         <i class="fas fa-paw text-7xl" style="color:rgba(225,29,72,0.2)"></i>
                     </div>
                 </div>
-                <div class="w-full md:w-1/2 reveal-right">
-            
+                <div class="w-full md:w-1/2 reveal-right text-left">
                     <h3 style="font-family:'Playfair Display',serif;font-size:2.8rem;font-weight:700;line-height:1.1;margin-bottom:1rem;" class="dark:text-white">Teddy Kumaş</h3>
                     <p class="text-slate-600 dark:text-slate-400 leading-relaxed text-base font-medium">
                         Soğuk kış günlerinin vazgeçilmezi. Yumuşak, pofuduk yapısı ve üstün ısı yalıtımı ile dış giyimden ev tekstiline kadar eşsiz bir konfor deneyimi sunar. Dokunduğunuz an kalitesini hissedeceksiniz.
@@ -1352,8 +889,7 @@
                         <i class="fas fa-scroll text-7xl" style="color:rgba(225,29,72,0.2)"></i>
                     </div>
                 </div>
-                <div class="w-full md:w-1/2 reveal-right">
-                  
+                <div class="w-full md:w-1/2 reveal-right text-left">
                     <h3 style="font-family:'Playfair Display',serif;font-size:2.8rem;font-weight:700;line-height:1.1;margin-bottom:1rem;" class="dark:text-white">Premium Yün</h3>
                     <p class="text-slate-600 dark:text-slate-400 leading-relaxed text-base font-medium">
                         Doğanın bize sunduğu en değerli miras. Yüksek kaliteli doğal yün liflerinden elde edilen bu kumaş, prestijli kabanlar, ceketler ve takımlar için kusursuz bir dikim sağlar.
@@ -1383,7 +919,7 @@
                         <i class="fas fa-leaf text-7xl" style="color:rgba(225,29,72,0.2)"></i>
                     </div>
                 </div>
-                <div class="w-full md:w-1/2 reveal-right">
+                <div class="w-full md:w-1/2 reveal-right text-left">
                     <h3 style="font-family:'Playfair Display',serif;font-size:2.8rem;font-weight:700;line-height:1.1;margin-bottom:1rem;" class="dark:text-white">İpeksi Viskon</h3>
                     <p class="text-slate-600 dark:text-slate-400 leading-relaxed text-base font-medium">
                         Doğal selülozdan üretilen, cildi tahriş etmeyen esnek yapı. Renkleri canlı tutan ve tiril tiril dökülen formuyla günlük giyimin ve yaz aylarının vazgeçilmezi.
@@ -1391,6 +927,7 @@
                 </div>
             </div>
         </div>
+
         <!-- DAHA FAZLA KUMAŞ BUTONU -->
         <div class="products-blur-bg reveal-up mt-20" style="border-radius:40px;overflow:hidden;min-height:220px;">
             <div class="products-blur-grid" aria-hidden="true">
@@ -1411,393 +948,543 @@
             </div>
         </div>
     </section>
+
     <!-- ─────────────────────────────────── -->
-    <!-- FEATURE CARDS                       -->
+    <!-- MÜŞTERİ YORUMLARI BÖLÜMÜ (VİDEO ARKA PLAN: banner2.mp4, YORUMLAR KORUNUYOR, SOLA HİZALI AKIŞ) -->
     <!-- ─────────────────────────────────── -->
-    <section class="max-w-6xl mx-auto px-6 pb-20">
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-            <div class="feature-card glass-deep reveal-up delay-1 hover-lift">
-                <div class="w-14 h-14 rounded-full flex items-center justify-center mx-auto mb-5" style="background:linear-gradient(135deg,rgba(225,29,72,0.15),rgba(225,29,72,0.05));border:1px solid rgba(225,29,72,0.2);">
-                    <i class="fas fa-crown text-2xl" style="color:#E11D48;"></i>
-                </div>
-                <h4 class="font-black uppercase text-sm mb-2 tracking-wider">Markalı Ürünler</h4>
-                <p class="text-xs opacity-60 leading-relaxed">Dünya markalarının ihraç fazlası serileri.</p>
+    <section class="relative py-28 md:py-36 px-6 overflow-hidden text-white" id="reviews-section">
+        <!-- VİDEO ARKA PLAN (banner2.mp4) -->
+        <video autoplay muted loop playsinline class="absolute inset-0 w-full h-full object-cover">
+            <source src="banner2.mp4" type="video/mp4">
+        </video>
+        <!-- Karanlık Degradeli Katman -->
+        <div class="backdrop-section-overlay"></div>
+
+        <div class="max-w-6xl mx-auto relative z-10 text-left">
+            <!-- Başlık (Sola Hizalı) -->
+            <div class="reveal-up mb-16 max-w-2xl">
+                <span class="text-rose-500 text-xs font-black tracking-[0.3em] uppercase block mb-3">Müşteri Memnuniyeti ve Deneyimleri</span>
+                <h2 class="text-3xl sm:text-5xl md:text-6xl font-black tracking-tight leading-[1.1] mb-4 text-white" style="font-family:'Playfair Display',serif;">
+                    Biz Anlatmayalım,<br><em>Onlar Anlatsın.</em>
+                </h2>
+                <p class="text-white/60 text-base md:text-lg font-light leading-relaxed">
+                    22 yıldır binlerce dikiş severe, atölyeye ve kumaş tutkununa aynı özenle hizmet veriyoruz. İşte gerçek ziyaretçilerimizin mağazamız hakkındaki düşünceleri:
+                </p>
             </div>
-            <div class="feature-card glass-deep reveal-up delay-2 hover-lift">
-                <div class="w-14 h-14 rounded-full flex items-center justify-center mx-auto mb-5" style="background:linear-gradient(135deg,rgba(225,29,72,0.12),rgba(190,18,60,0.05));border:1px solid rgba(225,29,72,0.18);">
-                    <i class="fas fa-seedling text-2xl" style="color:#E11D48;"></i>
+
+            <!-- Kaydırdıkça Gelen Yorumlar (Sola Hizalı Tipografik Akış, Kartçık Kutu Tasarımı Yok) -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
+                <!-- Yorum 1 -->
+                <div class="reveal-up delay-1 border-l-2 border-rose-500/50 pl-5 text-left">
+                    <div class="flex items-center gap-2 mb-2">
+                        <span class="font-bold text-white text-base">Umut</span>
+                        <span class="text-[9px] font-black uppercase tracking-wider text-rose-400 bg-rose-500/10 px-2 py-0.5 rounded">Yerel Rehber</span>
+                    </div>
+                    <div class="flex text-amber-400 text-xs mb-3">
+                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                    </div>
+                    <p class="text-white/75 text-sm leading-relaxed font-light">
+                        "Ankara çapında en ucuz ve kaliteli kumaşlar satan bir mağaza. Marka kumaşlar var kalitesi mükemmel, öneririm."
+                    </p>
                 </div>
-                <h4 class="font-black uppercase text-sm mb-2 tracking-wider">Doğal İçerik</h4>
-                <p class="text-xs opacity-60 leading-relaxed">Ağırlıklı olarak pamuk ve iplik dokumalar.</p>
+
+                <!-- Yorum 2 -->
+                <div class="reveal-up delay-2 border-l-2 border-rose-500/50 pl-5 text-left">
+                    <div class="flex items-center gap-2 mb-2">
+                        <span class="font-bold text-white text-base">Ayse</span>
+                    </div>
+                    <div class="flex text-amber-400 text-xs mb-3">
+                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                    </div>
+                    <p class="text-white/75 text-sm leading-relaxed font-light">
+                        "Kumaşları kaliteli, 10 TL'ye marka kumaş aldım. Aileme ve tüm dikiş seven hanımlara öneriyorum 👍"
+                    </p>
+                </div>
+
+                <!-- Yorum 3 -->
+                <div class="reveal-up delay-3 border-l-2 border-rose-500/50 pl-5 text-left">
+                    <div class="flex items-center gap-2 mb-2">
+                        <span class="font-bold text-white text-base">Aslı Eylül</span>
+                    </div>
+                    <div class="flex text-amber-400 text-xs mb-3">
+                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                    </div>
+                    <p class="text-white/75 text-sm leading-relaxed font-light">
+                        "Fiyatlar son derece uygun, sahibi güler yüzlü ve yardımcı. Kumaşlar süper, herkese tavsiye ediyorum."
+                    </p>
+                </div>
+
+                <!-- Yorum 4 -->
+                <div class="reveal-up delay-1 border-l-2 border-rose-500/50 pl-5 text-left">
+                    <div class="flex items-center gap-2 mb-2">
+                        <span class="font-bold text-white text-base">Fatma Çiçek</span>
+                    </div>
+                    <div class="flex text-amber-400 text-xs mb-3">
+                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                    </div>
+                    <p class="text-white/75 text-sm leading-relaxed font-light">
+                        "Fiyatlar çok uygundu. 10 TL'ye parça kumaş vardi, bu fiyata bu zamanda çok iyi. Tekrar uğramak isterim."
+                    </p>
+                </div>
+
+                <!-- Yorum 5 -->
+                <div class="reveal-up delay-2 border-l-2 border-rose-500/50 pl-5 text-left">
+                    <div class="flex items-center gap-2 mb-2">
+                        <span class="font-bold text-white text-base">Ümmügülsüm Şenol</span>
+                    </div>
+                    <div class="flex text-amber-400 text-xs mb-3">
+                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                    </div>
+                    <p class="text-white/75 text-sm leading-relaxed font-light">
+                        "Çok güzel kumaşlar var, kaliteli marka kumaşları çok uygun fiyata alıyoruz. Keçiören'in en güzel ve en uygun kumaşçısı!"
+                    </p>
+                </div>
+
+                <!-- Yorum 6 -->
+                <div class="reveal-up delay-3 border-l-2 border-rose-500/50 pl-5 text-left">
+                    <div class="flex items-center gap-2 mb-2">
+                        <span class="font-bold text-white text-base">İdil Latife Çandır</span>
+                    </div>
+                    <div class="flex text-amber-400 text-xs mb-3">
+                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                    </div>
+                    <p class="text-white/75 text-sm leading-relaxed font-light">
+                        "Kumaşlar hem uygun hem kaliteli. Çalışanlar çok güler yüzlü. Uğramanızı tavsiye ederim. Teşekkürler Ali Bey!"
+                    </p>
+                </div>
+
+                <!-- Yorum 7 -->
+                <div class="reveal-up delay-1 border-l-2 border-rose-500/50 pl-5 text-left">
+                    <div class="flex items-center gap-2 mb-2">
+                        <span class="font-bold text-white text-base">Rukiye Narin</span>
+                    </div>
+                    <div class="flex text-amber-400 text-xs mb-3">
+                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                    </div>
+                    <p class="text-white/75 text-sm leading-relaxed font-light">
+                        "Çok güzel ve kaliteli kumaşları çok uyguna alıyorum. Kesinlikle tavsiye ederim."
+                    </p>
+                </div>
+
+                <!-- Yorum 8 -->
+                <div class="reveal-up delay-2 border-l-2 border-rose-500/50 pl-5 text-left">
+                    <div class="flex items-center gap-2 mb-2">
+                        <span class="font-bold text-white text-base">Osman Ayyıldız</span>
+                    </div>
+                    <div class="flex text-amber-400 text-xs mb-3">
+                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                    </div>
+                    <p class="text-white/75 text-sm leading-relaxed font-light">
+                        "Ali Bey ve Emre Bey'in önerdiği kaliteli marka (Lacoste, Beymen) ürünleri uygun fiyata aldık. Teşekkürler!"
+                    </p>
+                </div>
+
+                <!-- Yorum 9 -->
+                <div class="reveal-up delay-3 border-l-2 border-rose-500/50 pl-5 text-left">
+                    <div class="flex items-center gap-2 mb-2">
+                        <span class="font-bold text-white text-base">Hacer Şahin</span>
+                    </div>
+                    <div class="flex text-amber-400 text-xs mb-3">
+                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                    </div>
+                    <p class="text-white/75 text-sm leading-relaxed font-light">
+                        "Enka Kumaş çok güzel ve uygun. Bu güzel kumaşlar için teşekkür ederim, Rabbim razı olsun."
+                    </p>
+                </div>
+
+                <!-- Yorum 10 -->
+                <div class="reveal-up delay-1 border-l-2 border-rose-500/50 pl-5 text-left">
+                    <div class="flex items-center gap-2 mb-2">
+                        <span class="font-bold text-white text-base">Çağo 65</span>
+                        <span class="text-[9px] font-black uppercase tracking-wider text-rose-400 bg-rose-500/10 px-2 py-0.5 rounded">Yerel Rehber</span>
+                    </div>
+                    <div class="flex text-amber-400 text-xs mb-3">
+                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                    </div>
+                    <p class="text-white/75 text-sm leading-relaxed font-light">
+                        "Aileme önerdim, memnun kaldılar. Uygun ve kaliteli, yardımcı oldular."
+                    </p>
+                </div>
+
+                <!-- Yorum 11 -->
+                <div class="reveal-up delay-2 border-l-2 border-rose-500/50 pl-5 text-left">
+                    <div class="flex items-center gap-2 mb-2">
+                        <span class="font-bold text-white text-base">Abdülkadir</span>
+                    </div>
+                    <div class="flex text-amber-400 text-xs mb-3">
+                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                    </div>
+                    <p class="text-white/75 text-sm leading-relaxed font-light">
+                        "Mükemmel. Başka söze gerek yok, her şey tastamam."
+                    </p>
+                </div>
             </div>
-            <div class="feature-card glass-deep reveal-up delay-3 hover-lift">
-                <div class="w-14 h-14 rounded-full flex items-center justify-center mx-auto mb-5" style="background:linear-gradient(135deg,rgba(225,29,72,0.12),rgba(225,29,72,0.04));border:1px solid rgba(225,29,72,0.2);">
-                    <i class="fas fa-shield-check text-2xl" style="color:#E11D48;"></i>
-                </div>
-                <h4 class="font-black uppercase text-sm mb-2 tracking-wider">Güvenilir Kalite</h4>
-                <p class="text-xs opacity-60 leading-relaxed">Yılların tecrübesiyle defosuz ürünler.</p>
+
+            <!-- Google Haritalar Yorum Butonu (Sola Hizalı) -->
+            <div class="reveal-up text-left">
+                <a href="https://maps.app.goo.gl/QDJ8ei1FDQk6J7mv8" target="_blank" rel="noopener" class="inline-flex items-center gap-3 px-7 py-3.5 rounded-xl bg-white/10 hover:bg-white/20 border border-white/20 text-white font-bold text-xs uppercase tracking-wider trans hover:scale-105">
+                    <svg width="18" height="18" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M24 4C15.16 4 8 11.16 8 20C8 31.5 24 44 24 44C24 44 40 31.5 40 20C40 11.16 32.84 4 24 4Z" fill="#EA4335"/>
+                        <path d="M24 25C21.24 25 19 22.76 19 20C19 17.24 21.24 15 24 15C26.76 15 29 17.24 29 20C29 22.76 26.76 25 24 25Z" fill="white"/>
+                    </svg>
+                    Google Haritalarda Tüm Yorumları Gör
+                    <i class="fas fa-arrow-up-right-from-square text-xs opacity-60"></i>
+                </a>
             </div>
         </div>
     </section>
-    <!-- ─────────────────────────────────── -->
-    <!-- STATS                               -->
-    <!-- ─────────────────────────────────── -->
-    <section class="max-w-6xl mx-auto px-6 pb-20 reveal-up" id="stats-section">
-        <div class="glass-deep rounded-[44px] p-10 md:p-16">
-            <div class="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
-                <div class="stat-card">
-                    <div class="text-4xl md:text-5xl font-black mb-2 counter" data-target="22" style="font-family:'Cormorant Garamond',serif;color:#E11D48;">0</div>
-                    <div class="text-xs font-black uppercase tracking-widest opacity-55">Yıllık Deneyim</div>
-                </div>
-                <div class="stat-card">
-                    <div class="text-4xl md:text-5xl font-black mb-2 counter" data-target="1" style="font-family:'Cormorant Garamond',serif;color:#E11D48;">0</div>
-                    <div class="text-xs font-black uppercase tracking-widest opacity-55">Dev Mağaza</div>
-                </div>
-                <div class="stat-card">
-                    <div class="text-4xl md:text-5xl font-black mb-2" style="font-family:'Cormorant Garamond',serif;color:#E11D48;"><span class="counter" data-target="10000">0</span>+</div>
-                    <div class="text-xs font-black uppercase tracking-widest opacity-55">Kumaş Çeşidi</div>
-                </div>
-                <div class="stat-card">
-                    <div class="text-4xl md:text-5xl font-black mb-2" style="font-family:'Cormorant Garamond',serif;color:#E11D48;"><span class="counter" data-target="5000">0</span>+</div>
-                    <div class="text-xs font-black uppercase tracking-widest opacity-55">Memnun Müşteri</div>
-                </div>
-            </div>
-        </div>
-    </section>
-    <!-- ─────────────────────────────────── -->
-    <!-- BİZ ANLATMAYALIM, ONLAR ANLATSIN   -->
-    <!-- ─────────────────────────────────── -->
-    <section class="max-w-6xl mx-auto px-6 pb-20">
-        <div class="text-center mb-14 reveal-up">
-            <div class="section-label mb-4">Müşteri Yorumları</div>
-            <h2 style="font-family:'Playfair Display',serif;font-size:clamp(1.8rem,5vw,3.2rem);font-weight:700;line-height:1.15;color:#1a2332;" class="dark:text-white">
-                Biz Anlatmayalım,<br><em>Onlar Anlatsın.</em>
-            </h2>
-        </div>
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
-            <!-- Review 1 -->
-            <div class="review-card glass-deep reveal-up delay-1 hover-lift">
-                <div class="flex items-center gap-3 mb-3">
-                    <div class="w-10 h-10 rounded-full flex items-center justify-center font-black text-sm text-white flex-shrink-0" style="background:linear-gradient(135deg,#E11D48,#be123c);">U</div>
-                    <div>
-                        <p class="font-bold text-sm">Umut </p>
-                        <span class="text-[9px] font-black px-2 py-0.5 rounded-full" style="background:rgba(225,29,72,0.12);color:#E11D48;border:1px solid rgba(225,29,72,0.2);">Yerel Rehber</span>
-                        <div class="flex gap-0.5 mt-0.5">
-                            <i class="fas fa-star star-filled text-xs"></i><i class="fas fa-star star-filled text-xs"></i><i class="fas fa-star star-filled text-xs"></i><i class="fas fa-star star-filled text-xs"></i><i class="fas fa-star star-filled text-xs"></i>
-                        </div>
-                    </div>
-                </div>
-                <p class="text-sm leading-relaxed opacity-80">Ankara çapında en ucuz ve kaliteli kumaşlar satan bir mağaza. Marka kumaşlar var kalitesi mükemmel, öneririm.</p>
-            </div>
-            <!-- Review 2 -->
-            <div class="review-card glass-deep reveal-up delay-2 hover-lift">
-                <div class="flex items-center gap-3 mb-3">
-                    <div class="w-10 h-10 rounded-full flex items-center justify-center font-black text-sm text-white flex-shrink-0" style="background:linear-gradient(135deg,#7c3aed,#a855f7);">A</div>
-                    <div>
-                        <p class="font-bold text-sm">Ayse </p>
-                        <div class="flex gap-0.5 mt-0.5">
-                            <i class="fas fa-star star-filled text-xs"></i><i class="fas fa-star star-filled text-xs"></i><i class="fas fa-star star-filled text-xs"></i><i class="fas fa-star star-filled text-xs"></i><i class="fas fa-star star-filled text-xs"></i>
-                        </div>
-                    </div>
-                </div>
-                <p class="text-sm leading-relaxed opacity-80">Kumaşları kaliteli, 10 TL'ye marka kumaş aldım. Aileme ve tüm dikiş seven hanımlara öneriyorum 👍</p>
-            </div>
-            <!-- Review 3 -->
-            <div class="review-card glass-deep reveal-up delay-3 hover-lift">
-                <div class="flex items-center gap-3 mb-3">
-                    <div class="w-10 h-10 rounded-full flex items-center justify-center font-black text-sm text-white flex-shrink-0" style="background:linear-gradient(135deg,#E11D48,#be123c);">A</div>
-                    <div>
-                        <p class="font-bold text-sm">Aslı Eylül</p>
-                        <div class="flex gap-0.5 mt-0.5">
-                            <i class="fas fa-star star-filled text-xs"></i><i class="fas fa-star star-filled text-xs"></i><i class="fas fa-star star-filled text-xs"></i><i class="fas fa-star star-filled text-xs"></i><i class="fas fa-star star-filled text-xs"></i>
-                        </div>
-                    </div>
-                </div>
-                <p class="text-sm leading-relaxed opacity-80">Fiyatlar son derece uygun, sahibi güler yüzlü ve yardımcı. Kumaşlar süper, herkese tavsiye ediyorum.</p>
-            </div>
-            <!-- Review 4 -->
-            <div class="review-card glass-deep reveal-up delay-1 hover-lift">
-                <div class="flex items-center gap-3 mb-3">
-                    <div class="w-10 h-10 rounded-full flex items-center justify-center font-black text-sm text-white flex-shrink-0" style="background:linear-gradient(135deg,#f59e0b,#ef4444);">F</div>
-                    <div>
-                        <p class="font-bold text-sm">Fatma Çiçek</p>
-                        <div class="flex gap-0.5 mt-0.5">
-                            <i class="fas fa-star star-filled text-xs"></i><i class="fas fa-star star-filled text-xs"></i><i class="fas fa-star star-filled text-xs"></i><i class="fas fa-star star-filled text-xs"></i><i class="fas fa-star star-filled text-xs"></i>
-                        </div>
-                    </div>
-                </div>
-                <p class="text-sm leading-relaxed opacity-80">Fiyatlar çok uygundu. 10 TL'ye parça kumaş vardi, bu fiyata bu zamanda çok iyi. Tekrar uğramak isterim.</p>
-            </div>
-            <!-- Review 5 -->
-            <div class="review-card glass-deep reveal-up delay-2 hover-lift">
-                <div class="flex items-center gap-3 mb-3">
-                    <div class="w-10 h-10 rounded-full flex items-center justify-center font-black text-sm text-white flex-shrink-0" style="background:linear-gradient(135deg,#E11D48,#be123c);">Ü</div>
-                    <div>
-                        <p class="font-bold text-sm">Ümmügülsüm Şenol</p>
-                        <div class="flex gap-0.5 mt-0.5">
-                            <i class="fas fa-star star-filled text-xs"></i><i class="fas fa-star star-filled text-xs"></i><i class="fas fa-star star-filled text-xs"></i><i class="fas fa-star star-filled text-xs"></i><i class="fas fa-star star-filled text-xs"></i>
-                        </div>
-                    </div>
-                </div>
-                <p class="text-sm leading-relaxed opacity-80">Çok güzel kumaşlar var, kaliteli marka kumaşları çok uygun fiyata alıyoruz. Keçiören'in en güzel ve en uygun kumaşçısı!</p>
-            </div>
-            <!-- Review 6 -->
-            <div class="review-card glass-deep reveal-up delay-3 hover-lift">
-                <div class="flex items-center gap-3 mb-3">
-                    <div class="w-10 h-10 rounded-full flex items-center justify-center font-black text-sm text-white flex-shrink-0" style="background:linear-gradient(135deg,#E11D48,#f43f5e);">İ</div>
-                    <div>
-                        <p class="font-bold text-sm">İdil Latife Çandır</p>
-                        <div class="flex gap-0.5 mt-0.5">
-                            <i class="fas fa-star star-filled text-xs"></i><i class="fas fa-star star-filled text-xs"></i><i class="fas fa-star star-filled text-xs"></i><i class="fas fa-star star-filled text-xs"></i><i class="fas fa-star star-filled text-xs"></i>
-                        </div>
-                    </div>
-                </div>
-                <p class="text-sm leading-relaxed opacity-80">Kumaşlar hem uygun hem kaliteli. Çalışanlar çok güler yüzlü. Uğramanızı tavsiye ederim. Teşekkürler Ali Bey!</p>
-            </div>
-            <!-- Review 7 -->
-            <div class="review-card glass-deep reveal-up delay-1 hover-lift">
-                <div class="flex items-center gap-3 mb-3">
-                    <div class="w-10 h-10 rounded-full flex items-center justify-center font-black text-sm text-white flex-shrink-0" style="background:linear-gradient(135deg,#be123c,#E11D48);">R</div>
-                    <div>
-                        <p class="font-bold text-sm">Rukiye Narin</p>
-                        <div class="flex gap-0.5 mt-0.5">
-                            <i class="fas fa-star star-filled text-xs"></i><i class="fas fa-star star-filled text-xs"></i><i class="fas fa-star star-filled text-xs"></i><i class="fas fa-star star-filled text-xs"></i><i class="fas fa-star star-filled text-xs"></i>
-                        </div>
-                    </div>
-                </div>
-                <p class="text-sm leading-relaxed opacity-80">Çok güzel ve kaliteli kumaşları çok uyguna alıyorum. Kesinlikle tavsiye ederim.</p>
-            </div>
-            <!-- Review 8 -->
-            <div class="review-card glass-deep reveal-up delay-2 hover-lift">
-                <div class="flex items-center gap-3 mb-3">
-                    <div class="w-10 h-10 rounded-full flex items-center justify-center font-black text-sm text-white flex-shrink-0" style="background:linear-gradient(135deg,#E11D48,#be123c);">O</div>
-                    <div>
-                        <p class="font-bold text-sm">Osman Ayyıldız</p>
-                        <div class="flex gap-0.5 mt-0.5">
-                            <i class="fas fa-star star-filled text-xs"></i><i class="fas fa-star star-filled text-xs"></i><i class="fas fa-star star-filled text-xs"></i><i class="fas fa-star star-filled text-xs"></i><i class="fas fa-star star-filled text-xs"></i>
-                        </div>
-                    </div>
-                </div>
-                <p class="text-sm leading-relaxed opacity-80">Ali Bey ve Emre Bey'in önerdiği kaliteli marka (Lacoste, Beymen) ürünleri uygun fiyata aldık. Teşekkürler!</p>
-            </div>
-            <!-- Review 9 -->
-            <div class="review-card glass-deep reveal-up delay-3 hover-lift">
-                <div class="flex items-center gap-3 mb-3">
-                    <div class="w-10 h-10 rounded-full flex items-center justify-center font-black text-sm text-white flex-shrink-0" style="background:linear-gradient(135deg,#f59e0b,#d97706);">H</div>
-                    <div>
-                        <p class="font-bold text-sm">Hacer Şahin</p>
-                        <div class="flex gap-0.5 mt-0.5">
-                            <i class="fas fa-star star-filled text-xs"></i><i class="fas fa-star star-filled text-xs"></i><i class="fas fa-star star-filled text-xs"></i><i class="fas fa-star star-filled text-xs"></i><i class="fas fa-star star-filled text-xs"></i>
-                        </div>
-                    </div>
-                </div>
-                <p class="text-sm leading-relaxed opacity-80">Enka Kumaş çok güzel ve uygun. Bu güzel kumaşlar için teşekkür ederim, Rabbim razı olsun.</p>
-            </div>
-            <!-- Review 10 -->
-            <div class="review-card glass-deep reveal-up delay-1 md:col-start-1 hover-lift">
-                <div class="flex items-center gap-3 mb-3">
-                    <div class="w-10 h-10 rounded-full flex items-center justify-center font-black text-sm text-white flex-shrink-0" style="background:linear-gradient(135deg,#6366f1,#8b5cf6);">Ç</div>
-                    <div>
-                        <div class="flex items-center gap-2">
-                            <p class="font-bold text-sm">Çağo 65</p>
-                            <span class="text-[9px] font-black px-2 py-0.5 rounded-full" style="background:rgba(225,29,72,0.12);color:#E11D48;border:1px solid rgba(225,29,72,0.2);">Yerel Rehber</span>
-                        </div>
-                        <div class="flex gap-0.5 mt-0.5">
-                            <i class="fas fa-star star-filled text-xs"></i><i class="fas fa-star star-filled text-xs"></i><i class="fas fa-star star-filled text-xs"></i><i class="fas fa-star star-filled text-xs"></i><i class="fas fa-star star-filled text-xs"></i>
-                        </div>
-                    </div>
-                </div>
-                <p class="text-sm leading-relaxed opacity-80">Aileme önerdim, memnun kaldılar. Uygun ve kaliteli, yardımcı oldular.</p>
-            </div>
-            <!-- Review 11 -->
-            <div class="review-card glass-deep reveal-up delay-2 hover-lift">
-                <div class="flex items-center gap-3 mb-3">
-                    <div class="w-10 h-10 rounded-full flex items-center justify-center font-black text-sm text-white flex-shrink-0" style="background:linear-gradient(135deg,#E11D48,#E11D48);">A</div>
-                    <div>
-                        <p class="font-bold text-sm">Abdülkadir</p>
-                        <div class="flex gap-0.5 mt-0.5">
-                            <i class="fas fa-star star-filled text-xs"></i><i class="fas fa-star star-filled text-xs"></i><i class="fas fa-star star-filled text-xs"></i><i class="fas fa-star star-filled text-xs"></i><i class="fas fa-star star-filled text-xs"></i>
-                        </div>
-                    </div>
-                </div>
-                <p class="text-sm leading-relaxed opacity-80">Mükemmel. Başka söze gerek yok, her şey tastamam.</p>
-            </div>
-        </div>
-        <!-- GOOGLE MAPS BUTTON -->
-        <div class="text-center mt-12 reveal-up">
-            <a href="https://maps.app.goo.gl/QDJ8ei1FDQk6J7mv8" target="_blank" class="inline-flex items-center gap-3 px-8 py-4 rounded-full font-bold text-sm trans hover:scale-105 hover-lift" style="background:white;color:#1a2332;box-shadow:0 8px 30px rgba(0,0,0,0.12);border:1px solid rgba(0,0,0,0.06);">
-                <svg width="20" height="20" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M24 4C15.16 4 8 11.16 8 20C8 31.5 24 44 24 44C24 44 40 31.5 40 20C40 11.16 32.84 4 24 4Z" fill="#EA4335"/>
-                    <path d="M24 25C21.24 25 19 22.76 19 20C19 17.24 21.24 15 24 15C26.76 15 29 17.24 29 20C29 22.76 26.76 25 24 25Z" fill="black"/>
-                </svg>
-                Google'da Daha Fazla Yorum Gör
-                <i class="fas fa-external-link-alt text-xs opacity-60"></i>
-            </a>
-        </div>
-    </section>
-    <!-- ─────────────────────────────────── -->
-    <!-- MARKA HİKAYEMİZ                    -->
-    <!-- ─────────────────────────────────── -->
-    <section class="max-w-6xl mx-auto px-6 pb-20 reveal-up" id="about-section">
-        <div class="glass-deep rounded-[44px] overflow-hidden">
-            <div class="p-10 md:p-16 relative">
-                <!-- Decorative line -->
-                <div style="position:absolute;left:0;top:3rem;bottom:3rem;width:3px;background:linear-gradient(to bottom,transparent,#E11D48,#be123c,transparent);border-radius:2px;"></div>
-                <div class="pl-6 md:pl-8">
-                    <div class="section-label mb-6">Biz Kimiz</div>
-                    <h2 class="mb-8" style="font-family:'Playfair Display',serif;font-size:clamp(2rem,5vw,3.5rem);font-weight:700;line-height:1.1;color:#1a2332;" >
-                        <span class="dark:text-white">EN-KA Kumaş</span><br>
-                        <em style="color:#E11D48;">Hakkında</em>
-                    </h2>
-                    <div class="space-y-6 max-w-2xl" style="font-family:'Cormorant Garamond',serif;font-size:1.2rem;line-height:1.8;color:#374151;" class="dark:text-slate-300">
-                        <p class="dark:text-slate-300">EN‑KA Kumaş, Ankara'nın Keçiören ilçesinde kurulmuş, <strong style="color:#E11D48;font-weight:700;">22 yılı aşkın tecrübesiyle</strong> kaliteli kumaş ve dikiş malzemeleri sunan köklü bir markadır.</p>
-                        <p class="dark:text-slate-300">Kurulduğu günden bu yana, hem profesyonel terzilerin hem de ev kullanıcılarının ihtiyaçlarına yönelik geniş ürün yelpazesiyle hizmet veriyoruz.</p>
-                        <p class="dark:text-slate-300">Sürekli yenilenen ürünlerimiz ve kalıplarımızla sizlere ilham vermeye devam ediyoruz.</p>
-                    </div>
-                    <div class="mt-10">
-                        <a href="hakkimizda.html" class="inline-flex items-center gap-3 px-8 py-4 rounded-full font-black text-sm uppercase tracking-widest text-white trans hover:scale-105 hover:shadow-xl" style="background:linear-gradient(135deg,#E11D48,#be123c);box-shadow:0 8px 30px rgba(225,29,72,0.35);">
-                            <i class="fas fa-book-open text-base"></i>
-                            Yolculuğumuzun Tamamı
-                            <i class="fas fa-arrow-right text-base"></i>
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+
     <!-- ─────────────────────────────────── -->
     <!-- SIKÇA SORULAN SORULAR              -->
     <!-- ─────────────────────────────────── -->
-    <section class="max-w-6xl mx-auto px-6 pb-20">
-        <div class="text-center mb-12 reveal-up">
-            <div class="section-label mb-4">Merak Ettikleriniz</div>
-            <h2 style="font-family:'Playfair Display',serif;font-size:clamp(1.8rem,4vw,3rem);font-weight:700;" class="dark:text-white">Sıkça Sorulan Sorular</h2>
+    <section class="max-w-4xl mx-auto px-6 py-24 text-left">
+        <div class="mb-14 reveal-up text-left">
+            <span class="text-rose-500 text-xs font-black tracking-[0.3em] uppercase block mb-3">Merak Ettikleriniz</span>
+            <h2 style="font-family:'Playfair Display',serif;font-size:clamp(2rem,4vw,3.2rem);font-weight:700;" class="dark:text-white mb-4">
+                Sıkça Sorulan Sorular
+            </h2>
+            <p class="text-slate-500 dark:text-slate-400 text-sm md:text-base font-normal">
+                Kumaş alışverişleriniz, mağaza çalışma düzenimiz ve teslimat süreçleriyle ilgili en sık merak edilen konular.
+            </p>
         </div>
-        <div class="space-y-4 max-w-3xl mx-auto">
+
+        <div class="space-y-4">
+            <!-- SSS 1 -->
             <div class="faq-item glass-deep reveal-up">
                 <button class="w-full flex items-center justify-between p-6 text-left" onclick="toggleFaq(this)">
                     <div class="flex items-center gap-4">
-                        <div class="w-10 h-10 rounded-full flex items-center justify-center flex-shrink-0" style="background:rgba(225,29,72,0.1);"><i class="fas fa-calendar-check" style="color:#E11D48;"></i></div>
-                        <span class="font-bold text-sm">Pazar günü açık mısınız?</span>
+                        <div class="w-10 h-10 rounded-xl flex items-center justify-center flex-shrink-0" style="background:rgba(225,29,72,0.1);"><i class="fas fa-calendar-check" style="color:#E11D48;"></i></div>
+                        <span class="font-bold text-sm md:text-base">Pazar günü açık mısınız?</span>
                     </div>
                     <i class="fas fa-plus faq-icon text-sm opacity-50 flex-shrink-0"></i>
                 </button>
                 <div class="faq-answer">
-                    <p class="px-6 pb-6 text-sm opacity-65 ml-14">Evet, pazar günleri de hizmetinizdeyiz.</p>
+                    <p class="px-6 pb-6 text-sm opacity-70 ml-14">Evet, pazar günleri de 12:00 - 19:00 saatleri arasında kesintisiz hizmetinizdeyiz.</p>
                 </div>
             </div>
+
+            <!-- SSS 2 -->
             <div class="faq-item glass-deep reveal-up delay-1">
                 <button class="w-full flex items-center justify-between p-6 text-left" onclick="toggleFaq(this)">
                     <div class="flex items-center gap-4">
-                        <div class="w-10 h-10 rounded-full flex items-center justify-center flex-shrink-0" style="background:rgba(225,29,72,0.08);"><i class="fas fa-truck" style="color:#E11D48;"></i></div>
-                        <span class="font-bold text-sm">Kapıya kargo var mı?</span>
+                        <div class="w-10 h-10 rounded-xl flex items-center justify-center flex-shrink-0" style="background:rgba(225,29,72,0.08);"><i class="fas fa-truck" style="color:#E11D48;"></i></div>
+                        <span class="font-bold text-sm md:text-base">Kapıya kargo var mı?</span>
                     </div>
                     <i class="fas fa-plus faq-icon text-sm opacity-50 flex-shrink-0"></i>
                 </button>
                 <div class="faq-answer">
-                    <p class="px-6 pb-6 text-sm opacity-65 ml-14">Bu durum siparişe göre değişkenlik gösterir.</p>
+                    <p class="px-6 pb-6 text-sm opacity-70 ml-14">Tüm Türkiye'ye hızlı kargo gönderimi sağlamaktayız; kargo durumu siparişin hacmine ve mesafeye göre değişkenlik gösterir.</p>
                 </div>
             </div>
+
+            <!-- SSS 3 -->
             <div class="faq-item glass-deep reveal-up delay-2">
                 <button class="w-full flex items-center justify-between p-6 text-left" onclick="toggleFaq(this)">
                     <div class="flex items-center gap-4">
-                        <div class="w-10 h-10 rounded-full flex items-center justify-center flex-shrink-0" style="background:rgba(225,29,72,0.1);"><i class="fas fa-tag" style="color:#E11D48;"></i></div>
-                        <span class="font-bold text-sm">Neden bu kadar ucuz?</span>
+                        <div class="w-10 h-10 rounded-xl flex items-center justify-center flex-shrink-0" style="background:rgba(225,29,72,0.1);"><i class="fas fa-tag" style="color:#E11D48;"></i></div>
+                        <span class="font-bold text-sm md:text-base">Neden bu kadar uygun fiyatlı?</span>
                     </div>
                     <i class="fas fa-plus faq-icon text-sm opacity-50 flex-shrink-0"></i>
                 </button>
                 <div class="faq-answer">
-                    <p class="px-6 pb-6 text-sm opacity-65 ml-14">Amacımız herkesin bütçesine uygun ve erişilebilir kaliteli ürünler sunmaktır. Düşük fiyat, kaliteyi düşürmek anlamına gelmez.</p>
+                    <p class="px-6 pb-6 text-sm opacity-70 ml-14">Amacımız herkesin bütçesine uygun ve erişilebilir kaliteli kumaş sunmaktır. Doğrudan fabrika ve ihracat fazlası kaynaklarla çalıştığımız için kaliteyi yüksek, fiyatı ekonomik tutuyoruz.</p>
                 </div>
             </div>
+
+            <!-- SSS 4 -->
             <div class="faq-item glass-deep reveal-up delay-1">
                 <button class="w-full flex items-center justify-between p-6 text-left" onclick="toggleFaq(this)">
                     <div class="flex items-center gap-4">
-                        <div class="w-10 h-10 rounded-full flex items-center justify-center flex-shrink-0" style="background:rgba(225,29,72,0.1);"><i class="fas fa-weight-hanging" style="color:#E11D48;"></i></div>
-                        <span class="font-bold text-sm">Kilo ile kumaş var mı?</span>
+                        <div class="w-10 h-10 rounded-xl flex items-center justify-center flex-shrink-0" style="background:rgba(225,29,72,0.1);"><i class="fas fa-weight-hanging" style="color:#E11D48;"></i></div>
+                        <span class="font-bold text-sm md:text-base">Kilo ile kumaş satışı var mı?</span>
                     </div>
                     <i class="fas fa-plus faq-icon text-sm opacity-50 flex-shrink-0"></i>
                 </button>
                 <div class="faq-answer">
-                    <p class="px-6 pb-6 text-sm opacity-65 ml-14">Evet, kilo ile satışımız vardır.</p>
+                    <p class="px-6 pb-6 text-sm opacity-70 ml-14">Evet, belirli kumaş türlerinde ve parça kumaş reyonlarımızda kilo ile satış seçeneğimiz mevcuttur.</p>
                 </div>
             </div>
+
+            <!-- SSS 5 -->
             <div class="faq-item glass-deep reveal-up delay-2">
                 <button class="w-full flex items-center justify-between p-6 text-left" onclick="toggleFaq(this)">
                     <div class="flex items-center gap-4">
-                        <div class="w-10 h-10 rounded-full flex items-center justify-center flex-shrink-0" style="background:rgba(225,29,72,0.08);"><i class="fas fa-scissors" style="color:#E11D48;"></i></div>
-                        <span class="font-bold text-sm">Terzi hizmeti var mı?</span>
+                        <div class="w-10 h-10 rounded-xl flex items-center justify-center flex-shrink-0" style="background:rgba(225,29,72,0.08);"><i class="fas fa-scissors" style="color:#E11D48;"></i></div>
+                        <span class="font-bold text-sm md:text-base">Terzi veya dikiş hizmetiniz var mı?</span>
                     </div>
                     <i class="fas fa-plus faq-icon text-sm opacity-50 flex-shrink-0"></i>
                 </button>
                 <div class="faq-answer">
-                    <p class="px-6 pb-6 text-sm opacity-65 ml-14">Hayır, şu an dikiş hizmetimiz yoktur.</p>
+                    <p class="px-6 pb-6 text-sm opacity-70 ml-14">Mağazamız bünyesinde dikiş ve terzilik hizmeti bulunmamaktadır; ancak kumaş seçimi ve metraj hesaplama konularında uzman personelimizle tam danışmanlık sağlıyoruz.</p>
                 </div>
             </div>
         </div>
     </section>
+
+    <!-- ─────────────────────────────────── -->
+    <!-- MÜŞTERİ MEMNUNİYETİ / ÖZELLİKLER (VİDEO ARKA PLAN: banner3.mp4, METİN HALİNDE, SOLA HİZALI) -->
+    <!-- ─────────────────────────────────── -->
+    <section class="relative py-28 md:py-36 px-6 overflow-hidden text-white" id="features-section">
+        <!-- VİDEO ARKA PLAN (banner3.mp4) -->
+        <video autoplay muted loop playsinline class="absolute inset-0 w-full h-full object-cover">
+            <source src="banner3.mp4" type="video/mp4">
+        </video>
+        <!-- Karanlık Degradeli Katman -->
+        <div class="backdrop-section-overlay"></div>
+
+        <div class="max-w-6xl mx-auto relative z-10 text-left">
+            <div class="reveal-up max-w-2xl mb-16 text-left">
+                <span class="text-rose-500 text-xs font-black tracking-[0.3em] uppercase block mb-3">Kalite Standartlarımız</span>
+                <h2 class="text-3xl sm:text-5xl font-black tracking-tight leading-[1.1] mb-4 text-white" style="font-family:'Playfair Display',serif;">
+                    Kusursuz Kumaş Deneyimi
+                </h2>
+                <p class="text-white/60 text-base md:text-lg font-light leading-relaxed">
+                    Yılların güveniyle her metrekarede yüksek standart, zengin içerik ve ödün verilmeyen kalite anlayışı sunuyoruz.
+                </p>
+            </div>
+
+            <!-- 3 Özellik Tek Bölümde Toplandı (Sola Hizalı Metin Halinde, Kartçık Tasarımı Yok) -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-12 border-t border-white/15 pt-12">
+                <!-- 1. Markalı Ürünler -->
+                <div class="reveal-up delay-1 text-left">
+                    <div class="text-rose-500 text-sm font-black uppercase tracking-widest mb-3 flex items-center gap-2">
+                        <i class="fas fa-crown"></i> 01 · Seçkin Koleksiyon
+                    </div>
+                    <h3 class="text-2xl font-bold text-white mb-3">Markalı Ürünler</h3>
+                    <p class="text-white/65 text-base leading-relaxed font-light">
+                        Dünya markalarının ihracat fazlası birinci kalite serileri; en seçkin dokular ve lisanslı kumaş türleri doğrudan raflarımızda.
+                    </p>
+                </div>
+
+                <!-- 2. Doğal İçerik -->
+                <div class="reveal-up delay-2 text-left">
+                    <div class="text-rose-500 text-sm font-black uppercase tracking-widest mb-3 flex items-center gap-2">
+                        <i class="fas fa-seedling"></i> 02 · Sağlıklı Dokuma
+                    </div>
+                    <h3 class="text-2xl font-bold text-white mb-3">Doğal İçerik</h3>
+                    <p class="text-white/65 text-base leading-relaxed font-light">
+                        Cilde nefes aldıran, alerji yapmayan, ağırlıklı olarak saf pamuk, ipek, keten ve doğal yün ipliklerden oluşan zengin dokumalar.
+                    </p>
+                </div>
+
+                <!-- 3. Güvenilir Kalite -->
+                <div class="reveal-up delay-3 text-left">
+                    <div class="text-rose-500 text-sm font-black uppercase tracking-widest mb-3 flex items-center gap-2">
+                        <i class="fas fa-shield-check"></i> 03 · Kontrollü Ürünler
+                    </div>
+                    <h3 class="text-2xl font-bold text-white mb-3">Güvenilir Kalite</h3>
+                    <p class="text-white/65 text-base leading-relaxed font-light">
+                        22 yıllık sektör tecrübemizle tek tek kalite kontrolünden geçen, defosuz, renk solması yapmayan uzun ömürlü kumaş garantisi.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ─────────────────────────────────── -->
+    <!-- MAĞAZA VE MÜŞTERİ VERİLERİ (VİDEO ARKA PLAN: banner4.mp4, SOLA HİZALI SAYILAR) -->
+    <!-- ─────────────────────────────────── -->
+    <section class="relative py-28 md:py-36 px-6 overflow-hidden text-white" id="stats-section">
+        <!-- VİDEO ARKA PLAN (banner4.mp4) -->
+        <video autoplay muted loop playsinline class="absolute inset-0 w-full h-full object-cover">
+            <source src="banner4.mp4" type="video/mp4">
+        </video>
+        <!-- Karanlık Degradeli Katman -->
+        <div class="backdrop-section-overlay"></div>
+
+        <div class="max-w-6xl mx-auto relative z-10 text-left">
+            <div class="reveal-up max-w-2xl mb-16 text-left">
+                <span class="text-rose-500 text-xs font-black tracking-[0.3em] uppercase block mb-3">Rakamlarla EN-KA Kumaş</span>
+                <h2 class="text-3xl sm:text-5xl font-black tracking-tight leading-[1.1] mb-4 text-white" style="font-family:'Playfair Display',serif;">
+                    Gücümüzü Tecrübemizden Alıyoruz
+                </h2>
+                <p class="text-white/60 text-base md:text-lg font-light leading-relaxed">
+                    Yıllar içinde geliştirdiğimiz geniş kumaş arşivi ve binlerce sadık müşterimizle tekstil sektörünün öncüsüyüz.
+                </p>
+            </div>
+
+            <!-- Sayılar Hep Sola Hizalı (Kartçık Yok) -->
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-10 md:gap-14 border-t border-white/15 pt-12 text-left">
+                <!-- Sayı 1 -->
+                <div class="reveal-up delay-1 text-left">
+                    <div class="text-5xl md:text-6xl lg:text-7xl font-black mb-2 text-rose-500 font-spartan counter" data-target="22">0</div>
+                    <div class="text-xs md:text-sm font-bold uppercase tracking-widest text-white/80">Yıllık Deneyim</div>
+                    <p class="text-white/40 text-xs mt-1.5 font-light">Sektörde kesintisiz hizmet</p>
+                </div>
+
+                <!-- Sayı 2 -->
+                <div class="reveal-up delay-2 text-left">
+                    <div class="text-5xl md:text-6xl lg:text-7xl font-black mb-2 text-rose-500 font-spartan counter" data-target="1">0</div>
+                    <div class="text-xs md:text-sm font-bold uppercase tracking-widest text-white/80">Mağaza Sayısı</div>
+                    <p class="text-white/40 text-xs mt-1.5 font-light">Ankara Keçiören'de tek merkez</p>
+                </div>
+
+                <!-- Sayı 3 -->
+                <div class="reveal-up delay-3 text-left">
+                    <div class="text-5xl md:text-6xl lg:text-7xl font-black mb-2 text-rose-500 font-spartan"><span class="counter" data-target="10000">0</span>+</div>
+                    <div class="text-xs md:text-sm font-bold uppercase tracking-widest text-white/80">Kumaş Çeşidi</div>
+                    <p class="text-white/40 text-xs mt-1.5 font-light">Her sezon yenilenen arşiv</p>
+                </div>
+
+                <!-- Sayı 4 -->
+                <div class="reveal-up delay-4 text-left">
+                    <div class="text-5xl md:text-6xl lg:text-7xl font-black mb-2 text-rose-500 font-spartan"><span class="counter" data-target="5000">0</span>+</div>
+                    <div class="text-xs md:text-sm font-bold uppercase tracking-widest text-white/80">Müşteri Deneyimi</div>
+                    <p class="text-white/40 text-xs mt-1.5 font-light">Yüksek memnuniyet oranı</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ─────────────────────────────────── -->
+    <!-- MARKA HİKAYEMİZ                    -->
+    <!-- ─────────────────────────────────── -->
+    <section class="max-w-6xl mx-auto px-6 py-24 reveal-up text-left" id="about-section">
+        <div class="glass-deep rounded-[36px] overflow-hidden p-8 md:p-14 relative">
+            <div style="position:absolute;left:0;top:2.5rem;bottom:2.5rem;width:3px;background:linear-gradient(to bottom,transparent,#E11D48,#be123c,transparent);border-radius:2px;"></div>
+            <div class="pl-4 md:pl-6 text-left">
+                <span class="text-rose-600 text-xs font-black tracking-[0.3em] uppercase block mb-3">Biz Kimiz</span>
+                <h2 class="mb-6" style="font-family:'Playfair Display',serif;font-size:clamp(2rem,5vw,3.2rem);font-weight:700;line-height:1.15;color:#1a2332;">
+                    <span class="dark:text-white">EN-KA Kumaş</span><br>
+                    <em style="color:#E11D48;">Hakkında</em>
+                </h2>
+                <div class="space-y-4 max-w-3xl text-slate-700 dark:text-slate-300 text-base md:text-lg leading-relaxed font-normal">
+                    <p>EN‑KA Kumaş, Ankara'nın Keçiören ilçesinde kurulmuş, <strong class="text-rose-600 font-bold">22 yılı aşkın tecrübesiyle</strong> kaliteli kumaş ve dikiş malzemeleri sunan köklü bir markadır.</p>
+                    <p>Kurulduğu günden bu yana, hem profesyonel terzilerin hem de ev kullanıcılarının ihtiyaçlarına yönelik geniş ürün yelpazesiyle hizmet vermektedir.</p>
+                    <p>Sürekli yenilenen kumaşlarımız ve kalıplarımızla tasarım yolculuğunuza ilham vermeye devam ediyoruz.</p>
+                </div>
+                <div class="mt-8 text-left">
+                    <a href="hakkimizda.html" class="inline-flex items-center gap-3 px-8 py-3.5 rounded-xl font-bold text-xs uppercase tracking-wider text-white trans hover:scale-105 shadow-lg" style="background:linear-gradient(135deg,#E11D48,#be123c);box-shadow:0 8px 30px rgba(225,29,72,0.35);">
+                        <i class="fas fa-book-open text-sm"></i>
+                        Yolculuğumuzun Tamamı
+                        <i class="fas fa-arrow-right text-xs"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- ─────────────────────────────────── -->
     <!-- ALINTI                              -->
     <!-- ─────────────────────────────────── -->
     <section class="max-w-4xl mx-auto px-6 pb-24 text-center reveal-up">
         <div class="relative">
-            <div class="quote-mark absolute -top-8 left-4 select-none" style="font-size:8rem;opacity:0.06;color:#E11D48;">"</div>
-            <blockquote style="font-family:'Cormorant Garamond',serif;font-size:clamp(1.6rem,4vw,2.8rem);font-weight:400;font-style:italic;line-height:1.4;color:#1a2332;" class="dark:text-white">
+            <blockquote style="font-family:'Cormorant Garamond',serif;font-size:clamp(1.6rem,4vw,2.6rem);font-weight:400;font-style:italic;line-height:1.4;color:#1a2332;" class="dark:text-white">
                 "Kalite bir seçenek değil, bizim standardımızdır."
             </blockquote>
-            <div class="flex items-center justify-center gap-4 mt-8">
+            <div class="flex items-center justify-center gap-4 mt-6">
                 <div class="h-px w-16" style="background:linear-gradient(to right,transparent,#E11D48);"></div>
                 <span class="text-xs font-black uppercase tracking-widest opacity-50">ALİ TUBAY · Kurucu</span>
                 <div class="h-px w-16" style="background:linear-gradient(to left,transparent,#E11D48);"></div>
             </div>
         </div>
     </section>
+
     <!-- ─────────────────────────────────── -->
-    <!-- FOOTER                              -->
+    <!-- GELİŞMİŞ SİYAH FOOTER (KUTU YOK, OVAL YOK, BÖLÜM TASARIMI) -->
     <!-- ─────────────────────────────────── -->
-    <footer class="max-w-6xl mx-auto px-6 pb-8 pt-4 reveal-up">
-        <div class="glass-deep rounded-[44px] p-10 md:p-14 text-center" style="border:1px solid rgba(225,29,72,0.12);">
-            <!-- Brand -->
-            <div class="flex flex-col items-center gap-3 mb-8">
-                <div class="flex items-center gap-2">
-                    <span style="font-family:'Cormorant Garamond',serif;font-size:2rem;font-weight:700;color:#E11D48;letter-spacing:0.06em;line-height:1;">EN-KA</span>
-                    <span style="font-family:'Plus Jakarta Sans',sans-serif;font-size:0.9rem;font-weight:800;letter-spacing:0.25em;text-transform:uppercase;opacity:0.65;">KUMAŞ</span>
+    <footer class="w-full bg-[#060608] text-white border-t border-white/10 pt-20 pb-12 mt-12 text-left">
+        <div class="max-w-6xl mx-auto px-6">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-12 mb-16 text-left">
+                <!-- 1 & 2. Sütun: Marka Tanıtımı & Konsept -->
+                <div class="lg:col-span-2 text-left">
+                    <div class="flex items-center gap-2 mb-4">
+                        <span style="font-family:'Cormorant Garamond',serif;font-size:2rem;font-weight:700;color:#E11D48;letter-spacing:0.05em;">EN-KA</span>
+                        <span style="font-family:'Plus Jakarta Sans',sans-serif;font-size:0.9rem;font-weight:800;letter-spacing:0.25em;text-transform:uppercase;opacity:0.8;">KUMAŞ</span>
+                    </div>
+                    <p class="text-white/60 text-sm leading-relaxed mb-6 font-light max-w-sm">
+                        22 yılı aşkın tekstil deneyimiyle yalnızca Ankara Keçiören'deki tek ve yetkili mağazamızda hizmet vermekteyiz. Başka şube veya bayimiz bulunmamaktadır.
+                    </p>
+                    <div class="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-white/5 border border-white/10 text-xs font-semibold text-rose-400">
+                        <i class="fas fa-location-dot"></i>
+                        Yalnızca Ankara Keçiören'deyiz
+                    </div>
                 </div>
-                <div class="h-px w-24" style="background:linear-gradient(to right,transparent,#E11D48,transparent);"></div>
+
+                <!-- 3. Sütun: Hızlı Bağlantılar -->
+                <div class="text-left">
+                    <h4 class="text-xs font-black uppercase tracking-[0.25em] text-white/90 mb-5">Hızlı Bağlantılar</h4>
+                    <ul class="space-y-3 text-sm text-white/65 font-light">
+                        <li><a href="index.html" class="hover:text-rose-400 trans">Ana Sayfa</a></li>
+                        <li><a href="urunler.html" class="hover:text-rose-400 trans">Kumaş Koleksiyonu</a></li>
+                        <li><a href="kalip-koleksiyonu.html" class="hover:text-rose-400 trans">Kalıp Koleksiyonu</a></li>
+                        <li><a href="metraj.html" class="hover:text-rose-400 trans text-rose-400 font-medium">Metraj Hesaplama</a></li>
+                        <li><a href="dailybrief.html" class="hover:text-rose-400 trans">Günlük Özet</a></li>
+                        <li><a href="chatbot-3.html" class="hover:text-rose-400 trans">EN-KAI Asistan</a></li>
+                    </ul>
+                </div>
+
+                <!-- 4. Sütun: Kurumsal & Sayfalar -->
+                <div class="text-left">
+                    <h4 class="text-xs font-black uppercase tracking-[0.25em] text-white/90 mb-5">Kurumsal</h4>
+                    <ul class="space-y-3 text-sm text-white/65 font-light">
+                        <li><a href="hakkimizda.html" class="hover:text-rose-400 trans">Hakkımızda</a></li>
+                        <li><a href="#reviews-section" class="hover:text-rose-400 trans">Müşteri Yorumları</a></li>
+                        <li><a href="#faq-section" class="hover:text-rose-400 trans">Sıkça Sorulan Sorular</a></li>
+                        <li><a href="https://maps.app.goo.gl/QDJ8ei1FDQk6J7mv8" target="_blank" rel="noopener" class="hover:text-rose-400 trans">Yol Tarifi Al</a></li>
+                    </ul>
+                </div>
+
+                <!-- 5. Sütun: Mağaza & Çalışma Saatleri -->
+                <div class="text-left">
+                    <h4 class="text-xs font-black uppercase tracking-[0.25em] text-white/90 mb-5">Mağaza Saatleri</h4>
+                    <ul class="space-y-2.5 text-xs text-white/65 font-light leading-relaxed">
+                        <li class="flex justify-between border-b border-white/5 pb-2">
+                            <span>Pazartesi - Cumartesi:</span>
+                            <span class="text-white font-medium">08:00 - 19:00</span>
+                        </li>
+                        <li class="flex justify-between border-b border-white/5 pb-2">
+                            <span>Pazar:</span>
+                            <span class="text-white font-medium">12:00 - 19:00</span>
+                        </li>
+                        <li class="flex justify-between text-rose-400 pt-1 font-bold">
+                            <span>Çarşamba:</span>
+                            <span>Halk Günü İndirimi</span>
+                        </li>
+                    </ul>
+                </div>
             </div>
-            <!-- Location badge -->
-            <div class="inline-flex items-center gap-2 px-5 py-3 rounded-full mb-8 text-sm font-semibold" style="background:rgba(225,29,72,0.07);border:1px solid rgba(225,29,72,0.15);color:#E11D48;">
-                <i class="fas fa-location-dot text-sm"></i>
-                <span>Yalnızca Ankara Keçiören'deyiz</span>
-            </div>
-            <!-- Description -->
-            <p class="text-sm leading-relaxed opacity-65 max-w-lg mx-auto mb-10" style="font-family:'Cormorant Garamond',serif;font-size:1.05rem;">
-                EN-KA Kumaş, 22 yılı aşkın deneyimiyle yalnızca Ankara Keçiören'de hizmet vermektedir. Başka bir şube ya da bayimiz bulunmamaktadır; güvenilir hizmeti tek adresimizden, doğrudan sizlere sunuyoruz.
-            </p>
-            <!-- Divider -->
-            <div class="h-px mb-8" style="background:linear-gradient(to right,transparent,rgba(225,29,72,0.2),transparent);"></div>
-            <!-- Copyright + AFTOR -->
-            <div class="flex flex-col md:flex-row items-center justify-between gap-4 text-[11px] font-bold uppercase tracking-widest opacity-50">
-                <span>© 2026 EN-KA KUMAŞ · Tüm Hakları Saklıdır</span>
-                <a href="https://aftortechnologies.github.io/AFTOR/" target="_blank" rel="noopener" class="hover:opacity-100 trans" style="opacity:0.5;color:inherit;text-decoration:none;">
-                    Site <span style="color:#E11D48;opacity:1;" class="hover:underline">AFTOR Teknoloji Girişimi</span> Tarafından Hazırlanmıştır
-                </a>
+
+            <!-- Alt Çizgi & Telif -->
+            <div class="pt-8 border-t border-white/10 flex flex-col md:flex-row items-center justify-between gap-4 text-xs text-white/45">
+                <p>© 2026 EN-KA KUMAŞ · Tüm Hakları Saklıdır.</p>
+                <p>
+                    Tasarım ve Altyapı: 
+                    <a href="https://aftortechnologies.github.io/AFTOR/" target="_blank" rel="noopener" class="text-rose-400 hover:underline">AFTOR Teknoloji Girişimi</a>
+                </p>
             </div>
         </div>
     </footer>
+
     <!-- ══════════════════════════════════ -->
     <!-- SCRIPTS                            -->
     <!-- ══════════════════════════════════ -->
     <script>
-    // ── INIT (No splash) ──
+    // ── INIT ──
     document.addEventListener('DOMContentLoaded', () => {
         checkReveal();
         initSlider();
         initTurkeyClock();
         fetchWeather();
         initImageAnimation();
-        initEnkaiDemo();
+        initScrollNavbar();
+        initSearchShortcuts();
     });
+
+    // ── SCROLL NAVBAR ANİMASYONU ──
+    function initScrollNavbar() {
+        const nav = document.getElementById('nav-liquid-box');
+        function onScroll() {
+            if (window.scrollY > 25) {
+                nav.classList.add('scrolled');
+            } else {
+                nav.classList.remove('scrolled');
+            }
+        }
+        window.addEventListener('scroll', onScroll, { passive: true });
+        onScroll(); // İlk yüklemede kontrol et
+    }
+
     // ── SLIDER ──
     var currentSlide = 0;
     var totalSlides = 3;
@@ -1822,19 +1509,21 @@
         if (sliderInterval) clearInterval(sliderInterval);
         sliderInterval = setInterval(function() { goToSlide(currentSlide + 1); }, 3000);
     }
-    // Register cleanup for slider on page unload
     if (typeof registerCleanup === 'function') {
         registerCleanup(function() {
             if (sliderInterval) { clearInterval(sliderInterval); sliderInterval = null; }
         });
     }
-    // Touch support for slider
     let touchStartX = 0;
-    document.getElementById('hero-slider').addEventListener('touchstart', e => { touchStartX = e.touches[0].clientX; }, {passive:true});
-    document.getElementById('hero-slider').addEventListener('touchend', e => {
-        const diff = touchStartX - e.changedTouches[0].clientX;
-        if(Math.abs(diff) > 40) { sliderMove(diff > 0 ? 1 : -1); }
-    }, {passive:true});
+    const sliderEl = document.getElementById('hero-slider');
+    if (sliderEl) {
+        sliderEl.addEventListener('touchstart', e => { touchStartX = e.touches[0].clientX; }, {passive:true});
+        sliderEl.addEventListener('touchend', e => {
+            const diff = touchStartX - e.changedTouches[0].clientX;
+            if(Math.abs(diff) > 40) { sliderMove(diff > 0 ? 1 : -1); }
+        }, {passive:true});
+    }
+
     // ── FAQ ACCORDION ──
     function toggleFaq(btn) {
         const answer = btn.nextElementSibling;
@@ -1842,18 +1531,20 @@
         answer.classList.toggle('open');
         icon.classList.toggle('rotated');
     }
+
     // ── SCROLL REVEAL ──
     function checkReveal() {
         document.querySelectorAll('.reveal-up, .reveal-left, .reveal-right, .reveal-scale').forEach(el => {
-            if(el.getBoundingClientRect().top < window.innerHeight - 80) el.classList.add('active');
+            if(el.getBoundingClientRect().top < window.innerHeight - 60) el.classList.add('active');
         });
     }
     window.addEventListener('scroll', checkReveal, {passive:true});
+
     // ── COUNTERS ──
     let countersStarted = false;
     window.addEventListener('scroll', () => {
         const statsSection = document.getElementById('stats-section');
-        if(!countersStarted && statsSection && statsSection.getBoundingClientRect().top < window.innerHeight - 80) {
+        if(!countersStarted && statsSection && statsSection.getBoundingClientRect().top < window.innerHeight - 60) {
             countersStarted = true;
             document.querySelectorAll('.counter').forEach(c => {
                 const target = +c.getAttribute('data-target');
@@ -1870,7 +1561,8 @@
             });
         }
     }, {passive:true});
-    // ── TÜRKİYE SAATİ API MOTORU (cihaz saatinden bağımsız) ──
+
+    // ── TÜRKİYE SAATİ API ──
     let manualTheme = false;
     let serverOffsetMs = 0;
     let timeApiReady = false;
@@ -1888,7 +1580,7 @@
                 timeApiReady = true;
             })
             .catch(() => {
-                console.warn('Zaman API çekilemedi, yedek olarak cihaz saati kullanılıyor.');
+                console.warn('Zaman API çekilemedi, yedek cihaz saati kullanılıyor.');
             });
         engine();
         setInterval(engine, 1000);
@@ -1899,11 +1591,11 @@
         const h = now.getHours();
         const m = now.getMinutes().toString().padStart(2,'0');
         const d = now.getDay();
-        document.getElementById('live-clock').innerText = h + ':' + m;
+        const clockEl = document.getElementById('live-clock');
+        if (clockEl) clockEl.innerText = h + ':' + m;
         if(!manualTheme) {
             document.documentElement.classList.toggle('dark', h >= 19 || h < 6);
         }
-        // Dinamik selamlama (API saati bazlı)
         const greetEl = document.getElementById('dynamic-greeting');
         if(greetEl) {
             if(h >= 5 && h < 12) greetEl.innerText = 'Günaydın';
@@ -1911,12 +1603,10 @@
             else if(h >= 17 && h < 21) greetEl.innerText = 'İyi Akşamlar';
             else greetEl.innerText = 'İyi Geceler';
         }
-        // API tabanlı tarih
         const dateEl = document.getElementById('turkey-date');
         if(dateEl) {
             dateEl.innerText = now.toLocaleDateString('tr-TR', { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' }).toUpperCase();
         }
-        // Mağaza durumu (Pazar 12:00-19:00, diğer günler 08:00-19:00)
         const badge = document.getElementById('store-status');
         const statusText = document.getElementById('status-text');
         if(badge && statusText) {
@@ -1924,16 +1614,16 @@
             badge.className = 'neon-sign relative z-10 ' + (isOpen ? 'open' : 'closed');
             statusText.innerText = isOpen ? 'AÇIK' : 'KAPALI';
         }
-        // Halk Günü banner (Çarşamba)
         const banner = document.getElementById('halk-gunu-banner');
         if(d === 3 && banner) banner.classList.remove('hidden');
     }
+
     function toggleDarkMode() {
         manualTheme = true;
         document.documentElement.classList.toggle('dark');
     }
 
-    // ── ANKARA HAVA DURUMU (Open-Meteo, ücretsiz, anahtar gerektirmez) ──
+    // ── ANKARA HAVA DURUMU (Open-Meteo) ──
     function weatherInfo(code) {
         if(code === 0) return { text:'Güneşli', icon:'fa-sun' };
         if(code === 1 || code === 2) return { text:'Az Bulutlu', icon:'fa-cloud-sun' };
@@ -1947,7 +1637,7 @@
     }
 
     function fetchWeather() {
-        const lat = 39.9334, lon = 32.8597; // Ankara
+        const lat = 39.9334, lon = 32.8597;
         fetch(`https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&current_weather=true`)
             .then(r => r.json())
             .then(data => {
@@ -1966,7 +1656,7 @@
             });
     }
 
-    // ── KUMAŞ GÖRSELLERİ (5 saniyede bir geçiş) ──
+    // ── KUMAŞ GÖRSELLERİ ──
     var _imageAnimInterval = null;
     function initImageAnimation() {
         var boxes = document.querySelectorAll('.image-box');
@@ -1981,47 +1671,93 @@
         });
     }
 
-    // ── EN-KAI CANLI DEMO ──
-    const enkaiResponses = {
-        'Kumaşımdan ne dikebilirim?': 'Kumaşınızın dokusuna göre önerilerim: pamuklu ve rahat dokumalardan gömlek ya da bluz, dökümlü kumaşlardan elbise, kalın dokumalardan hırka veya ceket dikebilirsiniz. Kumaşın fotoğrafını chatbotta paylaşırsanız size özel bir proje listesi hazırlarım.',
-        'Mont için hangi kumaşı seçmeliyim?': 'Mont için yün karışımlı dokumalar, su geçirmez membranlı kumaşlar veya kalın gabardin en doğru seçimlerdir. Ankara soğuğu için en iyisi: astarlı, rüzgar geçirmeyen bir dış kumaş tercih etmeniz.',
-        'Kumaş alırken nelere dikkat etmeliyim?': 'Üç temel kural: dokuma sıklığına ve esnemesine bakın, kumaşın kenar dokusunu inceleyin, gramajı kontrol edin. Ayrıca EN-KA Kumaşta her kumaşı elimizle inceleyerek dokusunu hissetmenizi öneririm.',
-        'Kalıp kullanmadan nasıl dikebilirim?': 'Kalıpsız dikim için hazır giyim ürünlerinden ölçü çıkarma, esnek kumaşlarda direkt kesim ve reglan kol gibi kalıp gerektirmeyen modeller en pratik yöntemlerdir. Kalıp koleksiyonumuzdaki hazır kalıplarla daha profesyonel sonuç alabilirsiniz.'
-    };
+    // ── ARAMA MODAL İŞLEMLERİ ──
+    const searchDatabase = [
+        { title: 'Teddy Kumaş', category: 'Kumaş', desc: 'Yumuşak, sıcak tutan kabanlık ve dış giyim kumaşı', url: 'urunler.html' },
+        { title: 'Medine İpeği', category: 'Kumaş', desc: 'Dökümlü, iç göstermeyen nefes alabilen tesettür kumaşı', url: 'urunler.html' },
+        { title: 'Premium Yün', category: 'Kumaş', desc: 'Kaban ve ceketler için doğal yüksek kaliteli yün kumaş', url: 'urunler.html' },
+        { title: 'Doğal Müslin', category: 'Kumaş', desc: 'Bebek giyimi ve hafif yazlık giysiler için saf pamuk dokuma', url: 'urunler.html' },
+        { title: 'İpeksi Viskon', category: 'Kumaş', desc: 'Dökümlü ve tiril tiril yazlık elbise kumaşı', url: 'urunler.html' },
+        { title: 'Yeni Kalıp Koleksiyonu', category: 'Kalıp', desc: 'XS-5XL arası geniş beden seçenekli modern dikim kalıpları', url: 'kalip-koleksiyonu.html' },
+        { title: 'Metraj Hesaplama Aracı', category: 'Hesaplama', desc: 'Etek, pantolon, elbise veya ceket için gereken kumaş boyunu hesaplayın', url: 'metraj.html' },
+        { title: 'EN-KAI Yapay Zeka', category: 'Asistan', desc: 'Dikiş ve kumaş projelerinize yapay zekayla anında yanıt', url: 'https://enkai.onrender.com' },
+        { title: 'Halk Günü Kampanyası', category: 'Fırsat', desc: 'Her Çarşamba mağazamıza özel büyük parça kumaş indirimleri', url: 'dailybrief.html' },
+        { title: 'Hakkımızda', category: 'Kurumsal', desc: 'EN-KA Kumaş 22 yıllık tecrübesi ve Keçiören mağazası', url: 'hakkimizda.html' }
+    ];
 
-    function enkaiAsk(question) {
-        const body = document.getElementById('enkai-chat-body');
-        const userMsg = document.getElementById('enkai-user-msg');
-        const typing = document.getElementById('enkai-typing');
-        const reply = document.getElementById('enkai-reply');
-        const orbTyping = document.getElementById('orb-typing');
-        if(!body || !userMsg || !typing || !reply) return;
-        userMsg.innerText = question;
-        userMsg.style.display = 'block';
-        typing.style.display = 'block';
-        reply.style.display = 'none';
-        if(orbTyping) orbTyping.style.display = 'flex';
-        body.scrollTop = body.scrollHeight;
-        setTimeout(() => {
-            typing.style.display = 'none';
-            reply.innerText = enkaiResponses[question] || 'Harika bir soru! Detaylı yanıt için chatbotta EN-KAI ile konuşabilirsiniz.';
-            reply.style.display = 'block';
-            if(orbTyping) orbTyping.style.display = 'none';
-            body.scrollTop = body.scrollHeight;
-        }, 1400);
+    function openSearchModal() {
+        const modal = document.getElementById('search-modal');
+        const input = document.getElementById('site-search-input');
+        if (modal) {
+            modal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+            setTimeout(() => { if (input) input.focus(); }, 150);
+            renderSearchResults('');
+        }
     }
 
-    function initEnkaiDemo() {
-        document.querySelectorAll('#enkai-chips .enkai-chip').forEach(btn => {
-            btn.addEventListener('click', () => enkaiAsk(btn.getAttribute('data-q')));
+    function closeSearchModal() {
+        const modal = document.getElementById('search-modal');
+        if (modal) {
+            modal.classList.remove('active');
+            document.body.style.overflow = '';
+        }
+    }
+
+    function applySearchQuery(q) {
+        const input = document.getElementById('site-search-input');
+        if (input) {
+            input.value = q;
+            handleSearch(q);
+        }
+    }
+
+    function handleSearch(val) {
+        renderSearchResults(val.trim().toLowerCase());
+    }
+
+    function renderSearchResults(query) {
+        const container = document.getElementById('search-results-area');
+        if (!container) return;
+
+        let filtered = searchDatabase;
+        if (query) {
+            filtered = searchDatabase.filter(item => 
+                item.title.toLowerCase().includes(query) ||
+                item.desc.toLowerCase().includes(query) ||
+                item.category.toLowerCase().includes(query)
+            );
+        }
+
+        if (filtered.length === 0) {
+            container.innerHTML = `
+                <div class="p-6 text-white/50 text-center font-light">
+                    "<span class="text-white">${query}</span>" ile ilgili sonuç bulunamadı. Lütfen farklı bir arama terimi deneyin.
+                </div>
+            `;
+            return;
+        }
+
+        container.innerHTML = filtered.map(item => `
+            <a href="${item.url}" class="flex items-center justify-between p-4 rounded-xl bg-white/5 hover:bg-white/15 border border-white/10 trans group">
+                <div>
+                    <div class="flex items-center gap-2 mb-1">
+                        <span class="text-[10px] uppercase font-bold tracking-wider px-2 py-0.5 rounded bg-rose-500/20 text-rose-300">${item.category}</span>
+                        <h4 class="text-white font-bold text-base group-hover:text-rose-400 trans">${item.title}</h4>
+                    </div>
+                    <p class="text-white/60 text-xs">${item.desc}</p>
+                </div>
+                <i class="fas fa-arrow-right text-white/30 group-hover:text-rose-400 group-hover:translate-x-1 trans ml-4"></i>
+            </a>
+        `).join('');
+    }
+
+    function initSearchShortcuts() {
+        window.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') closeSearchModal();
         });
-        setTimeout(() => enkaiAsk('Kumaşımdan ne dikebilirim?'), 2500);
     }
-    // Pulse keyframe injection
-    const style = document.createElement('style');
-    style.textContent = '@keyframes pulse { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:0.6;transform:scale(1.3)} } @keyframes aiPulse { 0%,100%{opacity:1;filter:brightness(1)} 50%{opacity:0.75;filter:brightness(1.3)} }';
-    document.head.appendChild(style);
-    
     </script>
     <script src="js/dock.js"></script>
-
+</body>
+</html>
