@@ -1,4 +1,4 @@
-/* EN-KA Glass Dock — SPA Navigation */
+/* EN-KA Glass Dock — Loading Spinner Overlay */
 body {
     padding-bottom: 110px !important;
 }
@@ -54,7 +54,7 @@ body {
     min-height: 52px;
 }
 
-/* Pill indicator — dock kenar oranına uyumlu kapsül */
+/* Pill indicator */
 .enka-dock-indicator {
     position: absolute;
     top: 5px;
@@ -216,26 +216,10 @@ body {
     to { transform: rotate(360deg); }
 }
 
-/* Light mode: white background with black loader */
-.enka-loading-spinner.light .enka-spinner-bg {
-    background: rgba(255, 255, 255, 0.9);
-    border: 1px solid rgba(0, 0, 0, 0.1);
-}
-
-/* Dark mode: dark background with white loader */
-.enka-loading-spinner.dark .enka-spinner-bg {
-    background: rgba(18, 10, 14, 0.9);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-}
-
-/* Reduce motion fallback */
+/* Reduce motion */
 @media (prefers-reduced-motion: reduce) {
-    .enka-spinner-loader {
-        animation: none;
-    }
-    .enka-spinner-bg {
-        animation: none;
-    }
+    .enka-spinner-loader { animation: none; }
+    .enka-spinner-bg { animation: none; }
 }
 
 /* Contact Overlay */
