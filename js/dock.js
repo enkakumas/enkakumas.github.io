@@ -157,14 +157,32 @@
     function runPageScripts(file) {
         try {
             if (file.includes('index.html') || file.includes('index-6')) {
+                /* Reset counter flag so scroll-triggered counters fire again */
+                window.countersStarted = false;
+                try { countersStarted = false; } catch(e) {}
                 if (typeof checkReveal === 'function') checkReveal();
                 if (typeof initSlider === 'function') initSlider();
                 if (typeof initTurkeyClock === 'function') initTurkeyClock();
                 if (typeof fetchWeather === 'function') fetchWeather();
                 if (typeof initImageAnimation === 'function') initImageAnimation();
                 if (typeof initEnkaiDemo === 'function') initEnkaiDemo();
+                /* Re-init scroll navbar so header appears on scroll */
+                if (typeof initScrollNavbar === 'function') initScrollNavbar();
+                if (typeof initSearchShortcuts === 'function') initSearchShortcuts();
+                /* Trigger scroll reveal immediately */
+                window.dispatchEvent(new Event('scroll'));
             } else if (file.includes('urunler')) {
                 if (typeof renderProducts === 'function') renderProducts();
+            } else if (file.includes('kalip')) {
+                /* Wait a tick for injected scripts to execute, then init the kalıp page */
+                setTimeout(function () {
+                    if (typeof initKalipPage === 'function') {
+                        initKalipPage();
+                    } else if (typeof loadFromSupabase === 'function') {
+                        loadFromSupabase();
+                    }
+                    if (typeof initSearchHandlers === 'function') initSearchHandlers();
+                }, 100);
             }
         } catch (err) {
             console.error('[EN-KA runPageScripts]', err);
