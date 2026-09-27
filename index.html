@@ -446,11 +446,13 @@
             box-shadow: 0 4px 15px rgba(225,29,72,0.4);
         }
 
-        /* ── SECTION VIDEO / IMAGE BACKGROUND UTILS ── */
+        /* ── SECTION VIDEO / IMAGE BACKGROUND UTILS (Daha parlak, görünür video katmanı) ── */
         .backdrop-section-overlay {
             position: absolute; inset: 0;
-            background: linear-gradient(135deg, rgba(8,8,12,0.92) 0%, rgba(12,10,16,0.82) 50%, rgba(6,6,8,0.92) 100%);
+            background: linear-gradient(135deg, rgba(8,8,12,0.58) 0%, rgba(12,10,16,0.38) 50%, rgba(6,6,8,0.64) 100%);
             z-index: 1;
+            backdrop-filter: blur(1px);
+            -webkit-backdrop-filter: blur(1px);
         }
     </style>
 </head>
@@ -1541,11 +1543,11 @@
     window.addEventListener('scroll', checkReveal, {passive:true});
 
     // ── COUNTERS ──
-    let countersStarted = false;
-    window.addEventListener('scroll', () => {
+    window.countersStarted = false;
+    function startCounters() {
         const statsSection = document.getElementById('stats-section');
-        if(!countersStarted && statsSection && statsSection.getBoundingClientRect().top < window.innerHeight - 60) {
-            countersStarted = true;
+        if (!window.countersStarted && statsSection && statsSection.getBoundingClientRect().top < window.innerHeight - 60) {
+            window.countersStarted = true;
             document.querySelectorAll('.counter').forEach(c => {
                 const target = +c.getAttribute('data-target');
                 const duration = 2000;
@@ -1555,12 +1557,13 @@
                     const elapsed = now - startTime;
                     const progress = Math.min(elapsed / duration, 1);
                     c.innerText = Math.ceil(easeOut(progress) * target).toLocaleString('tr-TR');
-                    if(progress < 1) requestAnimationFrame(update);
+                    if (progress < 1) requestAnimationFrame(update);
                 };
                 requestAnimationFrame(update);
             });
         }
-    }, {passive:true});
+    }
+    window.addEventListener('scroll', startCounters, {passive:true});
 
     // ── TÜRKİYE SAATİ API ──
     let manualTheme = false;
@@ -1757,7 +1760,23 @@
             if (e.key === 'Escape') closeSearchModal();
         });
     }
+
+    /* ── Export all init functions so dock.js can re-call them on SPA navigation ── */
+    window.initScrollNavbar = initScrollNavbar;
+    window.initSearchShortcuts = initSearchShortcuts;
+    window.initSlider = initSlider;
+    window.initTurkeyClock = initTurkeyClock;
+    window.fetchWeather = fetchWeather;
+    window.initImageAnimation = initImageAnimation;
+    window.checkReveal = checkReveal;
+    window.openSearchModal = openSearchModal;
+    window.closeSearchModal = closeSearchModal;
+    window.handleSearch = handleSearch;
+    window.applySearchQuery = applySearchQuery;
+    window.toggleFaq = toggleFaq;
     </script>
+
     <script src="js/dock.js"></script>
 </body>
 </html>
+
