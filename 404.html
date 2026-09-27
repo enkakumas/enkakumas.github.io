@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="tr" class="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>404 - Sayfa Bulunamadı | EN-KA KUMAŞ</title>
+    <link rel="icon" type="image/png" href="logo.png" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link rel="stylesheet" href="css/dock.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=League+Spartan:wght@400;600;700;800;900&family=Plus+Jakarta+Sans:wght@300;400;500;600;800&family=Playfair+Display:ital,wght@0,600;0,700;1,600&family=Cormorant+Garamond:wght@600;700&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: { primary: '#E11D48', secondary: '#881337' },
+                    fontFamily: {
+                        sans: ['Plus Jakarta Sans', 'sans-serif'],
+                        spartan: ['League Spartan', 'sans-serif'],
+                        playfair: ['Playfair Display', 'serif'],
+                        cormorant: ['Cormorant Garamond', 'serif']
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+        
+        :root {
+            --brand-red: #E11D48;
+            --brand-red-dark: #be123c;
+            --glass-bg: rgba(255,255,255,0.65);
+            --glass-border: rgba(255,255,255,0.7);
+            --surface: rgba(248,252,255,0.9);
+        }
+        .dark {
+            --glass-bg: rgba(15,20,32,0.75);
+            --glass-border: rgba(255,255,255,0.08);
+            --surface: rgba(10,20,35,0.95);
+        }
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background: #f8f4f4;
+            color: #1a2332;
+            transition: background 0.4s ease, color 0.4s ease;
+            min-height: 100vh;
+            overflow-x: hidden;
+            display: flex;
+            flex-direction: column;
+        }
+        .dark body, body.dark {
+            background: #0d0608;
+            color: #f0e8ea;
+        }
+        
+        /* ── BACKGROUNDS ── */
+        .page-bg {
+            position: fixed; inset: 0; z-index: -2;
+            background: 
+                radial-gradient(ellipse 80% 60% at 20% 10%, rgba(225,29,72,0.06) 0%, transparent 60%),
+                radial-gradient(ellipse 60% 50% at 80% 80%, rgba(190,18,60,0.04) 0%, transparent 60%),
+                #f8f4f4;
+        }
+        .dark .page-bg {
+            background:
+                radial-gradient(ellipse 80% 60% at 20% 10%, rgba(225,29,72,0.08) 0%, transparent 60%),
+                radial-gradient(ellipse 60% 50% at 80% 80%, rgba(190,18,60,0.06) 0%, transparent 60%),
+                #0d0608;
+        }
+        .noise-overlay {
+            position: fixed; inset: 0; z-index: -1; pointer-events: none;
+            opacity: 0.025;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+        }
+
+        /* ── LIQUID GLASS ── */
+        .glass-box {
+            background: var(--glass-bg);
+            backdrop-filter: blur(28px) saturate(190%);
+            -webkit-backdrop-filter: blur(28px) saturate(190%);
+            border: 1px solid var(--glass-border);
+            box-shadow: 0 16px 40px rgba(0,0,0,0.06);
+        }
+        .dark .glass-box {
+            box-shadow: 0 16px 40px rgba(0,0,0,0.4);
+        }
+
+        /* ── 404 NUMBER ANIMATION ── */
+        .glitch-num {
+            font-family: 'League Spartan', sans-serif;
+            font-size: clamp(6.5rem, 18vw, 12rem);
+            font-weight: 900;
+            line-height: 0.9;
+            background: linear-gradient(135deg, #E11D48 0%, #FFA500 50%, #be123c 100%);
+            background-size: 200% auto;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: shimmerText 5s ease infinite alternate;
+        }
+        @keyframes shimmerText {
+            0% { background-position: 0% 50%; }
+            100% { background-position: 100% 50%; }
+        }
+
+        /* ── STACKING CARDS DECK ── */
+        .card-deck-container {
+            position: relative;
+            width: 100%;
+            max-width: 480px;
+            height: 250px;
+            margin: 0 auto;
+            perspective: 1200px;
+        }
+        .deck-card {
+            position: absolute;
+            inset: 0;
+            border-radius: 24px;
+            padding: 24px 28px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            cursor: pointer;
+            user-select: none;
+            transition: all 0.7s cubic-bezier(0.34, 1.56, 0.64, 1);
+            box-shadow: 0 12px 35px rgba(0,0,0,0.08);
+            border: 1px solid rgba(255,255,255,0.6);
+            backdrop-filter: blur(24px);
+            -webkit-backdrop-filter: blur(24px);
+        }
+        .dark .deck-card {
+            border-color: rgba(255,255,255,0.1);
+            box-shadow: 0 14px 40px rgba(0,0,0,0.45);
+        }
+
+        /* Stacking Card States (0: en üst, 1: arkasında, 2: en arkada, 3: gizli/dönüş) */
+        .card-pos-0 {
+            transform: translateY(0px) scale(1) translateZ(0px);
+            opacity: 1;
+            z-index: 4;
+            pointer-events: auto;
+        }
+        .card-pos-1 {
+            transform: translateY(18px) scale(0.94) translateZ(-50px);
+            opacity: 0.85;
+            z-index: 3;
+            pointer-events: none;
+        }
+        .card-pos-2 {
+            transform: translateY(34px) scale(0.88) translateZ(-100px);
+            opacity: 0.65;
+            z-index: 2;
+            pointer-events: none;
+        }
+        .card-pos-3 {
+            transform: translateY(48px) scale(0.82) translateZ(-150px);
+            opacity: 0;
+            z-index: 1;
+            pointer-events: none;
+        }
+        .card-pos-out {
+            transform: translateY(-80px) scale(1.04) rotate(-5deg);
+            opacity: 0;
+            z-index: 5;
+            pointer-events: none;
+        }
+
+        /* ── BUTTON STYLES ── */
+        .btn-home {
+            background: linear-gradient(135deg, #E11D48 0%, #be123c 60%, #9f1239 100%);
+            box-shadow: 0 8px 30px rgba(225,29,72,0.4);
+            transition: all 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+        .btn-home:hover {
+            transform: translateY(-3px) scale(1.04);
+            box-shadow: 0 12px 38px rgba(225,29,72,0.55);
+        }
+    </style>
+</head>
+<body class="antialiased text-slate-800 dark:text-slate-100">
+    <div class="page-bg"></div>
+    <div class="noise-overlay"></div>
+
+    <!-- ── ÜST BAR ── -->
+    <header class="w-full px-6 py-5 max-w-6xl mx-auto flex items-center justify-between">
+        <a href="index.html" class="flex items-center gap-3 group" aria-label="EN-KA Kumaş Ana Sayfa">
+            <img src="logo.png" alt="EN-KA Kumaş" class="h-9 w-auto transition transform group-hover:scale-105" onerror="this.style.display='none'; document.getElementById('logo-fallback').style.display='flex'">
+            <div id="logo-fallback" style="display:none;" class="flex items-center gap-1">
+                <span style="font-family:'Cormorant Garamond',serif;font-size:1.4rem;font-weight:700;color:#E11D48;letter-spacing:0.05em;">EN-KA</span>
+                <span style="font-family:'Plus Jakarta Sans',sans-serif;font-size:0.75rem;font-weight:800;letter-spacing:0.15em;opacity:0.6;text-transform:uppercase;">Kumaş</span>
+            </div>
+        </a>
+
+        <div class="flex items-center gap-3">
+            <button onclick="toggleDarkMode()" class="w-10 h-10 rounded-full glass-box flex items-center justify-center text-slate-700 dark:text-slate-200 hover:text-rose-500 transition" aria-label="Tema Değiştir">
+                <i class="fas fa-moon dark:hidden"></i>
+                <i class="fas fa-sun hidden dark:block text-amber-400"></i>
+            </button>
+        </div>
+    </header>
+
+    <!-- ── ANA HATA ALANI ── -->
+    <main class="flex-1 flex flex-col items-center justify-center px-6 py-10 max-w-4xl mx-auto text-center">
+        <!-- 404 Sayısı & Dikiş İğnesi İkonu -->
+        <div class="relative mb-2">
+            <div class="glitch-num select-none">404</div>
+            <div class="absolute -top-3 -right-4 sm:-right-8 text-2xl sm:text-3xl text-amber-400 rotate-12 animate-bounce">
+                <i class="fas fa-scissors"></i>
+            </div>
+        </div>
+
+        <!-- ESPİRİLİ METİN (burada birşey yok) -->
+        <h1 class="text-3xl sm:text-5xl font-black mb-3 tracking-tight" style="font-family:'League Spartan',sans-serif;">
+            BURADA BİR ŞEY YOK!
+        </h1>
+
+        <p class="text-base sm:text-lg text-slate-600 dark:text-slate-400 max-w-lg mb-8 leading-relaxed font-normal">
+            Görünüşe göre bu kumaşın topu bitmiş ya da aradığınız kalıp tezgâhtan hiç çıkmamış... Endişelenmeyin, mağazamızda kumaş da bol, yol da açık!
+        </p>
+
+        <!-- ANA SAYFAYA DÖN BUTONU -->
+        <a href="index.html" class="btn-home inline-flex items-center gap-3 px-9 py-4 rounded-2xl text-white font-black text-sm uppercase tracking-widest mb-16">
+            <i class="fas fa-arrow-left"></i>
+            ANA SAYFAYA DÖN
+        </a>
+
+        <!-- ── BİRBİRİNİN ÜSTÜNE GELEN KARTÇIKLAR (STACKING CARDS) ── -->
+        <div class="w-full max-w-lg text-center">
+            <div class="flex items-center justify-center gap-2 mb-4">
+                <span class="w-2 h-2 rounded-full bg-rose-500 animate-pulse"></span>
+                <span class="text-xs font-black uppercase tracking-[0.25em] text-slate-500 dark:text-slate-400">Belki Bunları Aramıştınız?</span>
+            </div>
+
+            <!-- Kart Destesi Alanı -->
+            <div class="card-deck-container" id="card-deck">
+                <!-- Kart 1: Kumaşlar -->
+                <div class="deck-card card-pos-0 bg-white/80 dark:bg-[#15121a]/85" onclick="goToCardLink('urunler.html')" data-index="0">
+                    <div class="flex items-center justify-between text-left">
+                        <div class="w-12 h-12 rounded-xl flex items-center justify-center bg-rose-500/10 text-rose-500 text-xl font-bold">
+                            <i class="fas fa-scroll"></i>
+                        </div>
+                        <span class="text-[10px] font-black uppercase tracking-wider px-3 py-1 rounded-full bg-rose-500/10 text-rose-500">Popüler</span>
+                    </div>
+                    <div class="text-left my-2">
+                        <h3 class="text-xl font-bold mb-1 text-slate-900 dark:text-white">Popüler Kumaşlarımız</h3>
+                        <p class="text-xs text-slate-600 dark:text-slate-400 line-clamp-2">Teddy, Medine İpeği, Doğal Müslin ve yüzlerce çeşit kumaş mağazamızda sizi bekliyor.</p>
+                    </div>
+                    <div class="flex items-center justify-between text-xs font-bold text-rose-500 pt-2 border-t border-slate-200/50 dark:border-white/10">
+                        <span>Koleksiyonu Keşfet</span>
+                        <i class="fas fa-arrow-right"></i>
+                    </div>
+                </div>
+
+                <!-- Kart 2: Kalıplar -->
+                <div class="deck-card card-pos-1 bg-white/80 dark:bg-[#15121a]/85" onclick="goToCardLink('kalip-koleksiyonu.html')" data-index="1">
+                    <div class="flex items-center justify-between text-left">
+                        <div class="w-12 h-12 rounded-xl flex items-center justify-center bg-amber-500/10 text-amber-500 text-xl font-bold">
+                            <i class="fas fa-drafting-compass"></i>
+                        </div>
+                        <span class="text-[10px] font-black uppercase tracking-wider px-3 py-1 rounded-full bg-amber-500/10 text-amber-500">Yeni Trend</span>
+                    </div>
+                    <div class="text-left my-2">
+                        <h3 class="text-xl font-bold mb-1 text-slate-900 dark:text-white">Yeni Kalıp Koleksiyonu</h3>
+                        <p class="text-xs text-slate-600 dark:text-slate-400 line-clamp-2">XS'tan 5XL'ye kadar prova edilmiş dikiş kalıplarıyla hayalinizdeki kıyafeti dikin.</p>
+                    </div>
+                    <div class="flex items-center justify-between text-xs font-bold text-amber-500 pt-2 border-t border-slate-200/50 dark:border-white/10">
+                        <span>Kalıpları İncele</span>
+                        <i class="fas fa-arrow-right"></i>
+                    </div>
+                </div>
+
+                <!-- Kart 3: Metraj Hesaplama -->
+                <div class="deck-card card-pos-2 bg-white/80 dark:bg-[#15121a]/85" onclick="goToCardLink('metraj.html')" data-index="2">
+                    <div class="flex items-center justify-between text-left">
+                        <div class="w-12 h-12 rounded-xl flex items-center justify-center bg-rose-600/10 text-rose-600 text-xl font-bold">
+                            <i class="fas fa-calculator"></i>
+                        </div>
+                        <span class="text-[10px] font-black uppercase tracking-wider px-3 py-1 rounded-full bg-rose-600/10 text-rose-600">Pratik Araç</span>
+                    </div>
+                    <div class="text-left my-2">
+                        <h3 class="text-xl font-bold mb-1 text-slate-900 dark:text-white">Metraj Hesaplama</h3>
+                        <p class="text-xs text-slate-600 dark:text-slate-400 line-clamp-2">Etek, pantolon, mont veya elbise için kaç metre kumaş almanız gerektiğini hesaplayın.</p>
+                    </div>
+                    <div class="flex items-center justify-between text-xs font-bold text-rose-600 pt-2 border-t border-slate-200/50 dark:border-white/10">
+                        <span>Hesaplamaya Başla</span>
+                        <i class="fas fa-arrow-right"></i>
+                    </div>
+                </div>
+
+                <!-- Kart 4: EN-KAI Asistan -->
+                <div class="deck-card card-pos-3 bg-white/80 dark:bg-[#15121a]/85" onclick="goToCardLink('https://enkai.onrender.com')" data-index="3">
+                    <div class="flex items-center justify-between text-left">
+                        <div class="w-12 h-12 rounded-xl flex items-center justify-center bg-purple-500/10 text-purple-500 text-xl font-bold">
+                            <i class="fas fa-robot"></i>
+                        </div>
+                        <span class="text-[10px] font-black uppercase tracking-wider px-3 py-1 rounded-full bg-purple-500/10 text-purple-400">Yapay Zeka</span>
+                    </div>
+                    <div class="text-left my-2">
+                        <h3 class="text-xl font-bold mb-1 text-slate-900 dark:text-white">EN-KAI Yapay Zeka</h3>
+                        <p class="text-xs text-slate-600 dark:text-slate-400 line-clamp-2">Kumaşınızın fotoğrafını yükleyin veya projenizi anlatın, anında dikiş rehberliği alın.</p>
+                    </div>
+                    <div class="flex items-center justify-between text-xs font-bold text-purple-500 pt-2 border-t border-slate-200/50 dark:border-white/10">
+                        <span>Sohbete Başla</span>
+                        <i class="fas fa-arrow-right"></i>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Kart Noktaları (Dots) -->
+            <div class="flex items-center justify-center gap-2 mt-12" id="deck-dots">
+                <button onclick="setTopCard(0)" class="w-6 h-2.5 rounded-full bg-rose-500 transition-all duration-300" aria-label="1. Kart"></button>
+                <button onclick="setTopCard(1)" class="w-2.5 h-2.5 rounded-full bg-slate-300 dark:bg-white/20 transition-all duration-300" aria-label="2. Kart"></button>
+                <button onclick="setTopCard(2)" class="w-2.5 h-2.5 rounded-full bg-slate-300 dark:bg-white/20 transition-all duration-300" aria-label="3. Kart"></button>
+                <button onclick="setTopCard(3)" class="w-2.5 h-2.5 rounded-full bg-slate-300 dark:bg-white/20 transition-all duration-300" aria-label="4. Kart"></button>
+            </div>
+        </div>
+    </main>
+
+    <!-- ── FOOTER ── -->
+    <footer class="w-full py-6 text-center text-xs text-slate-500 dark:text-slate-400 border-t border-slate-200/50 dark:border-white/5">
+        <p>© 2026 EN-KA KUMAŞ · Ankara Keçiören</p>
+    </footer>
+
+    <!-- ── SCRIPT ── -->
+    <script>
+    // Tema Fonksiyonu
+    function toggleDarkMode() {
+        document.documentElement.classList.toggle('dark');
+        localStorage.setItem('theme', document.documentElement.classList.contains('dark') ? 'dark' : 'light');
+    }
+    if (localStorage.getItem('theme') === 'dark' || (!localStorage.getItem('theme') && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+        document.documentElement.classList.add('dark');
+    }
+
+    // ── STACKING CARDS SİSTEMİ (Birbirinin üstüne gelme animasyonu) ──
+    const cards = Array.from(document.querySelectorAll('.deck-card'));
+    const dots = Array.from(document.querySelectorAll('#deck-dots button'));
+    let activeCardIndex = 0;
+    const totalCards = cards.length;
+    let deckInterval = null;
+
+    function updateDeckPositions() {
+        cards.forEach((card, idx) => {
+            const relPos = (idx - activeCardIndex + totalCards) % totalCards;
+            
+            card.classList.remove('card-pos-0', 'card-pos-1', 'card-pos-2', 'card-pos-3', 'card-pos-out');
+
+            if (relPos === 0) {
+                card.classList.add('card-pos-0');
+            } else if (relPos === 1) {
+                card.classList.add('card-pos-1');
+            } else if (relPos === 2) {
+                card.classList.add('card-pos-2');
+            } else {
+                card.classList.add('card-pos-3');
+            }
+        });
+
+        dots.forEach((dot, i) => {
+            if (i === activeCardIndex) {
+                dot.className = 'w-6 h-2.5 rounded-full bg-rose-500 transition-all duration-300';
+            } else {
+                dot.className = 'w-2.5 h-2.5 rounded-full bg-slate-300 dark:bg-white/20 transition-all duration-300';
+            }
+        });
+    }
+
+    function nextCard() {
+        const currentTopCard = cards[activeCardIndex];
+        currentTopCard.classList.add('card-pos-out');
+
+        setTimeout(() => {
+            activeCardIndex = (activeCardIndex + 1) % totalCards;
+            updateDeckPositions();
+        }, 250);
+    }
+
+    function setTopCard(index) {
+        if (index === activeCardIndex) return;
+        activeCardIndex = index;
+        updateDeckPositions();
+        resetInterval();
+    }
+
+    function goToCardLink(url) {
+        window.location.href = url;
+    }
+
+    function resetInterval() {
+        if (deckInterval) clearInterval(deckInterval);
+        deckInterval = setInterval(nextCard, 3500);
+    }
+
+    updateDeckPositions();
+    resetInterval();
+
+    const deckContainer = document.getElementById('card-deck');
+    deckContainer.addEventListener('mouseenter', () => clearInterval(deckInterval));
+    deckContainer.addEventListener('mouseleave', resetInterval);
+
+    let startX = 0;
+    deckContainer.addEventListener('touchstart', e => { startX = e.touches[0].clientX; }, {passive:true});
+    deckContainer.addEventListener('touchend', e => {
+        const diff = startX - e.changedTouches[0].clientX;
+        if (Math.abs(diff) > 30) {
+            nextCard();
+            resetInterval();
+        }
+    }, {passive:true});
+    </script>
+</body>
+</html>
