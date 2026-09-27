@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="tr" class="light">
-<head> 
+<head>
     <meta charset="UTF-8">
     <meta property="og:title" content="EN-KA KUMAŞ | Kalıp Koleksiyonu">
     <meta property="og:description" content="Profesyonel PDF dikiş kalıplarını keşfedin ve indirin.">
@@ -215,11 +215,11 @@ function initKalipPage() {
     loadFromSupabase();
 }
 
-var searchInput = document.getElementById('searchInput');
-var searchClear = document.getElementById('searchClear');
-var searchTimeout = null;
-
 function initSearchHandlers() {
+    var searchInput = document.getElementById('searchInput');
+    var searchClear = document.getElementById('searchClear');
+    if (!searchInput || !searchClear) return;
+    var searchTimeout = null;
     searchInput.removeEventListener('input', searchInput._handler);
     searchClear.removeEventListener('click', searchClear._handler);
     searchInput._handler = function() {
@@ -239,6 +239,12 @@ function initSearchHandlers() {
     searchInput.addEventListener('input', searchInput._handler);
     searchClear.addEventListener('click', searchClear._handler);
 }
+
+window.initKalipPage = function() {
+    loadFromSupabase();
+};
+window.initSearchHandlers = initSearchHandlers;
+window.loadFromSupabase = loadFromSupabase;
 
 initSearchHandlers();
 initKalipPage();
