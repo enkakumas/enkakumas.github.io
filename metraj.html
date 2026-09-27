@@ -136,7 +136,7 @@ footer{padding:24px 16px;text-align:center;font-size:.8rem;color:var(--txt3);bor
 <body>
 
 <!-- Floating Glass Buttons -->
-<a href="index-6.html" class="floating-nav-btn floating-back-btn" title="Ana Sayfaya Dön" aria-label="Geri">
+<a href="index.html" class="floating-nav-btn floating-back-btn" title="Ana Sayfaya Dön" aria-label="Geri">
   <i class="fas fa-chevron-left"></i>
 </a>
 <button class="floating-nav-btn floating-theme-btn" id="theme-btn" title="Tema Değiştir" aria-label="Tema Değiştir">
@@ -685,6 +685,14 @@ updateValue('w-e', '140 – 150 cm (Standart Giyim Eni – En Yaygın)');
 document.addEventListener('click', function(e){
   if(!e.target.closest('.sel-wrap')){
     closeAllPanels();
+  }
+});
+
+/* ── KEYBOARD NAVIGATION: < KEY TO HOME ── */
+window.addEventListener('keydown', function(e){
+  if (['INPUT', 'TEXTAREA', 'SELECT'].includes(document.activeElement.tagName)) return;
+  if (e.key === '<' || e.key === 'ArrowLeft') {
+    window.location.href = 'index.html';
   }
 });
 
