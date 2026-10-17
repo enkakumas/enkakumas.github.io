@@ -1,0 +1,978 @@
+<!DOCTYPE html>
+<html lang="tr" data-theme="light">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ENKALens – Görsel Kumaş Analizi</title>
+  <meta name="description" content="EN-KA Lens ile kumaş görsellerinizi yükleyin veya fotoğraf çekin; renk ve desen analizini saniyeler içinde yapın." />
+  <meta name="keywords" content="ENKALens, kumaş renk analizi, görsel analiz, kumaş desen, EN-KA" />
+  <meta property="og:title" content="ENKALens – Görsel Kumaş Analizi" />
+  <meta property="og:description" content="Kumaşınızın renklerini ve desenlerini analiz edin." />
+  <meta property="og:image" content="logo.png" />
+  <meta property="og:type" content="website" />
+  <link rel="icon" type="image/png" href="logo.png" />
+
+  <style>
+    /* ── Reset & Base ─────────────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    /* ── Theme Variables ─────────────────────────────── */
+    :root,
+    [data-theme="light"] {
+      --bg: #ffffff;
+      --surface: #f5f5f5;
+      --border: #e0e0e0;
+      --text: #111111;
+      --sub: #555555;
+      --radius: 14px;
+      --shadow: 0 4px 24px rgba(0,0,0,.08);
+      --btn-back-bg: rgba(255,255,255,0.92);
+      --btn-back-color: #111111;
+      --btn-back-border: rgba(0,0,0,0.12);
+      --cam-bg: #1a1a1a;
+      --cam-controls-bg: #ffffff;
+      --shutter-bg: #ffffff;
+    }
+    [data-theme="dark"] {
+      --bg: #0f0f0f;
+      --surface: #1c1c1c;
+      --border: #2e2e2e;
+      --text: #f0f0f0;
+      --sub: #999999;
+      --radius: 14px;
+      --shadow: 0 4px 24px rgba(0,0,0,.4);
+      --btn-back-bg: rgba(30,30,30,0.92);
+      --btn-back-color: #f0f0f0;
+      --btn-back-border: rgba(255,255,255,0.1);
+      --cam-bg: #000000;
+      --cam-controls-bg: #161616;
+      --shutter-bg: #1c1c1c;
+    }
+
+    html, body { height: 100%; }
+    body {
+      font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      transition: background .3s, color .3s;
+    }
+
+    /* ── Back Button ─────────────────────────────────── */
+    .btn-back {
+      position: fixed;
+      top: 18px;
+      left: 18px;
+      z-index: 1000;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: var(--btn-back-bg);
+      color: var(--btn-back-color);
+      border: 1px solid var(--btn-back-border);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: var(--shadow);
+      transition: transform .2s, background .3s, border-color .3s;
+      text-decoration: none;
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+    }
+    .btn-back:hover { transform: scale(1.08); }
+    .btn-back svg { width: 18px; height: 18px; stroke: var(--btn-back-color); }
+
+    /* ── Theme Toggle ────────────────────────────────── */
+    .theme-toggle {
+      position: fixed;
+      top: 18px;
+      right: 18px;
+      z-index: 1000;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: var(--btn-back-bg);
+      border: 1px solid var(--btn-back-border);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: var(--shadow);
+      transition: transform .2s, background .3s, border-color .3s;
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+    }
+    .theme-toggle:hover { transform: scale(1.08); }
+    .theme-toggle svg { width: 18px; height: 18px; stroke: var(--btn-back-color); transition: stroke .3s; }
+    .icon-sun  { display: none; }
+    .icon-moon { display: block; }
+    [data-theme="dark"] .icon-sun  { display: block; }
+    [data-theme="dark"] .icon-moon { display: none; }
+
+    /* ── Header ──────────────────────────────────────── */
+    header {
+      text-align: center;
+      padding: 52px 20px 20px;
+    }
+    .logo-wrap {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      margin-bottom: 6px;
+    }
+    .logo-wrap img { width: 36px; height: 36px; object-fit: contain; }
+    .brand {
+      font-size: clamp(22px, 5vw, 32px);
+      font-weight: 800;
+      letter-spacing: -1px;
+      color: var(--text);
+      transition: color .3s;
+    }
+    .brand span { color: var(--sub); font-weight: 400; transition: color .3s; }
+    .tagline {
+      font-size: 13px;
+      color: var(--sub);
+      letter-spacing: .5px;
+      transition: color .3s;
+    }
+
+    /* ── Main ────────────────────────────────────────── */
+    main {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 24px 16px 40px;
+      gap: 20px;
+      max-width: 560px;
+      margin: 0 auto;
+      width: 100%;
+    }
+
+    /* ── Camera Card ─────────────────────────────────── */
+    .camera-card {
+      width: 100%;
+      border-radius: var(--radius);
+      border: 1.5px dashed var(--border);
+      background: var(--surface);
+      overflow: hidden;
+      position: relative;
+      transition: background .3s, border-color .3s;
+    }
+    #videoContainer {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 4/3;
+      background: var(--cam-bg);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+    #videoEl {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+    .cam-placeholder {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      color: #888;
+      font-size: 14px;
+      height: 100%;
+      position: absolute;
+      inset: 0;
+    }
+    .cam-placeholder svg { opacity: .35; }
+    .cam-guide {
+      font-size: 12px;
+      color: #666;
+      margin-top: 4px;
+    }
+
+    /* Shutter */
+    .cam-controls {
+      padding: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: var(--cam-controls-bg);
+      transition: background .3s;
+    }
+    .shutter-btn {
+      width: 64px; height: 64px;
+      border-radius: 50%;
+      border: 4px solid var(--text);
+      background: var(--shutter-bg);
+      cursor: pointer;
+      position: relative;
+      transition: transform .15s, border-color .3s, background .3s;
+      box-shadow: 0 2px 12px rgba(0,0,0,.15);
+    }
+    .shutter-btn::after {
+      content: '';
+      position: absolute;
+      inset: 6px;
+      border-radius: 50%;
+      background: var(--text);
+      transition: background .3s;
+    }
+    .shutter-btn:active { transform: scale(.93); }
+    .shutter-btn:disabled { opacity: .35; cursor: not-allowed; }
+
+    /* Start Camera button */
+    .start-cam-btn {
+      padding: 12px 28px;
+      border-radius: 50px;
+      border: 1.5px solid var(--text);
+      background: var(--text);
+      color: var(--bg);
+      font-size: 14px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: opacity .2s, background .3s, color .3s, border-color .3s;
+    }
+    .start-cam-btn:hover { opacity: .82; }
+
+    /* ── Divider ─────────────────────────────────────── */
+    .divider {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      width: 100%;
+      color: var(--sub);
+      font-size: 12px;
+      font-weight: 500;
+      letter-spacing: .5px;
+      transition: color .3s;
+    }
+    .divider::before, .divider::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: var(--border);
+      transition: background .3s;
+    }
+
+    /* ── File Upload ─────────────────────────────────── */
+    .upload-btn {
+      width: 100%;
+      padding: 16px;
+      border-radius: var(--radius);
+      border: 1.5px solid var(--border);
+      background: var(--bg);
+      font-size: 15px;
+      font-weight: 600;
+      color: var(--text);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      transition: background .2s, border-color .2s, color .3s;
+    }
+    .upload-btn:hover { background: var(--surface); border-color: var(--sub); }
+    .upload-btn svg { flex-shrink: 0; stroke: var(--text); transition: stroke .3s; }
+    #fileInput { display: none; }
+
+    /* ── Preview + Overlay ───────────────────────────── */
+    #previewWrap {
+      width: 100%;
+      border-radius: var(--radius);
+      overflow: hidden;
+      position: relative;
+      display: none;
+      user-select: none;
+      -webkit-user-select: none;
+    }
+    #previewImg {
+      width: 100%;
+      display: block;
+      object-fit: cover;
+      max-height: 360px;
+      transition: filter .4s ease;
+    }
+    #previewImg.blurred { filter: blur(8px) brightness(.55); }
+
+    .analyzing-overlay {
+      position: absolute;
+      inset: 0;
+      display: none;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 16px;
+    }
+    .analyzing-overlay.active { display: flex; }
+    .analyzing-text {
+      font-size: 18px;
+      font-weight: 700;
+      color: #ffffff;
+      letter-spacing: .4px;
+    }
+    .spinner {
+      width: 44px; height: 44px;
+      border: 3px solid rgba(255,255,255,.25);
+      border-top-color: #fff;
+      border-radius: 50%;
+      animation: spin .8s linear infinite;
+    }
+    @keyframes spin { to { transform: rotate(360deg); } }
+
+    /* ── Color Loupe ─────────────────────────────────── */
+    .loupe {
+      position: absolute;
+      width: 76px; height: 76px;
+      border-radius: 50%;
+      border: 3px solid #fff;
+      box-shadow: 0 4px 20px rgba(0,0,0,.45);
+      pointer-events: none;
+      display: none;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      transform: translate(-50%, -130%);
+      font-size: 10px;
+      font-weight: 700;
+      gap: 2px;
+      z-index: 20;
+      text-align: center;
+      padding: 6px;
+    }
+    .loupe.visible { display: flex; }
+    .loupe-hex { font-size: 9px; opacity: .85; }
+
+    /* ── Results Card ────────────────────────────────── */
+    #resultsCard {
+      width: 100%;
+      border-radius: var(--radius);
+      border: 1.5px solid var(--border);
+      background: var(--bg);
+      padding: 22px 20px;
+      display: none;
+      animation: fadeUp .4s ease;
+      transition: background .3s, border-color .3s;
+    }
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(10px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    .results-title {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 1.2px;
+      color: var(--sub);
+      text-transform: uppercase;
+      margin-bottom: 16px;
+      transition: color .3s;
+    }
+    .results-title svg { stroke: var(--sub); flex-shrink: 0; transition: stroke .3s; }
+    .pattern-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      font-size: 13px;
+      font-weight: 600;
+      padding: 6px 14px;
+      border-radius: 50px;
+      border: 1.5px solid var(--border);
+      margin-bottom: 20px;
+      background: var(--surface);
+      color: var(--text);
+      transition: background .3s, border-color .3s, color .3s;
+    }
+    .pattern-badge svg { stroke: var(--text); transition: stroke .3s; }
+
+    /* Color rows */
+    .color-list { display: flex; flex-direction: column; gap: 10px; }
+    .color-row { display: flex; align-items: center; gap: 12px; }
+    .color-swatch {
+      width: 36px; height: 36px;
+      border-radius: 8px;
+      border: 1px solid rgba(128,128,128,.15);
+      flex-shrink: 0;
+    }
+    .color-info { flex: 1; }
+    .color-name { font-size: 14px; font-weight: 600; color: var(--text); transition: color .3s; }
+    .color-sub  { font-size: 12px; color: var(--sub); transition: color .3s; }
+    .color-bar-wrap {
+      width: 80px;
+      height: 6px;
+      border-radius: 3px;
+      background: var(--border);
+      overflow: hidden;
+      transition: background .3s;
+    }
+    .color-bar { height: 100%; border-radius: 3px; transition: width .65s ease; }
+    .color-pct { font-size: 13px; font-weight: 700; min-width: 38px; text-align: right; color: var(--text); transition: color .3s; }
+
+    /* ── Tip box ─────────────────────────────────────── */
+    .tip-box {
+      width: 100%;
+      border-radius: var(--radius);
+      background: var(--surface);
+      border: 1px solid var(--border);
+      padding: 14px 16px;
+      font-size: 12.5px;
+      color: var(--sub);
+      line-height: 1.6;
+      display: none;
+      align-items: center;
+      gap: 10px;
+      transition: background .3s, border-color .3s, color .3s;
+    }
+    .tip-box.active { display: flex; }
+    .tip-box svg { flex-shrink: 0; stroke: var(--sub); transition: stroke .3s; }
+
+    /* ── Disclaimer ──────────────────────────────────── */
+    .disclaimer {
+      width: 100%;
+      border-radius: var(--radius);
+      background: var(--surface);
+      border: 1px solid var(--border);
+      padding: 14px 16px;
+      font-size: 12px;
+      color: var(--sub);
+      line-height: 1.65;
+      transition: background .3s, border-color .3s, color .3s;
+    }
+    .disclaimer-title {
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      font-weight: 700;
+      font-size: 12px;
+      margin-bottom: 5px;
+      color: var(--text);
+      transition: color .3s;
+    }
+    .disclaimer-title svg { stroke: var(--text); flex-shrink: 0; transition: stroke .3s; }
+
+    /* ── Footer ──────────────────────────────────────── */
+    footer {
+      text-align: center;
+      padding: 20px;
+      font-size: 12px;
+      color: var(--sub);
+      border-top: 1px solid var(--border);
+      transition: color .3s, border-color .3s;
+    }
+
+    /* ── Responsive ──────────────────────────────────── */
+    @media (max-width: 400px) { .color-bar-wrap { width: 54px; } }
+  </style>
+</head>
+<body>
+
+  <!-- Back button -->
+  <a class="btn-back" href="index.html" title="Ana Sayfaya Dön">
+    <svg viewBox="0 0 24 24" fill="none" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+      <polyline points="15 18 9 12 15 6"/>
+    </svg>
+  </a>
+
+  <!-- Theme Toggle -->
+  <button class="theme-toggle" id="themeToggle" title="Temayı Değiştir" aria-label="Tema değiştir">
+    <!-- Sun icon (dark mode'da görünür) -->
+    <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <circle cx="12" cy="12" r="5"/>
+      <line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/>
+      <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/>
+      <line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/>
+      <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
+    </svg>
+    <!-- Moon icon (light mode'da görünür) -->
+    <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+    </svg>
+  </button>
+
+  <!-- Header -->
+  <header>
+    <div class="logo-wrap">
+      <img src="logo.png" alt="EN-KA Logo" />
+      <span class="brand">EN-KA <span>Lens</span></span>
+    </div>
+    <p class="tagline">Görsel Kumaş Renk Analizi</p>
+  </header>
+
+  <!-- Main content -->
+  <main>
+
+    <!-- Camera Card -->
+    <div class="camera-card" id="cameraCard">
+      <div id="videoContainer">
+        <video id="videoEl" autoplay playsinline muted style="display:none;"></video>
+        <div class="cam-placeholder" id="camPlaceholder">
+          <svg width="52" height="52" viewBox="0 0 24 24" fill="none" stroke="#888" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/>
+            <circle cx="12" cy="13" r="4"/>
+          </svg>
+          <span>Kumaşı kameraya tutun</span>
+          <span class="cam-guide">İyi ışık altında net bir görüntü alın</span>
+          <button class="start-cam-btn" id="startCamBtn">Kamerayı Başlat</button>
+        </div>
+      </div>
+      <div class="cam-controls" id="camControls" style="display:none;">
+        <button class="shutter-btn" id="shutterBtn" title="Fotoğraf Çek"></button>
+      </div>
+    </div>
+
+    <canvas id="captureCanvas" style="display:none;"></canvas>
+
+    <!-- Divider -->
+    <div class="divider">VEYA</div>
+
+    <!-- File Upload -->
+    <label class="upload-btn" for="fileInput">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+        <polyline points="17 8 12 3 7 8"/>
+        <line x1="12" y1="3" x2="12" y2="15"/>
+      </svg>
+      Görsel Seçin
+    </label>
+    <input type="file" id="fileInput" accept="image/*" />
+
+    <!-- Preview + Loupe -->
+    <div id="previewWrap">
+      <img id="previewImg" alt="Seçilen görsel" draggable="false" />
+      <div class="analyzing-overlay" id="analyzingOverlay">
+        <div class="spinner"></div>
+        <span class="analyzing-text">Görsel Analiz Ediliyor…</span>
+      </div>
+      <div class="loupe" id="loupe">
+        <span class="loupe-label" id="loupeLabel">—</span>
+        <span class="loupe-hex" id="loupeHex"></span>
+      </div>
+    </div>
+
+    <!-- Touch tip -->
+    <div class="tip-box" id="tipBox">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M18 11V6a2 2 0 0 0-2-2 2 2 0 0 0-2 2"/>
+        <path d="M14 10V4a2 2 0 0 0-2-2 2 2 0 0 0-2 2v2"/>
+        <path d="M10 10.5V6a2 2 0 0 0-2-2 2 2 0 0 0-2 2v8"/>
+        <path d="M18 8a2 2 0 1 1 4 0v6a8 8 0 0 1-8 8h-2c-2.8 0-4.5-.86-5.99-2.34l-3.6-3.6a2 2 0 0 1 2.83-2.82L7 15"/>
+      </svg>
+      <span>Görselin üzerine <strong>basılı tutarak</strong> istediğiniz noktanın rengini öğrenebilirsiniz.</span>
+    </div>
+
+    <!-- Results -->
+    <div id="resultsCard">
+      <div class="results-title">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="13.5" cy="6.5" r="2.5"/><circle cx="6.5" cy="6.5" r="2.5"/>
+          <circle cx="13.5" cy="13.5" r="2.5"/><circle cx="6.5" cy="13.5" r="2.5"/>
+          <circle cx="13.5" cy="20.5" r="2.5"/><circle cx="6.5" cy="20.5" r="2.5"/>
+          <circle cx="20.5" cy="6.5" r="2.5"/><circle cx="20.5" cy="13.5" r="2.5"/><circle cx="20.5" cy="20.5" r="2.5"/>
+        </svg>
+        Renk Analizi
+      </div>
+      <div id="patternBadge" class="pattern-badge"></div>
+      <div class="color-list" id="colorList"></div>
+    </div>
+
+    <!-- Disclaimer -->
+    <div class="disclaimer">
+      <div class="disclaimer-title">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="12" r="10"/>
+          <line x1="12" y1="8" x2="12" y2="12"/>
+          <line x1="12" y1="16" x2="12.01" y2="16"/>
+        </svg>
+        Uyarı
+      </div>
+      Bu analiz tarayıcı tabanlı görüntü işleme algoritmaları kullanmaktadır. Renk sonuçları ekran kalibrasyonu, fotoğraf kalitesi ve aydınlatma koşullarına bağlı olarak gerçek kumaş renklerinden farklılık gösterebilir. Üretim veya tasarım kararlarınız için mutlaka fiziksel numune kontrolü yapınız.
+    </div>
+
+  </main>
+
+  <footer>ENKALens &copy; 2026 — EN-KA Kumaşçılık</footer>
+
+  <script>
+  (() => {
+    // ── Theme ─────────────────────────────────────────
+    const html = document.documentElement;
+    const themeToggle = document.getElementById('themeToggle');
+
+    function applyTheme(theme) {
+      html.setAttribute('data-theme', theme);
+      localStorage.setItem('enkalens-theme', theme);
+    }
+
+    function initTheme() {
+      const saved = localStorage.getItem('enkalens-theme');
+      if (saved) { applyTheme(saved); return; }
+      // Auto dark after 17:00
+      const hour = new Date().getHours();
+      applyTheme(hour >= 17 ? 'dark' : 'light');
+    }
+
+    themeToggle.addEventListener('click', () => {
+      const current = html.getAttribute('data-theme');
+      applyTheme(current === 'dark' ? 'light' : 'dark');
+    });
+
+    initTheme();
+
+    // ── DOM refs ──────────────────────────────────────
+    const fileInput      = document.getElementById('fileInput');
+    const previewWrap    = document.getElementById('previewWrap');
+    const previewImg     = document.getElementById('previewImg');
+    const analyzingOvl   = document.getElementById('analyzingOverlay');
+    const resultsCard    = document.getElementById('resultsCard');
+    const colorList      = document.getElementById('colorList');
+    const patternBadge   = document.getElementById('patternBadge');
+    const startCamBtn    = document.getElementById('startCamBtn');
+    const camPlaceholder = document.getElementById('camPlaceholder');
+    const videoEl        = document.getElementById('videoEl');
+    const camControls    = document.getElementById('camControls');
+    const shutterBtn     = document.getElementById('shutterBtn');
+    const captureCanvas  = document.getElementById('captureCanvas');
+    const loupe          = document.getElementById('loupe');
+    const loupeLabel     = document.getElementById('loupeLabel');
+    const loupeHex       = document.getElementById('loupeHex');
+    const tipBox         = document.getElementById('tipBox');
+
+    let stream = null;
+
+    // ── Camera ────────────────────────────────────────
+    startCamBtn.addEventListener('click', async () => {
+      try {
+        stream = await navigator.mediaDevices.getUserMedia({
+          video: { facingMode: { ideal: 'environment' }, width: { ideal: 1280 } },
+          audio: false
+        });
+        videoEl.srcObject = stream;
+        videoEl.style.display = 'block';
+        camPlaceholder.style.display = 'none';
+        camControls.style.display = 'flex';
+      } catch (err) {
+        alert('Kameraya erişilemedi. Lütfen tarayıcı izinlerini kontrol edin.');
+        console.error(err);
+      }
+    });
+
+    shutterBtn.addEventListener('click', () => {
+      if (!stream) return;
+      captureCanvas.width  = videoEl.videoWidth;
+      captureCanvas.height = videoEl.videoHeight;
+      captureCanvas.getContext('2d').drawImage(videoEl, 0, 0);
+      captureCanvas.toBlob(blob => {
+        const url = URL.createObjectURL(blob);
+        loadAndAnalyze(url);
+        stream.getTracks().forEach(t => t.stop());
+        stream = null;
+        videoEl.style.display = 'none';
+        camPlaceholder.style.display = 'flex';
+        camControls.style.display = 'none';
+        startCamBtn.textContent = 'Tekrar Çek';
+      }, 'image/jpeg', 0.92);
+    });
+
+    // ── File Input ────────────────────────────────────
+    fileInput.addEventListener('change', () => {
+      const file = fileInput.files[0];
+      if (!file) return;
+      loadAndAnalyze(URL.createObjectURL(file));
+    });
+
+    // ── Load & Analyze ────────────────────────────────
+    function loadAndAnalyze(src) {
+      previewImg.src = src;
+      previewWrap.style.display = 'block';
+      resultsCard.style.display = 'none';
+      tipBox.classList.remove('active');
+      loupe.classList.remove('visible');
+      colorList.innerHTML = '';
+
+      previewImg.onload = () => {
+        previewImg.classList.add('blurred');
+        analyzingOvl.classList.add('active');
+
+        const delay = 1800 + Math.random() * 600;
+        setTimeout(() => {
+          analyzeImage(previewImg, (data) => {
+            previewImg.classList.remove('blurred');
+            analyzingOvl.classList.remove('active');
+            renderResults(data);
+            tipBox.classList.add('active');
+            setupLoupe();
+          });
+        }, delay);
+      };
+    }
+
+    // ── Image Analysis ────────────────────────────────
+    function analyzeImage(imgEl, callback) {
+      const canvas = document.createElement('canvas');
+      const SIZE = 200;
+      canvas.width = SIZE; canvas.height = SIZE;
+      const ctx = canvas.getContext('2d');
+      ctx.drawImage(imgEl, 0, 0, SIZE, SIZE);
+
+      let data;
+      try { data = ctx.getImageData(0, 0, SIZE, SIZE).data; }
+      catch(e) { callback(fallbackResult()); return; }
+
+      const pixels = [];
+      for (let i = 0; i < data.length; i += 4) {
+        if (data[i+3] < 128) continue;
+        pixels.push([data[i], data[i+1], data[i+2]]);
+      }
+
+      const clusters = kMeans(pixels, 6, 20);
+      const total = clusters.reduce((s,c) => s + c.count, 0);
+      let colors = clusters
+        .filter(c => c.count > 0)
+        .map(c => ({
+          rgb:  c.center,
+          hex:  rgbToHex(...c.center),
+          name: colorName(c.center),
+          pct:  Math.round((c.count / total) * 100)
+        }))
+        .sort((a,b) => b.pct - a.pct)
+        .filter(c => c.pct >= 2);
+
+      const sum = colors.reduce((s,c) => s + c.pct, 0);
+      if (sum !== 100 && colors.length) colors[0].pct += 100 - sum;
+
+      callback({ colors, isPattern: detectPattern(pixels) });
+    }
+
+    // ── K-Means ───────────────────────────────────────
+    function kMeans(pixels, k, iterations) {
+      const idx = randIndices(pixels.length, k);
+      let centers = idx.map(i => [...pixels[i]]);
+
+      for (let it = 0; it < iterations; it++) {
+        const clusters = Array.from({length: k}, () => ({ sum:[0,0,0], count:0 }));
+        for (const p of pixels) {
+          let best = 0, bestD = Infinity;
+          for (let j = 0; j < k; j++) {
+            const d = dist(p, centers[j]);
+            if (d < bestD) { bestD = d; best = j; }
+          }
+          clusters[best].sum[0] += p[0];
+          clusters[best].sum[1] += p[1];
+          clusters[best].sum[2] += p[2];
+          clusters[best].count++;
+        }
+        let moved = false;
+        for (let j = 0; j < k; j++) {
+          if (!clusters[j].count) continue;
+          const nc = clusters[j].sum.map(v => Math.round(v / clusters[j].count));
+          if (nc.some((v,i) => v !== centers[j][i])) moved = true;
+          centers[j] = nc;
+        }
+        const result = clusters.map((c,j) => ({ center: centers[j], count: c.count }));
+        if (!moved) return result;
+      }
+      return centers.map(c => ({ center: c, count: 0 }));
+    }
+
+    function dist(a,b) {
+      return Math.sqrt((a[0]-b[0])**2+(a[1]-b[1])**2+(a[2]-b[2])**2);
+    }
+    function randIndices(n,k) {
+      const s = new Set();
+      while (s.size < k) s.add(Math.floor(Math.random()*n));
+      return [...s];
+    }
+
+    // ── Pattern Detection ─────────────────────────────
+    function detectPattern(pixels) {
+      if (!pixels.length) return false;
+      const sample = pixels.slice(0, 2000);
+      const mean = sample.reduce((acc,p) => [acc[0]+p[0],acc[1]+p[1],acc[2]+p[2]], [0,0,0])
+                         .map(v => v/sample.length);
+      const variance = sample.reduce((acc,p) =>
+        acc+(p[0]-mean[0])**2+(p[1]-mean[1])**2+(p[2]-mean[2])**2, 0) / sample.length;
+      return variance > 1800;
+    }
+
+    // ── Color Naming ──────────────────────────────────
+    const COLOR_MAP = [
+      { name:'Siyah',           rgb:[0,0,0]          },
+      { name:'Beyaz',           rgb:[255,255,255]    },
+      { name:'Açık Gri',        rgb:[211,211,211]    },
+      { name:'Koyu Gri',        rgb:[80,80,80]       },
+      { name:'Kırmızı',         rgb:[200,30,30]      },
+      { name:'Koyu Kırmızı',    rgb:[139,0,0]        },
+      { name:'Açık Kırmızı',    rgb:[255,102,102]    },
+      { name:'Turuncu',         rgb:[255,140,0]      },
+      { name:'Somon',           rgb:[250,128,114]    },
+      { name:'Sarı',            rgb:[255,220,0]      },
+      { name:'Altın Sarısı',    rgb:[218,165,32]     },
+      { name:'Koyu Yeşil',      rgb:[0,100,0]        },
+      { name:'Yeşil',           rgb:[34,139,34]      },
+      { name:'Açık Yeşil',      rgb:[144,238,144]    },
+      { name:'Zeytin Yeşili',   rgb:[107,142,35]     },
+      { name:'Çam Yeşili',      rgb:[0,70,50]        },
+      { name:'Mint Yeşili',     rgb:[152,251,152]    },
+      { name:'Lacivert',        rgb:[0,0,80]         },
+      { name:'Koyu Mavi',       rgb:[0,0,139]        },
+      { name:'Mavi',            rgb:[30,100,200]     },
+      { name:'Açık Mavi',       rgb:[135,206,250]    },
+      { name:'Gök Mavisi',      rgb:[0,191,255]      },
+      { name:'Mor',             rgb:[128,0,128]      },
+      { name:'Lila',            rgb:[200,150,220]    },
+      { name:'Eflatun',         rgb:[148,103,189]    },
+      { name:'Pembe',           rgb:[255,150,190]    },
+      { name:'Fuşya',           rgb:[255,0,127]      },
+      { name:'Pudra',           rgb:[255,218,218]    },
+      { name:'Kahverengi',      rgb:[139,90,43]      },
+      { name:'Açık Kahverengi', rgb:[196,164,132]    },
+      { name:'Koyu Kahverengi', rgb:[80,40,0]        },
+      { name:'Krem',            rgb:[255,253,208]    },
+      { name:'Bej',             rgb:[245,235,200]    },
+      { name:'Ekru',            rgb:[240,234,214]    },
+      { name:'Tarçın',          rgb:[210,105,30]     },
+      { name:'Şarap Kırmızısı', rgb:[114,47,55]      },
+      { name:'Petrol Mavisi',   rgb:[0,128,128]      },
+      { name:'Turkuaz',         rgb:[64,224,208]     },
+      { name:'Camel',           rgb:[193,154,107]    },
+      { name:'Haki',            rgb:[170,155,85]     },
+      { name:'İndigo',          rgb:[75,0,130]       },
+      { name:'Mercan',          rgb:[255,127,80]     },
+      { name:'Bordo',           rgb:[128,0,32]       },
+    ];
+
+    function colorName([r,g,b]) {
+      let best = COLOR_MAP[0], bestD = Infinity;
+      for (const c of COLOR_MAP) {
+        const d = dist([r,g,b], c.rgb);
+        if (d < bestD) { bestD = d; best = c; }
+      }
+      return best.name;
+    }
+
+    function rgbToHex(r,g,b) {
+      return '#'+[r,g,b].map(v=>v.toString(16).padStart(2,'0')).join('').toUpperCase();
+    }
+
+    // ── Render Results ────────────────────────────────
+    function renderResults({ colors, isPattern }) {
+      // Pattern badge
+      patternBadge.innerHTML = isPattern
+        ? `<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+            <rect x="3" y="3" width="5" height="5" rx="1"/><rect x="10" y="3" width="5" height="5" rx="1"/>
+            <rect x="17" y="3" width="5" height="5" rx="1"/><rect x="3" y="10" width="5" height="5" rx="1"/>
+            <rect x="10" y="10" width="5" height="5" rx="1"/><rect x="17" y="10" width="5" height="5" rx="1"/>
+            <rect x="3" y="17" width="5" height="5" rx="1"/><rect x="10" y="17" width="5" height="5" rx="1"/>
+            <rect x="17" y="17" width="5" height="5" rx="1"/>
+           </svg> Desenli Kumaş`
+        : `<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+            <rect x="3" y="3" width="18" height="18" rx="3"/>
+           </svg> Düz Kumaş`;
+
+      colorList.innerHTML = '';
+      colors.forEach(c => {
+        const row = document.createElement('div');
+        row.className = 'color-row';
+        const bright = 0.299*c.rgb[0] + 0.587*c.rgb[1] + 0.114*c.rgb[2];
+        const swBorder = bright > 230 ? '1px solid rgba(0,0,0,.12)' : '1px solid rgba(128,128,128,.15)';
+        row.innerHTML = `
+          <div class="color-swatch" style="background:${c.hex};border:${swBorder};"></div>
+          <div class="color-info">
+            <div class="color-name">${c.name}</div>
+            <div class="color-sub">${c.hex}</div>
+          </div>
+          <div class="color-bar-wrap">
+            <div class="color-bar" style="width:0%;background:${c.hex};"></div>
+          </div>
+          <div class="color-pct">%${c.pct}</div>
+        `;
+        colorList.appendChild(row);
+        requestAnimationFrame(() => requestAnimationFrame(() => {
+          row.querySelector('.color-bar').style.width = c.pct + '%';
+        }));
+      });
+
+      resultsCard.style.display = 'block';
+    }
+
+    function fallbackResult() {
+      return { colors:[{ rgb:[128,128,128], hex:'#808080', name:'Gri', pct:100 }], isPattern:false };
+    }
+
+    // ── Loupe ─────────────────────────────────────────
+    function setupLoupe() {
+      const offCanvas = document.createElement('canvas');
+      offCanvas.width  = previewImg.naturalWidth;
+      offCanvas.height = previewImg.naturalHeight;
+      const offCtx = offCanvas.getContext('2d');
+      offCtx.drawImage(previewImg, 0, 0);
+
+      function getPixel(cx, cy) {
+        const rect = previewImg.getBoundingClientRect();
+        const px = Math.round((cx - rect.left) * previewImg.naturalWidth  / rect.width);
+        const py = Math.round((cy - rect.top)  * previewImg.naturalHeight / rect.height);
+        try { const d = offCtx.getImageData(px, py, 1, 1).data; return [d[0],d[1],d[2]]; }
+        catch(e) { return null; }
+      }
+
+      function showLoupe(cx, cy, rgb) {
+        if (!rgb) return;
+        const rect = previewImg.getBoundingClientRect();
+        const hex = rgbToHex(...rgb);
+        const bright = 0.299*rgb[0]+0.587*rgb[1]+0.114*rgb[2];
+        const tc = bright > 140 ? '#111' : '#fff';
+        loupe.style.left = (cx - rect.left) + 'px';
+        loupe.style.top  = (cy - rect.top)  + 'px';
+        loupe.style.background = hex;
+        loupe.style.color = tc;
+        loupe.style.textShadow = bright > 140
+          ? '0 1px 3px rgba(255,255,255,.6)'
+          : '0 1px 3px rgba(0,0,0,.7)';
+        loupeLabel.textContent = colorName(rgb);
+        loupeHex.textContent   = hex;
+        loupe.classList.add('visible');
+      }
+      const hideLoupe = () => loupe.classList.remove('visible');
+
+      // Touch
+      let tTimer = null;
+      previewWrap.addEventListener('touchstart', e => {
+        const t = e.touches[0];
+        tTimer = setTimeout(() => {
+          showLoupe(t.clientX, t.clientY, getPixel(t.clientX, t.clientY));
+          e.preventDefault();
+        }, 350);
+      }, { passive: false });
+      previewWrap.addEventListener('touchmove', e => {
+        clearTimeout(tTimer);
+        if (loupe.classList.contains('visible')) {
+          const t = e.touches[0];
+          showLoupe(t.clientX, t.clientY, getPixel(t.clientX, t.clientY));
+          e.preventDefault();
+        }
+      }, { passive: false });
+      previewWrap.addEventListener('touchend', () => {
+        clearTimeout(tTimer);
+        setTimeout(hideLoupe, 900);
+      });
+
+      // Mouse
+      let md = false;
+      previewWrap.addEventListener('mousedown', e => { md=true; showLoupe(e.clientX,e.clientY,getPixel(e.clientX,e.clientY)); });
+      previewWrap.addEventListener('mousemove', e => { if(md) showLoupe(e.clientX,e.clientY,getPixel(e.clientX,e.clientY)); });
+      previewWrap.addEventListener('mouseup',   () => { md=false; setTimeout(hideLoupe,600); });
+      previewWrap.addEventListener('mouseleave',() => { md=false; hideLoupe(); });
+    }
+
+  })();
+  </script>
+</body>
+</html>
